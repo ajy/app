@@ -1,0 +1,24 @@
+/* 
+    Document   : teacher
+    Created on : 29 Jul, 2011, 6:49:02 PM
+    Author     : Arun
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+  .comments{
+               
+                margin-left:25%;
+                margin-right:15%;
+       
+       
+            }
+            .leftPane{
+                position: absolute;
+            }
+

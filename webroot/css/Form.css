@@ -1,0 +1,63 @@
+/* 
+    Document   : Form
+    Created on : 30 Jun, 2011, 8:16:30 PM
+    Author     : Arun
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+html
+{
+    background-color: #cccccc;
+}
+input[type="submit"] { 
+
+}
+form{
+    font-family:"Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif;
+    font-size: small;
+    font-style: normal;
+    background-image:url(lfb1.jpg);
+
+
+}
+fieldset{
+   
+    border-style:none; 
+   
+    display: table-cell;
+}
+
+form
+{
+    text-align:justify;
+    float: none;
+    position: relative;  
+    padding: 20px;  
+    margin: 0 auto;  
+    background-color: #fff;  
+
+    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);  
+    -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);  
+
+}
+
+
+            legend{
+                font-weight: bolder;
+                color: #1392f1;
+            }
+           
+           
+            label
+            {
+                float: left;
+                display: block;
+                text-align:left;
+                width: 100px;
+            }

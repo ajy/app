@@ -1,0 +1,33 @@
+/*
+    Document   : submitButton
+    Created on : 28 Jun, 2011, 8:25:40 PM
+    Author     : Arun
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/*
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+input[type="submit"] {
+    margin-left: 20px;
+    color: white;
+    font-weight: bold;
+    font-size: small;
+    font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+    padding: 5px;
+    padding-left: 8px;
+    padding-right:8px;
+    border-style: solid;
+    border-color:#0596fa;
+    border-width: thin;
+    background: #1c9bf4;
+        
+    border-radius:3px;
+
+
+}
+
+

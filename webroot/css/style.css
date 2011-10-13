@@ -1,0 +1,373 @@
+
+/********************************      Basic Structure      ********************************/
+
+html {
+                font-size: 100%;
+                height: 100%;
+                margin-bottom: 1px; /* Always show a scrollbar to avoid jumping when the scrollbar appears  */
+                }
+
+body {
+                font-family: Arial, Helvetica, sans-serif;
+                color: #555;
+                background: #fff;
+                font-size: 12px;
+                }
+
+
+/********************************      Elements styling      ********************************/
+
+h1, h2, h3, h4, h5, h6 {
+                font-family: Helvetica, Arial, sans-serif;
+                color: #222;
+                font-weight: bold;
+                }
+
+h1            { font-family: Calibri, Helvetica, Arial, sans-serif; font-size: 31px; font-weight: bold; color: #fff; 
+				  position: absolute; top: -1000px;  /* Remove this line and delete the logo (in the HTML) if you don't want an image as a logo */
+				}
+				
+                                h2            { font-size: 26px; padding: 0 0 10px 0; }
+h3            { font-size: 17px; padding: 0 0 10px 0; }
+h4            { font-size: 16px; padding: 0 0 5px 0; }
+h5            { font-size: 14px; padding: 0 0 5px 0; }
+h6            { font-size: 12px; padding: 0 0 5px 0; }
+
+
+a              { color: #57a000; text-decoration: none; }
+a:hover     { color: #000; }
+a:active     { color: #777; }
+a:focus     { outline: 1px; }
+
+strong       { font-weight: bold; color: #333; }
+
+small   		{ font-size: 0.85em; }
+
+pre           { font-family: monospace; }
+
+p {
+                padding: 5px 0 10px 0;
+                line-height: 1.6em;
+                }
+
+/********************************      General Classes      ********************************/
+
+.clear {
+                clear: both;
+                
+                }
+				
+.align-left {
+                float: left;
+                }
+				
+.align-right {
+                float: right;
+                }
+
+/************ Button ************/
+.button {
+				font-family: Verdana, Arial, sans-serif;
+                display: inline-block;
+                background: #459300  !important;
+                border: 1px solid #459300 !important;
+                padding: 4px 7px 4px 7px !important;
+                color: #fff !important;
+                font-size: 11px !important;
+                cursor: pointer;
+                
+                }
+                
+.button:hover {
+                text-decoration: underline;
+                }
+                
+.button:active {
+                padding: 5px 7px 3px 7px !important;
+                }
+				
+a.remove-link {
+				color: #bb0000;
+				}
+
+a.remove-link:hover {
+				color: #000;
+				}
+
+/********************************      Sidebar      ********************************/
+
+#sidebar {
+                
+                width: 17%;
+                height: 100%;
+                position: absolute;
+                left: 0;
+                top: 0;
+                color: #888;
+                font-size: 11px;
+                background-color: #f3f3f3;
+                }
+
+#sidebar #sidebar-wrapper {
+                margin: 0 0 0 9px;
+                }
+
+#sidebar a,
+#sidebar a:active {
+                color:#4C8EFB;
+                
+                }
+
+
+
+#sidebar #sidebar-title {
+                margin: 40px 0 40px 15px;
+                }
+
+#sidebar #logo {
+                margin: 40px 0 40px 0;
+                }
+
+#sidebar #profile-links {
+                padding: 0 15px 20px 15px;
+                text-align: right;
+                line-height: 1.5em;
+                float:right;
+               
+
+}
+
+/************ Sidebar Accordion Menu ************/
+
+#sidebar #main-nav {
+                width: 206px;
+                padding: 0;
+                margin: 0 0 0 15px;
+                font-family: Helvetica, Arial, sans-serif;
+                position:relative;
+                top:100px;
+                }
+
+#sidebar #main-nav li {
+                list-style: none;
+                padding-bottom: 10px;
+                text-align: right;
+                
+                
+                }
+
+#sidebar #main-nav li a.nav-top-item {
+                padding: 10px 15px;
+                color: #fff;
+                font-size: 14px;
+                cursor: pointer;
+                display: block;
+                text-decoration: none;
+                border-style: solid;
+                border-width:1px;
+                border-radius:3px;
+                /*background-color:#34ACF6;*/
+                background-color:#4C8EFB;
+                border-color:#33A4EA;
+                }
+                #sidebar #main-nav li a.nav-top-item:hover{
+                    background-color:#6CA5F9;
+                }
+#sidebar #main-nav li a.current {
+                
+                color:white;
+                font-weight: bold;
+                }
+               
+
+#sidebar #main-nav ul {
+                padding: 0;
+                font-size: 12px;
+                margin: 0;
+                }
+
+#sidebar #main-nav ul li {
+                list-style: none;
+                margin: 0;
+                text-align: right;
+				padding: 0;
+                }
+
+#sidebar #main-nav ul li a {
+                padding: 8px 15px;
+                display: block;
+                color:#DB4637;
+                font-size: 13px;
+                line-height: 1.2em;
+                 }
+
+
+
+#sidebar #main-nav ul li a.current {
+    color: yellowgreen;
+                 }
+
+
+/********************************      Main Content      ********************************/
+
+/************ Layout ************/
+
+#main-content {
+                margin: 0 30px 0 260px;
+                padding: 40px 0 0 0;
+                
+                }
+
+.column-left {
+                width: 48%;
+                float: left;
+                ;
+                }
+                
+.column-right {
+                width: 48%;
+                float: right;
+                
+                }
+               
+#page-intro {
+                font-size: 17px;
+                padding: 0 0 20px 0;
+                }
+
+				
+#footer {
+				border-top: 1px solid #ccc;
+				margin: 40px 0 0 0;
+				padding: 20px 0;
+				font-size: 12px;
+                }
+/************ Lists ************/
+
+#main-content ul,
+#main-content ol {
+                padding: 10px 0;
+                }
+
+/* Unordered List */
+
+#main-content ul li {
+                background: url('../images/icons/bullet_black.png') center left no-repeat;
+                padding: 4px 0 4px 20px;
+                }
+
+/* Ordered List */
+
+#main-content ol {
+                padding: 0 0 0 24px;
+                }
+
+#main-content ol li {
+                list-style: decimal;
+                padding: 4px 0;
+                }
+
+/*************** Content Box ***************/
+
+.content-box {
+                border: 1px solid #ccc;
+                margin: 0 0 20px 0;
+                background: #fff;
+                
+                
+                }
+
+                .content-box-header{
+                    background:#f3f3f3;
+                    border-bottom-style:none;
+                    
+                }
+.content-box-header h3 {
+                padding: 12px 15px 10px;
+                float: left;
+                
+                }
+
+ul.content-box-tabs {
+                float: right;
+                padding: 12px 15px 0 0 !important;
+				margin: 0 !important;
+                                border-style:none;
+                               
+                }
+
+ul.content-box-tabs li {
+                float: left;
+                margin: 0;
+                padding: 0 !important;
+                background-image: none !important;
+                }
+                
+ul.content-box-tabs li a {
+                color: #333;
+                padding: 8px 10px;
+                display: block;
+                margin: 1px;
+                border-bottom: 0;
+                }
+
+ul.content-box-tabs li a:hover {
+                color: #57a000;
+                }              
+                
+ul.content-box-tabs li a.current {
+                background: #fff;
+                border: 1px solid #ccc;
+               border-bottom-color:#fff;
+               font-weight: bold;
+                margin: 0;
+                }
+
+.content-box-content {
+                padding: 20px;
+                font-size: 13px;
+                border-top: 1px solid #ccc;
+                margin-top:-1px;
+                }
+                
+/************ Table ************/
+
+/*#main-content table {
+                width: 100%;
+                border-collapse: collapse;
+                }
+                
+#main-content table thead th {
+                font-weight: bold;
+                font-size: 15px;
+                border-bottom: 1px solid #ddd;
+                }
+                
+#main-content tbody {
+                border-bottom: 1px solid #ddd;
+                }
+                
+#main-content tbody tr {
+                background: #fff;
+                }
+              
+#main-content tbody tr.alt-row {
+                background: #f3f3f3;
+                }
+                
+#main-content table td,
+#main-content table th {
+                padding: 10px;
+                line-height: 1.3em;
+                }        
+				
+#main-content table tfoot td .bulk-actions {
+                padding: 15px 0 5px 0;
+                } 
+				
+#main-content table tfoot td .bulk-actions select {
+                padding: 4px;
+				border: 1px solid #ccc;
+                }      */
+
+
