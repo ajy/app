@@ -58,5 +58,16 @@ class SubjectsController extends AppController {
 		$this->Session->setFlash(__('Subject was not deleted', true));
 		$this->redirect(array('controller'=> 'pages','action' => 'admin'));
 	}
+	
+	function subjects() {
+             $user=($this -> Session -> read("Auth.User"));
+             $q='"';
+             $class= $q.$user ['class'].$q;
+             $id=$user['id'];
+               $subjects=$this->Subject->query("SELECT * FROM subjects WHERE class = $class  AND id NOT IN ( SELECT subject_id FROM subject_memberships WHERE student_id = $id AND form_a_submitted = 1 AND form_a_submitted = 1 );");
+                $this->set('subjects',$subjects);
+	
+                
+        }
         
 }
