@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `to` int(11) NOT NULL,
   `subject_code` varchar(9) CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
   `comment` text CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
-  `parent_id` int(3) unsigned NOT NULL DEFAULT '0',
+  `parent_id` int(3) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=ascii COLLATE=ascii_bin;
 
