@@ -31,14 +31,18 @@ class User extends AppModel {
 				'message' => 'Enter a password',
 				'required' => true
 			)
-			
 		),
 		//not hashed version
-		'password_plain' => array(			
+		'confirm password' => array(			
 			'length' => array(
 				'rule' => array('between',5,15),
 				'message' => 'Password length must be between 4 and 15'
 			),
+			'is not equal' => array(
+				'rule' => array('validatePassword'),
+				'message' => "Your passwords don't match"
+			),
+					
 		),
 		'group_id' => array(
 			'numeric' => array(
@@ -59,28 +63,20 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),
-		'created' => array(
-			'time' => array(
-				'rule' => array('time'),
-				'message' => 'Time',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'modified' => array(
-			'time' => array(
-				'rule' => array('time'),
-				'message' => 'Time2',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
+		)
 	);
+	
+	function validatePassword($check){
+		//only run if there are two password feield (like NOT on the contact or signin pages..)
+		if(isset($this->data['User']['confirmpassword'])){
+			if($this->data['User']['password'] != $this->Auth->password($this->data['User']['confirmpassword']))
+			{
+				//they didnt confirm password
+				return false;
+			}
+		}
+		return true;
+	}
 	
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
@@ -108,4 +104,6 @@ class User extends AppModel {
 			'dependent' => true
 		)
 	);
+	
+	
 }
