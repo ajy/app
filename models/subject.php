@@ -81,5 +81,17 @@ class Subject extends AppModel {
 			'dependent' => true
 		)
 	);
+	var $belongsTo = array(
+		'Teacher1' => array(
+			'className' => 'User',
+			'foreignKey' => 'teacher1',
+			'conditions' => 'User.group_id = (select groups.id where groups.name = "Teacher")',			
+		),
+		'Teacher2' => array(
+			'className' => 'User',
+			'foreignKey' => 'teacher2',
+			'conditions' => 'User.group_id = (select groups.id where groups.name = "Teacher")',			
+		),
+	);
 
 }
