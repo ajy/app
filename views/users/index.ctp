@@ -87,8 +87,6 @@
                                         <th>Username</th> 
                                         <th>Group</th> 
                                         <th>E-mail</th> 
-                                        <th>Created</th> 
-                                        <th>Modified</th> 
                                         <th>Actions</th>
                                     </tr> 
 
@@ -129,8 +127,6 @@
 			<?php echo $this->Html->link($user['Group']['name'], array('controller' => 'groups', 'action' => 'view', $user['Group']['id'])); ?>
 		</td>
 		<td><?php echo $user['User']['email']; ?>&nbsp;</td>
-		<td><?php echo $user['User']['created']; ?>&nbsp;</td>
-		<td><?php echo $user['User']['modified']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $user['User']['id'])); ?>
 			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $user['User']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $user['User']['id'])); ?>
