@@ -63,13 +63,13 @@ class SubjectsController extends AppController {
              $user = $this->Session->read("Auth.User");
              $subjects = $this->Subject->find('all', array(
              	'conditions' => array('Subject.class' => $user ['class']),
-             	'not' => $this->SubjectMembership->find('list',
+             	'not' => $this->SubjectMembership->find('list', array(
              			'conditions'=> array(
              				'student_id' => $user[id],
              				'form_a_submitted' => '1',
              				'form_b_submitted' => '1'
              			),
-             		);
+             		))
              ));
              $this->set('subjects',$subjects);
         }
