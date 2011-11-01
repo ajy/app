@@ -10,6 +10,7 @@
 		echo $this->Form->input('name');
 		echo $this->Form->input('password');
 		echo $this->Form->input('confirm password', array('type' => 'password'));
+		echo $this->Form->input('class');
 		echo $this->Form->input('group_id');
 		echo $this->Form->input('email');
 	?>
