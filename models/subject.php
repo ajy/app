@@ -85,13 +85,17 @@ class Subject extends AppModel {
 		'Teacher1' => array(
 			'className' => 'User',
 			'foreignKey' => 'teacher1',
-			'conditions' => 'User.group_id = (select groups.id where groups.name = "Teacher")',			
+			'conditions' => 'Teacher1.group_id = 2', //must be a teacher
 		),
 		'Teacher2' => array(
 			'className' => 'User',
 			'foreignKey' => 'teacher2',
-			'conditions' => 'User.group_id = (select groups.id where groups.name = "Teacher")',			
+			'conditions' => 'Teacher2.group_id = 2', //must be a teacher
 		),
 	);
 
-}
+}/*
+own column 'User.group_id' in 'on clause' [CORE/cake/libs/model/datasources/dbo_source.php, line 684]
+Query: SELECT COUNT(*) AS `count` FROM `subjects` AS `Subject` LEFT JOIN `users` AS `Teacher1` ON (`User`.`group_id` = 2 AND `Subject`.`teacher1` = `Teacher1`.`id`) LEFT JOIN `users` AS `Teacher2` ON (`User`.`group_id` = 2 AND `Subject`.`teacher2` = `Teacher2`.`id`)  WHERE 1 = 1    
+Query: SELECT `Subject`.`id`, `Subject`.`name`, `Subject`.`code`, `Subject`.`class`, `Subject`.`teacher1`, `Subject`.`teacher2`, `Teacher1`.`id`, `Teacher1`.`username`, `Teacher1`.`name`, `Teacher1`.`password`, `Teacher1`.`group_id`, `Teacher1`.`class`, `Teacher1`.`email`, `Teacher2`.`id`, `Teacher2`.`username`, `Teacher2`.`name`, `Teacher2`.`password`, `Teacher2`.`group_id`, `Teacher2`.`class`, `Teacher2`.`email` FROM `subjects` AS `Subject` LEFT JOIN `users` AS `Teacher1` ON (`User`.`group_id` = 2 AND `Subject`.`teacher1` = `Teacher1`.`id`) LEFT JOIN `users` AS `Teacher2` ON (`User`.`group_id` = 2 AND `Subject`.`teacher2` = `Teacher2`.`id`)  WHERE 1 = 1    LIMIT 20 
+*/
