@@ -32,6 +32,7 @@ h3            { font-size: 17px; padding: 0 0 10px 0; }
 h4            { font-size: 16px; padding: 0 0 5px 0; }
 h5            { font-size: 14px; padding: 0 0 5px 0; }
 h6            { font-size: 12px; padding: 0 0 5px 0; }
+.signout      { font-size: 14px;padding-left:94%;position:relative;top:-25px;color: #666666;font-size:medium;/*background-image:url(img/signout.png);background-repeat: no-repeat;background-position:94%;*/}
 
 
 a              { color: #57a000; text-decoration: none; }
@@ -252,7 +253,7 @@ a.remove-link:hover {
 /* Unordered List */
 
 #main-content ul li {
-                background: url('../images/icons/bullet_black.png') center left no-repeat;
+                background: center left no-repeat;
                 padding: 4px 0 4px 20px;
                 }
 
@@ -330,44 +331,3 @@ ul.content-box-tabs li a.current {
                 margin-top:-1px;
                 }
                 
-/************ Table ************/
-
-/*#main-content table {
-                width: 100%;
-                border-collapse: collapse;
-                }
-                
-#main-content table thead th {
-                font-weight: bold;
-                font-size: 15px;
-                border-bottom: 1px solid #ddd;
-                }
-                
-#main-content tbody {
-                border-bottom: 1px solid #ddd;
-                }
-                
-#main-content tbody tr {
-                background: #fff;
-                }
-              
-#main-content tbody tr.alt-row {
-                background: #f3f3f3;
-                }
-                
-#main-content table td,
-#main-content table th {
-                padding: 10px;
-                line-height: 1.3em;
-                }        
-				
-#main-content table tfoot td .bulk-actions {
-                padding: 15px 0 5px 0;
-                } 
-				
-#main-content table tfoot td .bulk-actions select {
-                padding: 4px;
-				border: 1px solid #ccc;
-                }      */
-
-

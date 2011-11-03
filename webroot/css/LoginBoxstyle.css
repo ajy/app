@@ -10,7 +10,9 @@
    TODO customize this sample style
    Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 */
-
+html{
+    
+}
 input[type="submit"] {
     position:relative;
     width:50%;
@@ -20,27 +22,27 @@ input[type="submit"] {
 form{
     font-family:"Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif;
     font-style: bold;
-    background: #21638c;
-    background-image: url("../img/test1.jpeg"), url("../img/test2.jpeg");
+    background: #dbdfdf;
+   /* background-image: url("../img/test1.jpeg"), url("../img/test2.jpeg");*/
     background-repeat: repeat-x, repeat;
     text-align:justify;
-    float: none;
+    float: right;
     padding: 20px;  
-    width: 14cm;    
+    width: 14cm;  
+    margin-top: 40px;
 }
 form.login {    
-    border-right-style: outset;
-    border-left-style: outset;
-    border-bottom-style: outset;
-    border-top-style: outset;
+    border-style: solid;
     border-right-color: #ebe2c1;
     border-left-color: #ebe2c1;
     border-bottom-color: #ebe2c1;
     border-top-color: #ebe2c1;
-    position: relative;
+    top: 20%;
     font-family: "Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif;
     color: #4d4021;    
     width: 260px;
+    float:right;
+    
 }
 input {
     width:92%;

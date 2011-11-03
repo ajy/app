@@ -17,12 +17,11 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php __('CakePHP: the rapid development php framework:'); ?>
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php
@@ -35,8 +34,6 @@
 		
 		echo $this->Html->css('feedbackMail');
 		
-		echo $this->Html->css('start/jquery-ui-1.8.14.custom.css');
-				
 		echo $scripts_for_layout;
 	?>	
 </head>
@@ -54,15 +51,10 @@
 
 		</div>
 	<!--	<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt'=> __('CakePHP: the rapid development php framework', true), 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false)
-				);
-			?>
+			
 		</div>-->
 	</div>
 	
-<?php echo $this->Element('sql_dump'); ?>	
+	
 </body>
 </html>
