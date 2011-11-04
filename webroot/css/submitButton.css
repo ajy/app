@@ -1,17 +1,4 @@
-/*
-    Document   : submitButton
-    Created on : 28 Jun, 2011, 8:25:40 PM
-    Author     : Arun
-    Description:
-        Purpose of the stylesheet follows.
-*/
-
-/*
-   TODO customize this sample style
-   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
-*/
-
-input[type="submit"] {
+.blue,input[type="submit"] {
     margin-left: 20px;
     color: white;
     font-weight: bold;
@@ -23,11 +10,10 @@ input[type="submit"] {
     border-style: solid;
     border-color:#0596fa;
     border-width: thin;
-    background: #1c9bf4;
+    background: #75c0f7;
         
     border-radius:3px;
 
 
-}
-
-
+}.blue:hover{background: #1c9bf4;}input[type="submit"]:hover{background: #1c9bf4;}
+.blue:active{background: #75c0f7;}input[type="submit"]:active{background: #75c0f7;}

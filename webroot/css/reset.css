@@ -36,7 +36,7 @@ table {
 	border-collapse: separate;
 	border-spacing: 0;
 }
-caption, th, td {
+caption {
 	text-align: left;
 	font-weight: normal;
 }
