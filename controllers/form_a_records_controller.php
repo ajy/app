@@ -2,7 +2,26 @@
 class FormARecordsController extends AppController {
 
 	var $name = 'FormARecords';
+           static  $param;
+	function result() {
+		$group_id=$this->Session->read("Auth.User.group_id");
+		if($group_id==1) {
+			$this->set('form_a_results',$this->FormARecord->calcAllFormAResults());
+			$this->render('all_result');
+		} elseif($group_id==2) {
+			$this->set('form_a_results',$this->FormARecord->calcFormAResults($this->Session->read("Auth.User.username")));
+		}
+	}
+	
+	function export_xls() {
+		$this->FormARecord->recursive = 1;
+		$data = $this->FormARecord->find('all');
+		
+		$this->set('rows',calcAllFormAResults());
+		$this->render('export_xls','export_xls');
 
+	}
+	
 	function index() {
 		$this->FormARecord->recursive = 0;
 		$this->set('formARecords', $this->paginate());		
@@ -17,15 +36,25 @@ class FormARecordsController extends AppController {
 	}
 
 	function add() {
-		if (!empty($this->data)) {
+                        $param=$this->params['pass'];
+            		if (!empty($this->data)) {
 			$this->FormARecord->create();
+                         $param=($this -> Session -> read("params"));
+                         $this->data['FormARecord']['subject']=  $param['subject'];
+                         $this->data['FormARecord']['teacher']=  $param['teacher'];
+                         $this->data['FormARecord']['student']=  $param['student'];
 			if ($this->FormARecord->save($this->data)) {
 				$this->Session->setFlash(__('The form a record has been saved', true));
 				$this->redirect($this->referrer());
 			} else {
 				$this->Session->setFlash(__('The form a record could not be saved. Please, try again.', true));
 			}
-		}
+		}else{
+               $user=($this -> Session -> read("Auth.User"));
+         $params['subject']=$param[0];
+         $params['teacher']=$param[1];
+         $params['student']=$user['id'];
+         $this -> Session ->write('params',$params);}
 	}
 	function edit($id = null) {
 		if (!$id && empty($this->data)) {
