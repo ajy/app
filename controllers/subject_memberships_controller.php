@@ -2,6 +2,8 @@
 class SubjectMembershipsController extends AppController {
 
 	var $name = 'SubjectMemberships';
+	
+	var $uses = array('SubjectMembership','User','Subject');
 
 	function index() {
 		$this->SubjectMembership->recursive = 0;
@@ -63,6 +65,41 @@ class SubjectMembershipsController extends AppController {
 		}
 		$this->Session->setFlash(__('Subject membership was not deleted', true));
 		$this->redirect(array('action' => 'index'));
+	}
+	
+	function enroll() {
+		$classes = $this->User->find('all', array(
+			'recursive' => -1,
+			'fields' => 'DISTINCT User.class',
+			'conditions' => array(
+				"not" => array("User.class" => null),
+			)
+		));
+		if(!isset($classes)){
+			$this->Session->setFlash(__('No classes were found',true));
+		}
+		foreach($classes as $class){
+			$studentsInSameClass = $this->User->find('all', array(
+				'recursive' => -1,
+				'conditions' => array("User.class" => $class['User']['class'])
+			));
+			$subjectsOfThisClass = $this->Subject->find('all', array(
+				'recursive' => -1,
+				'conditions' => array("Subject.class" => $class['User']['class'])
+			));
+			$this->SubjectMembership->query('Truncate subject_memberships');
+			$i=0;
+			foreach($subjectsOfThisClass as $subject)
+				foreach($studentsInSameClass as $student){
+					$this->SubjectMembership->create();
+					$this->SubjectMembership->set(array(
+						'id' => $i++,
+						'subject_id' => $subject['Subject']['id'],
+						'student_id' => $student['User']['id']
+					));
+					$this->SubjectMembership->save();
+				}
+		}
 	}
 }
 ?>
