@@ -3,8 +3,6 @@
 </div>
 <div class="actions">
         <?php $user=($this->Session->read("Auth.User"));?>
-        <?php debug($form_a_results);?>
-        <?php debug($form_b_results);?>
         <h4><?php echo $html->link($user['username'],array('controller'=>'users','action'=>'edit',$user['id']));?></h4>
         
         <ul>

@@ -142,24 +142,9 @@ class FormARecord extends AppModel {
 		)
 	);
 	
-	function afterFind($results, $primary=false) {
- 	       if($primary == true) {
- 	          if(Set::check($results, '0.0')) {
- 	             $fieldName = key($results[0][0]);
- 	              foreach($results as $key=>$value) {
- 	                 $results[$key][$this->alias][$fieldName] = $value[0][$fieldName];
- 	                 unset($results[$key][0]);
- 	              }
- 	           }
- 	       } 
-	       return $results;
-	}
-	
-	
 	function calcFormAResults($userId) {
 		$userSubjectsData=$this->Subject->find('all', array(
 			'recursive' => -1,
-			'fields' => array('Subject.id'),
 			'conditions' => array(
 				'OR' => array(
 					'Subject.teacher1' => $userId,
@@ -173,39 +158,55 @@ class FormARecord extends AppModel {
         	$i=1;
         	foreach($userSubjectsData as $userSubjectData) {
         		$userSubject=$userSubjectData['Subject'];
-			$totalRows=$this->find('count', array(				
+			$totalRows=$this->find('count', array(
 				'conditions' => array(
 					'subject_id' => $userSubject['id'],
 					'teacher' => $userId
 				)
 			));
-			if($totalRows==null)return "No records for your subjects";
-			$ninetyPerAllRows=0.9*$totalRows;
-			$requiredRecords=$this->find('all', array(
-					'fields' => array('sum(q1)','sum(q2)','sum(q3)','sum(q4)','sum(q5)','sum(q6)','sum(q7)','sum(q8)','sum(q9)','sum(q10)'),
-					'order' => array('q1 + q2 + q3 + q4 + q5 + q6 + q7 + q8 + q9 + q10 ASC'),
-					'limit' => floor($ninetyPerAllRows),
-					'offset' => ceil(0.05*$totalRows),
-					'conditions' => array(
-						'subject_id' => $userSubject['id'],
-						'teacher' => $userId
+			if($totalRows==null){
+				$result="No records for ".$userSubject['code'].' : '.$userSubject['name'];				
+			}else{
+				$ninetyPerAllRows=0.9*$totalRows;
+				$requiredRecords=$this->find('all', array(
+						'fields' => array('q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'),
+						'order' => array('q1 + q2 + q3 + q4 + q5 + q6 + q7 + q8 + q9 + q10 ASC'),
+						'limit' => floor($ninetyPerAllRows),
+						'offset' => ceil(0.05*$totalRows),
+						'conditions' => array(
+							'subject_id' => $userSubject['id'],
+							'teacher' => $userId
+						)
 					)
-				)
-			);
-			return $requiredRecords;
-			$result= array(
-				'subjectCode'=>$userSubject['code'],
-				'resultQ1'=>($requiredRecords['sum(q1)']*6)/$ninetyPerAllRows,
-				'resultQ2'=>($requiredRecords['sum(q2)']*6)/$ninetyPerAllRows,
-				'resultQ3'=>($requiredRecords['sum(q3)']*6)/$ninetyPerAllRows,
-				'resultQ4'=>($requiredRecords['sum(q4)']*2)/$ninetyPerAllRows,
-				'resultQ5'=>($requiredRecords['sum(q5)']*2)/$ninetyPerAllRows,
-				'resultQ6'=>($requiredRecords['sum(q6)']*2)/$ninetyPerAllRows,
-				'resultQ7'=>($requiredRecords['sum(q7)']*2)/$ninetyPerAllRows,
-				'resultQ8'=>($requiredRecords['sum(q8)']*2)/$ninetyPerAllRows,
-				'resultQ9'=>($requiredRecords['sum(q9)']*4)/$ninetyPerAllRows,
-				'resultQ10'=>($requiredRecords['sum(q10)']*4)/$ninetyPerAllRows,
-			);
+				);
+				$sumQ1=$sumQ2=$sumQ3=$sumQ4=$sumQ5=$sumQ6=$sumQ7=$sumQ8=$sumQ9=$sumQ10=0;
+				foreach($requiredRecords as $requiredRecord){
+					$sumQ1 = $sumQ1 + $requiredRecord['FormARecord']['q1'];
+					$sumQ2 = $sumQ2 + $requiredRecord['FormARecord']['q2'];
+					$sumQ3 = $sumQ3 + $requiredRecord['FormARecord']['q3'];
+					$sumQ4 = $sumQ4 + $requiredRecord['FormARecord']['q4'];
+					$sumQ5 = $sumQ5 + $requiredRecord['FormARecord']['q5'];
+					$sumQ6 = $sumQ6 + $requiredRecord['FormARecord']['q6'];
+					$sumQ7 = $sumQ7 + $requiredRecord['FormARecord']['q7'];
+					$sumQ8 = $sumQ8 + $requiredRecord['FormARecord']['q8'];
+					$sumQ9 = $sumQ9 + $requiredRecord['FormARecord']['q9'];
+					$sumQ10 = $sumQ10 + $requiredRecord['FormARecord']['q10'];
+				}
+				$result= array(
+					'subjectCode'=>$userSubject['code'],
+					'name'=>$userSubject['name'],
+					'resultQ1'=>($sumQ1*3)/$ninetyPerAllRows,
+					'resultQ2'=>($sumQ2*3)/$ninetyPerAllRows,
+					'resultQ3'=>($sumQ3*3)/$ninetyPerAllRows,
+					'resultQ4'=>($sumQ4)/$ninetyPerAllRows,
+					'resultQ5'=>($sumQ5)/$ninetyPerAllRows,
+					'resultQ6'=>($sumQ6)/$ninetyPerAllRows,
+					'resultQ7'=>($sumQ7)/$ninetyPerAllRows,
+					'resultQ8'=>($sumQ8)/$ninetyPerAllRows,
+					'resultQ9'=>($sumQ9*2)/$ninetyPerAllRows,
+					'resultQ10'=>($sumQ10*2)/$ninetyPerAllRows,
+				);
+			}
 			$formAResults = Set::insert($formAResults,$i++,$result);
         	}
         	return $formAResults;                         	

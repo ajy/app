@@ -57,5 +57,20 @@ class FormBResultsController extends AppController {
 		}
 		$this->Session->setFlash(__('Form b result was not deleted', true));
 		$this->redirect(array('action' => 'index'));
+	}
+	
+	function result() {
+		$group_id=$this->Session->read("Auth.User.group_id");
+		if($group_id==1) {
+			$this->set('rows',$this->FormBRecord->find('all'));
+			$this->render('all_result');
+		} elseif($group_id==2) {
+			$form_b_results=$this->FormBResult->find('all', array(
+				'conditions' => array(
+					'teacher' => $this->Session->read("Auth.User.id"),
+				),
+			));
+			$this->set('form_b_results',$form_b_results);
+		}
 	}			
 }
