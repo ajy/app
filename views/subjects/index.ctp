@@ -64,8 +64,7 @@
                 <!-- Page Head --> 
                  <a class="signout" href="#">Sign out</a>
                 <h2>Welcome Admin</h2> 
-
-
+                
 
        
                 <div class="clear"></div> <!-- End .clear --> 
