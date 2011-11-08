@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 07, 2011 at 11:27 AM
+-- Generation Time: Nov 08, 2011 at 06:59 PM
 -- Server version: 5.1.58
 -- PHP Version: 5.3.6-13ubuntu3.2
 
@@ -61,7 +61,23 @@ CREATE TABLE IF NOT EXISTS `form_a_records` (
   UNIQUE KEY `from` (`student`,`teacher`,`subject_id`),
   KEY `teacher` (`teacher`),
   KEY `subject_id` (`subject_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=ascii COLLATE=ascii_bin AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=ascii COLLATE=ascii_bin AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `form_a_records`
+--
+
+INSERT INTO `form_a_records` (`id`, `student`, `teacher`, `subject_id`, `q1`, `q2`, `q3`, `q4`, `q5`, `q6`, `q7`, `q8`, `q9`, `q10`) VALUES
+(1, 30, 3, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+(2, 31, 3, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+(3, 32, 3, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+(4, 33, 3, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+(5, 34, 3, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+(6, 35, 3, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+(7, 36, 3, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+(8, 37, 3, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+(9, 38, 3, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+(10, 39, 3, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5);
 
 -- --------------------------------------------------------
 
@@ -88,7 +104,15 @@ CREATE TABLE IF NOT EXISTS `form_b_records` (
   UNIQUE KEY `for` (`student`,`teacher`,`subject_code`),
   KEY `teacher` (`teacher`),
   KEY `subject_code` (`subject_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=ascii COLLATE=ascii_bin AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=ascii COLLATE=ascii_bin AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `form_b_records`
+--
+
+INSERT INTO `form_b_records` (`id`, `student`, `teacher`, `subject_code`, `q1`, `q2`, `q3`, `q4`, `q5`, `q6`, `q7`, `q8`, `q9`, `q10`) VALUES
+(6, 30, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+(7, 31, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -152,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `subjects` (
 
 INSERT INTO `subjects` (`id`, `name`, `code`, `class`, `teacher1`, `teacher2`) VALUES
 (1, 'Test Subject', '09CS333', '4A', 3, NULL),
-(2, 'Test Subject', '09CS333', '4B', 1, NULL);
+(2, 'Test Subject', '09CS333', '4B', 3, NULL);
 
 -- --------------------------------------------------------
 
