@@ -17,8 +17,13 @@ class CommentsController extends AppController {
 	}
 
 	function add() {
+                 $param=$this->params['pass'];
 		if (!empty($this->data)) {
 			$this->Comment->create();
+                         $param=($this -> Session -> read("params"));
+                         $this->data['Comment']['subject']=  $param['subject'];
+                         $this->data['Comment']['teacher']=  $param['teacher'];
+                         $this->data['Comment']['student']=  $param['student'];
 			if ($this->Comment->save($this->data)) {
 				$this->Session->setFlash(__('The comment has been saved', true));
 				$this->redirect(array('action' => 'index'));
@@ -26,6 +31,12 @@ class CommentsController extends AppController {
 				$this->Session->setFlash(__('The comment could not be saved. Please, try again.', true));
 			}
 		}
+                
+                else{ $user=($this -> Session -> read("Auth.User"));
+         $params['subject']=$param[0];
+         $params['teacher']=$param[1];
+         $params['student']=$user['id'];
+         $this -> Session ->write('params',$params);}
 	}
 
 	function edit($id = null) {
@@ -57,5 +68,8 @@ class CommentsController extends AppController {
 		}
 		$this->Session->setFlash(__('Comment was not deleted', true));
 		$this->redirect(array('action' => 'index'));
+	}
+        function comments() {
+
 	}
 }

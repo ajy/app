@@ -4,7 +4,7 @@ class SubjectsController extends AppController {
 	var $name = 'Subjects';
         
 	function index() {
-		$this->Subject->recursive = 2;
+		$this->Subject->recursive = 0;
                 $sql = "SELECT s1.`id` , s2.`id` , s1.`name` ,s1.`code`,s1.`class`,s2.`class` , s1.`teacher1` , s1.`teacher2` , s2.`teacher1` , s2.`teacher2` \n"
     . "FROM `subjects` s1, `subjects` s2\n"
     . "WHERE s1.`code` = s2.`code` \n"
@@ -101,6 +101,10 @@ class SubjectsController extends AppController {
                 
         }
         
+        function getClass(){
+            return $this->Subject->query("SELECT `class` FROM `subjects` GROUP BY  `class`");
+           
+        }
         
         
 }
