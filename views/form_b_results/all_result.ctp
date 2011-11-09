@@ -36,9 +36,9 @@
 	<tbody>
 		<?php foreach($rows as $row):
 			echo '<tr>';
-			echo '<td class="tableTdContent">'.$row['teacherID'].'</td>';
-			echo '<td class="tableTdContent">'.$row['teacherName'].'</td>';
-			echo '<td class="tableTdContent">'.$row['subjectCode'].'</td>';
+			echo '<td class="tableTdContent">'.$row['teacher'].'</td>';
+			echo '<td class="tableTdContent">'.$row['teacher_name'].'</td>';
+			echo '<td class="tableTdContent">'.$row['subject_code'].'</td>';
 			echo '<td class="tableTdContent">'.$row['resultQ1'].'</td>';
 			echo '<td class="tableTdContent">'.$row['resultQ2'].'</td>';
 			echo '<td class="tableTdContent">'.$row['resultQ3'].'</td>';
