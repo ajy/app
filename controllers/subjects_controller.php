@@ -79,25 +79,22 @@ class SubjectsController extends AppController {
 		$this->redirect(array('controller'=> 'pages','action' => 'admin'));
 	}
          function subjects() {
-             $user=($this -> Session -> read("Auth.User"));
+             $user=($this->Session->read("Auth.User"));
              $q='"';
              $class= $q.$user ['class'].$q;
              $id=$user['id'];
              $subjects=$this->Subject->query("SELECT * FROM subjects WHERE class = $class  AND id NOT IN ( SELECT subject_id FROM subject_memberships WHERE student_id = $id AND form_a_submitted = 1 AND form_a_submitted = 1 );");
              
              //To get the subject names
-             
-                  for($i=0;$i<count($subjects);$i++){
-                 $t1=$subjects[$i]["subjects"]["teacher1"];
-                 $teacher1[$i]=$this->Subject->query("SELECT name from users where id= $t1");
-                 $t2=$subjects[$i]["subjects"]["teacher2"];
-                 $teacher2[$i]=($t2==NULL)?NULL:$this->Subject->query("SELECT name from users where id= $t2");
-                 
-           
+             for($i=0;$i<count($subjects);$i++){
+             $t1=$subjects[$i]["subjects"]["teacher1"];
+             $teacher1[$i]=$this->Subject->query("SELECT name from users where id= $t1");
+             $t2=$subjects[$i]["subjects"]["teacher2"];
+             $teacher2[$i]=($t2==NULL)?NULL:$this->Subject->query("SELECT name from users where id= $t2");
              }
-              $this->set('subjects',$subjects);
-              $this->set('teacher1',$teacher1);
-              $this->set('teacher2',$teacher2);
+             $this->set('subjects',$subjects);
+             $this->set('teacher1',$teacher1);
+             $this->set('teacher2',$teacher2);
                 
         }
         

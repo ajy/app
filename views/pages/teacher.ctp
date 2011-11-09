@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +26,14 @@
                 break;
         case 2: ifr.src="../users";
                 break;
+=======
+<div class="comments">
+        <h2>Teacher</h2>
+</div>
+<div class="actions">
+        <?php $user=($this->Session->read("Auth.User"));?>
+        <h4><?php echo $html->link($user['username'],array('controller'=>'users','action'=>'edit',$user['id']));?></h4>
+>>>>>>> f43af921d622a946ce1a9eccda79e6a49bc4fd95
         
     }
    

@@ -1,21 +1,18 @@
-	<?php $Html->script("googleJsApi"); ?>
-    <script type="text/javascript">
-      google.load('visualization', '1', {packages: ['corechart']});
-    </script>
-    <script type="text/javascript">
-      function drawVisualization() {
+<div id="bar<?php echo($i);?>" style="width: 600px; height: 400px;"></div>
+<script type="text/javascript">
+	function drawVisualization<?php echo($i);?>() {
         // Create and populate the data table.
         var data = new google.visualization.DataTable();
-        var raw_data = [['aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 13],
-                        ['Q2', 40],
-                        ['Q3', 10],
-                        ['Q4', 10],
-                        ['Q5', 10],
-                        ['Q6', 10],
-                        ['Q7', 10],
-                        ['Q8', 10],
-                        ['Q9', 10],
-                        ['Q10', 17],];
+        var raw_data = [['Q1', <?php echo($form_a_result['resultQ1']); ?>],
+                        ['Q2', <?php echo($form_a_result['resultQ2']); ?>],
+                        ['Q3', <?php echo($form_a_result['resultQ3']); ?>],
+                        ['Q4', <?php echo($form_a_result['resultQ4']); ?>],
+                        ['Q5', <?php echo($form_a_result['resultQ5']); ?>],
+                        ['Q6', <?php echo($form_a_result['resultQ6']); ?>],
+                        ['Q7', <?php echo($form_a_result['resultQ7']); ?>],
+                        ['Q8', <?php echo($form_a_result['resultQ8']); ?>],
+                        ['Q9', <?php echo($form_a_result['resultQ9']); ?>],
+                        ['Q10', <?php echo($form_a_result['resultQ10']); ?>],];
         
         data.addColumn('string', 'Your Score');
         data.addRows(1);
@@ -31,21 +28,14 @@
         }
         
         // Create and draw the visualization.
-        new google.visualization.BarChart(document.getElementById('visualization')).
+        new google.visualization.BarChart(document.getElementById('bar<?php echo($i);?>')).
             draw(data,
-                 {title:"Your Score",
+                 {title:"Your Score in <?php echo($form_a_result['subjectCode'])?> : <?php echo($form_a_result['name'])?>",
                   width:1000, height:150,
                   isStacked: true,
                   legend: 'none'
                  }
             );
       }
-      
-
-      google.setOnLoadCallback(drawVisualization);
-    </script>
-  </head>
-  <body style="font-family: Arial;border: 0 none;">
-    <div id="visualization" style="width: 600px; height: 400px;"></div>
-  </body>
-</html>
+      google.setOnLoadCallback(drawVisualization<?php echo($i);?>);
+  </script>
