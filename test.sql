@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 27, 2011 at 03:40 PM
+-- Generation Time: Nov 08, 2011 at 06:59 PM
 -- Server version: 5.1.58
 -- PHP Version: 5.3.6-13ubuntu3.2
 
@@ -61,15 +61,23 @@ CREATE TABLE IF NOT EXISTS `form_a_records` (
   UNIQUE KEY `from` (`student`,`teacher`,`subject_id`),
   KEY `teacher` (`teacher`),
   KEY `subject_id` (`subject_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=ascii COLLATE=ascii_bin AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=ascii COLLATE=ascii_bin AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `form_a_records`
 --
 
 INSERT INTO `form_a_records` (`id`, `student`, `teacher`, `subject_id`, `q1`, `q2`, `q3`, `q4`, `q5`, `q6`, `q7`, `q8`, `q9`, `q10`) VALUES
-(1, 2, 3, 1, 7, 7, 8, 6, 9, 10, 6, 10, 6, 9),
-(2, 4, 3, 1, 10, 6, 7, 8, 9, 10, 8, 8, 9, 7);
+(1, 30, 3, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+(2, 31, 3, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+(3, 32, 3, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+(4, 33, 3, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+(5, 34, 3, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+(6, 35, 3, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+(7, 36, 3, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+(8, 37, 3, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+(9, 38, 3, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+(10, 39, 3, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5);
 
 -- --------------------------------------------------------
 
@@ -96,15 +104,15 @@ CREATE TABLE IF NOT EXISTS `form_b_records` (
   UNIQUE KEY `for` (`student`,`teacher`,`subject_code`),
   KEY `teacher` (`teacher`),
   KEY `subject_code` (`subject_code`)
-) ENGINE=InnoDB  DEFAULT CHARSET=ascii COLLATE=ascii_bin AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=ascii COLLATE=ascii_bin AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `form_b_records`
 --
 
 INSERT INTO `form_b_records` (`id`, `student`, `teacher`, `subject_code`, `q1`, `q2`, `q3`, `q4`, `q5`, `q6`, `q7`, `q8`, `q9`, `q10`) VALUES
-(5, 2, 3, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1),
-(6, 4, 3, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1);
+(6, 30, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+(7, 31, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -160,14 +168,15 @@ CREATE TABLE IF NOT EXISTS `subjects` (
   `teacher1` int(11) NOT NULL,
   `teacher2` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=ascii COLLATE=ascii_bin AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=ascii COLLATE=ascii_bin AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `subjects`
 --
 
 INSERT INTO `subjects` (`id`, `name`, `code`, `class`, `teacher1`, `teacher2`) VALUES
-(1, 'Test Subject', '09CS333', '2A', 3, NULL);
+(1, 'Test Subject', '09CS333', '4A', 3, NULL),
+(2, 'Test Subject', '09CS333', '4B', 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -191,8 +200,15 @@ CREATE TABLE IF NOT EXISTS `subject_memberships` (
 --
 
 INSERT INTO `subject_memberships` (`id`, `student_id`, `subject_id`, `form_a_submitted`, `form_b_submitted`) VALUES
-(1, 2, 1, 0, 0),
-(2, 4, 1, 0, 0);
+(0, 30, 1, 0, 0),
+(1, 31, 1, 0, 0),
+(2, 32, 1, 0, 0),
+(3, 33, 1, 0, 0),
+(4, 34, 1, 0, 0),
+(5, 35, 1, 0, 0),
+(6, 36, 1, 0, 0),
+(7, 37, 1, 0, 0),
+(8, 38, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -210,7 +226,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(30) CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=ascii COLLATE=ascii_bin AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=ascii COLLATE=ascii_bin AUTO_INCREMENT=40 ;
 
 --
 -- Dumping data for table `users`
@@ -218,9 +234,18 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `username`, `name`, `password`, `group_id`, `class`, `email`) VALUES
 (1, 'administrator', 'a', 'ed3cc06ce86ddda1e26144e9f6eaade84b464fef', 1, NULL, 'ajygvnkr@gmail.com'),
-(2, '1PI09IS001', 'aa', 'ed3cc06ce86ddda1e26144e9f6eaade84b464fef', 3, '2A', 'ajygvnkr@gmail.com'),
-(3, 'teacher', 'b', 'ed3cc06ce86ddda1e26144e9f6eaade84b464fef', 2, NULL, 'ajygvnkr@gmail.com'),
-(4, '1PI09IS002', 'bb', 'ed3cc06ce86ddda1e26144e9f6eaade84b464fef', 3, '2A', 'ajygvnkr@gmail.com');
+(3, 'teacher1', 'b', 'ed3cc06ce86ddda1e26144e9f6eaade84b464fef', 2, NULL, 'ajygvnkr@gmail.com'),
+(7, 'teacher2', 'TeacherNo2', 'ed3cc06ce86ddda1e26144e9f6eaade84b464fef', 2, NULL, 'ajygvnkr@gmail.com'),
+(30, '1PI09IS001', 'aa', 'ed3cc06ce86ddda1e26144e9f6eaade84b464fef', 3, '4A', 'ajygvnkr@gmail.com'),
+(31, '1PI09IS002', 'bb', 'ed3cc06ce86ddda1e26144e9f6eaade84b464fef', 3, '4A', 'ajygvnkr@gmail.com'),
+(32, '1PI09IS003', 'cc', 'ed3cc06ce86ddda1e26144e9f6eaade84b464fef', 3, '4A', 'ajygvnkr@gmail.com'),
+(33, '1PI09IS004', 'dd', 'ed3cc06ce86ddda1e26144e9f6eaade84b464fef', 3, '4A', 'ajygvnkr@gmail.com'),
+(34, '1PI09IS005', 'ee', 'ed3cc06ce86ddda1e26144e9f6eaade84b464fef', 3, '4A', 'ajygvnkr@gmail.com'),
+(35, '1PI09IS007', 'gg', 'ed3cc06ce86ddda1e26144e9f6eaade84b464fef', 3, '4A', 'ajygvnkr@gmail.com'),
+(36, '1PI09IS008', 'hh', 'ed3cc06ce86ddda1e26144e9f6eaade84b464fef', 3, '4A', 'ajygvnkr@gmail.com'),
+(37, '1PI09IS009', 'ii', 'ed3cc06ce86ddda1e26144e9f6eaade84b464fef', 3, '4A', 'ajygvnkr@gmail.com'),
+(38, '1PI09IS010', 'jj', 'ed3cc06ce86ddda1e26144e9f6eaade84b464fef', 3, '4A', 'ajygvnkr@gmail.com'),
+(39, '1PI09IS011', 'kk', 'ed3cc06ce86ddda1e26144e9f6eaade84b464fef', 3, '4A', 'ajygvnkr@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -255,7 +280,8 @@ ALTER TABLE `form_b_records`
 -- Constraints for table `subject_memberships`
 --
 ALTER TABLE `subject_memberships`
-  ADD CONSTRAINT `subject_memberships_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `subject_memberships_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `subject_memberships_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

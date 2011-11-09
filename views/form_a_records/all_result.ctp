@@ -18,6 +18,7 @@
 <table id="result">
 	<thead>
 		<tr id="titles">
+			<td class="tableTd">Teacher ID</td>
 			<td class="tableTd">Teacher</td>
 			<td class="tableTd">Subject</td>
 			<td class="tableTd">Percentage_Q1</td>
