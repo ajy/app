@@ -49,7 +49,7 @@ class FormARecordsController extends AppController {
                         $this->data['FormARecord']['student']=  $param['student'];
 			if ($this->FormARecord->save($this->data)) {
 				$this->Session->setFlash(__('The form a record has been saved', true));
-				$this->redirect($this->referrer());
+				$this->redirect(array('controller' => 'FormBRecord', 'action' => 'add'));
 			} else {
 				$this->Session->setFlash(__('The form a record could not be saved. Please, try again.', true));
 			}

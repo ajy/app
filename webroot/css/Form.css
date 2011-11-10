@@ -13,11 +13,9 @@
 
 html
 {
-    background-color: #cccccc;
+    background-color:#fff;
 }
-input[type="submit"] { 
 
-}
 form{
     font-family:"Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif;
     font-size: small;
@@ -50,7 +48,11 @@ form
 
             legend{
                 font-weight: bolder;
+                font-size: larger;
                 color: #1392f1;
+                padding-bottom:10px;
+                
+              
             }
            
            
@@ -60,4 +62,19 @@ form
                 display: block;
                 text-align:left;
                 width: 100px;
+                font-weight: bold;
+                padding-bottom:10px;
+                
+            }
+            
+            /*select{
+                padding-left:50px;
+                position:relative;
+                left:56px;
+                                
+            }*/
+            .error-message{
+                color:red;
+                position:relative;
+                left:100px;
             }
