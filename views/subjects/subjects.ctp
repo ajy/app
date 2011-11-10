@@ -25,7 +25,7 @@
         <div id="subjects"> 
             <h2 id="sub">Your subjects</h2>
        <ul id="main-nav"> 
-       <?debug($teacher1);
+       <?//debug($teacher1);
        for($i=0;$i<count($subjects);$i++){
          echo "<li>";?> 
          <a href="#" class="nav-top-item ">  <? echo $subjects[$i]["subjects"]["name"];?></a>
@@ -34,7 +34,11 @@
                  echo "<ul>";
               echo "<li>";
            echo "<a>".$teacher1[$i][0]['users']['name']."</a>";
+<<<<<<< HEAD
+                 echo $html->link($html->tag('span','Comment',array('class' => 'green')),array('controller'=>'comments','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher1"]),array('escape'=>false,'class'=>'modal'));
+=======
                  echo $html->link($html->tag('span','Comment',array('class' => 'green')),array('controller'=>'form_a_records','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher1"]),array('escape'=>false,'class'=>'modal'));
+>>>>>>> f43af921d622a946ce1a9eccda79e6a49bc4fd95
                      echo $html->link($html->tag('span','Feedback',array('class' => 'blue')),array('controller'=>'form_a_records','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher1"]),array('escape'=>false,'class'=>'modal'));
                                      
                echo "</li>";
@@ -44,7 +48,11 @@
                 
                  echo "<li>";
              echo "<a>".$teacher2[$i][0]['users']['name']."</a>";
+<<<<<<< HEAD
+              echo $html->link($html->tag('span','Comment',array('class' => 'green')),array('controller'=>'comments','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher2"]),array('escape'=>false,'class'=>'modal'));
+=======
               echo $html->link($html->tag('span','Comment',array('class' => 'green')),array('controller'=>'form_a_records','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher1"]),array('escape'=>false,'class'=>'modal'));
+>>>>>>> f43af921d622a946ce1a9eccda79e6a49bc4fd95
                  
              echo $html->link($html->tag('span','Feedback',array('class' => 'blue')),array('controller'=>'form_a_records','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher2"]),array('escape'=>false),array('class'=>'modal'));
            

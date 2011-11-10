@@ -15,7 +15,7 @@ class UsersController extends AppController {
 	
 	function login() {
 	if ($this->Session->read('Auth.User')) {
-			$this->Session->setFlash('You are logged in!');
+			//$this->Session->setFlash('You are logged in!');
                       //  $this -> Session -> write("$username", "Auth.User.username");
                         $group_id=( $this -> Session -> read("Auth.User.group_id"));
                         if($group_id==1) {
@@ -28,14 +28,18 @@ class UsersController extends AppController {
 			            }
                         if($group_id==3)
                         {
+<<<<<<< HEAD
+                          //  $this->Session->write('MySubjects',$this->User->SubjectLearnt->findAllByClass($this->Session->read('Auth.User.class')));
+=======
                             $this->Session->write('MySubjects',$this->Subject->findAllByClass($this->Session->read('Auth.User.class')));
+>>>>>>> f43af921d622a946ce1a9eccda79e6a49bc4fd95
                            	$this->redirect($this->Auth->redirect(array('controller'=> 'pages','action' => 'student')));                           	
                         }
 		}
 	}
 
 	function logout() {
-		$this->Session->setFlash('You are logged out!');
+		//$this->Session->setFlash('You are logged out!');
 		$this->redirect($this->Auth->logout());
 	}
 	
