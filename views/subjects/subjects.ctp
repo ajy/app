@@ -34,7 +34,11 @@
                  echo "<ul>";
               echo "<li>";
            echo "<a>".$teacher1[$i][0]['users']['name']."</a>";
+<<<<<<< HEAD
 
+=======
+                 echo $html->link($html->tag('span','Comment',array('class' => 'green')),array('controller'=>'form_a_records','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher1"]),array('escape'=>false,'class'=>'modal'));
+>>>>>>> 433c43b978da973589f12fc3c838ed15436cf619
                      echo $html->link($html->tag('span','Feedback',array('class' => 'blue')),array('controller'=>'form_a_records','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher1"]),array('escape'=>false,'class'=>'modal'));
                                      
                echo "</li>";
@@ -44,7 +48,11 @@
                 
                  echo "<li>";
              echo "<a>".$teacher2[$i][0]['users']['name']."</a>";
+<<<<<<< HEAD
 
+=======
+              echo $html->link($html->tag('span','Comment',array('class' => 'green')),array('controller'=>'form_a_records','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher1"]),array('escape'=>false,'class'=>'modal'));
+>>>>>>> 433c43b978da973589f12fc3c838ed15436cf619
                  
              echo $html->link($html->tag('span','Feedback',array('class' => 'blue')),array('controller'=>'form_a_records','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher2"]),array('escape'=>false),array('class'=>'modal'));
            
