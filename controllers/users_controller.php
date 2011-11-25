@@ -28,11 +28,7 @@ class UsersController extends AppController {
 			            }
                         if($group_id==3)
                         {
-<<<<<<< HEAD
-                          //  $this->Session->write('MySubjects',$this->User->SubjectLearnt->findAllByClass($this->Session->read('Auth.User.class')));
-=======
-                            $this->Session->write('MySubjects',$this->Subject->findAllByClass($this->Session->read('Auth.User.class')));
->>>>>>> f43af921d622a946ce1a9eccda79e6a49bc4fd95
+
                            	$this->redirect($this->Auth->redirect(array('controller'=> 'pages','action' => 'student')));                           	
                         }
 		}
