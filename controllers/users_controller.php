@@ -61,11 +61,16 @@ class UsersController extends AppController {
 	
 	function changePassword() {
 		if (!empty($this->data)) {
-			if ($this->User->save($this->data)) {
-				$this->Session->setFlash('Password has been changed.');
-				$this->redirect('/');
-			} else $this->Session->setFlash('Password could not be changed.');
-		} else $this->data = $this->User->findById($this->Auth->user('id'));
+			if($this->data['User']['new password'] == $this->data['User']['confirm password']){
+				$newPassword = $this->data['User']['new password'];
+				$this->data = $this->User->findById($this->Auth->user('id'));
+				$this->data['User']['password'] = $this->Auth->password($newPassword);
+				if ($this->User->save($this->data)) {
+					$this->Session->setFlash('Password has been changed.');
+					//$this->redirect('/');
+				} else $this->Session->setFlash('Password could not be changed.');
+			} else $this->Session->setFlash('The new password was not entered correctly');		
+		} else $this->data['User'] = $this->User->findById($this->Auth->user('id'));
 	}
 	
 	function resetPassword($token=null) {
