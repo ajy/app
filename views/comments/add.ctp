@@ -1,11 +1,13 @@
+ <?=$html->css(array('Form','submitButton'));?> 
 <div class="comments form">
 <?php echo $this->Form->create('Comment');?>
 	<fieldset>
 		<legend><?php __('Add Comment'); ?></legend>
 	<?php
-		echo $this->Form->input('from');
+                //debug($this -> Session ->read('params'));
+		/*echo $this->Form->input('from');
 		echo $this->Form->input('to');
-		echo $this->Form->input('subject_code');
+		echo $this->Form->input('subject_code');*/
 		echo $this->Form->input('comment');
 	?>
 	</fieldset>

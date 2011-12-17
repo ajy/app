@@ -3,15 +3,7 @@
 <?php echo $this->Form->create('FormARecord', array('id' => 'Form'));?>
 	
 	
-          <?
-           
-          /* $user=($this -> Session -> read("Auth.User"));
-         $params['subject']=$param[0];
-         $params['teacher']=$param[1];
-         $params['student']=$user['id'];
-         $this -> Session ->write('params',$params);*/
-          ?>
-                
+         
 
             <fieldset>
                 <legend>The course was well organized</legend>
@@ -94,7 +86,7 @@
                 <label style="display: inline-block">1<input type="radio" name="data[FormARecord][q10]" value="1" required/></label>
             </fieldset>
   <?php echo $this->Form->end(__('Submit', true));?>
-<?php 
+<?php /*
  if(($this -> Session -> read("Auth.User.group_id"))==1){?>
 <div class="actions">
 	<h3><?php __('Actions'); ?></h3>
@@ -105,4 +97,4 @@
 </div>
  
 
-<?php } ?>
+<?php } */?>

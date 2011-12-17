@@ -145,8 +145,8 @@
                 <td class="center"><?echo $teacher1[$i]['b'][0]['users']['name']; ?></td>
 		<td class="center"><?php echo$teacher2[$i]['b'][0]['users']['name']!=NULL?$teacher2[$i]['b'][0]['users']['name']:"-"; ?></td>
                
-                <td class="center">   <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $subjects[$i]['s1']['id'])); ?> &nbsp;&nbsp;
-			 <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete',$subjects[$i]['s1']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $subjects[$i]['s1']['id'], $subjects[$i]['s2']['id'])); ?>
+                <td class="center">   <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $subjects[$i]['s1']['id']),array('class'=>'modal')); ?> &nbsp;&nbsp;
+			 <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete',$subjects[$i]['s1']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), array($subjects[$i]['s1']['id'], $subjects[$i]['s2']['id']))); ?>
 		</td>
 	
 	</tr>	
@@ -164,6 +164,7 @@
 
                                 <thead> 
                                     <tr> 
+                                        <th rowspan="2" class="center"><input class="check-all" type="checkbox" /></th> 
                                         <th  rowspan="2">Name</th> 
                                         <th  rowspan="2">Code</th> 
                                         <th  colspan="2">Section A </th>
@@ -206,7 +207,8 @@
 	?>
 	<tr>
 		
-		<td><?php echo $subjects[$i]['s1']['name']; ?></td>
+		<td class="center"><input class="check-all" type="checkbox" /></td> 
+                <td><?php echo $subjects[$i]['s1']['name']; ?></td>
 		<td class="center"><?php echo $subjects[$i]['s1']['code']; ?></td>
 		<td class="center"><? echo $teacher1[$i]['a'][0]['users']['name']; ?></td>
 		<td class="center"><?php echo $teacher2[$i]['a'][0]['users']['name']!=NULL? $teacher2[$i]['a'][0]['users']['name']:"-"; ?></td>
@@ -234,6 +236,7 @@
 
                                 <thead> 
                                     <tr> 
+                                        <th rowspan="2" class="center"><input class="check-all" type="checkbox" /></th> 
                                         <th  rowspan="2">Name</th> 
                                         <th  rowspan="2">Code</th> 
                                         <th  colspan="2">Section A </th>
@@ -275,7 +278,7 @@
 		if($subjects[$i]['s1']['class']=="8A"||$subjects[$i]['s1']['class']=="8B"){
 	?>
 	<tr>
-		
+		<td class="center"><input class="check-all" type="checkbox" /></td> 
 		<td><?php echo $subjects[$i]['s1']['name']; ?></td>
 		<td class="center"><?php echo $subjects[$i]['s1']['code']; ?></td>
 		<td class="center"><? echo $teacher1[$i]['a'][0]['users']['name']; ?></td>

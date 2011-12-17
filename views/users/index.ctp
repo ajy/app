@@ -117,7 +117,7 @@
                                   <?php
 	$i = 0;
 	foreach ($users as $user):
-            if($user['User']['class']=="2A"||$user['User']['class']=="2B"){
+            if($user['User']['class']=="4A"||$user['User']['class']=="4B"){
 		$class = null;
 		if ($i++ % 2 == 0) {
 			$class = ' class="altrow"';
@@ -183,7 +183,7 @@
                               
 	$i = 0;
 	foreach ($users as $user):
-            if($user['User']['class']=='4A'||$user['User']['class']=="4B"){
+            if($user['User']['class']=='6A'||$user['User']['class']=="6B"){
 		$class = null;
 		if ($i++ % 2 == 0) {
 			$class = ' class="altrow"';
@@ -250,7 +250,7 @@
                                   <?php 
 	$i = 0;
 	foreach ($users as $user):
-            if($user['User']['class']=="6A"||$user['User']['class']=="6B"){
+            if($user['User']['class']=="8A"||$user['User']['class']=="8B"){
 		$class = null;
 		if ($i++ % 2 == 0) {
 			$class = ' class="altrow"';

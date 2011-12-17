@@ -8,7 +8,7 @@
            $(".modal").fancybox({
 				'width'				: '40%',
 				'height'			: '50%',
-				'autoScale'			: false,
+				'autoScale'			: true,
 				'transitionIn'		: 'none',
 				'transitionOut'		: 'none',
 				'type'				: 'iframe',
