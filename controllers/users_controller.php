@@ -40,18 +40,23 @@ class UsersController extends AppController {
 	}
 	
 	function feedbackEmail() {
-		if(!empty($this->data['feedback'])) {
-			$this->set('message',null);
-			$this->Email->from = $this->Session->read('Auth.User.email');
-			$this->Email->to= "$adminEmail";
-			$this->Email->subject = 'feedback from'.$this->Session->read('Auth.User.username');
+		$message = null;
+		$subject = null;
+		if(!empty($this->data['User']['feedback'])) {
+			$message = $this->data['User']['feedback'];
+			$subject = $this->data['User']['subject'];
+			$this->Email->from = "robot@feeback.com";
+			$this->Email->to= "test@localhost.com";
+			$this->Email->subject = 'Feedback from '.$this->Session->read('Auth.User.name').', '.$this->Session->read('Auth.User.username').' on '.$subject;
 			$this->Email->delivery = 'debug';
-			if($this->Email->send($this->data['feedback']))
+			if($this->Email->send($this->data['User']['feedback']))
 				$this->Session->setFlash('your feedback has been sent');
 			else
 				$this->Session->setFlash('your feedback could not be sent right now,try again later');
+			$this->redirect($this->referer());
 		}
-		$this->redirect($this->referer());
+		$this->set('message', $message);
+		$this->set('subject', $subject);
 	}
 	
 	function changePassword() {
@@ -169,7 +174,7 @@ class UsersController extends AppController {
 		$this->Session->setFlash(__('User was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
-	/*
+	/* for defining ACLs
 	function setDefaultPermissions() {
 		$group =& $this->User->Group;
 		$originalGroupId = $group->id;
