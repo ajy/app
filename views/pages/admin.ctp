@@ -25,11 +25,11 @@
                 break;
         case 2: ifr.src="../users";
                 break;
-        case 3: ifr.src="../subjects";
+        case 3: //ifr.src="../subjects";
                 break;
-        case 4: ifr.src="../subjects";
+        case 4: //ifr.src="../subjects";
                 break;
-        case 5: ifr.src="../subjects";
+        case 5: //ifr.src="../comments/admin";
                 break;
         case 6: ifr.src="../users/edit/1";
                 break;

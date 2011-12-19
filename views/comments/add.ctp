@@ -1,8 +1,9 @@
- <?=$html->css(array('Form','submitButton'));?> 
+ <?=$html->css(array('add_edit','submitButton'));?> 
 <div class="comments form">
+    <div id="header"><?php __('Add Comment'); ?></div>
 <?php echo $this->Form->create('Comment');?>
 	<fieldset>
-		<legend><?php __('Add Comment'); ?></legend>
+		
 	<?php
                 //debug($this -> Session ->read('params'));
 		/*echo $this->Form->input('from');

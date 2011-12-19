@@ -77,7 +77,23 @@ class User extends AppModel {
 		}
 		return true;
 	}
-	
+      /*  function afterSave($created){
+		if($created){
+			$users = $this->query('select * from users User where User.id not in select student_id from subject_memberships  SubjectMembership');
+			foreach($users as $user){
+				$subjectInstance = ClassRegistry::init('Subject');
+				$hisClasses = $this->subjectInstance->findByClass($user['User']['class']);
+				foreach($hisClasses as $class){
+					$this->SubjectMembership->create();
+					$this->data['SubjectMembership']['student_id'] = $user['User']['id'];
+					$this->data['SubjectMembership']['subject_id'] = $class['Subject']['id'];
+					$this->SubjectMembership->save();
+				}
+			}
+			//return $users;
+		}
+	}
+	*/
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 	var $belongsTo = array(

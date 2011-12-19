@@ -25,7 +25,7 @@
         <div id="subjects"> 
             <h2 id="sub">Your subjects</h2>
        <ul id="main-nav"> 
-       <?//debug($teacher1);
+       <?
        for($i=0;$i<count($subjects);$i++){
          echo "<li>";?> 
          <a href="#" class="nav-top-item ">  <? echo $subjects[$i]["subjects"]["name"];?></a>
