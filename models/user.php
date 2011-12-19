@@ -67,7 +67,7 @@ class User extends AppModel {
 	);
 	
 	function validatePassword($check){
-		//only run if there are two password feield (like NOT on the contact or signin pages..)
+		//only run if there are two password field (like NOT on the contact or signin pages..)
 		if(isset($this->data['User']['confirmpassword'])){
 			if($this->data['User']['password'] != $this->Auth->password($this->data['User']['confirmpassword']))
 			{
@@ -76,6 +76,22 @@ class User extends AppModel {
 			}
 		}
 		return true;
+	}
+	
+	function afterSave($created){
+		if($created){
+			foreach($users as $user){
+				$user = $this->findById($userId);
+			$hisClasses = $this->Subject->findByClass($user['User']['class']);
+			foreach($hisClasses as $class){
+				$this->SubjectMembership->create();
+				$this->data['SubjectMembership']['student_id'] = $userId;
+				$this->data['SubjectMembership']['subject_id'] = $class['Subject']['id'];
+				$this->SubjectMembership->save();
+				
+			}
+			
+		}
 	}
 	
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -103,7 +119,5 @@ class User extends AppModel {
 			'foreignKey' => 'to',
 			'dependent' => true
 		)
-	);
-	
-	
+	);	
 }
