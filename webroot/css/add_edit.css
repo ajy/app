@@ -1,0 +1,103 @@
+/* 
+    Document   : add_edit
+    Created on : 17 Dec, 2011, 9:04:28 PM
+    Author     : Arun
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+    html
+            {
+                     font-family:"Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif;
+                     
+            }
+
+            form{
+                font-size: small;
+                font-style: normal;
+                width:300px;
+                text-align:justify;
+                position: relative;  
+                padding: 20px;  
+                margin: 0 auto;  
+                padding-left:30px;
+                
+                
+                
+            }
+            fieldset{
+
+                border-style:none; 
+                display: table-cell;
+            }
+
+            
+            legend{
+                font-weight: bolder;
+                color: #1392f1;
+            }
+
+
+            label
+            {
+                display:block;
+                text-align:left;
+                font-weight: normal;
+                padding-bottom:4px;
+                padding-top:10px;
+               
+                
+            }
+           
+            #header{
+                color:gray;
+                border-bottom-style:solid;
+                padding:10px;
+                border-bottom-width:1px;
+                font-weight:bold;
+                border-bottom-color:lightgray;
+                /*width:330px;*/
+                background-color:#F3F3F3;
+                
+                
+            }
+
+             select {
+               
+                border:1px solid #899caa;
+                border-radius:3px;
+                -moz-border-radius:3px;
+                color:#3a454d;
+                font-weight:bold;
+                padding:8px 8px;
+                box-shadow:inset 0px 1px 3px #bbb;
+                -webkit-box-shadow:inset 0px 1px 3px #bbb;
+                -moz-box-shadow:inset 0px 1px 3px #bbb;
+                font-size:12px;
+                
+            }
+
+            input {
+               
+                border:1px solid #899caa;
+                border-radius:3px;
+                -moz-border-radius:3px;
+                color:#3a454d;
+                font-weight:bold;
+                padding:8px 8px ;
+                box-shadow:inset 0px 1px 3px #bbb;
+                -webkit-box-shadow:inset 0px 1px 3px #bbb;
+                -moz-box-shadow:inset 0px 1px 3px #bbb;
+                font-size:12px;
+                width:200px;
+                
+                
+            }
+            input[type=submit]{
+               padding: 8px 8px;
+               width:75px;
+               position: relative;
+               top:15px;
+                margin:0 auto;
+            
+            }
