@@ -8,7 +8,7 @@
 		'username',
 		'password'
 	));
-	echo '<span><a href="#">Forgot your password?</a></span>';
+	echo '<span><a href='.$this->Html->url(array("controller" => "users",    "action" => "resetPassword")).'>Forgot your password?</a></span>';
 	echo $this->Form->submit("Log in",array('id' => 'Login'));
 	echo $this->Form->end();
 ?>

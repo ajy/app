@@ -8,6 +8,12 @@ class UsersController extends AppController {
 	
 	var $uses = array('User','Subject');
 	
+	function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow('resetPassword');
+	}
+
+	
 	function show_excel() {
 		$data = new Spreadsheet_Excel_Reader('example.xls', true);
 		$this->set('data', $data);
@@ -37,27 +43,37 @@ class UsersController extends AppController {
 	}
 	
 	function feedbackEmail() {
-		if(!empty($this->data['feedback'])) {
-			$this->set('message',null);
-			$this->Email->from = $this->Session->read('Auth.User.email');
-			$this->Email->to= "$adminEmail";
-			$this->Email->subject = 'feedback from'.$this->Session->read('Auth.User.username');
+		$message = null;
+		$subject = null;
+		if(!empty($this->data['User']['feedback'])) {
+			$message = $this->data['User']['feedback'];
+			$subject = $this->data['User']['subject'];
+			$this->Email->from = "robot@feeback.com";
+			$this->Email->to= "test@localhost.com";
+			$this->Email->subject = 'Feedback from '.$this->Session->read('Auth.User.name').', '.$this->Session->read('Auth.User.username').' on '.$subject;
 			$this->Email->delivery = 'debug';
-			if($this->Email->send($this->data['feedback']))
+			if($this->Email->send($this->data['User']['feedback']))
 				$this->Session->setFlash('your feedback has been sent');
 			else
 				$this->Session->setFlash('your feedback could not be sent right now,try again later');
+			$this->redirect($this->referer());
 		}
-		$this->redirect($this->referer());
+		$this->set('message', $message);
+		$this->set('subject', $subject);
 	}
 	
 	function changePassword() {
 		if (!empty($this->data)) {
-			if ($this->User->save($this->data)) {
-				$this->Session->setFlash('Password has been changed.');
-				$this->redirect('/');
-			} else $this->Session->setFlash('Password could not be changed.');
-		} else $this->data = $this->User->findById($this->Auth->user('id'));
+			if($this->data['User']['new password'] == $this->data['User']['confirm password']){
+				$newPassword = $this->data['User']['new password'];
+				$this->data = $this->User->findById($this->Auth->user('id'));
+				$this->data['User']['password'] = $this->Auth->password($newPassword);
+				if ($this->User->save($this->data)) {
+					$this->Session->setFlash('Password has been changed.');
+					//$this->redirect('/');
+				} else $this->Session->setFlash('Password could not be changed.');
+			} else $this->Session->setFlash('The new password was not entered correctly');		
+		} else $this->data['User'] = $this->User->findById($this->Auth->user('id'));
 	}
 	
 	function resetPassword($token=null) {
@@ -69,15 +85,17 @@ class UsersController extends AppController {
 			       return;  
 			}else{ 
 				$emailtoken = md5($user['User']['password']); 
-				$this->set('emailtoken',$emailtoken);
-				$this->Email->from = 'Somebody <somebody@example.com>';
+				$this->set('username', $user['User']['username']);
+				$this->set('emailtoken', $emailtoken);
+				$this->Email->from = 'fbfbot <fbf.com>';
 				$this->Email->to = $user['User']['email'];
 				$this->Email->delivery = 'debug';
-				$this->Email->subject = 'Test';
-				$this->Email->template = 'password_reset_message';
+				$this->Email->subject = 'Password reset for your fbf account';
+				$this->Email->sendAs = "text";
+				$this->Email->template = "password_reset_message";
 				$this->Email->send(); 
 				$this->Session->setFlash('A link to set a new password has been sent to your email account.'); 
-				$this->redirect('/');
+				$this->redirect('resetPassword');
 			} 
 		}
 		if(!empty($token)){
@@ -92,13 +110,12 @@ class UsersController extends AppController {
 			if (!empty($this->data['User']['new password'])) { 
 				if($this->data['User']['new password'] == $this->data['User']['confirm password']) {
 					$user['User']['password'] = $this->Auth->password($this->data['User']['new password']); 
-					$this->user->save($user); 
-					$this->Session->setFlash('New password set for'.$user['User']['username']); 
-					$this->redirect('/');
+					$this->User->save($user); 
+					$this->Session->setFlash('New password set for '.$user['User']['username']); 
+					$this->redirect('resetPassword');
 				}
 				$this->Session->setFlash('the password does not match');				
 			}
-			
 			$this->set('token', $token); 
 			$this->render('setNewPassword'); 
 		}
@@ -166,7 +183,7 @@ class UsersController extends AppController {
 		$this->Session->setFlash(__('User was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
-	/*
+	/* for defining ACLs
 	function setDefaultPermissions() {
 		$group =& $this->User->Group;
 		$originalGroupId = $group->id;
