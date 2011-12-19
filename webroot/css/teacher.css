@@ -1,0 +1,60 @@
+/* 
+    Document   : student
+    Created on : 27 Oct, 2011, 4:12:23 PM
+    Author     : Arun
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+       
+            #sidebar {
+                
+                /*background-color: #F4FAE8;*/
+                background-color:#FAFBF7;
+                overflow: hidden;
+                }
+        #sidebar #main-nav li a.nav-top-item {
+                padding: 10px 15px;
+                color: #fff;
+                font-size: 14px;
+                cursor: pointer;
+                display: block;
+                text-decoration: none;
+                border-style: solid;
+                border-width:1px;
+                border-radius:3px;
+                background-color:#C6E38D;
+                border-color:#64C100;
+                }
+                #sidebar #main-nav li a.nav-top-item:hover{
+                    background-color:#64C100;
+                }
+                
+                #sidebar #main-nav ul li a {
+                padding: 8px 15px;
+                display: block;
+                color: #4C8EFB;
+                font-size: 13px;
+                line-height: 1.2em;
+                 }
+#sidebar #main-nav li a.current {
+                
+                color:white;
+                font-weight: bold;
+                 background-color:#64C100;
+                }
+ #sidebar #main-nav ul li a.current {
+    color: yellowgreen;}
+ #sidebar a,
+#sidebar a:active {
+                color:#4C8EFB;
+                
+                }
+
+        
+
