@@ -80,17 +80,33 @@ class User extends AppModel {
 	
 	function afterSave($created){
 		if($created){
+			$users = $this->query('SELECT * FROM users User
+WHERE User.class IS NOT NULL and User.id NOT IN (SELECT student_id FROM subject_memberships)');
 			foreach($users as $user){
-				$user = $this->findById($userId);
-			$hisClasses = $this->Subject->findByClass($user['User']['class']);
-			foreach($hisClasses as $class){
-				$this->SubjectMembership->create();
-				$this->data['SubjectMembership']['student_id'] = $userId;
-				$this->data['SubjectMembership']['subject_id'] = $class['Subject']['id'];
-				$this->SubjectMembership->save();
-				
+				echo debug($user);
+				$this->bindModel(
+					array('hasMany' => array(
+						'Subject' => array(
+							'className' => 'Subject'
+						)
+					))
+				);
+				$hisClasses = $this->Subject->find('all', array(
+					'conditions' => array(
+						'class' => $user['User']['class']
+					),
+					'recursive' => -1
+				));
+				foreach($hisClasses as $class){
+					$this->SubjectMembership->create();
+					$this->SubjectMembership->set(array(
+						'student_id' => $user['User']['id'],
+						'subject_id' => $class['Subject']['id']
+					));
+					$this->SubjectMembership->save();
+				}
 			}
-			
+			return $users;
 		}
 	}
 	

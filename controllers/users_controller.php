@@ -6,7 +6,7 @@ class UsersController extends AppController {
 	
 	var $components = array('Email');
 	
-	var $uses = array('User','Subject');
+	var $uses = array('User','Subject','SubjectMembership');
 	
 	function beforeFilter() {
 		parent::beforeFilter();
@@ -142,13 +142,14 @@ class UsersController extends AppController {
 			$this->log($this->data);
 			if ($this->User->save($this->data)) {
 				$this->Session->setFlash(__('The user has been saved', true));
+				//$this->enroll();
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.', true));
 			}
 		}
 		$groups = $this->User->Group->find('list');
-		$this->set(compact('groups'));
+		$this->set(compact('groups'));		
 	}
 
 	function edit($id = null) {
