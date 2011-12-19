@@ -8,6 +8,12 @@ class UsersController extends AppController {
 	
 	var $uses = array('User','Subject');
 	
+	function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow('resetPassword');
+	}
+
+	
 	function show_excel() {
 		$data = new Spreadsheet_Excel_Reader('example.xls', true);
 		$this->set('data', $data);
@@ -82,15 +88,17 @@ class UsersController extends AppController {
 			       return;  
 			}else{ 
 				$emailtoken = md5($user['User']['password']); 
-				$this->set('emailtoken',$emailtoken);
-				$this->Email->from = 'Somebody <somebody@example.com>';
+				$this->set('username', $user['User']['username']);
+				$this->set('emailtoken', $emailtoken);
+				$this->Email->from = 'fbfbot <fbf.com>';
 				$this->Email->to = $user['User']['email'];
 				$this->Email->delivery = 'debug';
-				$this->Email->subject = 'Test';
-				$this->Email->template = 'password_reset_message';
+				$this->Email->subject = 'Password reset for your fbf account';
+				$this->Email->sendAs = "text";
+				$this->Email->template = "password_reset_message";
 				$this->Email->send(); 
 				$this->Session->setFlash('A link to set a new password has been sent to your email account.'); 
-				$this->redirect('/');
+				$this->redirect('resetPassword');
 			} 
 		}
 		if(!empty($token)){
@@ -105,13 +113,12 @@ class UsersController extends AppController {
 			if (!empty($this->data['User']['new password'])) { 
 				if($this->data['User']['new password'] == $this->data['User']['confirm password']) {
 					$user['User']['password'] = $this->Auth->password($this->data['User']['new password']); 
-					$this->user->save($user); 
-					$this->Session->setFlash('New password set for'.$user['User']['username']); 
-					$this->redirect('/');
+					$this->User->save($user); 
+					$this->Session->setFlash('New password set for '.$user['User']['username']); 
+					$this->redirect('resetPassword');
 				}
 				$this->Session->setFlash('the password does not match');				
 			}
-			
 			$this->set('token', $token); 
 			$this->render('setNewPassword'); 
 		}
