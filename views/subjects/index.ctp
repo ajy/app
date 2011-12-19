@@ -10,10 +10,10 @@
 
         <!--                       CSS                       --> 
 
-        <?= $html->css(array('reset', 'style')); ?>
+        <?= $html->css(array('reset', 'style','jquery.fancybox-1.3.4')); ?>
         <?= $html->css(array('media/css/demo_table', 'jquery-ui-1.8.14.custom/css/ui-lightness/jquery-ui-1.8.14.custom')); ?>
 
-        <?= $javascript->link(array('js/jquery', 'js/jquery.dataTables', 'js/jquery-ui-1.8.14.custom.min')); ?>
+        <?= $javascript->link(array('js/jquery', 'js/jquery.dataTables', 'js/jquery-ui-1.8.14.custom.min','jquery.fancybox-1.3.4.pack')); ?>
 
 
         <script>
@@ -34,7 +34,8 @@
                                 
 			}
         </script>
-        <?= $javascript->link(array('config')); ?>
+          <?= $javascript->link(array('config','add_edit'));?>
+
         <style type="text/css" > 
             html{
                 
@@ -61,8 +62,8 @@
                 </div>
                 </noscript> 
 
-                <!-- Page Head --> 
-                 <a class="signout" href="#">Sign out</a>
+                <!-- Page Head  
+                 <a class="signout" href="#">Sign out</a>-->
                 <h2>Welcome Admin</h2> 
                 
 
@@ -114,7 +115,7 @@
 
                                 <tfoot> 
                                     <tr> 
-                                       <td colspan="6"> 
+                                       <!--<td colspan="6"> 
                                             <div class="bulk-actions align-left"> 
                                                 <select name="dropdown"> 
                                                     <option value="option1">Choose an action...</option> 
@@ -125,15 +126,15 @@
                                             </div> 
 
                                             <div class="clear"></div> 
-                                        </td> 
+                                        </td> -->
                                     </tr> 
                                 </tfoot> 
 
                                 <tbody> 
                                       <?php
-                                     
+                                    
 	
-	for ($i=0;$i<count($subjects);$i++){
+	for ($i=0;$i<count($subjects);$i++){ 
 		if($subjects[$i]['s1']['class']=="4A"||$subjects[$i]['s1']['class']=="4B"){
 	?>
 	<tr>
@@ -145,8 +146,9 @@
                 <td class="center"><?echo $teacher1[$i]['b'][0]['users']['name']; ?></td>
 		<td class="center"><?php echo$teacher2[$i]['b'][0]['users']['name']!=NULL?$teacher2[$i]['b'][0]['users']['name']:"-"; ?></td>
                
-                <td class="center">   <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $subjects[$i]['s1']['id']),array('class'=>'modal')); ?> &nbsp;&nbsp;
-			 <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete',$subjects[$i]['s1']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), array($subjects[$i]['s1']['id'], $subjects[$i]['s2']['id']))); ?>
+                <td class="center"> 
+                    <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $subjects[$i]['s1']['id']),array('class'=>'modal')); ?>&nbsp;&nbsp;
+                    <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete',$subjects[$i]['s1']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $subjects[$i]['s1']['id'])); ?>
 		</td>
 	
 	</tr>	
@@ -215,7 +217,7 @@
                 <td class="center"><?echo $teacher1[$i]['b'][0]['users']['name']; ?></td>
 		<td class="center"><?php echo$teacher2[$i]['b'][0]['users']['name']!=NULL?$teacher2[$i]['b'][0]['users']['name']:"-"; ?></td>
                
-                <td class="center">   <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $subjects[$i]['s1']['id'])); ?> &nbsp;&nbsp;
+                <td class="center">   <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $subjects[$i]['s1']['id']),array('class'=>'modal')); ?> &nbsp;&nbsp;
 			 <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete',$subjects[$i]['s1']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $subjects[$i]['s1']['id'], $subjects[$i]['s2']['id'])); ?>
 		</td>
 	
@@ -286,7 +288,7 @@
                 <td class="center"><?echo $teacher1[$i]['b'][0]['users']['name']; ?></td>
 		<td class="center"><?php echo$teacher2[$i]['b'][0]['users']['name']!=NULL?$teacher2[$i]['b'][0]['users']['name']:"-"; ?></td>
                
-                <td class="center">   <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $subjects[$i]['s1']['id'])); ?> &nbsp;&nbsp;
+                <td class="center">   <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $subjects[$i]['s1']['id']),array('class'=>'modal')); ?> &nbsp;&nbsp;
 			 <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete',$subjects[$i]['s1']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $subjects[$i]['s1']['id'], $subjects[$i]['s2']['id'])); ?>
 		</td>
 	

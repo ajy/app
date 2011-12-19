@@ -1,10 +1,17 @@
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
 <script>
 	$(function() {
 		$( "#accordion" ).accordion();
 	});
 	google.load('visualization', '1', {packages: ['corechart']});
 </script>
+<style>
+    #accordion{
+                margin: 0 30px 0 260px;
+                padding: 40px 0 0 0;
+            }
+</style>
 <div id="accordion">    
 <?php   $i=0;
 	foreach($form_a_results as $form_a_result){

@@ -21,9 +21,7 @@ class UsersController extends AppController {
 	
 	function login() {
 	if ($this->Session->read('Auth.User')) {
-			//$this->Session->setFlash('You are logged in!');
-                      //  $this -> Session -> write("$username", "Auth.User.username");
-                        $group_id=( $this -> Session -> read("Auth.User.group_id"));
+			 $group_id=( $this -> Session -> read("Auth.User.group_id"));
                         if($group_id==1) {
                             $this->redirect($this->Auth->redirect(array('controller'=> 'pages','action'=>'admin')));
                         }
@@ -41,7 +39,6 @@ class UsersController extends AppController {
 	}
 
 	function logout() {
-		//$this->Session->setFlash('You are logged out!');
 		$this->redirect($this->Auth->logout());
 	}
 	

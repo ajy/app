@@ -9,9 +9,9 @@
                          }
                </style> 
                
-		<?= $javascript->link(array('config'));?>
+		<?= $javascript->link(array('config','add_edit'));?>
                 <?=$html->css(array('reset','style'));?>
-                <?= $javascript->link(array('jquery.fancybox-1.3.4.pack','fbConfig'));?>
+                <?= $javascript->link(array('jquery.fancybox-1.3.4.pack'));?>
                  <?=$html->css(array('jquery.fancybox-1.3.4'));?>     
               
                <script>
