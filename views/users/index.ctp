@@ -23,7 +23,7 @@
                 });
             });
         </script>
-      <?= $javascript->link(array('config','fbConfig'));?>
+      <?= $javascript->link(array('config','add_edit'));?>
  <style type="text/css" title="currentStyle"> 
 			  html{
                              overflow:hidden;

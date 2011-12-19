@@ -32,4 +32,4 @@
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
         
-       
+     

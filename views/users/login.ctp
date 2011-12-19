@@ -1,3 +1,4 @@
+
 <?php
 	echo $this->Html->css("LoginBoxstyle");
 	echo $this->Form->create('User', array('action' => 'login','class' => 'login'));

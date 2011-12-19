@@ -23,7 +23,7 @@
     switch(pg){
         case 1: ifr.src="../subjects/subjects";
                 break;
-        case 2: ifr.src="../users";
+        case 2: ifr.src="../comments/comments";
                 break;
         
     }

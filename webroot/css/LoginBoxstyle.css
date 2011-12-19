@@ -23,8 +23,8 @@ form{
     font-family:"Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif;
     font-style: bold;
     background: #dbdfdf;
-   /* background-image: url("../img/test1.jpeg"), url("../img/test2.jpeg");*/
-    background-repeat: repeat-x, repeat;
+   
+   
     text-align:justify;
     float: right;
     padding: 20px;  
@@ -33,10 +33,7 @@ form{
 }
 form.login {    
     border-style: solid;
-    border-right-color: #ebe2c1;
-    border-left-color: #ebe2c1;
-    border-bottom-color: #ebe2c1;
-    border-top-color: #ebe2c1;
+    border-color: #ebe2c1;
     top: 20%;
     font-family: "Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif;
     color: #4d4021;    

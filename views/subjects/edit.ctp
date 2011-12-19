@@ -1,9 +1,10 @@
-<?=$html->css(array('Form','submitButton'));?>
+<?=$html->css(array('reset','submitButton','add_edit'));?>
+
 <div class="subjects form">
-    
+  <div id="header"><?php __('Edit Subject'); ?></div>  
 <?php echo $this->Form->create('Subject');?>
 	<fieldset>
-		<legend><?php __('Edit Subject'); ?></legend>
+		
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
