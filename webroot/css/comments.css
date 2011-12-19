@@ -1,0 +1,83 @@
+/* 
+    Document   : comments
+    Created on : 7 Nov, 2011, 8:43:10 PM
+    Author     : Arun
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+  .comments{
+                margin: 0 30px 0 260px;
+                padding: 40px 0 0 0;
+            }
+            .comments li{
+                margin:0;
+                padding:0;
+                list-style:none;
+
+            }
+            .comments, .comments ul, #comments li{
+
+                list-style:none;
+            }
+            .comments li{
+                margin:1.5em 0;
+                position:relative;
+                font-size:13px;
+            }
+
+            .comments a{color:#89c140;text-decoration:none;}
+            .comments a:hover{color:#555;}
+
+            .comments .meta li{
+                margin:0;
+                display:inline;
+                font-size:13px;
+                color:#777;
+                position:static;
+
+            }	
+
+            	
+            .comments .meta .author{
+                float:left;
+                font-weight:bold;
+                line-height:36px;
+                color: #1c9bf4;
+
+            }
+            .comments .meta .date{
+                float:right;
+                color:#999;
+                font-style:italic;
+                font-size:11px;
+                line-height:36px;
+            }	
+            .comments .body{
+                clear:both;
+                padding:20px 20px;
+                border-bottom-style: solid;
+                border-width:1px;
+                border-bottom-color: #cccccc;
+            }
+            .green{
+                position:relative;
+                top:10px;
+                float:right;
+                right:100px;
+                /*bottom:10px;*/
+            }
+            
+            #comments{
+
+                margin: 0 30px 0 300px;
+                width:70%;
+
+            }
+
+

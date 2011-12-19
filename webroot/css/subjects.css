@@ -1,0 +1,89 @@
+/* 
+    Document   : subjects
+    Created on : 26 Oct, 2011, 8:26:16 PM
+    Author     : Arun
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+ body{
+                         background-color:#FAFBF7;
+                
+                    }  
+#subjects #main-nav {
+                padding: 40px 0 0 0;
+                margin: 0 30px 0 260px;
+                font-family: Helvetica, Arial, sans-serif;
+                position:relative;
+                top:100px;
+                }
+
+#subjects #main-nav li {
+                list-style: none;
+                padding-bottom: 10px;
+                text-align:left;
+                
+                
+                }
+
+#subjects #main-nav li a.nav-top-item {
+                padding: 10px 15px;
+                color:#DB4637;
+                font-size:15px;
+                font-weight: bolder;
+                cursor: pointer;
+                display: block;
+                text-decoration: none;
+                border-bottom-style: solid;
+                border-width:1px;
+                /*background-color:#34ACF6;*/
+                border-color: #999999;
+                }
+                
+#subjects #main-nav li a.current {
+                
+                color:#DB4637;
+                font-weight: bolder;
+                
+                }
+               
+
+#subjects #main-nav ul {
+                padding: 0;
+                font-size: 12px;
+                margin: 0;
+                }
+
+#subjects #main-nav ul li {
+                list-style: none;
+                margin: 0;
+                text-align:left;
+				padding: 0;
+                }
+
+#subjects #main-nav ul li a {
+                padding: 8px 15px;
+                display: block;
+                color:#DB4637;
+                font-size: 13px;
+                line-height: 1.2em;
+                 }
+
+
+
+#subjects #main-nav ul li a.current {
+    color: yellowgreen;
+                 }
+                 #sub{
+                      margin: 0 30px 0 260px;
+                      position:absolute;
+                      top:50px;
+                      color:#33A4EA;
+               
+                 }
+

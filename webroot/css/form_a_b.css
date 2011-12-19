@@ -1,0 +1,95 @@
+/* 
+    Document   : form_a_b
+    Created on : 30 Oct, 2011, 6:30:50 PM
+    Author     : Arun
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+html
+{
+    background-color: #cccccc;
+}
+input[type="submit"] { 
+
+}
+form{
+    font-family:"Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif;
+    font-size: small;
+    font-style: normal;
+    background-image:url(lfb1.jpg);
+
+
+}
+fieldset{
+   
+    border-style:none; 
+   
+    display: table-cell;
+}
+
+form
+{
+    text-align:justify;
+    float: none;
+    position: relative;  
+    padding: 20px;  
+    margin: 0 auto;  
+    background-color: #fff;  
+
+    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);  
+    -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);  
+
+}
+
+ div {
+                margin-bottom: 5px;
+
+            }
+
+            label {
+                display: block;
+                float: left;
+                width: 80px;
+                text-align: left;
+                font-weight: normal;
+            }
+
+            input.submit {
+                margin-left: 200px;
+            }
+
+
+
+            li {
+                font-family: sans-serif;             
+            }
+            html
+            {
+                background-color: #B5DAF6;
+               
+            }
+            form{
+                font-family:"Lucida Sans Unicode", Tahoma, sans-serif;
+                font-size:small;
+                width:425px;
+                font-style:normal;
+                 -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);  
+                -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);  
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);  
+
+            }
+            fieldset{
+                border-bottom-color: chocolate;
+                border-left-style:none; 
+                border-right-style:none; 
+                border-top-style:none; 
+                border-bottom-style: solid;
+                border-bottom-width:1px;
+            }
+
