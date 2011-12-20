@@ -33,9 +33,16 @@ and open the template in the editor.
 
             });  
         </script>
+        <style>
+#com{
+color: #75c0f7;
+}
+</style>
     </head>
     <body>
+     
      <ol class="comments">
+     <h2 id="com" >Comments</h2>
             <li>
                 <ul class="meta">
                     <li class="author">Subject</a></li>

@@ -1,4 +1,5 @@
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<?= $html->css(array('reset', 'style','subjects','submitButton','button_green')); ?>
 
 <script>
 	$(function() {
@@ -13,7 +14,9 @@
             }
 </style>
 <div id="accordion">    
-<?php   $i=0;
+<?php   
+       // debug($form_a_results);
+        $i=0;
 	foreach($form_a_results as $form_a_result){
 	if(is_string($form_a_result))
 		echo('<h3><a href="#">'.$form_a_result.'</a></h3>');

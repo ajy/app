@@ -70,7 +70,7 @@ class UsersController extends AppController {
 				$this->data['User']['password'] = $this->Auth->password($newPassword);
 				if ($this->User->save($this->data)) {
 					$this->Session->setFlash('Password has been changed.');
-					//$this->redirect('/');
+					$this->redirect(array('action'=>'index'));
 				} else $this->Session->setFlash('Password could not be changed.');
 			} else $this->Session->setFlash('The new password was not entered correctly');		
 		} else $this->data['User'] = $this->User->findById($this->Auth->user('id'));
