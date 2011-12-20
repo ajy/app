@@ -67,7 +67,7 @@ class User extends AppModel {
 	);
 	
 	function validatePassword($check){
-		//only run if there are two password feield (like NOT on the contact or signin pages..)
+		//only run if there are two password field (like NOT on the contact or signin pages..)
 		if(isset($this->data['User']['confirmpassword'])){
 			if($this->data['User']['password'] != $this->Auth->password($this->data['User']['confirmpassword']))
 			{
@@ -77,23 +77,41 @@ class User extends AppModel {
 		}
 		return true;
 	}
-      /*  function afterSave($created){
+
+	
+	function afterSave($created){
 		if($created){
-			$users = $this->query('select * from users User where User.id not in select student_id from subject_memberships  SubjectMembership');
+			$users = $this->query('SELECT * FROM users User
+WHERE User.class IS NOT NULL and User.id NOT IN (SELECT student_id FROM subject_memberships)');
 			foreach($users as $user){
-				$subjectInstance = ClassRegistry::init('Subject');
-				$hisClasses = $this->subjectInstance->findByClass($user['User']['class']);
+				echo debug($user);
+				$this->bindModel(
+					array('hasMany' => array(
+						'Subject' => array(
+							'className' => 'Subject'
+						)
+					))
+				);
+				$hisClasses = $this->Subject->find('all', array(
+					'conditions' => array(
+						'class' => $user['User']['class']
+					),
+					'recursive' => -1
+				));
 				foreach($hisClasses as $class){
 					$this->SubjectMembership->create();
-					$this->data['SubjectMembership']['student_id'] = $user['User']['id'];
-					$this->data['SubjectMembership']['subject_id'] = $class['Subject']['id'];
+					$this->SubjectMembership->set(array(
+						'student_id' => $user['User']['id'],
+						'subject_id' => $class['Subject']['id']
+					));
 					$this->SubjectMembership->save();
 				}
 			}
-			//return $users;
+			return $users;
 		}
 	}
-	*/
+	
+
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 	var $belongsTo = array(
@@ -119,7 +137,5 @@ class User extends AppModel {
 			'foreignKey' => 'to',
 			'dependent' => true
 		)
-	);
-	
-	
+	);	
 }

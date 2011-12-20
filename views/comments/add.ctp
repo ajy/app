@@ -1,4 +1,4 @@
- <?=$html->css(array('add_edit','submitButton'));?> 
+ <?=$html->css(array('reset','add_edit','submitButton'));?> 
 <div class="comments form">
     <div id="header"><?php __('Add Comment'); ?></div>
 <?php echo $this->Form->create('Comment');?>

@@ -30,7 +30,7 @@
         // Create and draw the visualization.
         new google.visualization.BarChart(document.getElementById('bar<?php echo($i);?>')).
             draw(data,
-                 {title:"Your Score in  <?php echo($form_a_result['name'])?> :<?php echo $score;?> ",
+        {title:"Your Score in  <?php echo($form_a_result['name'])?> :<?php echo round($score);?> ",
                   width:1000, height:150,
                   isStacked: true,
                   legend: 'none'
