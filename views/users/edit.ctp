@@ -1,18 +1,25 @@
 <?=$html->css(array('reset','submitButton','add_edit'));?>
+<style>
+    a              { color: purple; text-decoration: none; }
 
+</style>
 <div class="users form">
      <div id="header"><?php __('Edit User'); ?></div>
     <?php echo $this->Form->create('User'); ?>
     <fieldset>
        
         <?php
+        $user=$this->Session->read("Auth.User");
         echo $this->Form->input('id');
-        if (($this->Session->read("Auth.User.group_id")) == 1)
-            echo $this->Form->input('username');
-      //  if (($this->Session->read("Auth.User.group_id")) == 1)
-            echo $this->Form->input('password');
+        if ($user['group_id'] == 1)
+            echo $this->Form->input('username');?>
+        <label >Password</label>
+        <? echo $this->Html->link(__('Change Password', true), array('action' => 'changePassword', $user['id']));
+	// echo $html->link($html->tag('span','Comment',array('class' => 'green')),array('action'=>'changePassword', $user['id']),array('escape'=>false));
+            		
+            //echo $this->Form->input('password');
         echo $this->Form->input('email');
-        if (($this->Session->read("Auth.User.group_id")) == 1)
+        if ($user['group_id'] == 1)
             echo $this->Form->input('group_id');
         ?>
     </fieldset>
