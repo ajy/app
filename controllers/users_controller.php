@@ -1,5 +1,5 @@
 <?php
-App::import('Vendor', 'excel_reader2');
+App::import('Vendor', 'excel_reader2', array('file' => 'excel_reader2.php'));
 class UsersController extends AppController {
 
 	var $name = 'Users';
@@ -13,12 +13,6 @@ class UsersController extends AppController {
 		$this->Auth->allow('resetPassword');
 	}
 
-	
-	function show_excel() {
-		$data = new Spreadsheet_Excel_Reader('example.xls', true);
-		$this->set('data', $data);
-	}
-	
 	function login() {
 	if ($this->Session->read('Auth.User')) {
 			 $group_id=( $this -> Session -> read("Auth.User.group_id"));
@@ -184,6 +178,44 @@ class UsersController extends AppController {
 		$this->Session->setFlash(__('User was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
+	
+	function loadNewUsers() {
+		if(!empty($this->data['ModelName']['csv']['tmp_name'])){
+			//creating a reader object
+			$data = new Spreadsheet_Excel_Reader();
+			// Set output Encoding.
+			$data->setOutputEncoding('CP1251');
+			$data->read($this->data['ModelName']['csv']['tmp_name']);
+			$headings = array();
+			$NoSavedRows = 0;
+			$error = false;
+			for ($i = 1; $i <= $data->sheets[0]['numRows']; $i++) {
+				$row_data = array();
+				for ($j = 1; $j <= $data->sheets[0]['numCols']; $j++) {
+					if($i == 1) {
+						//this is the headings row, each column (j) is a header
+						$headings[$j] = $data->sheets[0]['cells'][$i][$j];
+						} else {
+							//column of data
+							$row_data[$headings[$j]] = isset($data->sheets[0]['cells'][$i][$j]) ? $data->sheets[0]['cells'][$i][$j] : '';
+						}
+					}
+					if($i > 1) {
+						if($this->ModelName->saveAll(array('ModelName' => $row_data))){
+							NoSavedRows++;
+						} else {
+							$this->Session->setFlash('Error.  Could only  import '.NoSavedRows.' records. Please try again.');
+							$error = false;
+						}
+					}
+				}
+			}
+			if(!$error) {
+				$this->Session->setFlash('Success. Imported '. NoSavedRows .' records.');
+			}
+		}
+	}
+	
 	/* for defining ACLs
 	function setDefaultPermissions() {
 		$group =& $this->User->Group;
