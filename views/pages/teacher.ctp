@@ -22,7 +22,7 @@
     ifr = document.getElementById("ifr");
      ifr.style.display="block";
     switch(pg){
-        case 1: ifr.src="../subjects/subjects";
+        case 1: ifr.src="../form_a_records/result";
                 break;
         case 2: ifr.src="../comments/comments";
                 break;
