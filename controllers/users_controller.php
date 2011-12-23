@@ -179,13 +179,14 @@ class UsersController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 	
-	function loadNewUsers() {
-		if(!empty($this->data['ModelName']['csv']['tmp_name'])){
+	function loadNewStudents() {
+		if(!empty($this->data['User']['FileLocation'])){
 			//creating a reader object
 			$data = new Spreadsheet_Excel_Reader();
 			// Set output Encoding.
 			$data->setOutputEncoding('CP1251');
-			$data->read($this->data['ModelName']['csv']['tmp_name']);
+			//$data->setReadDataOnly(true);
+			$data->read($this->data['User']['FileLocation']);
 			$headings = array();
 			$NoSavedRows = 0;
 			$error = false;
@@ -201,20 +202,21 @@ class UsersController extends AppController {
 						}
 					}
 					if($i > 1) {
-						if($this->ModelName->saveAll(array('ModelName' => $row_data))){
-							NoSavedRows++;
+						echo debug(array('User' => $row_data));
+						/*if($this->ModelName->save(array('ModelName' => $row_data))){
+							$NoSavedRows++;
 						} else {
-							$this->Session->setFlash('Error.  Could only  import '.NoSavedRows.' records. Please try again.');
-							$error = false;
-						}
+							$this->Session->setFlash('Error,  Could only  import '.$NoSavedRows.' records. Please try again.');
+							$error = true;
+						}*/
 					}
 				}
-			}
 			if(!$error) {
-				$this->Session->setFlash('Success. Imported '. NoSavedRows .' records.');
+				$this->Session->setFlash('Success. Imported '. $NoSavedRows .' records.');
 			}
 		}
 	}
+	
 	
 	/* for defining ACLs
 	function setDefaultPermissions() {
