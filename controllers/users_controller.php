@@ -1,5 +1,5 @@
 <?php
-App::import('Vendor', 'excel_reader2', array('file' => 'excel_reader2.php'));
+App::import('Vendor', 'parseCSV', array('file' => 'parsecsv.lib.php'));
 class UsersController extends AppController {
 
 	var $name = 'Users';
@@ -180,37 +180,20 @@ class UsersController extends AppController {
 	}
 	
 	function loadNewStudents() {
-		if(!empty($this->data['User']['FileLocation'])){
+		if(!empty($this->data['User']['File'])){
 			//creating a reader object
-			$data = new Spreadsheet_Excel_Reader();
-			// Set output Encoding.
-			$data->setOutputEncoding('CP1251');
-			//$data->setReadDataOnly(true);
-			$data->read($this->data['User']['FileLocation']);
-			$headings = array();
+			$csv = new parseCSV($this->data['User']['File']['tmp_name']);
 			$NoSavedRows = 0;
 			$error = false;
-			for ($i = 1; $i <= $data->sheets[0]['numRows']; $i++) {
-				$row_data = array();
-				for ($j = 1; $j <= $data->sheets[0]['numCols']; $j++) {
-					if($i == 1) {
-						//this is the headings row, each column (j) is a header
-						$headings[$j] = $data->sheets[0]['cells'][$i][$j];
-						} else {
-							//column of data
-							$row_data[$headings[$j]] = isset($data->sheets[0]['cells'][$i][$j]) ? $data->sheets[0]['cells'][$i][$j] : '';
-						}
-					}
-					if($i > 1) {
-						echo debug(array('User' => $row_data));
-						/*if($this->ModelName->save(array('ModelName' => $row_data))){
-							$NoSavedRows++;
-						} else {
-							$this->Session->setFlash('Error,  Could only  import '.$NoSavedRows.' records. Please try again.');
-							$error = true;
-						}*/
-					}
+			$info = $csv->data;
+			foreach($info as $studentInfo){
+				if($this->User->save(array('User' => $studentInfo))){
+					$NoSavedRows++;
+				} else {
+					$this->Session->setFlash('Error,  Could only  import '.$NoSavedRows.' records. Please try again.');
+					$error = true;
 				}
+			}
 			if(!$error) {
 				$this->Session->setFlash('Success. Imported '. $NoSavedRows .' records.');
 			}
