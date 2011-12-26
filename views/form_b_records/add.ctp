@@ -1,63 +1,63 @@
 <?=$html->css(array('form_a_b','submitButton'));?>
-
+<?php Configure::load('FormBQs'); ?>
 <?php echo $this->Form->create('FormBRecord',array('id' => 'Form'));?>
 	
 	 <fieldset>
-                <legend> Teacher was regular and punctual to the class </legend>
+                <legend><?php echo Configure::read('Question.FormB.1'); ?></legend>
                 <label style="display: inline-block" > <input title="Yes" type="radio" name="data[FormBRecord][q1]" value="Yes" required> Yes </label>
                 <label style="display: inline-block" > <input title="No" type="radio" name="data[FormBRecord][q1]" value="No" required>  No </label>
             </fieldset>
 
             <fieldset>
-                <legend> Teacher spoke clearly, audibly and directly to the class  </legend>
+                <legend><?php echo Configure::read('Question.FormB.2'); ?></legend>
                 <label style="display: inline-block" > <input type="radio" name="data[FormBRecord][q2]" value="Yes" required> Yes </label>
                 <label style="display: inline-block" > <input type="radio" name="data[FormBRecord][q2]" value="No" required>  No </label>
             </fieldset>
 
             <fieldset>
-                <legend> Teacher effectively used examples and illustrations to teach the subject </legend>
+                <legend><?php echo Configure::read('Question.FormB.3'); ?></legend>
                 <label style="display: inline-block" > <input type="radio" name="data[FormBRecord][q3]" value="Yes" required> Yes </label>
                 <label style="display: inline-block" > <input type="radio" name="data[FormBRecord][q3]" value="No" required>  No </label>
             </fieldset>
 
             <fieldset>
-                <legend> Internal test questions were clear and free from ambiguity </legend>
+                <legend><?php echo Configure::read('Question.FormB.4'); ?></legend>
                 <label style="display: inline-block" > <input type="radio" name="data[FormBRecord][q4]" value="Yes" required> Yes </label>
                 <label style="display: inline-block" > <input type="radio" name="data[FormBRecord][q4]" value="No" required>  No </label>
             </fieldset>
 
             <fieldset>
-                <legend> The tests were graded and returned within reasonable time </legend>
+                <legend><?php echo Configure::read('Question.FormB.5'); ?></legend>
                 <label style="display: inline-block" > <input type="radio" name="data[FormBRecord][q5]" value="Yes" required> Yes </label>
                 <label style="display: inline-block" > <input type="radio" name="data[FormBRecord][q5]" value="No" required>  No </label>
             </fieldset>
 
             <fieldset>
-                <legend> Course contents were clear and coverage was adequate and well placed </legend>
+                <legend><?php echo Configure::read('Question.FormB.6'); ?></legend>
                 <label style="display: inline-block" > <input type="radio" name="data[FormBRecord][q6]" value="Yes" required> Yes </label>
                 <label style="display: inline-block" > <input type="radio" name="data[FormBRecord][q6]" value="No" required>  No </label>
             </fieldset>
 
             <fieldset>
-                <legend> Teacher had good organization on the chalkboard and the writing was legible </legend>
+                <legend><?php echo Configure::read('Question.FormB.7'); ?></legend>
                 <label style="display: inline-block" > <input type="radio" name="data[FormBRecord][q7]" value="Yes" required> Yes </label>
                 <label style="display: inline-block" > <input type="radio" name="data[FormBRecord][q7]" value="No" required>  No </label>
             </fieldset>
 
             <fieldset>
-                <legend> Teacher effectively utilized the class time without wasting on unneessary matters </legend>
+                <legend><?php echo Configure::read('Question.FormB.8'); ?></legend>
                 <label style="display: inline-block" > <input type="radio" name="data[FormBRecord][q8]" value="Yes" required> Yes </label>
                 <label style="display: inline-block" > <input type="radio" name="data[FormBRecord][q8]" value="No" required>  No </label>
             </fieldset>
 
             <fieldset>
-                <legend> Test evaluation was fair and impartial </legend>
+                <legend><?php echo Configure::read('Question.FormB.9'); ?></legend>
                 <label style="display: inline-block" > <input type="radio" name="data[FormBRecord][q9]" value="Yes" required> Yes </label>
                 <label style="display: inline-block" > <input type="radio" name="data[FormBRecord][q9]" value="No" required>  No </label>
             </fieldset>
 
             <fieldset>
-                <legend> Test papers were discussed adequately upon return</legend>
+                <legend><?php echo Configure::read('Question.FormB.10'); ?></legend>
                 <label style="display: inline-block" > <input type="radio" name="data[FormBRecord][q10]" value="Yes" required> Yes </label>
                 <label style="display: inline-block" > <input type="radio" name="data[FormBRecord][q10]" value="No" required>  No </label>
             </fieldset>
