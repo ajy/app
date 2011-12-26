@@ -39,10 +39,12 @@
    
     
     <iframe  id="ifr" src="../subjects/subjects" style="width:1366px; height:660px; overflow:hidden;" ></iframe>
-
+    
     <?php $user=($this -> Session -> read("Auth.User"));?>
 		<div id="sidebar">
+                    
                     <div id="sidebar-wrapper"> 			
+                        
 			<ul id="main-nav">  <!-- Accordion Menu --> 
 				
 				<li> 
