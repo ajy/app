@@ -1,5 +1,5 @@
 <?php
-App::import('Vendor', 'excel_reader2');
+App::import('Vendor', 'parseCSV', array('file' => 'parsecsv.lib.php'));
 class UsersController extends AppController {
 
 	var $name = 'Users';
@@ -13,12 +13,6 @@ class UsersController extends AppController {
 		$this->Auth->allow('resetPassword');
 	}
 
-	
-	function show_excel() {
-		$data = new Spreadsheet_Excel_Reader('example.xls', true);
-		$this->set('data', $data);
-	}
-	
 	function login() {
 	if ($this->Session->read('Auth.User')) {
 			 $group_id=( $this -> Session -> read("Auth.User.group_id"));
@@ -184,6 +178,29 @@ class UsersController extends AppController {
 		$this->Session->setFlash(__('User was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
+	
+	function loadNewStudents() {
+		if(!empty($this->data['User']['File'])){
+			//creating a reader object
+			$csv = new parseCSV($this->data['User']['File']['tmp_name']);
+			$NoSavedRows = 0;
+			$error = false;
+			$info = $csv->data;
+			foreach($info as $studentInfo){
+				if($this->User->save(array('User' => $studentInfo))){
+					$NoSavedRows++;
+				} else {
+					$this->Session->setFlash('Error,  Could only  import '.$NoSavedRows.' records. Please try again.');
+					$error = true;
+				}
+			}
+			if(!$error) {
+				$this->Session->setFlash('Success. Imported '. $NoSavedRows .' records.');
+			}
+		}
+	}
+	
+	
 	/* for defining ACLs
 	function setDefaultPermissions() {
 		$group =& $this->User->Group;
