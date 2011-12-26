@@ -200,8 +200,9 @@ class UsersController extends AppController {
 		}
 	}
 	
-	
-	/* for defining ACLs
+
+
+        /* for defining ACLs
 	function setDefaultPermissions() {
 		$group =& $this->User->Group;
 		$originalGroupId = $group->id;

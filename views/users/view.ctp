@@ -1,3 +1,4 @@
+<?=$html->css(array('reset','submitButton','add_edit'));?>
 <div class="users view">
 <h2><?php  __('User');?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
