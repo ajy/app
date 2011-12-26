@@ -102,6 +102,9 @@ class SubjectsController extends AppController {
             return $this->Subject->query("SELECT `class` FROM `subjects` GROUP BY  `class`");
            
         }
-        
+         function getTeachers(){
+            return $this->Subject->query("SELECT `id`,`name` FROM `users` WHERE `group_id`=2 ");
+           
+        }
         
 }

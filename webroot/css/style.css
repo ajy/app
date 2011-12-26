@@ -141,9 +141,9 @@ a.remove-link:hover {
 /************ Sidebar Accordion Menu ************/
 
 #sidebar #main-nav {
-                width: 206px;
+                width: 100%;
                 padding: 0;
-                margin: 0 0 0 15px;
+                /*margin: 0 0 0 15px;*/
                 font-family: Helvetica, Arial, sans-serif;
                 position:relative;
                 top:100px;
