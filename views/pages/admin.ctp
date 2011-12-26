@@ -15,9 +15,16 @@
                  <?=$html->css(array('jquery.fancybox-1.3.4'));?>     
               
                <script>
+                   pos=1;
+                   
                function LoadIFrame(pg)
 {
-   
+    jq='ul#main-nav li:nth-child('+pos+') > a';
+    $(jq).removeClass('current');
+    pos=pg;
+    jq='ul#main-nav li:nth-child('+pos+') > a';
+    $(jq).addClass('current');
+    
     ifr = document.getElementById("ifr");
      ifr.style.display="block";
     switch(pg){
@@ -41,13 +48,19 @@
 }
                </script>
               
-               
+               <style>
+                   iframe{
+                     width:100%;
+                     height:660px; 
+                     overflow:hidden;
+                 } 
+               </style>
 </head>
 
 <body >
    
     
-    <iframe  id="ifr" src="../subjects" style="width:1366px; height:660px; overflow:hidden;" ></iframe>
+    <iframe  id="ifr" src="../subjects" ></iframe>
 
 
 		<div id="sidebar">
@@ -56,22 +69,22 @@
 			<ul id="main-nav">  <!-- Accordion Menu --> 
 				
 				<li> 
-					<a href="#" class="nav-top-item current"> 
+					<a href="#" class="nav-top-item current"  onclick="LoadIFrame(1);"> 
 						Subjects
 					</a> 
-					<ul> 
+					<!--<ul> 
 						<li> <a href="../subjects/add" class="modal" >Add a Subject</li> 
-						<li><a class="current" href="#" onclick="return LoadIFrame(1)">Manage Subjects</a></li> 
-					</ul> 
+						
+					</ul> -->
 				</li> 
 				<li> 
-					<a href="#" class="nav-top-item "> <!-- Add the class "current" to current menu item --> 
+					<a href="#" class="nav-top-item " onclick="LoadIFrame(2);"> <!-- Add the class "current" to current menu item --> 
 					Users
 					</a> 
 					<ul> 
-						<li><a   href="../users/add" class="modal">Add new user</a></li>  
+						<!--<li><a   href="../users/add" class="modal">Add new user</a></li>  
 					
-						<li><a href="#" onclick="return LoadIFrame(2)">Manage Users</a></li> 
+						<li><a href="#" onclick=" LoadIFrame(2)">Manage Users</a></li> -->
 						
 					</ul> 
 				</li> 
@@ -79,17 +92,17 @@
 				
 				
 				<li> 
-					<a href="#" class="nav-top-item"> 
+					<a href="#" class="nav-top-item" onclick="LoadIFrame(3);"> 
 						Feedbacks
 					</a> 
 					<ul> 
-						<li><a href="#" onclick="return LoadIFrame(3)">Form A</a></li> 
-						<li><a href="#" onclick="return LoadIFrame(4)">Form B</a></li> 
+						<!--<li><a href="#" onclick="return LoadIFrame(3)">Form A</a></li> 
+						<li><a href="#" onclick="return LoadIFrame(4)">Form B</a></li> -->
                                                  </ul> 
 				</li> 
 				
 				<li> 
-					<a href="#" onclick="return LoadIFrame(5)"class="nav-top-item"> 
+					<a href="#"  class="nav-top-item" onclick="LoadIFrame(4)"> 
 						Comments
                                               
 					</a> 
@@ -97,7 +110,7 @@
 				</li> 
 				
 				<li> 
-					<a href="#" class="nav-top-item"> 
+					<a href="#" class="nav-top-item" onclick="LoadIFrame(5)" > 
 						Settings
                                         </a> 
                                                   <ul> 

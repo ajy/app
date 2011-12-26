@@ -107,6 +107,7 @@ a.remove-link:hover {
                 color: #888;
                 font-size: 11px;
                 background-color: #f3f3f3;
+               
                 }
 
 #sidebar #sidebar-wrapper {
@@ -122,7 +123,12 @@ a.remove-link:hover {
 
 
 #sidebar #sidebar-title {
-                margin: 40px 0 40px 15px;
+                margin: 40px 0 0px 15px;
+                /*font-weight: bold;
+                 font-size:20px;
+                 position:relative;
+                 top:20px;*/
+                    color:#689FFA;
                 }
 
 #sidebar #logo {
@@ -131,9 +137,9 @@ a.remove-link:hover {
 
 #sidebar #profile-links {
                 padding: 0 15px 20px 15px;
-                text-align: right;
+                text-align: left;
                 line-height: 1.5em;
-                float:right;
+           
                
 
 }
@@ -141,9 +147,9 @@ a.remove-link:hover {
 /************ Sidebar Accordion Menu ************/
 
 #sidebar #main-nav {
-                width: 100%;
+                width:100%;
                 padding: 0;
-                /*margin: 0 0 0 15px;*/
+               /* margin: 0 0 0 15px;*/
                 font-family: Helvetica, Arial, sans-serif;
                 position:relative;
                 top:100px;
@@ -151,7 +157,7 @@ a.remove-link:hover {
 
 #sidebar #main-nav li {
                 list-style: none;
-                padding-bottom: 10px;
+                padding-bottom: 0px;
                 text-align: right;
                 
                 
@@ -159,25 +165,28 @@ a.remove-link:hover {
 
 #sidebar #main-nav li a.nav-top-item {
                 padding: 10px 15px;
-                color: #fff;
+                color: gray;
                 font-size: 14px;
                 cursor: pointer;
                 display: block;
-                text-decoration: none;
-                border-style: solid;
-                border-width:1px;
-                border-radius:3px;
-                /*background-color:#34ACF6;*/
-                background-color:#4C8EFB;
-                border-color:#33A4EA;
+                text-decoration:  none;
+              
+                /*background-color:#4C8EFB;*/
+               
                 }
                 #sidebar #main-nav li a.nav-top-item:hover{
-                    background-color:#6CA5F9;
+                    /*background-color:#6CA5F9;*/
+                   
                 }
 #sidebar #main-nav li a.current {
-                
+                  background-color:#689FFA;
+                border-color:lightgray;
                 color:white;
                 font-weight: bold;
+                  border-style: solid;
+                border-width:1px;
+                border-radius:3px;
+                
                 }
                
 
@@ -205,9 +214,10 @@ a.remove-link:hover {
 
 
 #sidebar #main-nav ul li a.current {
-    color: yellowgreen;
+  /*  color: yellowgreen;*/
+ background-color: #f3f3f3;
                  }
-
+                
 
 /********************************      Main Content      ********************************/
 
