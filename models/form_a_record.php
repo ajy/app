@@ -153,8 +153,8 @@ class FormARecord extends AppModel {
 				)),false//present for the remainder of the request
 			);
 			foreach($savedRecords as $savedRecord){
-				echo debug($savedRecord);
-				//$this->SubjectMembership->save();
+				$savedRecord['SubjectMembership']['form_a_submitted']++;
+				$this->SubjectMembership->save($savedRecord);
 			}
 		}
 	}
