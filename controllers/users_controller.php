@@ -160,7 +160,7 @@ class UsersController extends AppController {
 			}
 		}
 		if (empty($this->data)) {
-			$this->data = $this->User->read(null, $id);
+			$this->data = $this->User->read(null, $id);			
 		}
 		$groups = $this->User->Group->find('list');
 		$this->set(compact('groups'));
