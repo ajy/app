@@ -142,6 +142,22 @@ class FormARecord extends AppModel {
 		)
 	);
 	
+	function afterSave($created){
+		if($created){
+			$savedRecords = $this->query('select * from subject_memberships as SubjectMembership where SubjectMembership.form_a_submitted = "0" and exists (select * from form_a_records as far where far.student = SubjectMembership.student_id and far.subject_id = SubjectMembership.subject_id)');
+			$this->bindModel(
+				array('hasMany' => array(
+					'SubjectMembership' => array(
+						'className' => 'SubjectMembership'
+					)
+				)),false//present for the remainder of the request
+			);
+			foreach($savedRecords as $savedRecord){
+				echo debug($savedRecord);
+				//$this->SubjectMembership->save();
+			}
+		}
+	}
 	function calcFormAResults($userId) {
 		$userSubjectsData=$this->Subject->find('all', array(
 			'recursive' => -1,
