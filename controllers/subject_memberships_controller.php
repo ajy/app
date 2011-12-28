@@ -8,6 +8,10 @@ class SubjectMembershipsController extends AppController {
 	function index() {
 		$this->SubjectMembership->recursive = 0;
 		$this->set('subjectMemberships', $this->paginate());
+		$total=$this->SubjectMembership->query("select count(*) as total from subject_memberships");
+		$form_a_submitted=$this->SubjectMembership->query("select count(*) as submitted from subject_memberships where form_a_submitted='1'");
+		$this->set('total',$total[0][0]['total']);
+		$this->set('form_a_submitted',$form_a_submitted[0][0]['submitted']);
 	}
 
 	function view($id = null) {
