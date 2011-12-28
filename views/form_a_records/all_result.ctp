@@ -1,7 +1,6 @@
+
 <script type="text/javascript">
-	$("#result").dataTable({
-		"bJQueryUI": true,
-		"sPaginationType": "full_numbers",
+	$(".result").dataTable({
 		"sDom": '<"H"Tfr>t<"F"ip>',
 		"oTableTools": {
 			"aButtons": [
@@ -18,7 +17,7 @@
 <table id="result">
 	<thead>
 		<tr id="titles">
-			<td class="tableTd">Teacher ID</td>
+			<td class="tableTd">TeacherID</td>
 			<td class="tableTd">Teacher</td>
 			<td class="tableTd">Subject</td>
 			<td class="tableTd">Percentage_Q1</td>
@@ -36,7 +35,7 @@
 	<tbody>
 		<?php foreach($rows as $row):
 			echo '<tr>';
-			echo '<td class="tableTdContent">'.$row['teacherID'].'</td>';
+			echo '<td class="tableTdContent">'.$row['teacherUserName'].'</td>';
 			echo '<td class="tableTdContent">'.$row['teacherName'].'</td>';
 			echo '<td class="tableTdContent">'.$row['subjectCode'].'</td>';
 			echo '<td class="tableTdContent">'.$row['resultQ1'].'</td>';

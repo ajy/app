@@ -17,15 +17,6 @@ class FormARecordsController extends AppController {
 		}
 	}
 	
-	function export_xls() {
-		$this->FormARecord->recursive = 1;
-		$data = $this->FormARecord->find('all');
-		
-		$this->set('rows',calcAllFormAResults());
-		$this->render('export_xls','export_xls');
-
-	}
-	
 	function index() {
 		$this->FormARecord->recursive = 0;
 		$this->set('formARecords', $this->paginate());		

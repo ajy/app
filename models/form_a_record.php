@@ -230,16 +230,17 @@ class FormARecord extends AppModel {
 	
 	function calcAllFormAResults() {
 		$allFormAResults = null;
-		$allTeachers = $this->Teacher->query("select id,username from users as User where group_id=2");
+		$allTeachers = $this->query("select id,username,name from users as User where group_id=2");
 		$i=1;
 		foreach($allTeachers as $teacher) {
 			$teachersResults = $this->calcFormAResults($teacher['User']['id']);
-			if(isset($teachersResults)) {
-				$result = array(
-					'teacherName' => $teacher['User']['name']
-				);
+			if((!is_string($teachersResults))&&isset($teachersResults)) {
 				foreach($teachersResults as $teachersResult) {
-					$allFormAResults=Set::insert($allFormAResults,$i++,$result+$teachersResult);
+					if(!is_string($teachersResult)){
+						$teachersResult['teacherUserName']= $teacher['User']['username'];
+						$teachersResult['teacherName']= $teacher['User']['name'];
+						$allFormAResults=Set::insert($allFormAResults,$i++,$teachersResult);
+					}
 				}
 			}
 		}
