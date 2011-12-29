@@ -14,7 +14,7 @@
         <?= $html->css(array('demo_table')); ?>
 
         <?= $javascript->link(array('jquery-1.5.1.min', 'jquery.dataTables', 'jquery.fancybox-1.3.4.pack')); ?>
-
+	<?= $javascript->link(array('config','add_edit'));?>
 
         <script>
             $(document).ready(function(){
@@ -34,8 +34,7 @@
                                 
 			}
         </script>
-          <?= $javascript->link(array('config','add_edit'));?>
-
+        
         <style type="text/css" > 
             html{
                 

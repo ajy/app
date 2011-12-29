@@ -1,18 +1,16 @@
-<?php echo $this->Html->css(array('reset','style','jquery.fancybox-1.3.4'));?>
-<?php /*echo $this->Html->css(array('media/css/demo_table','media/css/TableTools','start/jquery-ui-1.8.14.custom'));*/?>
-        
-<?php echo $this->Html->script(array('js/jquery','js/jquery.dataTables','js/TableTools','jquery-ui-1.8.14.custom.min','jquery.fancybox-1.3.4.pack'));?>
+<?= $html->css(array('reset', 'style','jquery.fancybox-1.3.4')); ?>
+<?= $html->css(array('demo_table')); ?>
+<?= $javascript->link(array('jquery-1.5.1.min','jquery.dataTables','jquery.fancybox-1.3.4.pack')); ?>
+<?= $javascript->link(array('config','add_edit'));?>
 <script>
 	$(document).ready(function(){
-		$('.example').dataTable({
-			"sDom": 'T<"clear">lfrtip'
-		});
+		$('.example').dataTable();
 	});
 </script>
 <?php echo "The number of submissions done is ".$form_a_submitted.'/'.$total;?>
 <div class="subjectMemberships index">
 	<h2><?php __('Subject Memberships');?></h2>
-	<table cellpadding="0" cellspacing="0" id="display example" >
+	<table cellpadding="0" cellspacing="0" class="display example" >
 	<thead>
 	<tr>
 			<th>student_id</th>

@@ -1,22 +1,13 @@
-
+<?= $html->css(array('reset', 'style','jquery.fancybox-1.3.4')); ?>
+<?= $html->css(array('demo_table')); ?>
+<?= $javascript->link(array('jquery-1.5.1.min','jquery.dataTables','jquery.fancybox-1.3.4.pack')); ?>
+<?= $javascript->link(array('config','add_edit'));?>
 <script type="text/javascript">
-	$(".result").dataTable({
-		"sDom": '<"H"Tfr>t<"F"ip>',
-		"oTableTools": {
-			"aButtons": [
-				"copy", "csv", "xls", "pdf",
-				{
-					"sExtends":    "collection",
-					"sButtonText": "Save",
-					"aButtons":    [ "csv", "xls", "pdf" ]
-				}
-			]
-		}
-	});	
+	$(".example").dataTable();	
 </script>
-<table id="result">
+<table class="display example">
 	<thead>
-		<tr id="titles">
+		<tr>
 			<td class="tableTd">TeacherID</td>
 			<td class="tableTd">Teacher</td>
 			<td class="tableTd">Subject</td>
