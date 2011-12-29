@@ -11,9 +11,9 @@
         <!--                       CSS                       --> 
 
          <?=$html->css(array('reset','style','jquery.fancybox-1.3.4'));?>
-        <?=$html->css(array('../media/css/demo_table','../media/css/TableTools'));?>
+        <?=$html->css(array('demo_table','TableTools'));?>
         
-      <?= $javascript->link(array('../media/js/jquery','../media/js/jquery.dataTables','../media/js/TableTools','../media/js/ZeroClipboard','jquery.fancybox-1.3.4.pack'));?>
+      <?= $javascript->link(array('jquery-1.5.1.min','jquery.dataTables','TableTools','ZeroClipboard','jquery.fancybox-1.3.4.pack'));?>
         
 
         <script>
