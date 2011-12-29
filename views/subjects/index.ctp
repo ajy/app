@@ -11,14 +11,14 @@
         <!--                       CSS                       --> 
 
         <?= $html->css(array('reset', 'style','jquery.fancybox-1.3.4')); ?>
-        <?= $html->css(array('media/css/demo_table', 'jquery-ui-1.8.14.custom/css/ui-lightness/jquery-ui-1.8.14.custom')); ?>
+        <?= $html->css(array('../media/css/demo_table')); ?>
 
-        <?= $javascript->link(array('js/jquery', 'js/jquery.dataTables', 'js/jquery-ui-1.8.14.custom.min','jquery.fancybox-1.3.4.pack')); ?>
+        <?= $javascript->link(array('jquery-1.5.1.min', '../media/js/jquery.dataTables', 'jquery.fancybox-1.3.4.pack')); ?>
 
 
         <script>
             $(document).ready(function(){
-                $('.subjects').dataTable({"bJQueryUI":true});
+                $('.subjects').dataTable();
             });
 
              function fnShowHide(iCol)
