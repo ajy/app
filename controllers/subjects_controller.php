@@ -84,7 +84,8 @@ class SubjectsController extends AppController {
              $class= $q.$user ['class'].$q;
              $id=$user['id'];
              $subjects=$this->Subject->query("SELECT * FROM subjects WHERE class = $class  AND id NOT IN ( SELECT subject_id FROM subject_memberships WHERE student_id = $id AND form_a_submitted = 1  );");
-             
+             $teacher1 = null;
+             $teacher2 = null;
              //To get the subject names
              for($i=0;$i<count($subjects);$i++){
              $t1=$subjects[$i]["subjects"]["teacher1"];
