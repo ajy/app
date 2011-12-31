@@ -10,10 +10,10 @@
 
         <!--                       CSS                       --> 
 
-         <?=$html->css(array('reset','style','jquery.fancybox-1.3.4'));?>
+         <?=$html->css(array('reset','style','jquery.fancybox-1.3.4','button_green'));?>
         <?=$html->css(array('media/css/demo_table','media/css/TableTools','jquery-ui-1.8.14.custom/css/ui-lightness/jquery-ui-1.8.14.custom'),'import');?>
         
-      <?= $javascript->link(array('js/jquery','js/jquery.dataTables','js/TableTools','jquery-ui-1.8.14.custom/js/jquery-ui-1.8.14.custom.min','jquery.fancybox-1.3.4.pack'));?>
+      <?= $javascript->link(array('js/jquery','js/jquery.dataTables','js/TableTools','jquery-ui-1.8.14.custom/js/jquery-ui-1.8.14.custom.min','jquery.fancybox-1.3.4.pack','add_edit'));?>
         
 
         <script>
@@ -28,6 +28,13 @@
 			  html{
                              overflow:hidden;
                          }
+                         
+                         .green{
+                         float:right;
+                         padding:10px;
+                         position:relative;
+                         top:10px;
+                          }
                </style> 
 <script>
  parent.$.fancybox.close();
@@ -54,14 +61,18 @@
                 </noscript> 
 
                 <!-- Page Head --> 
-               <!-- <a class="signout" href="#"><?php echo $html->link('Sign out',array('controller'=>'users','action'=>'logout'));?></a>-->
-                <div class="clear"></div> <!-- End .clear --> 
-
+                 <div class="clear"></div> <!-- End .clear --> 
+                   <div id="pHead">
+                <h2>Users</h2> 
+                </div>
+                 <?= $html->link($html->tag('span','Import Users',array('class' => 'green')),array('controller'=>'users','action'=>'loadNewStudents'),array('escape'=>false,'class'=>'modal'));?>
+                 <?= $html->link($html->tag('span','Add User',array('class' => 'green')),array('controller'=>'users','action'=>'add'),array('escape'=>false,'class'=>'modal'));?>
+              
                 <div class="content-box"><!-- Start Content Box --> 
 
                     <div class="content-box-header"> 
 
-                        <h3>Users</h3> 
+                        <h3></h3> 
                         <?=$this->Form->create('User',array('action'=>'delete'));?>
                         <div>
                             <ul class="content-box-tabs"> 

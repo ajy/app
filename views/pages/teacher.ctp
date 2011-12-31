@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,9 +16,14 @@
                  <?=$html->css(array('jquery.fancybox-1.3.4'));?>     
               
                <script>
+                   pos=1;
                function LoadIFrame(pg)
 {
-   
+    jq='ul#main-nav li:nth-child('+pos+') > a';
+                $(jq).removeClass('current');
+                pos=pg;
+                jq='ul#main-nav li:nth-child('+pos+') > a';
+                $(jq).addClass('current');
     ifr = document.getElementById("ifr");
      ifr.style.display="block";
     switch(pg){
@@ -41,7 +46,15 @@
 
     <?php $user=($this -> Session -> read("Auth.User"));?>
 		<div id="sidebar">
-                    <div id="sidebar-wrapper"> 			
+                    <div id="sidebar-wrapper"> 		
+                         <?php $user=$this->Session->read("Auth.User");;?>
+                <h1 id="sidebar-title"><?=$html->link($user['name'], array('controller' => 'users', 'action' => 'edit',$user['id']),array('title'=>'Edit Profile','class'=>'modal','required'=>TRUE));?></h1>
+                <div id="profile-links">
+
+                    ISE Department
+                    |
+                    <?php echo $html->link('Sign Out', array('controller' => 'users', 'action' => 'logout'),array('title'=>'Sign Out')); ?>
+                    <br>
 			<ul id="main-nav">  <!-- Accordion Menu --> 
 				
 				<li> 
@@ -53,7 +66,7 @@
 					
 							
 				<li> 
-					<a href="#" onclick="return LoadIFrame(2)"class="nav-top-item"> 
+ 					<a href="#" onclick="return LoadIFrame(2)" class="nav-top-item"> 
 						Comments
                                               
 					</a> 
@@ -61,10 +74,9 @@
 				</li> 
 				
 				<li> 
-					<a href="#" class="nav-top-item"> 
-						Settings
-                                        </a> 
-                                                  <ul> 
+					 <?php echo $html->link('Profile', array('controller' => 'users', 'action' => 'edit',$user['id']),array('class'=>'nav-top-item modal','onclick'=>"LoadIFrame(5)")); ?>
+                          
+                                             <!--     <ul> 
                                                       
 						<li><?php echo $html->link('Edit Profile',array('controller'=>'users','action'=>'edit',$user['id']),array('class'=>'modal'));?>
                                                 
@@ -72,7 +84,7 @@
 						<li> <?php echo $html->link('Sign out',array('controller'=>'users','action'=>'logout'));
                                                 
                                                 ?></li> 
-				        </ul> 
+				        </ul> --?
 					
 					 
 				</li>      
@@ -86,8 +98,6 @@
 			
 		</div></div> <!-- End #sidebar --> 
 		
-		
-		</div> <!-- End #main-content --> 
-                       
+	                      
 	</body> 
 </html>

@@ -50,7 +50,7 @@ button.DTTT_button {
 	*cursor: hand;
 }
 
-button.DTTT_button::-moz-focus-inner { 
+button.DTTT_button:-moz-focus-inner { 
 	border: none !important;
 	padding: 0;
 }

@@ -24,7 +24,7 @@ h1, h2, h3, h4, h5, h6 {
                 }
 
 h1            { font-family: Calibri, Helvetica, Arial, sans-serif; font-size: 31px; font-weight: bold; color: #fff; 
-				  position: absolute; top: -1000px;  /* Remove this line and delete the logo (in the HTML) if you don't want an image as a logo */
+				 /* position: absolute; top: -1000px;  /* Remove this line and delete the logo (in the HTML) if you don't want an image as a logo */
 				}
 				
                                 h2            { font-size: 26px; padding: 0 0 10px 0; }
@@ -33,8 +33,6 @@ h4            { font-size: 16px; padding: 0 0 5px 0; }
 h5            { font-size: 14px; padding: 0 0 5px 0; }
 h6            { font-size: 12px; padding: 0 0 5px 0; }
 .signout      { font-size: 14px;padding-left:94%;position:relative;top:-25px;color: #666666;font-size:medium;/*background-image:url(img/signout.png);background-repeat: no-repeat;background-position:94%;*/}
-
-
 a              { color: #57a000; text-decoration: none; }
 a:hover     { color: #000; }
 a:active     { color: #777; }
@@ -65,9 +63,19 @@ p {
 .align-right {
                 float: right;
                 }
+                
+  #pHead{
+                border-bottom-style:solid;
+                border-bottom-color:#f3f3f3;
+                border-width:1px;
+                             
+            }
+  #pHead> h2{
+                color: gray;
+            }
 
 /************ Button ************/
-.button {
+/*.button {
 				font-family: Verdana, Arial, sans-serif;
                 display: inline-block;
                 background: #459300  !important;
@@ -85,7 +93,7 @@ p {
                 
 .button:active {
                 padding: 5px 7px 3px 7px !important;
-                }
+                }*/
 				
 a.remove-link {
 				color: #bb0000;
@@ -97,7 +105,7 @@ a.remove-link:hover {
 
 /********************************      Sidebar      ********************************/
 
-#sidebar {
+/*#sidebar {
                 
                 width: 17%;
                 height: 100%;
@@ -107,8 +115,8 @@ a.remove-link:hover {
                 color: #888;
                 font-size: 11px;
                 background-color: #f3f3f3;
-               
-                }
+                /*overflow: hidden;*/
+                /*}
 
 #sidebar #sidebar-wrapper {
                 margin: 0 0 0 9px;
@@ -124,11 +132,11 @@ a.remove-link:hover {
 
 #sidebar #sidebar-title {
                 margin: 40px 0 0px 15px;
-                /*font-weight: bold;
+                font-weight: bold;
                  font-size:20px;
                  position:relative;
-                 top:20px;*/
-                    color:#689FFA;
+                 top:20px;
+                    
                 }
 
 #sidebar #logo {
@@ -137,6 +145,122 @@ a.remove-link:hover {
 
 #sidebar #profile-links {
                 padding: 0 15px 20px 15px;
+                text-align: right;
+                line-height: 1.5em;
+                float:right;
+               
+
+}
+
+/************ Sidebar Accordion Menu ************/
+
+/*#sidebar #main-nav {
+                width: 209px;
+                padding: 0;
+                margin: 0 0 0 15px;
+                font-family: Helvetica, Arial, sans-serif;
+                position:relative;
+                top:100px;
+                }
+
+#sidebar #main-nav li {
+                list-style: none;
+                padding-bottom: 10px;
+                text-align: right;
+                
+                
+                }
+
+#sidebar #main-nav li a.nav-top-item {
+                padding: 10px 15px;
+                color: #fff;
+                font-size: 14px;
+                cursor: pointer;
+                display: block;
+                text-decoration: none;
+                border-style: solid;
+                border-width:1px;
+                border-radius:3px;
+                /*background-color:#34ACF6;*/
+               /* background-color:#4C8EFB;
+                border-color:#33A4EA;
+                }
+                #sidebar #main-nav li a.nav-top-item:hover{
+                    background-color:#6CA5F9;
+                }
+#sidebar #main-nav li a.current {
+                
+                color:white;
+                font-weight: bold;
+                
+                }
+               
+
+#sidebar #main-nav ul {
+                padding: 0;
+                font-size: 12px;
+                margin: 0;
+                }
+
+#sidebar #main-nav ul li {
+                list-style: none;
+                margin: 0;
+                text-align: right;
+				padding: 0;
+                }
+
+#sidebar #main-nav ul li a {
+                padding: 8px 15px;
+                display: block;
+                color:#DB4637;
+                font-size: 13px;
+                line-height: 1.2em;
+                 }
+
+
+
+#sidebar #main-nav ul li a.current {
+    color: yellowgreen;
+                 }*/
+
+            
+#sidebar {
+                
+                width: 17%;
+                height: 100%;
+                position: absolute;
+                left: 0;
+                top: 0;
+                color: #888;
+                font-size: 11px;
+                background-color: #f3f3f3;
+               
+                }
+
+#sidebar #sidebar-wrapper {
+                margin: 0 0 0 5px;
+                }
+
+#sidebar a,
+#sidebar a:active {
+                color:#4C8EFB;
+                
+                }
+
+
+
+#sidebar #sidebar-title {
+                margin: 40px 0 0px 5px;
+                /*font-weight: bold;
+                 font-size:20px;
+                 position:relative;
+                 top:20px;*/
+                font-size:25px;
+                    color:#689FFA;
+                }
+
+#sidebar #profile-links {
+                padding: 0 0px 20px 5px;
                 text-align: left;
                 line-height: 1.5em;
            
@@ -151,8 +275,8 @@ a.remove-link:hover {
                 padding: 0;
                /* margin: 0 0 0 15px;*/
                 font-family: Helvetica, Arial, sans-serif;
-                position:relative;
-                top:100px;
+               /* position:relative;
+                top:100px;*/
                 }
 
 #sidebar #main-nav li {
@@ -217,8 +341,6 @@ a.remove-link:hover {
   /*  color: yellowgreen;*/
  background-color: #f3f3f3;
                  }
-                
-
 /********************************      Main Content      ********************************/
 
 /************ Layout ************/
@@ -263,7 +385,7 @@ a.remove-link:hover {
 /* Unordered List */
 
 #main-content ul li {
-                background: center left no-repeat;
+                background: url('../images/icons/bullet_black.png') center left no-repeat;
                 padding: 4px 0 4px 20px;
                 }
 
@@ -282,7 +404,7 @@ a.remove-link:hover {
 
 .content-box {
                 border: 1px solid #ccc;
-                margin: 0 0 20px 0;
+                margin:58px 0 10px 0;
                 background: #fff;
                 
                 
@@ -296,7 +418,7 @@ a.remove-link:hover {
 .content-box-header h3 {
                 padding: 12px 15px 10px;
                 float: left;
-                
+           
                 }
 
 ul.content-box-tabs {
@@ -341,3 +463,44 @@ ul.content-box-tabs li a.current {
                 margin-top:-1px;
                 }
                 
+/************ Table ************/
+
+/*#main-content table {
+                width: 100%;
+                border-collapse: collapse;
+                }
+                
+#main-content table thead th {
+                font-weight: bold;
+                font-size: 15px;
+                border-bottom: 1px solid #ddd;
+                }
+                
+#main-content tbody {
+                border-bottom: 1px solid #ddd;
+                }
+                
+#main-content tbody tr {
+                background: #fff;
+                }
+              
+#main-content tbody tr.alt-row {
+                background: #f3f3f3;
+                }
+                
+#main-content table td,
+#main-content table th {
+                padding: 10px;
+                line-height: 1.3em;
+                }        
+				
+#main-content table tfoot td .bulk-actions {
+                padding: 15px 0 5px 0;
+                } 
+				
+#main-content table tfoot td .bulk-actions select {
+                padding: 4px;
+				border: 1px solid #ccc;
+                }      */
+
+

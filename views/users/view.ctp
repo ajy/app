@@ -1,52 +1,46 @@
-<?=$html->css(array('reset','submitButton','add_edit'));?>
-<div class="users view">
-<h2><?php  __('User');?></h2>
-	<dl><?php $i = 0; $class = ' class="altrow"';?>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $user['User']['id']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Username'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $user['User']['username']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Password'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $user['User']['password']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Group'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $this->Html->link($user['Group']['name'], array('controller' => 'groups', 'action' => 'view', $user['Group']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Email'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $user['User']['email']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Created'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $user['User']['created']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Modified'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $user['User']['modified']; ?>
-			&nbsp;
-		</dd>
-	</dl>
-</div>
-<div class="actions">
-	<h3><?php __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit User', true), array('action' => 'edit', $user['User']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('Delete User', true), array('action' => 'delete', $user['User']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $user['User']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users', true), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User', true), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Groups', true), array('controller' => 'groups', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Group', true), array('controller' => 'groups', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+<?=$html->css(array('reset','button_green','add_edit'));?>
+ <style>
+            
+             .label{
+               
+                 color:gray;
+                 font-size:20px;
+                 padding-top:5px;
+             }
+              
+             .value{
+                  font-size:15px;
+                  line-height:50%;
+                  text-align: center;
+                  position:relative;
+                  top:-20px;
+                  left:120px;
+             }
+             #profile{
+                  padding:20px;
+             }
+             a{
+                 text-decoration: none;
+                
+             }
+             .green{
+             padding:8px;
+    }
+    </style>
+     <? $user=$this->Session->read("Auth.User");
+        $grp=  array('1'=>'Administrator','2'=>'Teacher','3'=>'Student')
+     ?>
+   <div id="header">Proflie</div>
+        <div id="profile">
+            <h2 class="label">Name </h2> <span class="value"><?=$user['name']?></span> 
+            <h2 class="label">Username </h2> <span class="value"><?=$user['username']?></span> 
+            <h2 class="label">Email </h2> <span class="value"><?=$user['email']?></span> 
+            <h2 class="label">Group </h2> <span class="value"><?=$grp[$user['group_id']]?></span> 
+            <? if($user['class']!=NULL){?>
+            <h2 class="label">Class </h2> <span class="value"><?=$user['class']?></span> 
+           <?}?>
+            
+        </div>
+
+<?= $html->link($html->tag('span','Edit Profile',array('class' => 'green')),array('action'=>'edit', $user['id']),array('class'=>'modal','escape'=>false));?>
+           
