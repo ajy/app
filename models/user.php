@@ -19,8 +19,8 @@ class User extends AppModel {
 			'notempty' => array(
 				'rule' => array('notempty'),
 				'message' => 'Give a name',
+				'required' => false,
 				//'allowEmpty' => false,
-				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -48,18 +48,31 @@ class User extends AppModel {
 			'numeric' => array(
 				'rule' => array('numeric'),
 				'message' => 'Your custom message here',
+				'required' => true,
 				//'allowEmpty' => false,
-				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'valid' => array(
+				'rule' => array('noClassForTeachersAndAdminOnlyStudents'),
+				'message' => 'This type of user cannot have a class',
+				'required' => true,
+			),
+		),
+		'class' => array(
+			'valid' => array(
+				'rule' => '/^[1-8][AB]/',
+				'message' => 'This is not a valid class',
+				'allowEmpty' => true, //can be null by default
+				'required' => true,
+			)
 		),
 		'email' => array(
 			'email' => array(
 				'rule' => array('email'),
-				'message' => 'Enter a valid emailid',
+				'message' => 'Enter a valid email id',
+				'required' => true,
 				//'allowEmpty' => false,
-				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -71,9 +84,21 @@ class User extends AppModel {
 		if(isset($this->data['User']['confirmpassword'])){
 			if($this->data['User']['password'] != $this->Auth->password($this->data['User']['confirmpassword']))
 			{
-				//they didnt confirm password
+				//they didnt confirm password correctly
 				return false;
 			}
+		}
+		return true;
+	}
+	
+	function noClassForTeachersAndAdminOnlyStudents($check){
+		if(!isset($this->data['User']['class'])&&($this->data['User']['group_id']==3)){
+			//the user is a student who has no class
+			return false;
+		}
+		elseif(isset($this->data['User']['class'])&&($this->data['User']['group_id']!=3)){
+			//the user has a class but is not a student
+			return false;
 		}
 		return true;
 	}
