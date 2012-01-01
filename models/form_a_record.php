@@ -168,7 +168,7 @@ class FormARecord extends AppModel {
 			}
 		}
 	}
-	function calcFormAResults($userId) {
+	function calcFormAResults($userId,$sub_num) {
 		$userSubjectsData=$this->Subject->find('all', array(
 			'recursive' => -1,
 			'conditions' => array(
@@ -187,7 +187,8 @@ class FormARecord extends AppModel {
 			$totalRows=$this->find('count', array(
 				'conditions' => array(
 					'subject_id' => $userSubject['id'],
-					'teacher' => $userId
+					'teacher' => $userId,
+					'submission_number' => $sub_num
 				)
 			));
 			if($totalRows==null){
@@ -201,7 +202,8 @@ class FormARecord extends AppModel {
 						'offset' => ceil(0.05*$totalRows),
 						'conditions' => array(
 							'subject_id' => $userSubject['id'],
-							'teacher' => $userId
+							'teacher' => $userId,
+							'submission_number' => $sub_num
 						)
 					)
 				);
