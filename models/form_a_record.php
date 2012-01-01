@@ -32,6 +32,16 @@ class FormARecord extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'submission_number' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				'message' => 'This field must be filled',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
 		'q1' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
