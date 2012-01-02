@@ -101,3 +101,5 @@
                 margin:0 auto;
             
             }
+         input[disabled],select[disabled],textarea[disabled],input[readonly],select[readonly],textarea[readonly]{background-color:#f5f5f5;border-color:#ddd;cursor: not-allowed;}
+   

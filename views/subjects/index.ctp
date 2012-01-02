@@ -10,8 +10,15 @@
 
         <!--                       CSS                       --> 
 
+<<<<<<< HEAD
+        <?= $html->css(array('reset', 'style','jquery.fancybox-1.3.4','button_green')); ?>
+        <?= $html->css(array('media/css/demo_table', 'jquery-ui-1.8.14.custom/css/ui-lightness/jquery-ui-1.8.14.custom')); ?>
+
+        <?= $javascript->link(array('js/jquery', 'js/jquery.dataTables', 'js/jquery-ui-1.8.14.custom.min','jquery.fancybox-1.3.4.pack')); ?>
+=======
         <?= $html->css(array('reset', 'style','jquery.fancybox-1.3.4')); ?>
         <?= $html->css(array('demo_table')); ?>
+>>>>>>> 7fe95588251151694fa75905ea105c11e9dae8b2
 
         <?= $javascript->link(array('jquery-1.5.1.min', 'jquery.dataTables', 'jquery.fancybox-1.3.4.pack')); ?>
 	<?= $javascript->link(array('config','add_edit'));?>
@@ -39,6 +46,12 @@
             html{
                 
             }
+              .green{
+                         float:right;
+                         padding:10px;
+                         position:relative;
+                         top:10px;
+                          } 
         </style> 
 
     </head> 
@@ -61,19 +74,24 @@
                 </div>
                 </noscript> 
 
-                <!-- Page Head  
-                 <a class="signout" href="#">Sign out</a>-->
-                <h2>Welcome Admin</h2> 
+                <!-- Page Head  -->
+                
+                
                 
 
        
                 <div class="clear"></div> <!-- End .clear --> 
-
+                     <div class="clear"></div> <!-- End .clear --> 
+                   <div id="pHead">
+                <h2>Subjects</h2> 
+                </div>
+                <?= $html->link($html->tag('span','Add Subject',array('class' => 'green')),array('controller'=>'subjects','action'=>'add'),array('escape'=>false,'class'=>'modal'));?>
+              
                 <div class="content-box"><!-- Start Content Box --> 
 
                     <div class="content-box-header"> 
 
-                        <h3>Subjects</h3> 
+                        <h3></h3> 
                         <div>
                             <ul class="content-box-tabs"> 
                                 <li><a href="#tab-1" class="default-tab">Semester 4</a></li>  

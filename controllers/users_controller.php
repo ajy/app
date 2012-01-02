@@ -163,7 +163,9 @@ class UsersController extends AppController {
 			$this->data = $this->User->read(null, $id);			
 		}
 		$groups = $this->User->Group->find('list');
-		$this->set(compact('groups'));
+           	$this->set(compact('groups'));
+                $this->set('id');
+                $this->set('class',$this->data['User']['class']);
 	}
 
 	function delete($id = null) {
