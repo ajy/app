@@ -15,7 +15,7 @@ class UsersController extends AppController {
 
 	function login() {
 	if ($this->Session->read('Auth.User')) {
-			 $group_id=( $this -> Session -> read("Auth.User.group_id"));
+			$group_id=$this->Session->read("Auth.User.group_id");
                         if($group_id==1) {
                             $this->redirect($this->Auth->redirect(array('controller'=> 'pages','action'=>'admin')));
                         }
@@ -181,6 +181,22 @@ class UsersController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 	
+	function promote(){
+		if(!empty($this->data['User']['From'])&&!empty($this->data['User']['To'])){
+			$from = $this->data['User']['From'];
+			$to = $this->data['User']['To'];
+			$this->User->query("update users set class='".$to."' where class='".$from."'");
+			$test=$this->User->find('all',array(
+				'conditions'=>array(
+					'class' => $from
+				)
+			));
+			if(empty($test))
+				$this->Session->setFlash("All students of class ".$from." have been promoted to ".$to);
+			else
+				$this->Session->setFlash("Students could not be promoted");
+		}
+	}
 	function loadNewStudents() {
 		if(!empty($this->data['User']['File'])){
 			//creating a reader object
