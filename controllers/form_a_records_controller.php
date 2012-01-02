@@ -50,7 +50,7 @@ class FormARecordsController extends AppController {
                 	$params['teacher']=$param[1];
                 	$params['student']=$this->Session->read("Auth.User.id");;
                 	$temp=$this->FormARecord->find('first',array(
-                		'fields' => 'ifnull(max(submission_number),1) as sub_num',//set sub_num to 1 if it is null
+                		'fields' => 'ifnull(max(submission_number),0) as sub_num',//set sub_num to 0 if it is null
                 		'conditions' => array(
                 			'subject_id' => $params['subject_id'],
                 			'teacher' => $params['teacher'],
