@@ -142,6 +142,22 @@ class FormARecord extends AppModel {
 		)
 	);
 	
+	function afterSave($created){
+		if($created){
+			$savedRecords = $this->query('select * from subject_memberships as SubjectMembership where SubjectMembership.form_a_submitted = "0" and exists (select * from form_a_records as far where far.student = SubjectMembership.student_id and far.subject_id = SubjectMembership.subject_id)');
+			$this->bindModel(
+				array('hasMany' => array(
+					'SubjectMembership' => array(
+						'className' => 'SubjectMembership'
+					)
+				)),false//present for the remainder of the request
+			);
+			foreach($savedRecords as $savedRecord){
+				$savedRecord['SubjectMembership']['form_a_submitted']++;
+				$this->SubjectMembership->save($savedRecord);
+			}
+		}
+	}
 	function calcFormAResults($userId) {
 		$userSubjectsData=$this->Subject->find('all', array(
 			'recursive' => -1,
@@ -214,16 +230,17 @@ class FormARecord extends AppModel {
 	
 	function calcAllFormAResults() {
 		$allFormAResults = null;
-		$allTeachers = $this->Teacher->query("select id,username from users as User where group_id=2");
+		$allTeachers = $this->query("select id,username,name from users as User where group_id=2");
 		$i=1;
 		foreach($allTeachers as $teacher) {
 			$teachersResults = $this->calcFormAResults($teacher['User']['id']);
-			if(isset($teachersResults)) {
-				$result = array(
-					'teacherName' => $teacher['User']['name']
-				);
+			if((!is_string($teachersResults))&&isset($teachersResults)) {
 				foreach($teachersResults as $teachersResult) {
-					$allFormAResults=Set::insert($allFormAResults,$i++,$result+$teachersResult);
+					if(!is_string($teachersResult)){
+						$teachersResult['teacherUserName']= $teacher['User']['username'];
+						$teachersResult['teacherName']= $teacher['User']['name'];
+						$allFormAResults=Set::insert($allFormAResults,$i++,$teachersResult);
+					}
 				}
 			}
 		}

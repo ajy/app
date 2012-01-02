@@ -1,24 +1,14 @@
+<?= $html->css(array('reset', 'style','jquery.fancybox-1.3.4')); ?>
+<?= $html->css(array('demo_table')); ?>
+<?= $javascript->link(array('jquery-1.5.1.min','jquery.dataTables','jquery.fancybox-1.3.4.pack')); ?>
+<?= $javascript->link(array('config','add_edit'));?>
 <script type="text/javascript">
-	$("#result").dataTable({
-		"bJQueryUI": true,
-		"sPaginationType": "full_numbers",
-		"sDom": '<"H"Tfr>t<"F"ip>',
-		"oTableTools": {
-			"aButtons": [
-				"copy", "csv", "xls", "pdf",
-				{
-					"sExtends":    "collection",
-					"sButtonText": "Save",
-					"aButtons":    [ "csv", "xls", "pdf" ]
-				}
-			]
-		}
-	});	
+	$(".example").dataTable();	
 </script>
-<table id="result">
+<table class="display example">
 	<thead>
-		<tr id="titles">
-			<td class="tableTd">Teacher ID</td>
+		<tr>
+			<td class="tableTd">TeacherID</td>
 			<td class="tableTd">Teacher</td>
 			<td class="tableTd">Subject</td>
 			<td class="tableTd">Percentage_Q1</td>
@@ -36,7 +26,7 @@
 	<tbody>
 		<?php foreach($rows as $row):
 			echo '<tr>';
-			echo '<td class="tableTdContent">'.$row['teacherID'].'</td>';
+			echo '<td class="tableTdContent">'.$row['teacherUserName'].'</td>';
 			echo '<td class="tableTdContent">'.$row['teacherName'].'</td>';
 			echo '<td class="tableTdContent">'.$row['subjectCode'].'</td>';
 			echo '<td class="tableTdContent">'.$row['resultQ1'].'</td>';

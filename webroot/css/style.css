@@ -32,7 +32,6 @@ h3            { font-size: 17px; padding: 0 0 10px 0; }
 h4            { font-size: 16px; padding: 0 0 5px 0; }
 h5            { font-size: 14px; padding: 0 0 5px 0; }
 h6            { font-size: 12px; padding: 0 0 5px 0; }
-.signout      { font-size: 14px;padding-left:94%;position:relative;top:-25px;color: #666666;font-size:medium;/*background-image:url(img/signout.png);background-repeat: no-repeat;background-position:94%;*/}
 a              { color: #57a000; text-decoration: none; }
 a:hover     { color: #000; }
 a:active     { color: #777; }
@@ -73,6 +72,7 @@ p {
   #pHead> h2{
                 color: gray;
             }
+ 
 
 /************ Button ************/
 /*.button {

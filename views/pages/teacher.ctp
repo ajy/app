@@ -12,7 +12,7 @@
                
 		<?= $javascript->link(array('config'));?>
                 <?=$html->css(array('reset','style','teacher'));?>
-                <?= $javascript->link(array('jquery.fancybox-1.3.4.pack','fbConfig'));?>
+                <?= $javascript->link(array('jquery.fancybox-1.3.4.pack','add_edit'));?>
                  <?=$html->css(array('jquery.fancybox-1.3.4'));?>     
               
                <script>
@@ -39,7 +39,7 @@
                
 </head>
 
-<body >
+<body>
    
     
     <iframe  id="ifr" src="../form_a_records/result" style="width:1366px; height:660px; overflow:auto;" ></iframe>
@@ -55,7 +55,8 @@
                     |
                     <?php echo $html->link('Sign Out', array('controller' => 'users', 'action' => 'logout'),array('title'=>'Sign Out')); ?>
                     <br>
-			<ul id="main-nav">  <!-- Accordion Menu --> 
+	</div>
+                    <ul id="main-nav">  <!-- Accordion Menu --> 
 				
 				<li> 
 					<a href="#" onclick="return LoadIFrame(1)" class="nav-top-item current"> 
@@ -74,7 +75,7 @@
 				</li> 
 				
 				<li> 
-					 <?php echo $html->link('Profile', array('controller' => 'users', 'action' => 'edit',$user['id']),array('class'=>'nav-top-item modal','onclick'=>"LoadIFrame(5)")); ?>
+					 <?php echo $html->link('Profile', array('controller' => 'users', 'action' => 'edit',$user['id']),array('class'=>'nav-top-item modal','onclick'=>"LoadIFrame(3)")); ?>
                           
                                              <!--     <ul> 
                                                       
@@ -96,8 +97,10 @@
 			
 			
 			
-		</div></div> <!-- End #sidebar --> 
-		
+	
+                    </div> 
+                </div><!-- End #sidebar --> 
 	                      
-	</body> 
+	
+ </body> 
 </html>

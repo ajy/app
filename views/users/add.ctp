@@ -34,8 +34,9 @@ $('#Class').hide()})
                     <option><?=$class['subjects']['class']?></option>
                   <?  endforeach;?>
                ?> </select></div>
-            <?echo $this->Form->input('email');
-
+            <?echo $this->Form->input('class',array('options'=>$classes,'empty'=>true ));
+echo $this->Form->input('email');
+debug($classes);
     ?>
     </fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>

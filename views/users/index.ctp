@@ -9,21 +9,32 @@
         <title>Admin</title> 
 
         <!--                       CSS                       --> 
+        <?=$html->css(array('reset','style','jquery.fancybox-1.3.4','button_green','demo_table','TableTools'),'import');?>
+        
+      <!--                      JS                  --> 
+      <?= $javascript->link(array('jquery-1.5.1.min','jquery.dataTables','TableTools','ZeroClipboard','jquery.fancybox-1.3.4.pack','config','add_edit'));?>
+       
 
-         <?=$html->css(array('reset','style','jquery.fancybox-1.3.4','button_green'));?>
-        <?=$html->css(array('media/css/demo_table','media/css/TableTools','jquery-ui-1.8.14.custom/css/ui-lightness/jquery-ui-1.8.14.custom'),'import');?>
-        
-      <?= $javascript->link(array('js/jquery','js/jquery.dataTables','js/TableTools','jquery-ui-1.8.14.custom/js/jquery-ui-1.8.14.custom.min','jquery.fancybox-1.3.4.pack','add_edit'));?>
-        
 
         <script>
             $(document).ready(function(){
-                $('.example').dataTable({
-                    "sDom": 'T<"clear">lfrtip'
-                });
+                $('.example').dataTable( {
+		"sDom": 'T<"clear">lfrtip',
+		"oTableTools": {
+			"aButtons": [
+				"copy",
+				"print",
+				{
+					"sExtends":    "collection",
+					"sButtonText": "Save",
+					"aButtons":    [ "csv", "xls", "pdf" ]
+				}
+			]
+		}
+	} );
             });
         </script>
-      <?= $javascript->link(array('config','add_edit'));?>
+    
  <style type="text/css" title="currentStyle"> 
 			  html{
                              overflow:hidden;
@@ -45,7 +56,7 @@
     <body>
 
 
-        <div id="body-wrapper"> <!-- Wrapper for the radial gradient background --> 
+        <div id="body-wrapper">
 
 
 

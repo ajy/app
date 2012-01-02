@@ -10,15 +10,22 @@
 
         <!--                       CSS                       --> 
 
+<<<<<<< HEAD
         <?= $html->css(array('reset', 'style','jquery.fancybox-1.3.4','button_green')); ?>
         <?= $html->css(array('media/css/demo_table', 'jquery-ui-1.8.14.custom/css/ui-lightness/jquery-ui-1.8.14.custom')); ?>
 
         <?= $javascript->link(array('js/jquery', 'js/jquery.dataTables', 'js/jquery-ui-1.8.14.custom.min','jquery.fancybox-1.3.4.pack')); ?>
+=======
+        <?= $html->css(array('reset', 'style','jquery.fancybox-1.3.4')); ?>
+        <?= $html->css(array('demo_table')); ?>
+>>>>>>> 7fe95588251151694fa75905ea105c11e9dae8b2
 
+        <?= $javascript->link(array('jquery-1.5.1.min', 'jquery.dataTables', 'jquery.fancybox-1.3.4.pack')); ?>
+	<?= $javascript->link(array('config','add_edit'));?>
 
         <script>
             $(document).ready(function(){
-                $('.subjects').dataTable({"bJQueryUI":true});
+                $('.subjects').dataTable();
             });
 
              function fnShowHide(iCol)
@@ -34,8 +41,7 @@
                                 
 			}
         </script>
-          <?= $javascript->link(array('config','add_edit'));?>
-
+        
         <style type="text/css" > 
             html{
                 

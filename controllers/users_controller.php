@@ -56,18 +56,18 @@ class UsersController extends AppController {
 		$this->set('subject', $subject);
 	}
 	
-	function changePassword() {
+	function changePassword($id=null) {
 		if (!empty($this->data)) {
 			if($this->data['User']['new password'] == $this->data['User']['confirm password']){
 				$newPassword = $this->data['User']['new password'];
-				$this->data = $this->User->findById($this->Auth->user('id'));
+				$this->data = $this->User->findById($id);
 				$this->data['User']['password'] = $this->Auth->password($newPassword);
 				if ($this->User->save($this->data)) {
 					$this->Session->setFlash('Password has been changed.');
 					$this->redirect(array('action'=>'index'));
 				} else $this->Session->setFlash('Password could not be changed.');
 			} else $this->Session->setFlash('The new password was not entered correctly');		
-		} else $this->data['User'] = $this->User->findById($this->Auth->user('id'));
+		} else $this->data['User'] = $this->User->findById($id);
 	}
 	
 	function resetPassword($token=null) {
@@ -160,10 +160,12 @@ class UsersController extends AppController {
 			}
 		}
 		if (empty($this->data)) {
-			$this->data = $this->User->read(null, $id);
+			$this->data = $this->User->read(null, $id);			
 		}
 		$groups = $this->User->Group->find('list');
-		$this->set(compact('groups'));
+           	$this->set(compact('groups'));
+                $this->set('id');
+                $this->set('class',$this->data['User']['class']);
 	}
 
 	function delete($id = null) {
@@ -183,19 +185,19 @@ class UsersController extends AppController {
 		if(!empty($this->data['User']['File'])){
 			//creating a reader object
 			$csv = new parseCSV($this->data['User']['File']['tmp_name']);
-			$NoSavedRows = 0;
+			$NumSavedRows = 0;
 			$error = false;
 			$info = $csv->data;
 			foreach($info as $studentInfo){
 				if($this->User->save(array('User' => $studentInfo))){
-					$NoSavedRows++;
+					$NumSavedRows++;
 				} else {
-					$this->Session->setFlash('Error,  Could only  import '.$NoSavedRows.' records. Please try again.');
+					$this->Session->setFlash('Error,  Could only  import '.$NumSavedRows.' records. Please try again.');
 					$error = true;
 				}
 			}
 			if(!$error) {
-				$this->Session->setFlash('Success. Imported '. $NoSavedRows .' records.');
+				$this->Session->setFlash('Success. Imported '. $NumSavedRows .' records.');
 			}
 		}
 	}
