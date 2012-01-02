@@ -26,9 +26,6 @@
             <h2 id="sub">Your subjects</h2>
        <ul id="main-nav"> 
        <?php
-       if(count($subjects)==0){//incase no feedback is needed
-       		echo "You don't need to submit any feedback right now";
-       }
        for($i=0;$i<count($subjects);$i++){
          echo "<li>";?> 
          <a href="#" class="nav-top-item ">  <? echo $subjects[$i]["subjects"]["name"];?></a>
