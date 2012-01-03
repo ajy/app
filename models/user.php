@@ -64,7 +64,7 @@ class User extends AppModel {
 				'rule' => '/^[1-8][AB]/',
 				'message' => 'This is not a valid class',
 				'allowEmpty' => true, //can be null by default
-				'required' => true,
+				'required' => false,
 			)
 		),
 		'email' => array(

@@ -90,7 +90,7 @@ class UsersController extends AppController {
 				)); 
 			       return;  
 			}else{ 
-				$emailtoken = md5($user['User']['password']); 
+				$emailtoken = md5($user['User']['password']+$user['User']['id']); 
 				$this->set('username', $user['User']['username']);
 				$this->set('emailtoken', $emailtoken);
 				$this->Email->from = 'fbfbot <fbf.com>';
@@ -108,27 +108,37 @@ class UsersController extends AppController {
 		}
 		if(!empty($token)){
 			//User has sent token 
-			$user = $this->User->find(array("MD5(User.password)"=>$token)); 
+			$user = $this->User->find('first',array(
+				'conditions'=> array(
+					"MD5(User.password+User.id)" => $token
+				),
+				'recursive'=>-1,
+			)); 
 			if (empty($user)){ 
 				$this->Session->setFlash('Invalid token.','default', array(
 					'class' => 'message error'
 				)); 
 				return; 
 			}
-			$this->set('token', $token);
 			//User has filled new password form
 			if (!empty($this->data['User']['new password'])) { 
 				if($this->data['User']['new password'] == $this->data['User']['confirm password']) {
 					$user['User']['password'] = $this->Auth->password($this->data['User']['new password']); 
-					$this->User->save($user); 
-					$this->Session->setFlash('New password set for '.$user['User']['username'],'default', array(
-					'class' => 'message success'
-				)); 
-					$this->redirect('resetPassword');
+					if($this->User->save($user)){
+						$this->Session->setFlash('New password set for '.$user['User']['username'],'default', array(
+							'class' => 'message success'
+						));
+					}else{
+						$this->Session->setFlash('New password could not be set for '.$user['User']['username'],'default', array(
+							'class' => 'message error'
+						));
+					}
+					$this->redirect('login');
+				}else{
+					$this->Session->setFlash('the passwords do not match','default', array(
+						'class' => 'message info'
+					));
 				}
-				$this->Session->setFlash('the password does not match','default', array(
-					'class' => 'message info'
-				));				
 			}
 			$this->set('token', $token); 
 			$this->render('setNewPassword'); 
