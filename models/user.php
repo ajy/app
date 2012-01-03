@@ -19,7 +19,7 @@ class User extends AppModel {
 			'notempty' => array(
 				'rule' => array('notempty'),
 				'message' => 'Give a name',
-				'required' => false,
+				'required' => true,
 				//'allowEmpty' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
@@ -63,8 +63,7 @@ class User extends AppModel {
 			'valid' => array(
 				'rule' => '/^[1-8][AB]/',
 				'message' => 'This is not a valid class',
-				'allowEmpty' => true, //can be null by default
-				'required' => false,
+				'allowEmpty' => true, //can be null by default		
 			)
 		),
 		'email' => array(

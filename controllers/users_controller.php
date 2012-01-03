@@ -206,8 +206,7 @@ class UsersController extends AppController {
 		}
 		$groups = $this->User->Group->find('list');
            	$this->set(compact('groups'));
-                $this->set('id');
-                $this->set('class',$this->data['User']['class']);
+                $this->set('id');                
 	}
 
 	function delete($id = null) {
