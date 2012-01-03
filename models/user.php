@@ -28,10 +28,7 @@ class User extends AppModel {
 		'password' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-                                'length' => array(
-				'rule' => array('between',6,40),
-//				'message' => 'Password too short'
-			),
+                               
 				'message' => 'Enter a password',
 				'required' => true
 			)
