@@ -10,7 +10,9 @@ class FormBRecordsController extends AppController {
 
 	function view($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid form b record', true));
+			$this->Session->setFlash('Invalid form b record','default', array(
+					'class' => 'message error'
+				));
 			$this->redirect(array('action' => 'index'));
 		}
 		$this->set('formBRecord', $this->FormBRecord->read(null, $id));
@@ -20,25 +22,35 @@ class FormBRecordsController extends AppController {
 		if (!empty($this->data)) {
 			$this->FormBRecord->create();
 			if ($this->FormBRecord->save($this->data)) {
-				$this->Session->setFlash(__('The form b record has been saved', true));
+				$this->Session->setFlash('The form b record has been saved','default', array(
+					'class' => 'message success'
+				));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The form b record could not be saved. Please, try again.', true));
+				$this->Session->setFlash('The form b record could not be saved. Please, try again.','default', array(
+					'class' => 'message error'
+				));
 			}
 		}
 	}
 
 	function edit($id = null) {
 		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid form b record', true));
+			$this->Session->setFlash('Invalid form b record','default', array(
+					'class' => 'message error'
+				));
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
 			if ($this->FormBRecord->save($this->data)) {
-				$this->Session->setFlash(__('The form b record has been saved', true));
+				$this->Session->setFlash('The form b record has been saved','default', array(
+					'class' => 'message success'
+				));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The form b record could not be saved. Please, try again.', true));
+				$this->Session->setFlash('The form b record could not be saved. Please, try again.','default', array(
+					'class' => 'message error'
+				));
 			}
 		}
 		if (empty($this->data)) {
@@ -48,14 +60,20 @@ class FormBRecordsController extends AppController {
 
 	function delete($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for form b record', true));
+			$this->Session->setFlash('Invalid id for form b record','default', array(
+					'class' => 'message error'
+				));
 			$this->redirect(array('action'=>'index'));
 		}
 		if ($this->FormBRecord->delete($id)) {
-			$this->Session->setFlash(__('Form b record deleted', true));
+			$this->Session->setFlash('Form b record deleted','default', array(
+					'class' => 'message success'
+				));
 			$this->redirect(array('action'=>'index'));
 		}
-		$this->Session->setFlash(__('Form b record was not deleted', true));
+		$this->Session->setFlash('Form b record was not deleted','default', array(
+					'class' => 'message error'
+				));
 		$this->redirect(array('action' => 'index'));
 	}
 }

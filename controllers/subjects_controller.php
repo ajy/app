@@ -30,7 +30,9 @@ class SubjectsController extends AppController {
 
 	function view($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid subject', true));
+			$this->Session->setFlash('Invalid subject','default', array(
+					'class' => 'message error'
+				));
 			$this->redirect(array('action' => 'index'));
 		}
 		$this->set('subject', $this->Subject->read(null, $id));
@@ -40,25 +42,35 @@ class SubjectsController extends AppController {
 		if (!empty($this->data)) {
 			$this->Subject->create();
 			if ($this->Subject->save($this->data)) {
-				$this->Session->setFlash(__('The subject has been saved', true));
+				$this->Session->setFlash('The subject has been saved','default', array(
+					'class' => 'message success'
+				));
 				$this->redirect(array('controller'=> 'pages','action' => 'admin'));
 			} else {
-				$this->Session->setFlash(__('The subject could not be saved. Please, try again.', true));
+				$this->Session->setFlash('The subject could not be saved. Please, try again.','default', array(
+					'class' => 'message error'
+				));
 			}
 		}
 	}
 
 	function edit($id = null) {
 		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid subject', true));
+			$this->Session->setFlash('Invalid subject','default', array(
+					'class' => 'message error'
+				));
 			$this->redirect(array('controller'=> 'pages','action' => 'admin'));
 		}
 		if (!empty($this->data)) {
 			if ($this->Subject->save($this->data)) {
-				$this->Session->setFlash(__('The subject has been saved', true));
+				$this->Session->setFlash('The subject has been saved','default', array(
+					'class' => 'message success'
+				));
 				$this->redirect(array('controller'=> 'pages','action' => 'admin'));
 			} else {
-				$this->Session->setFlash(__('The subject could not be saved. Please, try again.', true));
+				$this->Session->setFlash('The subject could not be saved. Please, try again.','default', array(
+					'class' => 'message error'
+				));
 			}
 		}
 		if (empty($this->data)) {
@@ -68,23 +80,32 @@ class SubjectsController extends AppController {
 
 	function delete($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for subject', true));
+			$this->Session->setFlash('Invalid id for subject','default', array(
+					'class' => 'message error'
+				));
 			$this->redirect(array('controller'=> 'pages','action' => 'admin'));
 		}
 		if ($this->Subject->delete($id)) {
-			$this->Session->setFlash(__('Subject deleted', true));
+			$this->Session->setFlash('Subject deleted','default', array(
+					'class' => 'message success'
+				));
 			$this->redirect(array('controller'=> 'pages','action' => 'admin'));
 		}
-		$this->Session->setFlash(__('Subject was not deleted', true));
+		$this->Session->setFlash('Subject was not deleted','default', array(
+					'class' => 'message error'
+				));
 		$this->redirect(array('controller'=> 'pages','action' => 'admin'));
 	}
          function subjects() {
-             $user=($this->Session->read("Auth.User"));
+             $user=$this->Session->read("Auth.User");
              Configure::load('feedback');//load the max_sub_num variable
              $subjects=$this->Subject->query("SELECT * FROM subjects WHERE class = '".$user['class']."'  AND id NOT IN ( SELECT subject_id FROM subject_memberships WHERE student_id = ".$user['id']." AND form_a_submitted = ".Configure::read('max_sub_num').')');//To get the subject names
              $teacher1 = null;//set to stop errors
              $teacher2 = null;
              //to get teacher names
+             if(empty($subjects)){
+             	$this->Session->setFlash("You don't need to submit any feedback right now", 'default',array('class'=>'message info'));
+             }
              for($i=0;$i<count($subjects);$i++){
              $t1=$subjects[$i]["subjects"]["teacher1"];
              $teacher1[$i]=$this->Subject->query("SELECT name from users where id= $t1");

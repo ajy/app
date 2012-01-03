@@ -47,9 +47,13 @@ class UsersController extends AppController {
 			$this->Email->subject = 'Feedback from '.$this->Session->read('Auth.User.name').', '.$this->Session->read('Auth.User.username').' on '.$subject;
 			$this->Email->delivery = 'debug';
 			if($this->Email->send($this->data['User']['feedback']))
-				$this->Session->setFlash('your feedback has been sent');
+				$this->Session->setFlash('your feedback has been sent','default',array(
+					'class' => 'message success'
+				));
 			else
-				$this->Session->setFlash('your feedback could not be sent right now,try again later');
+				$this->Session->setFlash('your feedback could not be sent right now,try again later','default', array(
+					'class' => 'message error'
+				));
 			$this->redirect($this->referer());
 		}
 		$this->set('message', $message);
@@ -63,10 +67,16 @@ class UsersController extends AppController {
 				$this->data = $this->User->findById($id);
 				$this->data['User']['password'] = $this->Auth->password($newPassword);
 				if ($this->User->save($this->data)) {
-					$this->Session->setFlash('Password has been changed.');
+					$this->Session->setFlash('Password has been changed.','default', array(
+					'class' => 'message success'
+				));
 					$this->redirect(array('action'=>'index'));
-				} else $this->Session->setFlash('Password could not be changed.');
-			} else $this->Session->setFlash('The new password was not entered correctly');		
+				} else $this->Session->setFlash('Password could not be changed.','default', array(
+					'class' => 'message error'
+				));
+			} else $this->Session->setFlash('The new password was not entered correctly','default', array(
+					'class' => 'message info'
+				));		
 		} else $this->data['User'] = $this->User->findById($id);
 	}
 	
@@ -75,7 +85,9 @@ class UsersController extends AppController {
 			// user submitted initial form 
 			$user = $this->User->findByEmail($this->data['User']['email']); 
 			if (empty($user)){ 
-			       $this->Session->setFlash('Unknown email.'); 
+			       $this->Session->setFlash('Unregistered email','default', array(
+					'class' => 'message error'
+				)); 
 			       return;  
 			}else{ 
 				$emailtoken = md5($user['User']['password']); 
@@ -88,7 +100,9 @@ class UsersController extends AppController {
 				$this->Email->sendAs = "text";
 				$this->Email->template = "password_reset_message";
 				$this->Email->send(); 
-				$this->Session->setFlash('A link to set a new password has been sent to your email account.'); 
+				$this->Session->setFlash('A link to set a new password has been sent to your email account.','default', array(
+					'class' => 'message success'
+				)); 
 				$this->redirect('resetPassword');
 			} 
 		}
@@ -96,7 +110,9 @@ class UsersController extends AppController {
 			//User has sent token 
 			$user = $this->User->find(array("MD5(User.password)"=>$token)); 
 			if (empty($user)){ 
-				$this->Session->setFlash('Invalid token.'); 
+				$this->Session->setFlash('Invalid token.','default', array(
+					'class' => 'message error'
+				)); 
 				return; 
 			}
 			$this->set('token', $token);
@@ -105,10 +121,14 @@ class UsersController extends AppController {
 				if($this->data['User']['new password'] == $this->data['User']['confirm password']) {
 					$user['User']['password'] = $this->Auth->password($this->data['User']['new password']); 
 					$this->User->save($user); 
-					$this->Session->setFlash('New password set for '.$user['User']['username']); 
+					$this->Session->setFlash('New password set for '.$user['User']['username'],'default', array(
+					'class' => 'message success'
+				)); 
 					$this->redirect('resetPassword');
 				}
-				$this->Session->setFlash('the password does not match');				
+				$this->Session->setFlash('the password does not match','default', array(
+					'class' => 'message info'
+				));				
 			}
 			$this->set('token', $token); 
 			$this->render('setNewPassword'); 
@@ -124,7 +144,9 @@ class UsersController extends AppController {
 
 	function view($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid user', true));
+			$this->Session->setFlash('Invalid user','default', array(
+					'class' => 'message error'
+				));
 			$this->redirect(array('action' => 'index'));
 		}
 		$this->set('user', $this->User->read(null, $id));
@@ -135,11 +157,15 @@ class UsersController extends AppController {
 			$this->User->create();
 			$this->log($this->data);
 			if ($this->User->save($this->data)) {
-				$this->Session->setFlash(__('The user has been saved', true));
+				$this->Session->setFlash('The user has been saved','default', array(
+					'class' => 'message success'
+				));
 				//$this->enroll();
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The user could not be saved. Please, try again.', true));
+				$this->Session->setFlash('The user could not be saved. Please, try again.','default', array(
+					'class' => 'message error'
+				));
 			}
 		}
 		$groups = $this->User->Group->find('list');
@@ -148,15 +174,21 @@ class UsersController extends AppController {
 
 	function edit($id = null) {
 		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid user', true));
+			$this->Session->setFlash('Invalid user','default', array(
+					'class' => 'message error'
+				));
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
 			if ($this->User->save($this->data)) {
-				$this->Session->setFlash(__('The user has been saved', true));
+				$this->Session->setFlash('The user has been saved','default', array(
+					'class' => 'message success'
+				));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The user could not be saved. Please, try again.', true));
+				$this->Session->setFlash('The user could not be saved. Please, try again.','default', array(
+					'class' => 'message error'
+				));
 			}
 		}
 		if (empty($this->data)) {
@@ -170,14 +202,20 @@ class UsersController extends AppController {
 
 	function delete($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for user', true));
+			$this->Session->setFlash('Invalid id for user','default', array(
+					'class' => 'message error'
+				));
 			$this->redirect(array('action'=>'index'));
 		}
 		if ($this->User->delete($id)) {
-			$this->Session->setFlash(__('User deleted', true));
+			$this->Session->setFlash('User deleted','default', array(
+					'class' => 'message success'
+				));
 			$this->redirect(array('action'=>'index'));
 		}
-		$this->Session->setFlash(__('User was not deleted', true));
+		$this->Session->setFlash('User was not deleted','default', array(
+					'class' => 'message error'
+				));
 		$this->redirect(array('action' => 'index'));
 	}
 	
@@ -192,9 +230,13 @@ class UsersController extends AppController {
 				)
 			));
 			if(empty($test))
-				$this->Session->setFlash("All students of class ".$from." have been promoted to ".$to);
+				$this->Session->setFlash("All students of class ".$from." have been promoted to ".$to,'default', array(
+					'class' => 'message success'
+				));
 			else
-				$this->Session->setFlash("Students could not be promoted");
+				$this->Session->setFlash("Students could not be promoted",'default', array(
+					'class' => 'message error'
+				));
 		}
 	}
 	function loadNewStudents() {
@@ -208,12 +250,16 @@ class UsersController extends AppController {
 				if($this->User->save(array('User' => $studentInfo))){
 					$NumSavedRows++;
 				} else {
-					$this->Session->setFlash('Error,  Could only  import '.$NumSavedRows.' records. Please try again.');
+					$this->Session->setFlash('Error,  Could only  import '.$NumSavedRows.' records. Please try again.','default', array(
+					'class' => 'message error'
+				));
 					$error = true;
 				}
 			}
 			if(!$error) {
-				$this->Session->setFlash('Success. Imported '. $NumSavedRows .' records.');
+				$this->Session->setFlash('Success. Imported '. $NumSavedRows .' records.','default', array(
+					'class' => 'message success'
+				));
 			}
 		}
 	}
