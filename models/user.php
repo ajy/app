@@ -28,6 +28,10 @@ class User extends AppModel {
 		'password' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
+                                'length' => array(
+				'rule' => array('between',6,40),
+//				'message' => 'Password too short'
+			),
 				'message' => 'Enter a password',
 				'required' => true
 			)
@@ -35,8 +39,8 @@ class User extends AppModel {
 		//not hashed version
 		'confirm password' => array(			
 			'length' => array(
-				'rule' => array('between',5,15),
-				'message' => 'Password length must be between 4 and 15'
+				'rule' => array('between',6,40),
+				'message' => 'Password too short'
 			),
 			'is not equal' => array(
 				'rule' => array('validatePassword'),

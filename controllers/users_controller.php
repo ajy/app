@@ -151,9 +151,15 @@ class UsersController extends AppController {
 			$this->Session->setFlash(__('Invalid user', true));
 			$this->redirect(array('action' => 'index'));
 		}
+              
 		if (!empty($this->data)) {
+                        if($this->data['User']['group_id']!=3){
+                            $this->data['User']['class']=NULL;
+                            
+                            }
 			if ($this->User->save($this->data)) {
 				$this->Session->setFlash(__('The user has been saved', true));
+                             
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.', true));
@@ -165,7 +171,8 @@ class UsersController extends AppController {
 		$groups = $this->User->Group->find('list');
            	$this->set(compact('groups'));
                 $this->set('id');
-                $this->set('class',$this->data['User']['class']);
+           
+           
 	}
 
 	function delete($id = null) {
