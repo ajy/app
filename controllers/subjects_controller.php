@@ -5,12 +5,7 @@ class SubjectsController extends AppController {
         
 	function index() {
 		$this->Subject->recursive = 0;
-                $sql = "SELECT s1.`id` , s2.`id` , s1.`name` ,s1.`code`,s1.`class`,s2.`class` , s1.`teacher1` , s1.`teacher2` , s2.`teacher1` , s2.`teacher2` \n"
-    . "FROM `subjects` s1, `subjects` s2\n"
-    . "WHERE s1.`code` = s2.`code` \n"
-    . "AND s1.id != s2.id\n"
-    . "GROUP BY s1.name\n"
-    . " LIMIT 0, 30 ";
+                $sql = "SELECT s1.id , s2.id , s1.name, s1.code,s1.class,s2.class, s1.teacher1, s1.teacher2, s2.teacher1, s2.teacher2 FROM subjects s1, subjects s2 WHERE s1.code = s2.code AND s1.id != s2.id GROUP BY s1.name LIMIT 0, 30";
                 $subjects= $this->Subject->query($sql);
                   for($i=0;$i<count($subjects);$i++){
                  $t1=$subjects[$i]['s1']["teacher1"];
@@ -99,7 +94,7 @@ class SubjectsController extends AppController {
          function subjects() {
              $user=$this->Session->read("Auth.User");
              Configure::load('feedback');//load the max_sub_num variable
-             $subjects=$this->Subject->query("SELECT * FROM subjects WHERE class = '".$user['class']."'  AND id NOT IN ( SELECT subject_id FROM subject_memberships WHERE student_id = ".$user['id']." AND form_a_submitted = ".Configure::read('max_sub_num').')');//To get the subject names
+             $subjects=$this->Subject->query("SELECT * FROM subjects WHERE class = \'".$user['class']."\'  AND id NOT IN ( SELECT subject_id FROM subject_memberships WHERE student_id = ".$user['id']." AND form_a_submitted = ".Configure::read('max_sub_num').")");//To get the subject names correctly
              $teacher1 = null;//set to stop errors
              $teacher2 = null;
              //to get teacher names
@@ -119,11 +114,11 @@ class SubjectsController extends AppController {
         }
         
         function getClass(){
-            return $this->Subject->query("SELECT `class` FROM `subjects` GROUP BY  `class`");
+            return $this->Subject->query("SELECT class FROM subjects GROUP BY  class");
            
         }
          function getTeachers(){
-            return $this->Subject->query("SELECT `id`,`name` FROM `users` WHERE `group_id`=2 ");
+            return $this->Subject->query("SELECT id,name FROM users WHERE group_id=2 ");
            
         }
         

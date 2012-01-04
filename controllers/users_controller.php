@@ -196,6 +196,7 @@ class UsersController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
+			$this->data['User']['id'] = $id;//makes sure nobody can tamper with it
 			if($this->Session->read('Auth.User.group_id')==1){
 				$fieldsThatCanBeEdited=array('id', 'username', 'name', 'email','group_id','class');		
 			}else{
@@ -243,7 +244,7 @@ class UsersController extends AppController {
 		if(!empty($this->data['User']['From'])&&!empty($this->data['User']['To'])){
 			$from = $this->data['User']['From'];
 			$to = $this->data['User']['To'];
-			$this->User->query("update users set class='".$to."' where class='".$from."'");
+			$this->User->query("update users set class=\'".$to."\' where class=\'".$from."\'");//the slashes and quotes look silly but they make it work and more secure'
 			$test=$this->User->find('all',array(
 				'conditions'=>array(
 					'class' => $from

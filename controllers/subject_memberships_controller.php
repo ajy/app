@@ -8,8 +8,9 @@ class SubjectMembershipsController extends AppController {
 	function index() {
 		$this->SubjectMembership->recursive = 0;
 		$this->set('subjectMemberships', $this->paginate());
+		Configure::load('feedback');//load the max_sub_num variable
 		$total=$this->SubjectMembership->query("select count(*) as total from subject_memberships");
-		$form_a_submitted=$this->SubjectMembership->query("select count(*) as submitted from subject_memberships where form_a_submitted='1'");
+		$form_a_submitted=$this->SubjectMembership->query("select count(*) as submitted from subject_memberships where form_a_submitted=".Configure::read('max_sub_num'));
 		$this->set('total',$total[0][0]['total']);
 		$this->set('form_a_submitted',$form_a_submitted[0][0]['submitted']);
 	}
@@ -124,6 +125,10 @@ class SubjectMembershipsController extends AppController {
 					$this->SubjectMembership->save();
 				}
 		}
+		$count=$this->SubjectMembership->find('count');
+		if($count != 0)$this->Session->setFlash('New enrollments were created','default', array(
+					'class' => 'message success'
+				));		
 	}
 }
 ?>
