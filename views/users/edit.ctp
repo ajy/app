@@ -33,9 +33,8 @@
 		echo $this->Form->input('name',array('readonly'=>'readonly'));
 	}
 	echo $this->Form->input('email');
-	echo $this->Form->input('password',array('type'=>'hidden'));
 	echo '<label>Password</label>';
-	echo $this->Html->link(__('Change Password', true), array('action' => 'changePassword', $id));
+	echo $this->Html->link('Change Password', array('action' => 'changePassword',$this->data['User']['id']));
         if(($this -> Session -> read("Auth.User.group_id"))==3){
         	echo $this->Form->input('class',array('readonly'=>'readonly'));
         }

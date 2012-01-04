@@ -23,13 +23,10 @@
 </script>
  <div id="header"><?php __('Edit Password'); ?></div>
 <?php
-	echo $this->Form->create('User',array('action' => 'changePassword'));
+	echo $this->Form->create('User');
 	echo $this->Form->input('id');
-	echo $this->Form->input('new password', array('type' => 'password'));
-	echo $this->Form->input('confirm password', array('type' => 'password'));
-         //echo $this->Html->link(__('Back', true), array('action' => 'edit',$this->Session->read("Auth.User.id")));
-	
-	echo $this->Form->end('Submit');
-       
-	//debug($this->data["User"]);
+	echo $this->Form->input('username',array('type'=>'hidden'));//not used but it activates the automatic password hashing
+	echo $this->Form->input('password', array('type' => 'password'));
+	echo $this->Form->input('confirm_password', array('type' => 'password'));
+        echo $this->Form->end('Submit');
 ?>

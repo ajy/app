@@ -61,23 +61,29 @@ class UsersController extends AppController {
 	}
 	
 	function changePassword($id=null) {
-		if (!empty($this->data)) {
-			if($this->data['User']['new password'] == $this->data['User']['confirm password']){
-				$newPassword = $this->data['User']['new password'];
-				$this->data = $this->User->findById($id);
-				$this->data['User']['password'] = $this->Auth->password($newPassword);
-				if ($this->User->save($this->data)) {
-					$this->Session->setFlash('Password has been changed.','default', array(
-					'class' => 'message success'
-				));
-					$this->redirect(array('action'=>'index'));
-				} else $this->Session->setFlash('Password could not be changed.','default', array(
+		if (!$id && empty($this->data)) {
+			$this->Session->setFlash('Invalid user','default', array(
 					'class' => 'message error'
 				));
-			} else $this->Session->setFlash('The new password was not entered correctly','default', array(
-					'class' => 'message info'
-				));		
-		} else $this->data['User'] = $this->User->findById($id);
+			$this->redirect(array('action' => 'index'));
+		}
+		if (!empty($this->data)) {
+			if ($this->User->save($this->data,true,array('id', 'password', 'confirm_password'))) {
+				$this->Session->setFlash('The password has been saved','default', array(
+					'class' => 'message success'
+				));
+			} else {
+				$this->Session->setFlash('The password could not be saved. Please, try again.','default', array(
+					'class' => 'message error'
+				));
+			}
+			//$this->redirect(array('action' => 'index'));
+		}
+		if (empty($this->data)) {
+			$this->data = $this->User->read(null, $id);
+			$this->data['User']['password'] = null;
+		}
+		$this->set('id');
 	}
 	
 	function resetPassword($token=null) {
@@ -190,16 +196,21 @@ class UsersController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
-			if ($this->User->save($this->data)) {
-				$this->Session->setFlash('The user has been saved','default', array(
+			if($this->Session->read('Auth.User.group_id')==1){
+				$fieldsThatCanBeEdited=array('id', 'username', 'name', 'email','group_id','class');		
+			}else{
+				$fieldsThatCanBeEdited=array('id', 'email');
+			}
+			if ($this->User->save($this->data,true,$fieldsThatCanBeEdited)) {
+					$this->Session->setFlash('The user has been saved','default', array(
 					'class' => 'message success'
 				));
-				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash('The user could not be saved. Please, try again.','default', array(
 					'class' => 'message error'
 				));
 			}
+			$this->redirect(array('action' => 'index'));
 		}
 		if (empty($this->data)) {
 			$this->data = $this->User->read(null, $id);			
