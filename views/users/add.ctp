@@ -12,6 +12,10 @@ $('#Class').show()})
 
 
         }
+function close(){
+    parent.$.fancybox.close( );
+
+}
 </script>
 <div class="users form">
 <div id="header"><?php __('Add User'); ?></div>
@@ -42,7 +46,7 @@ $('#Class').show()})
     </fieldset>
 <footer>
 <div id="cancel">
-<input type="button" value="Cancel" class="btn close" name="Close" onclick="close();" />
+<input type="button" value="Cancel" class="btn close" name="Close" onclick="window.close();" />
 
 </div>
 <div id="submit">

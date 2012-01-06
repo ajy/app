@@ -53,8 +53,7 @@
                 }
                </style> 
 <script>
-function close(){
- parent.$.fancybox.close();}
+ parent.$.fancybox.close();
 </script>
                
     </head> 

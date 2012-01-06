@@ -55,9 +55,9 @@
                 overflow:hidden;
             } 
         </style>
-        <script>
+     <script>
  parent.$.fancybox.close();
-</script>
+</script> 
     </head>
 
     <body >
@@ -69,7 +69,7 @@
         <div id="sidebar">
             <div id="sidebar-wrapper">
                 <?php $user=$this->Session->read("Auth.User");;?>
-                <h1 id="sidebar-title"><?=$html->link($user['name'], array('controller' => 'users', 'action' => 'edit',$user['id']),array('title'=>'Edit Profile','class'=>'modal','required'=>TRUE));?></h1>
+                <h1 id="sidebar-title"><?=$html->link($user['name'], array('controller' => 'users', 'action' => 'edit',$user['id']),array('title'=>'Edit Profile','class'=>'modal'));?></h1>
                 <div id="profile-links">
 
                     ISE Department
@@ -121,9 +121,10 @@
                         </li> 
 
                         <li> 
-                             <?php echo $html->link('Profile', array('controller' => 'users', 'action' => 'edit',$user['id']),array('class'=>'nav-top-item modal','onclick'=>"LoadIFrame(5)")); ?>
+                             <?php //echo $html->link('Profile', array('controller' => 'users', 'action' => 'edit',$user['id']),array('class'=>'nav-top-item modal','onclick'=>"LoadIFrame(5)")); ?>
                          
-                          <!--  <a href="#" class="nav-top-item " onclick="LoadIFrame(5)" > 
+   <? echo $html->tag('div',$html->link('Profile',array('controller'=>'users','action'=>'edit',$user['id']),array('escape'=>false,'class'=>'modal'))
+                  ,array('class' => 'nav-top-item','onclick'=>'LoadIFrame(5)'));  ?>                         <!--  <a href="#" class="nav-top-item " onclick="LoadIFrame(5)" > 
                                  </a> -->
                             <ul> 
                               <!--  <li><a href="../users/edit/1" class="modal">Edit Profile</a></li> 

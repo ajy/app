@@ -1,9 +1,10 @@
  <?=$html->css(array('reset','add_edit','button'));?> 
+
+<div id="header">Reset Password</div>
 <?php
 	echo $this->Session->flash('auth');
 ?>
-<div id="header">Reset Password</div>
-<?php
+ <?php
 	echo $this->Form->create('User',array('action'=>'resetPassword/'.$token));
 	echo $this->Form->input('new password', array('type' => 'password'));
 	echo $this->Form->input('confirm password', array('type' => 'password'));

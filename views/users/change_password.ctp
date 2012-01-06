@@ -1,12 +1,14 @@
 <?=$html->css(array('reset','button','add_edit','jquery.fancybox'));?>
- <?= $javascript->link(array('jquery-1.5.1.min','jquery.dataTables','TableTools','ZeroClipboard','jquery.fancybox.pack','config','add_edit'));?>
-    
+     
 <style>
     a              { color: purple; text-decoration: none; }
 
 </style>
 <script>
 
+function close(){
+ $.fancybox.close( );
+}
    
 </script>
  <div id="header"><?php __('Edit Password'); ?></div>
