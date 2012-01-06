@@ -127,25 +127,22 @@ class UsersController extends AppController {
 				return; 
 			}
 			//User has filled new password form
-			if (!empty($this->data['User']['new password'])) { 
-				if($this->data['User']['new password'] == $this->data['User']['confirm password']) {
-					$user['User']['password'] = $this->Auth->password($this->data['User']['new password']); 
-					if($this->User->save($user)){
-						$this->Session->setFlash('New password set for '.$user['User']['username'],'default', array(
-							'class' => 'message success'
-						));
-					}else{
-						$this->Session->setFlash('New password could not be set for '.$user['User']['username'],'default', array(
-							'class' => 'message error'
-						));
-					}
+			if (!empty($this->data['User']['password'])) { 
+				$this->data['User']['id']=$user['User']['id'];//not sent out to the form, so it can't be tampered with
+				if($this->User->save($this->data,true,array('id','password'))){//only password for the user must be set
+					$this->Session->setFlash('New password set for '.$user['User']['username'],'default', array(
+						'class' => 'message success'
+					));
 					$this->redirect('login');
 				}else{
-					$this->Session->setFlash('the passwords do not match','default', array(
-						'class' => 'message info'
+					$this->Session->setFlash('New password could not be set for '.$user['User']['username'],'default', array(
+						'class' => 'message error'
 					));
-				}
+					$this->redirect('login');
+				}							
 			}
+			$this->data['User']=$user['User'];//loads the data so the form can use it
+			$this->data['User']['password']=null;//since the new password needs to be given, no need to show the hash for the old one
 			$this->set('token', $token); 
 			$this->render('setNewPassword'); 
 		}
@@ -201,19 +198,6 @@ class UsersController extends AppController {
 		}
               
 		if (!empty($this->data)) {
-
-                        if($this->data['User']['group_id']!=3){
-                            $this->data['User']['class']=NULL;
-                            
-                            }
-			/*if ($this->User->save($this->data)) {
-
-				$this->Session->setFlash('The user has been saved','default', array(
-					'class' => 'message success'
-				));
-
-				$this->redirect(array('action' => 'index'));*/
-
 			$this->data['User']['id'] = $id;//makes sure nobody can tamper with it
 			if($this->Session->read('Auth.User.group_id')==1){
 				$fieldsThatCanBeEdited=array('id', 'username', 'name', 'email','group_id','class');		
@@ -236,8 +220,7 @@ class UsersController extends AppController {
 			$this->data = $this->User->read(null, $id);			
 		}
 		$groups = $this->User->Group->find('list');
-           	$this->set(compact('groups'));
-                 $this->set('id',$this->data['User']['id']);
+           	$this->set(compact('groups'));                                
 	}
 
 	function delete($id = null) {
