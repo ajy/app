@@ -27,8 +27,7 @@ class User extends AppModel {
 		),
 		'password' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
-                               
+				'rule' => array('notempty'),                               
 				'message' => 'Enter a password',
 				'required' => true
 			)
@@ -37,12 +36,11 @@ class User extends AppModel {
 		'confirm_password' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				'message' => 'Enter a password',
-				'required' => true
+				'message' => 'Enter a password',				
 			),			
 			'length' => array(
 
-				'rule' => array('between',6,40),
+				'rule' => array('between',6,15),
 				'message' => 'Password too short',
 				'allowEmpty' => false,
 
@@ -50,7 +48,6 @@ class User extends AppModel {
 			'is not equal' => array(
 				'rule' => array('validatePassword'),
 				'message' => "Your passwords don't match",
-				'required' => true,
 				'allowEmpty' => false,
 			),
 					
@@ -74,7 +71,7 @@ class User extends AppModel {
 			'valid' => array(
 				'rule' => '/^[1-8][AB]/',
 				'message' => 'This is not a valid class',
-				'allowEmpty' => true, //can be null by default		
+				'allowEmpty' => true, //can be empty by default	for teachers and admin
 			)
 		),
 		'email' => array(
