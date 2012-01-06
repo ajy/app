@@ -94,7 +94,7 @@ class SubjectsController extends AppController {
          function subjects() {
              $user=$this->Session->read("Auth.User");
              Configure::load('feedback');//load the max_sub_num variable
-             $subjects=$this->Subject->query("SELECT * FROM subjects WHERE class = \'".$user['class']."\'  AND id NOT IN ( SELECT subject_id FROM subject_memberships WHERE student_id = ".$user['id']." AND form_a_submitted = ".Configure::read('max_sub_num').")");//To get the subject names correctly
+             $subjects=$this->Subject->query("SELECT * FROM subjects WHERE class = '".$user['class']."'  AND id NOT IN ( SELECT subject_id FROM subject_memberships WHERE student_id = ".$user['id']." AND form_a_submitted = ".Configure::read('max_sub_num').")");//To get the subject names correctly
              $teacher1 = null;//set to stop errors
              $teacher2 = null;
              //to get teacher names
