@@ -1,15 +1,15 @@
  <?= $javascript->link(array('jquery-1.5.1.min','config'));?>
-  <?= $javascript->link(array('jquery.fancybox-1.3.4.pack','fbConfig_a_b','comments'));?>
-                 <?=$html->css(array('jquery.fancybox-1.3.4'));?>     
+  <?= $javascript->link(array('jquery.fancybox.pack','fbConfig_a_b','comments'));?>
+                 <?=$html->css(array('jquery.fancybox'));?>     
               
-<?= $html->css(array('reset', 'style','subjects','submitButton','button_green')); ?>
+<?= $html->css(array('reset', 'style','subjects','button')); ?>
 <style>
  .blue{
                     float:right;
                     position:relative;
                     right:60%;
                     top:-45px;
-                  
+                    color:white;
                     
                  }
 .green{
@@ -17,7 +17,7 @@
                     position:relative;
                     right:60%;
                     top:-30px;
-                    
+                    color:white;
                  }
 </style>
 
@@ -34,9 +34,10 @@
                  echo "<ul>";
               echo "<li>";
            echo "<a>".$teacher1[$i][0]['users']['name']."</a>";
-                 echo $html->link($html->tag('span','Comment',array('class' => 'green')),array('controller'=>'comments','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher1"]),array('escape'=>false,'class'=>'c_modal'));
-                 echo $html->link($html->tag('span','Feedback',array('class' => 'blue')),array('controller'=>'form_a_records','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher1"]),array('escape'=>false,'class'=>'modal'));
-                                     
+                   echo $html->tag('div',$html->link('Comment',array('controller'=>'comments','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher1"]),array('escape'=>false,'class'=>'btn info modal'))
+                  ,array('class' => 'blue'));    
+                 echo $html->tag('div',$html->link('Feedback',array('controller'=>'form_a_records','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher1"]),array('escape'=>false,'class'=>'btn success modal'))
+                  ,array('class' => 'green'));                  
                echo "</li>";
 
                if($teacher2!=NULL){

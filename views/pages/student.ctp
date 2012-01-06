@@ -11,8 +11,8 @@
                
 		<?= $javascript->link(array('config'));?>
                 <?=$html->css(array('reset','style','student'));?>
-                <?= $javascript->link(array('jquery.fancybox-1.3.4.pack','add_edit'));?>
-                 <?=$html->css(array('jquery.fancybox-1.3.4'));?>     
+                <?= $javascript->link(array('jquery.fancybox.pack','add_edit'));?>
+                 <?=$html->css(array('jquery.fancybox'));?>     
               
                <script>
                    pos=1;

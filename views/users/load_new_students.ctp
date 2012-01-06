@@ -1,5 +1,5 @@
 <?php
-$html->css(array('reset','submitButton','add_edit'));
+$html->css(array('reset','button','add_edit'));
 ?>
 <div class="users form">
 <div id="header"><?php __('Choose file to be uploaded'); ?></div>
@@ -14,4 +14,5 @@ echo $this->Form->file('File');
 <?php
 echo $this->Form->end(__('Upload', true));
 ?>
+
 </div>

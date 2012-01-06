@@ -5,22 +5,29 @@ class SubjectsController extends AppController {
         
 	function index() {
 		$this->Subject->recursive = 0;
-                $sql = "SELECT s1.id , s2.id , s1.name, s1.code,s1.class,s2.class, s1.teacher1, s1.teacher2, s2.teacher1, s2.teacher2 FROM subjects s1, subjects s2 WHERE s1.code = s2.code AND s1.id != s2.id GROUP BY s1.name LIMIT 0, 30";
+
+               
+                $sql = "SELECT * FROM `subjects` WHERE 1";
+
+//                $sql = "SELECT s1.id , s2.id , s1.name, s1.code,s1.class,s2.class, s1.teacher1, s1.teacher2, s2.teacher1, s2.teacher2 FROM subjects s1, subjects s2 WHERE s1.code = s2.code AND s1.id != s2.id GROUP BY s1.name LIMIT 0, 30";
+
                 $subjects= $this->Subject->query($sql);
-                  for($i=0;$i<count($subjects);$i++){
-                 $t1=$subjects[$i]['s1']["teacher1"];
-                 $teacher1[$i]['a']=$this->Subject->query("SELECT name from users where id= $t1");
-                 $t1=$subjects[$i]['s2']["teacher1"];
-                  $teacher1[$i]['b']=$this->Subject->query("SELECT name from users where id= $t1");
-                  $t2=$subjects[$i]['s1']["teacher2"];
-                 $teacher2[$i]['a']=($t2==NULL)?NULL:$this->Subject->query("SELECT name from users where id= $t2");
-                  $t2=$subjects[$i]['s2']["teacher2"];
-                 $teacher2[$i]['b']=($t2==NULL)?NULL:$this->Subject->query("SELECT name from users where id= $t2");
+              /*  $sql = "SELECT `id`,`name` FROM `users` WHERE `group_id`=2 LIMIT 0, 30 ";
+                $teacher= $this->Subject->query($sql);*/
+                 for($i=0;$i<count($subjects);$i++){
+                 $t1=$subjects[$i]['subjects']["teacher1"];
+                 $teacher1[$i]=$this->Subject->query("SELECT name from users where id= $t1");
+                 /*$t1=$subjects[$i]['s2']["teacher1"];
+                  $teacher1[$i]['b']=$this->Subject->query("SELECT name from users where id= $t1");*/
+                  $t2=$subjects[$i]['subjects']["teacher2"];
+                   $teacher2[$i]=($t2==NULL)?NULL:$this->Subject->query("SELECT name from users where id= $t2");
+                 /* $t2=$subjects[$i]['s2']["teacher2"];
+                 $teacher2[$i]['b']=($t2==NULL)?NULL:$this->Subject->query("SELECT name from users where id= $t2");*/
                  
                   }
                 $this->set('subjects',$subjects);
-                 $this->set('teacher1',$teacher1);
-              $this->set('teacher2',$teacher2);
+                $this->set('teacher1',$teacher1);
+                $this->set('teacher2',$teacher2);
 	}
 
 	function view($id = null) {
@@ -57,6 +64,7 @@ class SubjectsController extends AppController {
 			$this->redirect(array('controller'=> 'pages','action' => 'admin'));
 		}
 		if (!empty($this->data)) {
+                       
 			if ($this->Subject->save($this->data)) {
 				$this->Session->setFlash('The subject has been saved','default', array(
 					'class' => 'message success'

@@ -1,10 +1,10 @@
-<?=$html->css(array('reset','submitButton','add_edit'));?>
+<?=$html->css(array('reset','button','add_edit'));?>
 <script>
 $(document).ready(function(){
 
 $('#UserGroupId').attr('selectedIndex', '-1');
 
-$('#Class').hide()})
+$('#Class').show()})
  function hide(){
             $('#Class').hide()
             pos = ($('#UserGroupId').val())
@@ -28,16 +28,27 @@ $('#Class').hide()})
          <script>$("#UserGroupId").bind("change", function() {
 
         hide()})	</script>
-         <div id="Class">   <label> Class</label>
+     <!--    <div id="Class">   <label> Class</label>
              <select name="data[User][class]" id="UserClass" >
                            <?foreach($classes as $class):?>
                     <option><?=$class['subjects']['class']?></option>
                   <?  endforeach;?>
-               ?> </select></div>
-            <?echo $this->Form->input('class',array('options'=>$classes,'empty'=>true ));
-echo $this->Form->input('email');
-debug($classes);
+               ?> </select></div>-->
+ <? echo $this->Form->input('class');
+         
+ echo $this->Form->input('email');
+
     ?>
     </fieldset>
-<?php echo $this->Form->end(__('Submit', true));?>
+<footer>
+<div id="cancel">
+<input type="button" value="Cancel" class="btn close" name="Close" onclick="close();" />
+
+</div>
+<div id="submit">
+ <input class="btn success" type="submit" value="Add" />
+</div>
+</footer>
+<? $form->end();?>
+ 
 </div>

@@ -169,6 +169,9 @@ class UsersController extends AppController {
 		if (!empty($this->data)) {
 			$this->User->create();
 			$this->log($this->data);
+                        if($this->data['User']['group_id']!=3){
+                             $this->data['User']['class']=NULL;
+                        }
 			if ($this->User->save($this->data)) {
 				$this->Session->setFlash('The user has been saved','default', array(
 					'class' => 'message success'
@@ -176,13 +179,14 @@ class UsersController extends AppController {
 				//$this->enroll();
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash('The user could not be saved. Please, try again.','default', array(
+				$this->Session->setFlash(' The user could not be saved. Please, try again.','default', array(
 					'class' => 'message error'
 				));
 			}
 		}
 		$groups = $this->User->Group->find('list');
 		$this->set(compact('groups'));		
+               
 	}
 
 	function edit($id = null) {
@@ -192,6 +196,7 @@ class UsersController extends AppController {
 				));
 			$this->redirect(array('action' => 'index'));
 		}
+              
 		if (!empty($this->data)) {
 			$this->data['User']['id'] = $id;//makes sure nobody can tamper with it
 			if($this->Session->read('Auth.User.group_id')==1){
@@ -203,6 +208,7 @@ class UsersController extends AppController {
 					$this->Session->setFlash('The user has been saved','default', array(
 					'class' => 'message success'
 				));
+
 			} else {
 				$this->Session->setFlash('The user could not be saved. Please, try again.','default', array(
 					'class' => 'message error'
