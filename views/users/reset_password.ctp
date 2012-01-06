@@ -1,4 +1,4 @@
- <?=$html->css(array('reset','add_edit','submitButton'));?> 
+ <?=$html->css(array('reset','add_edit','button'));?> 
 <style>
     legend{
         visibility: hidden;
@@ -12,6 +12,16 @@
 		
 		'email'
 	));
-	echo $this->Form->end('Submit');
+	
 ?>
 
+<footer>
+<div id="cancel">
+<input type="button" value="Cancel" class="btn close" name="Close" onclick="close();" />
+
+</div>
+<div id="submit">
+ <input class="btn info" type="submit" value="Save" />
+</div>
+    </footer>
+<? $form->end();?>

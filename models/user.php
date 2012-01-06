@@ -28,6 +28,7 @@ class User extends AppModel {
 		'password' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
+                               
 				'message' => 'Enter a password',
 				'required' => true
 			)
@@ -40,10 +41,11 @@ class User extends AppModel {
 				'required' => true
 			),			
 			'length' => array(
-				'rule' => array('between',5,15),
-				'message' => 'Password length must be between 4 and 15',
-				'required' => true,
+
+				'rule' => array('between',6,40),
+				'message' => 'Password too short',
 				'allowEmpty' => false,
+
 			),
 			'is not equal' => array(
 				'rule' => array('validatePassword'),
@@ -101,11 +103,11 @@ class User extends AppModel {
 	}
 	
 	function noClassForTeachersAndAdminOnlyStudents($check){
-		if(!isset($this->data['User']['class'])&&($this->data['User']['group_id']==3)){
+		if((is_null($this->data['User']['class']))&&($this->data['User']['group_id']==3)){
 			//the user is a student who has no class
 			return false;
 		}
-		elseif(isset($this->data['User']['class'])&&($this->data['User']['group_id']!=3)){
+		elseif(!(is_null($this->data['User']['class']))&&($this->data['User']['group_id']!=3)){
 			//the user has a class but is not a student
 			return false;
 		}

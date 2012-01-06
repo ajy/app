@@ -11,8 +11,8 @@
 
         <?= $javascript->link(array('config', 'add_edit')); ?>
         <?= $html->css(array('reset', 'style')); ?>
-        <?= $javascript->link(array('jquery.fancybox-1.3.4.pack')); ?>
-        <?= $html->css(array('jquery.fancybox-1.3.4')); ?>     
+        <?= $javascript->link(array('jquery.fancybox.pack')); ?>
+        <?= $html->css(array('jquery.fancybox')); ?>     
 
         <script>
             pos=1;
@@ -55,6 +55,9 @@
                 overflow:hidden;
             } 
         </style>
+        <script>
+ parent.$.fancybox.close();
+</script>
     </head>
 
     <body >
