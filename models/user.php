@@ -34,14 +34,24 @@ class User extends AppModel {
 			)
 		),
 		//not hashed version
-		'confirm password' => array(			
+		'confirm_password' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Enter a password',
+				'required' => true
+			),			
 			'length' => array(
+
 				'rule' => array('between',6,40),
-				'message' => 'Password too short'
+				'message' => 'Password too short',
+				'allowEmpty' => false,
+
 			),
 			'is not equal' => array(
 				'rule' => array('validatePassword'),
-				'message' => "Your passwords don't match"
+				'message' => "Your passwords don't match",
+				'required' => true,
+				'allowEmpty' => false,
 			),
 					
 		),
@@ -81,8 +91,9 @@ class User extends AppModel {
 	
 	function validatePassword($check){
 		//only run if there are two password field (like NOT on the contact or signin pages..)
-		if(isset($this->data['User']['confirmpassword'])){
-			if($this->data['User']['password'] != $this->Auth->password($this->data['User']['confirmpassword']))
+		if(isset($this->data['User']['confirm_password'])){
+			$check['password'] = Security::hash(Configure::read('Security.salt').$this->data['User']['confirm_password']);
+			if($this->data['User']['password'] != $check['password'])
 			{
 				//they didnt confirm password correctly
 				return false;
@@ -109,7 +120,6 @@ class User extends AppModel {
 			$users = $this->query('SELECT * FROM users User
 WHERE User.class IS NOT NULL and User.id NOT IN (SELECT student_id FROM subject_memberships)');
 			foreach($users as $user){
-				echo debug($user);
 				$this->bindModel(
 					array('hasMany' => array(
 						'Subject' => array(

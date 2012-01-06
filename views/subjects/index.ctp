@@ -134,8 +134,8 @@
 
                                 <tbody> 
                                       <?php
-                                  /* debug($subjects);
-                                    debug($teacher1);
+                                  // debug($subjects);
+                                   /* debug($teacher1);
                                     debug($teacher2);*/
                                     for ($i=0;$i<count($subjects);$i++){ 
 		if($subjects[$i]['subjects']['class']=="4A"||$subjects[$i]['subjects']['class']=="4B"){

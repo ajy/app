@@ -240,12 +240,12 @@ class FormARecord extends AppModel {
         	return $formAResults;                         	
 	}
 	
-	function calcAllFormAResults() {
+	function calcAllFormAResults($sub_num = null) {
 		$allFormAResults = null;
 		$allTeachers = $this->query("select id,username,name from users as User where group_id=2");
 		$i=1;
 		foreach($allTeachers as $teacher) {
-			$teachersResults = $this->calcFormAResults($teacher['User']['id']);
+			$teachersResults = $this->calcFormAResults($teacher['User']['id'],$sub_num);
 			if((!is_string($teachersResults))&&isset($teachersResults)) {
 				foreach($teachersResults as $teachersResult) {
 					if(!is_string($teachersResult)){
@@ -256,6 +256,7 @@ class FormARecord extends AppModel {
 				}
 			}
 		}
+		echo debug($allFormAResults);
 		return $allFormAResults;
 	}
 }
