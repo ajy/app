@@ -10,17 +10,12 @@
 
         <!--                       CSS                       --> 
 
-<<<<<<< HEAD
-        <?= $html->css(array('reset', 'style','jquery.fancybox-1.3.4','button_green')); ?>
-        <?= $html->css(array('media/css/demo_table', 'jquery-ui-1.8.14.custom/css/ui-lightness/jquery-ui-1.8.14.custom')); ?>
 
-        <?= $javascript->link(array('js/jquery', 'js/jquery.dataTables', 'js/jquery-ui-1.8.14.custom.min','jquery.fancybox-1.3.4.pack')); ?>
-=======
-        <?= $html->css(array('reset', 'style','jquery.fancybox-1.3.4')); ?>
+        <?= $html->css(array('reset', 'style','jquery.fancybox','button')); ?>
         <?= $html->css(array('demo_table')); ?>
->>>>>>> 7fe95588251151694fa75905ea105c11e9dae8b2
 
-        <?= $javascript->link(array('jquery-1.5.1.min', 'jquery.dataTables', 'jquery.fancybox-1.3.4.pack')); ?>
+
+        <?= $javascript->link(array('jquery-1.5.1.min', 'jquery.dataTables', 'jquery.fancybox.pack')); ?>
 	<?= $javascript->link(array('config','add_edit'));?>
 
         <script>
@@ -28,32 +23,28 @@
                 $('.subjects').dataTable();
             });
 
-             function fnShowHide(iCol)
-			{
-				/* Get the DataTables object again - this is not a recreation, just a get of the object */
-				var oTable = $('#example').dataTable();
-				
-				var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
-				oTable.fnSetColumnVis( iCol, bVis ? false : true );
-                               
-                           
-                            
-                                
-			}
         </script>
         
         <style type="text/css" > 
             html{
                 
             }
-              .green{
+                .add{
                          float:right;
-                         padding:10px;
+                         padding-right:10px;
                          position:relative;
-                         top:10px;
-                          } 
+                         top:20px;
+                         
+                          }
+                 .btn{
+                    font-weight:bold;
+                    padding:10px;
+                }
         </style> 
-
+        
+<script>
+ parent.$.fancybox.close();
+</script>
     </head> 
 
     <body>
@@ -85,8 +76,8 @@
                    <div id="pHead">
                 <h2>Subjects</h2> 
                 </div>
-                <?= $html->link($html->tag('span','Add Subject',array('class' => 'green')),array('controller'=>'subjects','action'=>'add'),array('escape'=>false,'class'=>'modal'));?>
-              
+                <?= $html->tag('div',$html->link('Add Subject',array('controller'=>'subjects','action'=>'add'),array('escape'=>false,'class'=>'btn success modal'))
+                  ,array('class' => 'add'))?>
                 <div class="content-box"><!-- Start Content Box --> 
 
                     <div class="content-box-header"> 
@@ -114,21 +105,15 @@
 
                                 <thead> 
                                     <tr> 
-                                        <th  rowspan="2">Name</th> 
-                                        <th  rowspan="2">Code</th> 
-                                        <th  colspan="2">Section A </th>
-                                        <th  colspan="2">Section B </th>
-                                        <th  rowspan="2">Actions </th>
+                                        <th>Name</th> 
+                                        <th>Code</th> 
+                                        <th>Class </th>
+                                        <th>Teacher 1</th>
+                                        <th>Teacher 2</th>
+                                        <th>Actions </th>
                                     </tr> 
                                     
-                                   <tr>
-                                                <th>Teacher 1</th>
-                                                <th>Teacher 2</th>
-                                                <th>Teacher 1</th>
-                                                <th>Teacher 2</th>
-			
-                                    </tr>
-                                </thead> 
+                               </thead> 
 
                                 <tfoot> 
                                     <tr> 
@@ -149,23 +134,23 @@
 
                                 <tbody> 
                                       <?php
-                                    
-	
-	for ($i=0;$i<count($subjects);$i++){ 
-		if($subjects[$i]['s1']['class']=="4A"||$subjects[$i]['s1']['class']=="4B"){
+                                  // debug($subjects);
+                                   /* debug($teacher1);
+                                    debug($teacher2);*/
+                                    for ($i=0;$i<count($subjects);$i++){ 
+		if($subjects[$i]['subjects']['class']=="4A"||$subjects[$i]['subjects']['class']=="4B"){
 	?>
 	<tr>
 		
-		<td><?php echo $subjects[$i]['s1']['name']; ?></td>
-		<td class="center"><?php echo $subjects[$i]['s1']['code']; ?></td>
-		<td class="center"><? echo $teacher1[$i]['a'][0]['users']['name']; ?></td>
-		<td class="center"><?php echo $teacher2[$i]['a'][0]['users']['name']!=NULL? $teacher2[$i]['a'][0]['users']['name']:"-"; ?></td>
-                <td class="center"><?echo $teacher1[$i]['b'][0]['users']['name']; ?></td>
-		<td class="center"><?php echo$teacher2[$i]['b'][0]['users']['name']!=NULL?$teacher2[$i]['b'][0]['users']['name']:"-"; ?></td>
+		<td><?php echo $subjects[$i]['subjects']['name']; ?></td>
+		<td class="center"><?php echo $subjects[$i]['subjects']['code']; ?></td>
+		<td class="center"><? echo  $subjects[$i]['subjects']['class']; ?></td>
+		<td class="center"><?php echo $teacher1[$i][0]['users']['name']!=NULL? $teacher1[$i][0]['users']['name']:"-"; ?></td>
+               <td class="center"><?php echo $teacher2[$i][0]['users']['name']!=NULL? $teacher2[$i][0]['users']['name']:"-"; ?></td>
                
                 <td class="center"> 
-                    <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $subjects[$i]['s1']['id']),array('class'=>'modal')); ?>&nbsp;&nbsp;
-                    <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete',$subjects[$i]['s1']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $subjects[$i]['s1']['id'])); ?>
+                    <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $subjects[$i]['subjects']['id']),array('class'=>'modal')); ?>&nbsp;&nbsp;
+                    <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete',$subjects[$i]['subjects']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $subjects[$i]['subjects']['id'])); ?>
 		</td>
 	
 	</tr>	
@@ -178,31 +163,26 @@
 
                         <!-- Start #tab2 --> 
                         <div class="tab-content " id="tab-2">
+                           
+                            
                             <table cellpadding="0" cellspacing="0" border="0" class="display subjects"> 
 
 
                                 <thead> 
                                     <tr> 
-                                        <th rowspan="2" class="center"><input class="check-all" type="checkbox" /></th> 
-                                        <th  rowspan="2">Name</th> 
-                                        <th  rowspan="2">Code</th> 
-                                        <th  colspan="2">Section A </th>
-                                        <th  colspan="2">Section B </th>
-                                        <th  rowspan="2">Actions </th>
+                                        <th>Name</th> 
+                                        <th>Code</th> 
+                                        <th>Class </th>
+                                        <th>Teacher 1</th>
+                                        <th>Teacher 2</th>
+                                        <th>Actions </th>
                                     </tr> 
                                     
-                                   <tr>
-                                                <th>Teacher 1</th>
-                                                <th>Teacher 2</th>
-                                                <th>Teacher 1</th>
-                                                <th>Teacher 2</th>
-			
-                                    </tr>
-                                </thead> 
+                               </thead> 
 
                                 <tfoot> 
                                     <tr> 
-                                       <td colspan="6"> 
+                                       <!--<td colspan="6"> 
                                             <div class="bulk-actions align-left"> 
                                                 <select name="dropdown"> 
                                                     <option value="option1">Choose an action...</option> 
@@ -213,29 +193,89 @@
                                             </div> 
 
                                             <div class="clear"></div> 
-                                        </td> 
+                                        </td> -->
                                     </tr> 
                                 </tfoot> 
 
                                 <tbody> 
                                       <?php
-                                     
-	
-	for ($i=0;$i<count($subjects);$i++){
-		if($subjects[$i]['s1']['class']=="6A"||$subjects[$i]['s1']['class']=="6B"){
+                                    for ($i=0;$i<count($subjects);$i++){ 
+		if($subjects[$i]['subjects']['class']=="6A"||$subjects[$i]['subjects']['class']=="6B"){
 	?>
 	<tr>
 		
-		<td class="center"><input class="check-all" type="checkbox" /></td> 
-                <td><?php echo $subjects[$i]['s1']['name']; ?></td>
-		<td class="center"><?php echo $subjects[$i]['s1']['code']; ?></td>
-		<td class="center"><? echo $teacher1[$i]['a'][0]['users']['name']; ?></td>
-		<td class="center"><?php echo $teacher2[$i]['a'][0]['users']['name']!=NULL? $teacher2[$i]['a'][0]['users']['name']:"-"; ?></td>
-                <td class="center"><?echo $teacher1[$i]['b'][0]['users']['name']; ?></td>
-		<td class="center"><?php echo$teacher2[$i]['b'][0]['users']['name']!=NULL?$teacher2[$i]['b'][0]['users']['name']:"-"; ?></td>
+		<td><?php echo $subjects[$i]['subjects']['name']; ?></td>
+		<td class="center"><?php echo $subjects[$i]['subjects']['code']; ?></td>
+		<td class="center"><? echo  $subjects[$i]['subjects']['class']; ?></td>
+		<td class="center"><?php echo $teacher1[$i][0]['users']['name']!=NULL? $teacher1[$i][0]['users']['name']:"-"; ?></td>
+               <td class="center"><?php echo $teacher2[$i][0]['users']['name']!=NULL? $teacher2[$i][0]['users']['name']:"-"; ?></td>
                
-                <td class="center">   <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $subjects[$i]['s1']['id']),array('class'=>'modal')); ?> &nbsp;&nbsp;
-			 <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete',$subjects[$i]['s1']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $subjects[$i]['s1']['id'], $subjects[$i]['s2']['id'])); ?>
+                <td class="center"> 
+                    <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $subjects[$i]['subjects']['id']),array('class'=>'modal')); ?>&nbsp;&nbsp;
+                    <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete',$subjects[$i]['subjects']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $subjects[$i]['subjects']['id'])); ?>
+		</td>
+	
+	</tr>	
+        <?php }}  ?>
+                                </tbody> 
+
+                            </table> 
+                        </div>
+
+                        <!-- End #tab2 --> 
+
+                           <!-- Start #tab3 --> 
+                        <div class="tab-content " id="tab-3">
+                            
+                            <table cellpadding="0" cellspacing="0" border="0" class="display subjects"> 
+
+
+                                <thead> 
+                                    <tr> 
+                                        <th>Name</th> 
+                                        <th>Code</th> 
+                                        <th>Class </th>
+                                        <th>Teacher 1</th>
+                                        <th>Teacher 2</th>
+                                        <th>Actions </th>
+                                    </tr> 
+                                    
+                               </thead> 
+
+                                <tfoot> 
+                                    <tr> 
+                                       <!--<td colspan="6"> 
+                                            <div class="bulk-actions align-left"> 
+                                                <select name="dropdown"> 
+                                                    <option value="option1">Choose an action...</option> 
+                                                    <option value="option2">Edit</option> 
+                                                    <option value="option3">Delete</option> 
+                                                </select> 
+                                                <a class="button" href="#">Apply to selected</a> 
+                                            </div> 
+
+                                            <div class="clear"></div> 
+                                        </td> -->
+                                    </tr> 
+                                </tfoot> 
+
+                                <tbody> 
+                                      <?php
+                                
+                                    for ($i=0;$i<count($subjects);$i++){ 
+		if($subjects[$i]['subjects']['class']=="8A"||$subjects[$i]['subjects']['class']=="8B"){
+	?>
+	<tr>
+		
+		<td><?php echo $subjects[$i]['subjects']['name']; ?></td>
+		<td class="center"><?php echo $subjects[$i]['subjects']['code']; ?></td>
+		<td class="center"><? echo  $subjects[$i]['subjects']['class']; ?></td>
+		<td class="center"><?php echo $teacher1[$i][0]['users']['name']!=NULL? $teacher1[$i][0]['users']['name']:"-"; ?></td>
+               <td class="center"><?php echo $teacher2[$i][0]['users']['name']!=NULL? $teacher2[$i][0]['users']['name']:"-"; ?></td>
+               
+                <td class="center"> 
+                    <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $subjects[$i]['subjects']['id']),array('class'=>'modal')); ?>&nbsp;&nbsp;
+                    <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete',$subjects[$i]['subjects']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $subjects[$i]['subjects']['id'])); ?>
 		</td>
 	
 	</tr>	
@@ -244,76 +284,7 @@
 
                             </table> 
 
-                        </div>
 
-                        <!-- End #tab2 --> 
-
-                           <!-- Start #tab3 --> 
-                        <div class="tab-content " id="tab-3">
-                            <table cellpadding="0" cellspacing="0" border="0" class="display subjects"> 
-
-
-                                <thead> 
-                                    <tr> 
-                                        <th rowspan="2" class="center"><input class="check-all" type="checkbox" /></th> 
-                                        <th  rowspan="2">Name</th> 
-                                        <th  rowspan="2">Code</th> 
-                                        <th  colspan="2">Section A </th>
-                                        <th  colspan="2">Section B </th>
-                                        <th  rowspan="2">Actions </th>
-                                    </tr> 
-                                    
-                                   <tr>
-                                                <th>Teacher 1</th>
-                                                <th>Teacher 2</th>
-                                                <th>Teacher 1</th>
-                                                <th>Teacher 2</th>
-			
-                                    </tr>
-                                </thead> 
-
-                                <tfoot> 
-                                    <tr> 
-                                       <td colspan="6"> 
-                                            <div class="bulk-actions align-left"> 
-                                                <select name="dropdown"> 
-                                                    <option value="option1">Choose an action...</option> 
-                                                    <option value="option2">Edit</option> 
-                                                    <option value="option3">Delete</option> 
-                                                </select> 
-                                                <a class="button" href="#">Apply to selected</a> 
-                                            </div> 
-
-                                            <div class="clear"></div> 
-                                        </td> 
-                                    </tr> 
-                                </tfoot> 
-
-                                <tbody> 
-                                      <?php
-                                     
-	
-	for ($i=0;$i<count($subjects);$i++){
-		if($subjects[$i]['s1']['class']=="8A"||$subjects[$i]['s1']['class']=="8B"){
-	?>
-	<tr>
-		<td class="center"><input class="check-all" type="checkbox" /></td> 
-		<td><?php echo $subjects[$i]['s1']['name']; ?></td>
-		<td class="center"><?php echo $subjects[$i]['s1']['code']; ?></td>
-		<td class="center"><? echo $teacher1[$i]['a'][0]['users']['name']; ?></td>
-		<td class="center"><?php echo $teacher2[$i]['a'][0]['users']['name']!=NULL? $teacher2[$i]['a'][0]['users']['name']:"-"; ?></td>
-                <td class="center"><?echo $teacher1[$i]['b'][0]['users']['name']; ?></td>
-		<td class="center"><?php echo$teacher2[$i]['b'][0]['users']['name']!=NULL?$teacher2[$i]['b'][0]['users']['name']:"-"; ?></td>
-               
-                <td class="center">   <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $subjects[$i]['s1']['id']),array('class'=>'modal')); ?> &nbsp;&nbsp;
-			 <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete',$subjects[$i]['s1']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $subjects[$i]['s1']['id'], $subjects[$i]['s2']['id'])); ?>
-		</td>
-	
-	</tr>	
-        <?php } } ?>
-                                </tbody> 
-
-                            </table> 
 
                         </div>
 

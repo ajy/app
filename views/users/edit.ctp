@@ -1,12 +1,13 @@
-
-<?=$html->css(array('reset','submitButton','add_edit'));?>
+<?=$html->css(array('reset','button','add_edit'));?>
 <style>
     a              { color: purple; text-decoration: none; }
 
 </style>
 <script>
 	var pos;
-	$(document).ready(function(){toggle();});
+	$(document).ready(
+
+function(){toggle();});
  	function toggle(){
  		pos=($('#UserGroupId').val());
  		if(pos!=3){
@@ -16,6 +17,10 @@
  			$('#Class').show();
  		}
  	}
+
+function close(){
+    parent.$.fancybox.close( );
+}
 </script>
 <div class="users form">
 <div id="header"><?php __('Edit User'); ?></div>
@@ -60,7 +65,18 @@ $("#UserGroupId").bind("change", function(){toggle()})</script>
 </select>
 </div>
 <?php }/*end of if*/ ?>
-<?php echo $this->Form->end(__('Submit', true));?>
+   <footer>
+
+<div id="cancel">
+<input type="button" value="Cancel" class="btn close" name="Close" onclick=" window. close();" />
+
+</div>
+<div id="submit">
+ <input class="btn success" type="submit" value="Save" />
+</div>
+<? $form->end();?>
+ 
+   </footer>
 </div>
 
 

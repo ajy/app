@@ -1,9 +1,23 @@
-<?=$html->css(array('reset','submitButton','add_edit'));?>
+<?=$html->css(array('reset','button','add_edit'));?>
+<script>
+$(document).ready(function(){
+
+$('#SubjectTeacher1').attr('selectedIndex', '-1');
+$('#SubjectTeacher2').attr('selectedIndex', '-1');
+});
+
+function close() {
+window.location = "http://localhost/newfbf/pages/admin";
+}
+
+// in html: <button onclick="goMoz();">Mozilla</button>
+
+</script>
 
 <div class="subjects form">
      <div id="header"><?php __('Add Subject'); ?></div>
 <?php echo $this->Form->create('Subject');?>
-	<fieldset>
+
            
 	<?php
         
@@ -27,6 +41,7 @@ OPTIONS;
                     </select>
             <label>Teacher 2</label>
 		 <select name="data[Subject][teacher2]" id="SubjectTeacher2" >
+                     <option value=""></option>
                     <?foreach($teachers as $teacher):
                         $id=$teacher ['users']['id'];$name=$teacher ['users']['name'];
                      
@@ -34,19 +49,32 @@ OPTIONS;
                         <option value = $id > $name </option>
                        
 OPTIONS;
-                         endforeach;?>  
-                    </select>
-            <label> Class</label>
+                         endforeach;
+                  
+                         ?>  
+           </select>
+	<? echo $this->Form->input('class');?>
+<footer>
+<div id="cancel">
+<input type="button" value="Cancel" class="btn close" name="Close" onclick="close();" />
+
+</div>
+<div id="submit">
+ <input class="btn success" type="submit" value="Add" />
+</div>
+</footer>
+<? 
+//debug($this->data);
+$form->end();?>
+  
+                     
+ </div>
+
+       <!--       
+        <label> Class</label>
 		 <select name="data[Subject][class]" id="SubjectClass" >
                     <?foreach($classes as $class):?>
                         <option><?=$class['subjects']['class']?></option>
                       <?  endforeach;?>  
-                    </select>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit', true));?>
-     
-</div>
-
- <!--<select name="data[Subject][teacher1]" id="SubjectTeacher1" >
-                                            <option>Teacher1</option>
-                 
+                    </select>-->
+                
