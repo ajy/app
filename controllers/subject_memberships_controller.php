@@ -16,7 +16,9 @@ class SubjectMembershipsController extends AppController {
 
 	function view($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid subject membership', true));
+			$this->Session->setFlash('Invalid subject membership','default', array(
+					'class' => 'message error'
+				));
 			$this->redirect(array('action' => 'index'));
 		}
 		$this->set('subjectMembership', $this->SubjectMembership->read(null, $id));
@@ -26,10 +28,14 @@ class SubjectMembershipsController extends AppController {
 		if (!empty($this->data)) {
 			$this->SubjectMembership->create();
 			if ($this->SubjectMembership->save($this->data)) {
-				$this->Session->setFlash(__('The subject membership has been saved', true));
+				$this->Session->setFlash('The subject membership has been saved','default', array(
+					'class' => 'message success'
+				));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The subject membership could not be saved. Please, try again.', true));
+				$this->Session->setFlash('The subject membership could not be saved. Please, try again.','default', array(
+					'class' => 'message error'
+				));
 			}
 		}
 		$subjects = $this->SubjectMembership->Subject->find('list');
@@ -39,15 +45,21 @@ class SubjectMembershipsController extends AppController {
 
 	function edit($id = null) {
 		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid subject membership', true));
+			$this->Session->setFlash('Invalid subject membership','default', array(
+					'class' => 'message error'
+				));
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
 			if ($this->SubjectMembership->save($this->data)) {
-				$this->Session->setFlash(__('The subject membership has been saved', true));
+				$this->Session->setFlash('The subject membership has been saved','default', array(
+					'class' => 'message success'
+				));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The subject membership could not be saved. Please, try again.', true));
+				$this->Session->setFlash('The subject membership could not be saved. Please, try again.','default', array(
+					'class' => 'message error'
+				));
 			}
 		}
 		if (empty($this->data)) {
@@ -60,14 +72,20 @@ class SubjectMembershipsController extends AppController {
 
 	function delete($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for subject membership', true));
+			$this->Session->setFlash('Invalid id for subject membership','default', array(
+					'class' => 'message error'
+				));
 			$this->redirect(array('action'=>'index'));
 		}
 		if ($this->SubjectMembership->delete($id)) {
-			$this->Session->setFlash(__('Subject membership deleted', true));
+			$this->Session->setFlash('Subject membership deleted','default', array(
+					'class' => 'message success'
+				));
 			$this->redirect(array('action'=>'index'));
 		}
-		$this->Session->setFlash(__('Subject membership was not deleted', true));
+		$this->Session->setFlash('Subject membership was not deleted','default', array(
+					'class' => 'message error'
+				));
 		$this->redirect(array('action' => 'index'));
 	}
 	
@@ -80,7 +98,9 @@ class SubjectMembershipsController extends AppController {
 			)
 		));
 		if(!isset($classes)){
-			$this->Session->setFlash(__('No classes were found',true));
+			$this->Session->setFlash('No classes were found','default', array(
+					'class' => 'message info'
+				));
 		}
 		foreach($classes as $class){
 			$studentsInSameClass = $this->User->find('all', array(

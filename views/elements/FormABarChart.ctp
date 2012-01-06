@@ -4,16 +4,16 @@
 	function drawVisualization<?php echo($i);?>() {
         // Create and populate the data table.
         var data = new google.visualization.DataTable();
-        var raw_data = [[<?php echo 'Q1:'.Configure::read('Question.FormA.1'); ?>, <?php $score=$form_a_result['resultQ1']; echo($form_a_result['resultQ1']); ?>],
-                        [<?php echo 'Q2:'.Configure::read('Question.FormA.2'); ?>, <?php $score+=$form_a_result['resultQ2'];echo($form_a_result['resultQ2']); ?>],
-                        [<?php echo 'Q3:'.Configure::read('Question.FormA.3'); ?>, <?php $score+=$form_a_result['resultQ3'];echo($form_a_result['resultQ3']); ?>],
-                        [<?php echo 'Q4:'.Configure::read('Question.FormA.4'); ?>, <?php $score+=$form_a_result['resultQ4'];echo($form_a_result['resultQ4']); ?>],
-                        [<?php echo 'Q5:'.Configure::read('Question.FormA.5'); ?>, <?php $score+=$form_a_result['resultQ5'];echo($form_a_result['resultQ5']); ?>],
-                        [<?php echo 'Q6:'.Configure::read('Question.FormA.6'); ?>, <?php $score+=$form_a_result['resultQ6'];echo($form_a_result['resultQ6']); ?>],
-                        [<?php echo 'Q7:'.Configure::read('Question.FormA.7'); ?>, <?php $score+=$form_a_result['resultQ7'];echo($form_a_result['resultQ7']); ?>],
-                        [<?php echo 'Q8:'.Configure::read('Question.FormA.8'); ?>, <?php $score+=$form_a_result['resultQ8'];echo($form_a_result['resultQ8']); ?>],
-                        [<?php echo 'Q9:'.Configure::read('Question.FormA.9'); ?>, <?php $score+=$form_a_result['resultQ9'];echo($form_a_result['resultQ9']); ?>],
-                        [<?php echo 'Q10:'.Configure::read('Question.FormA.10'); ?>, <?php $score+=$form_a_result['resultQ10'];echo($form_a_result['resultQ10']); ?>],];
+        var raw_data = [["<?php echo 'Q1:'.Configure::read('Question.FormA.1'); ?>", <?php $score=$form_a_result['resultQ1']; echo($form_a_result['resultQ1']); ?>],
+                        ["<?php echo 'Q2:'.Configure::read('Question.FormA.2'); ?>", <?php $score+=$form_a_result['resultQ2'];echo($form_a_result['resultQ2']); ?>],
+                        ["<?php echo 'Q3:'.Configure::read('Question.FormA.3'); ?>", <?php $score+=$form_a_result['resultQ3'];echo($form_a_result['resultQ3']); ?>],
+                        ["<?php echo 'Q4:'.Configure::read('Question.FormA.4'); ?>", <?php $score+=$form_a_result['resultQ4'];echo($form_a_result['resultQ4']); ?>],
+                        ["<?php echo 'Q5:'.Configure::read('Question.FormA.5'); ?>", <?php $score+=$form_a_result['resultQ5'];echo($form_a_result['resultQ5']); ?>],
+                        ["<?php echo 'Q6:'.Configure::read('Question.FormA.6'); ?>", <?php $score+=$form_a_result['resultQ6'];echo($form_a_result['resultQ6']); ?>],
+                        ["<?php echo 'Q7:'.Configure::read('Question.FormA.7'); ?>", <?php $score+=$form_a_result['resultQ7'];echo($form_a_result['resultQ7']); ?>],
+                        ["<?php echo 'Q8:'.Configure::read('Question.FormA.8'); ?>", <?php $score+=$form_a_result['resultQ8'];echo($form_a_result['resultQ8']); ?>],
+                        ["<?php echo 'Q9:'.Configure::read('Question.FormA.9'); ?>", <?php $score+=$form_a_result['resultQ9'];echo($form_a_result['resultQ9']); ?>],
+                        ["<?php echo 'Q10:'.Configure::read('Question.FormA.10'); ?>", <?php $score+=$form_a_result['resultQ10'];echo($form_a_result['resultQ10']); ?>]];
         
         data.addColumn('string', 'Your Score');
         data.addRows(1);

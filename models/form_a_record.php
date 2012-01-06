@@ -32,6 +32,16 @@ class FormARecord extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'submission_number' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				'message' => 'This field must be filled',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
 		'q1' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
@@ -158,7 +168,7 @@ class FormARecord extends AppModel {
 			}
 		}
 	}
-	function calcFormAResults($userId) {
+	function calcFormAResults($userId,$sub_num) {
 		$userSubjectsData=$this->Subject->find('all', array(
 			'recursive' => -1,
 			'conditions' => array(
@@ -177,7 +187,8 @@ class FormARecord extends AppModel {
 			$totalRows=$this->find('count', array(
 				'conditions' => array(
 					'subject_id' => $userSubject['id'],
-					'teacher' => $userId
+					'teacher' => $userId,
+					'submission_number' => $sub_num
 				)
 			));
 			if($totalRows==null){
@@ -191,7 +202,8 @@ class FormARecord extends AppModel {
 						'offset' => ceil(0.05*$totalRows),
 						'conditions' => array(
 							'subject_id' => $userSubject['id'],
-							'teacher' => $userId
+							'teacher' => $userId,
+							'submission_number' => $sub_num
 						)
 					)
 				);

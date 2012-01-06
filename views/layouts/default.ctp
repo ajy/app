@@ -31,8 +31,7 @@
 		
 		echo $this->Html->script('jquery-ui-1.8.14.custom.min.js');
 		
-		
-		echo $this->Html->css('feedbackMail');
+		echo $this->Html->css('alerts');
 		
 		echo $scripts_for_layout;
 	?>	

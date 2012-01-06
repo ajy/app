@@ -59,7 +59,7 @@
                     <?  /*if($teacher2==NULL){
                         
                     }*/
-                   echo '<option value = " ">Select</option>';    
+                   echo '<option value = "">Select</option>';    
                                  foreach($teachers as $teacher):
                                  if($teacher['users']['id']== $teacher2){
                      
@@ -92,25 +92,25 @@
 <?php echo $this->Form->end(__('Submit', true));?>
   <script>
   $("form").submit(function() {
-                    alert('here');alert("<?php echo  $teacher2=$this->data['Teacher2']['id'];  ; ?>");
+                 /*   alert('here');alert("<?php echo  $teacher2=$this->data['Teacher2']['id'];  ; ?>");
                 if( $('#SubjectTeacher2').val()===" "){
                 $('#SubjectTeacher2').attr('selectedIndex', '-1');
         ("<?php echo  $this->data['Teacher2']['id']=null;  ; ?>");    
         alert ("<?php echo  $this->data['Teacher2']['id'] ; ?>"); 
         }
-          });
+          });*/
   </script>
- <? $options = array(
+ <?/* $options = array(
            /* array(
                 'name' => 'usertype',
                 'value' => '',
                 'disabled' => TRUE,
                 'selected' => TRUE
             ),*/
-     'usertype',
+    /* 'usertype',
             'athlete',
             'trainer'
             );
 
-echo $this->Form->input('User.usertype_id', array('type' => 'select', 'options' => $options,'empty'=>TRUE, 'selected'=>TRUE,'value'=>  '2'));?>
+echo $this->Form->input('User.usertype_id', array('type' => 'select', 'options' => $options,'empty'=>TRUE, 'selected'=>TRUE,'value'=>  '2'));*/?>
 </div>
