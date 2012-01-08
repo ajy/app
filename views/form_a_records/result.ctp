@@ -15,7 +15,7 @@
 </style>
 <div id="accordion">    
 <?php   
-       // debug($form_a_results);
+        debug($form_a_results);
         $i=0;
 	foreach($form_a_results as $form_a_result){
 	if(is_string($form_a_result))

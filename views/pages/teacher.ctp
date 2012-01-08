@@ -12,7 +12,7 @@
                
 		<?= $javascript->link(array('config'));?>
                 <?=$html->css(array('reset','style','teacher'));?>
-                <?= $javascript->link(array('jquery.fancybox','add_edit'));?>
+                <?= $javascript->link(array('jquery.fancybox.pack','add_edit'));?>
                  <?=$html->css(array('jquery.fancybox'));?>     
               
                <script>
@@ -48,7 +48,7 @@
 		<div id="sidebar">
                     <div id="sidebar-wrapper"> 		
                          <?php $user=$this->Session->read("Auth.User");;?>
-                <h1 id="sidebar-title"><?=$html->link($user['name'], array('controller' => 'users', 'action' => 'edit',$user['id']),array('title'=>'Edit Profile','class'=>'modal','required'=>TRUE));?></h1>
+                <h1 id="sidebar-title"><?=$html->link($user['name'], array('controller' => 'users', 'action' => 'edit',$user['id']),array('title'=>'Edit Profile','class'=>'modal4'));?></h1>
                 <div id="profile-links">
 
                     ISE Department
@@ -75,7 +75,7 @@
 				</li> 
 				
 				<li> 
-					 <?php echo $html->link('Profile', array('controller' => 'users', 'action' => 'edit',$user['id']),array('class'=>'nav-top-item modal','onclick'=>"LoadIFrame(3)")); ?>
+					 <?php echo $html->link('Profile', array('controller' => 'users', 'action' => 'edit',$user['id']),array('id'=>'nav-top-item','class'=>' modal4','onclick'=>"LoadIFrame(3)")); ?>
                           
                                              <!--     <ul> 
                                                       

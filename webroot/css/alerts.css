@@ -65,16 +65,16 @@
 
 :root .message {
   border-radius: 0 \0;
-  width: 72%;
+  width: 30%;
   float: left;
-  margin-left: 19%;
+  margin-left:37%;
   font-size: 150%;
   text-align: center;
 }
 
 .message {
   position: relative;
-  padding: 7px 15px;
+  padding: 7px 5px;
   margin-bottom: 18px;
   color: #404040;
   background-color: #eedc94;

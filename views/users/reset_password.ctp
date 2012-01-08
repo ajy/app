@@ -4,9 +4,10 @@
         visibility: hidden;
     }
 </style>
-<?php
-	echo $this->Session->flash('auth');?>
+
 <div id="header">Send Reset Password mail to</div>
+<?php   echo $this->Session->flash();
+	echo $this->Session->flash('auth');?>
 	<?echo $this->Form->create('User',array('action'=>'resetPassword'));
 	echo $this->Form->inputs(array(
 		
@@ -16,12 +17,12 @@
 ?>
 
 <footer>
-<div id="cancel">
+<!--<div id="cancel">
 <input type="button" value="Cancel" class="btn close" name="Close" onclick="close();" />
 
-</div>
+</div>-->
 <div id="submit">
- <input class="btn info" type="submit" value="Save" />
+ <input class="btn info" type="submit" value="Send" />
 </div>
     </footer>
 <? $form->end();?>

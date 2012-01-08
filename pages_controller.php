@@ -88,7 +88,7 @@ class PagesController extends AppController {
 	}
 	
        function teacher() {
-       		$form_a_results = $this->FormARecord->calcFormAResults($this->Session->read("Auth.User.id"));
+       		$form_a_results = $this->FormARecord->calcFormAResults($this->Session->read("Auth.User.id"),1);
        		$this->FormBResult->recursive = -1;
        		$form_b_results = $this->FormBResult->findByTeacher($this->Session->read("Auth.User.id"));
        		$this->set('form_a_results',$form_a_results);

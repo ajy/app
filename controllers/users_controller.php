@@ -11,6 +11,7 @@ class UsersController extends AppController {
 	function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow('resetPassword');
+                
 	}
 
 	function login() {
@@ -168,16 +169,16 @@ class UsersController extends AppController {
 	function add() {
 		if (!empty($this->data)) {
 			$this->User->create();
+                        
 			$this->log($this->data);
-                        if($this->data['User']['group_id']!=3){
-                             $this->data['User']['class']=NULL;
-                        }
+                       
 			if ($this->User->save($this->data)) {
 				$this->Session->setFlash('The user has been saved','default', array(
-					'class' => 'message success'
+					'class' => 'message warning'
 				));
 				//$this->enroll();
-				$this->redirect(array('action' => 'index'));
+				$this->redirect((array('controller'=> 'pages','action'=>'success')));
+                     
 			} else {
 				$this->Session->setFlash(' The user could not be saved. Please, try again.','default', array(
 					'class' => 'message error'
@@ -213,8 +214,10 @@ class UsersController extends AppController {
 				$this->Session->setFlash('The user could not be saved. Please, try again.','default', array(
 					'class' => 'message error'
 				));
+                                $this->redirect($this->referer());
 			}
-			$this->redirect(array('action' => 'index'));
+			  $this->redirect($this->Auth->redirect(array('controller'=> 'pages','action'=>'success')));
+                     
 		}
 		if (empty($this->data)) {
 			$this->data = $this->User->read(null, $id);			
@@ -262,7 +265,7 @@ class UsersController extends AppController {
 				));
 		}
 	}
-	function loadNewStudents() {
+	function import() {
 		if(!empty($this->data['User']['File'])){
 			//creating a reader object
 			$csv = new parseCSV($this->data['User']['File']['tmp_name']);
@@ -281,13 +284,29 @@ class UsersController extends AppController {
 			}
 			if(!$error) {
 				$this->Session->setFlash('Success. Imported '. $NumSavedRows .' records.','default', array(
-					'class' => 'message success'
+					'class' => 'message warning'
 				));
+                                 $this->redirect($this->Auth->redirect(array('controller'=> 'pages','action'=>'success')));
 			}
 		}
 	}
 	
+        function redir(){
+            $group_id=$this->Session->read("Auth.User.group_id");
+              if($group_id==1) {
+                            $this->redirect($this->Auth->redirect(array('controller'=> 'pages','action'=>'admin')));
+                        }
+                        
+                        if($group_id==2)
+                        {
+                         	$this->redirect($this->Auth->redirect(array('controller'=> 'pages','action' => 'teacher')));
+			            }
+                        if($group_id==3)
+                        {
 
+                           	$this->redirect($this->Auth->redirect(array('controller'=> 'pages','action' => 'student')));                           	
+                        }
+        }
 
         /* for defining ACLs
 	function setDefaultPermissions() {
