@@ -40,7 +40,10 @@ class User extends AppModel {
 			),			
 			'length' => array(
 
+
 				'rule' => array('between',5,15),
+
+				
 				'message' => 'Password too short',
 				'allowEmpty' => false,
 
