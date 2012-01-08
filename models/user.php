@@ -40,7 +40,10 @@ class User extends AppModel {
 			),			
 			'length' => array(
 
-				'rule' => array('between',6,15),
+
+				'rule' => array('between',5,15),
+
+				
 				'message' => 'Password too short',
 				'allowEmpty' => false,
 
@@ -111,8 +114,12 @@ class User extends AppModel {
 		return true;
 	}
 
-	
-	function afterSave($created){
+	function beforeValidate(){
+            if($this->data['User']['group_id']!=3){
+                           $this->data['User']['class']=NULL;
+                       }
+        }
+        function afterSave($created){
 		if($created){
 			$users = $this->query('SELECT * FROM users User
 WHERE User.class IS NOT NULL and User.id NOT IN (SELECT student_id FROM subject_memberships)');

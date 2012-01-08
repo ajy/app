@@ -2,6 +2,19 @@
 <style>
     a              { color: purple; text-decoration: none; }
 
+#flashMessage {
+  width:100%;
+  color:#c43c35;
+  
+}
+.error-message{
+display:inline;
+color:#c43c35;
+padding-left:30px;
+}
+footer{
+padding-bottom:80px;
+}
 </style>
 <script>
 	var pos;
@@ -11,19 +24,25 @@ function(){toggle();});
  	function toggle(){
  		pos=($('#UserGroupId').val());
  		if(pos!=3){
- 			$('#Class').hide();
+ 			$('#UserClass > option').hide();
  			$('#UserClass').attr('selectedIndex', '-1');
  		}else{
- 			$('#Class').show();
- 		}
+ 			$('#UserClass > option').show();
+                        
+                    }
  	}
 
 function close(){
+
     parent.$.fancybox.close( );
 }
 </script>
 <div class="users form">
 <div id="header"><?php __('Edit User'); ?></div>
+<?php
+	/*echo $this->Session->flash('auth');*/
+        echo $this->Session->flash()
+?>
 <?php echo $this->Form->create('User');?>
 <?php
 	echo $this->Form->input('id');

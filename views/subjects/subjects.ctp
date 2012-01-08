@@ -2,7 +2,7 @@
   <?= $javascript->link(array('jquery.fancybox.pack','fbConfig_a_b','comments'));?>
                  <?=$html->css(array('jquery.fancybox'));?>     
               
-<?= $html->css(array('reset', 'style','subjects','button')); ?>
+<?= $html->css(array('style','subjects','button')); ?>
 <style>
  .blue{
                     float:right;
@@ -19,11 +19,23 @@
                     top:-30px;
                     color:white;
                  }
+#pHead{
+ margin: 0 30px 0 260px;
+ 
+}
+
 </style>
 
     <body>
+<?php
+	/*echo $this->Session->flash('auth');*/
+        echo $this->Session->flash()
+?>
+        <div id="pHead">
+                <h2>Your Subjects</h2> 
+             </div>
         <div id="subjects"> 
-            <h2 id="sub">Your subjects</h2>
+            
        <ul id="main-nav"> 
        <?php
        for($i=0;$i<count($subjects);$i++){

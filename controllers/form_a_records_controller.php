@@ -10,7 +10,8 @@ class FormARecordsController extends AppController {
 	function result($sub_num=null) {
 		$group_id=$this->Session->read("Auth.User.group_id");
 		if($group_id==1) {
-			$this->set('rows',$this->FormARecord->calcAllFormAResults($sub_num));
+                    
+			$this->set('rows',$this->FormARecord->calcAllFormAResults(1));
 			$this->render('all_result');
 		} elseif($group_id==2) {
 			$this->set('form_a_results',$this->FormARecord->calcFormAResults($this->Session->read("Auth.User.id"),$sub_num));

@@ -6,16 +6,36 @@ $('#SubjectTeacher1').attr('selectedIndex', '-1');
 $('#SubjectTeacher2').attr('selectedIndex', '-1');
 });
 
-function close() {
-window.location = "http://localhost/newfbf/pages/admin";
+
+function close(){
+    parent.$.fancybox.close( );
+   
+
 }
 
-// in html: <button onclick="goMoz();">Mozilla</button>
+
 
 </script>
-
+<style>
+#flashMessage {
+  width:100%;
+  color:#c43c35;
+}
+.error-message{
+display:inline;
+color:#c43c35;
+padding-left:30px;
+}
+footer{
+padding-bottom:80px;
+}
+</style>
 <div class="subjects form">
      <div id="header"><?php __('Add Subject'); ?></div>
+<?php
+	/*echo $this->Session->flash('auth');*/
+        echo $this->Session->flash()
+?>
 <?php echo $this->Form->create('Subject');?>
 
            
@@ -54,9 +74,10 @@ OPTIONS;
                          ?>  
            </select>
 	<? echo $this->Form->input('class');?>
+
 <footer>
 <div id="cancel">
-<input type="button" value="Cancel" class="btn close" name="Close" onclick="close();" />
+<input type="button" value="Cancel" class="btn close" name="Close" onclick="window.close();" />
 
 </div>
 <div id="submit">
@@ -64,17 +85,10 @@ OPTIONS;
 </div>
 </footer>
 <? 
-//debug($this->data);
+
 $form->end();?>
   
                      
  </div>
 
-       <!--       
-        <label> Class</label>
-		 <select name="data[Subject][class]" id="SubjectClass" >
-                    <?foreach($classes as $class):?>
-                        <option><?=$class['subjects']['class']?></option>
-                      <?  endforeach;?>  
-                    </select>-->
-                
+     

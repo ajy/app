@@ -31,7 +31,7 @@
 		
 		echo $this->Html->script('jquery-ui-1.8.14.custom.min.js');
 		
-		echo $this->Html->css('alerts');
+		//echo $this->Html->css('alerts');
 		
 		echo $scripts_for_layout;
 	?>	
@@ -40,11 +40,11 @@
 	<div id="container">
 		
 		<div id="content">
-			<?php echo $this->Session->flash('auth'); ?>
+			<?php //echo $this->Session->flash('auth'); ?>
 			
-			<?php echo $this->Session->flash('email'); ?>
+			<?php //echo $this->Session->flash('email'); ?>
 
-			<?php echo $this->Session->flash(); ?>
+			<?php //echo $this->Session->flash(); ?>
 			
 			<?php echo $content_for_layout; ?>
 

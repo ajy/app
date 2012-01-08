@@ -51,7 +51,7 @@
                     
                     <div id="sidebar-wrapper"> 			
                          <?php $user=$this->Session->read("Auth.User");;?>
-                <h1 id="sidebar-title"><?=$html->link($user['name'], array('controller' => 'users', 'action' => 'edit',$user['id']),array('title'=>'Edit Profile','class'=>'modal','required'=>TRUE));?></h1>
+                <h1 id="sidebar-title"><?=$html->link($user['name'], array('controller' => 'users', 'action' => 'edit',$user['id']),array('title'=>'Edit Profile','class'=>'modal3','required'=>TRUE));?></h1>
                 <div id="profile-links">
 
                     ISE Department
@@ -78,7 +78,7 @@
 				</li> 
 				
 				<li> 
-					 <?php echo $html->link('Profile', array('controller' => 'users', 'action' => 'edit',$user['id']),array('class'=>'nav-top-item modal','onclick'=>"LoadIFrame(3)")); ?>
+					 <?php echo $html->link('Profile', array('controller' => 'users', 'action' => 'edit',$user['id']),array('id'=>'nav-top-item','class'=>'modal3','onclick'=>"LoadIFrame(3)")); ?>
                          
                                              <!--     <ul> 
                                                       

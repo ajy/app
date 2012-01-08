@@ -11,7 +11,7 @@
         <!--                       CSS                       --> 
 
 
-        <?= $html->css(array('reset', 'style','jquery.fancybox','button')); ?>
+        <?= $html->css(array('reset', 'style','jquery.fancybox','button','alerts')); ?>
         <?= $html->css(array('demo_table')); ?>
 
 
@@ -43,16 +43,23 @@
         </style> 
         
 <script>
- parent.$.fancybox.close();
+
+ parent.$.fancybox.close()
+ //$(document).ready(function(){parent.location.reload();});
+ 
+  
 </script>
     </head> 
 
     <body>
     
 
-        <div id="body-wrapper"> <!-- Wrapper for the radial gradient background --> 
+        <div id="body-wrapper"> 
 
-
+        <?php
+	/*echo $this->Session->flash('auth');*/
+        echo $this->Session->flash()
+?>
 
 
             <div id="main-content"> <!-- Main Content Section with everything --> 
@@ -76,7 +83,7 @@
                    <div id="pHead">
                 <h2>Subjects</h2> 
                 </div>
-                <?= $html->tag('div',$html->link('Add Subject',array('controller'=>'subjects','action'=>'add'),array('escape'=>false,'class'=>'btn success modal'))
+                <?= $html->tag('div',$html->link('Add Subject',array('controller'=>'subjects','action'=>'add'),array('escape'=>false,'class'=>'btn success modal2'))
                   ,array('class' => 'add'))?>
                 <div class="content-box"><!-- Start Content Box --> 
 
@@ -149,7 +156,7 @@
                <td class="center"><?php echo $teacher2[$i][0]['users']['name']!=NULL? $teacher2[$i][0]['users']['name']:"-"; ?></td>
                
                 <td class="center"> 
-                    <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $subjects[$i]['subjects']['id']),array('class'=>'modal')); ?>&nbsp;&nbsp;
+                    <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $subjects[$i]['subjects']['id']),array('class'=>'modal2')); ?>&nbsp;&nbsp;
                     <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete',$subjects[$i]['subjects']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $subjects[$i]['subjects']['id'])); ?>
 		</td>
 	
@@ -211,7 +218,7 @@
                <td class="center"><?php echo $teacher2[$i][0]['users']['name']!=NULL? $teacher2[$i][0]['users']['name']:"-"; ?></td>
                
                 <td class="center"> 
-                    <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $subjects[$i]['subjects']['id']),array('class'=>'modal')); ?>&nbsp;&nbsp;
+                    <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $subjects[$i]['subjects']['id']),array('class'=>'modal2')); ?>&nbsp;&nbsp;
                     <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete',$subjects[$i]['subjects']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $subjects[$i]['subjects']['id'])); ?>
 		</td>
 	
@@ -274,7 +281,7 @@
                <td class="center"><?php echo $teacher2[$i][0]['users']['name']!=NULL? $teacher2[$i][0]['users']['name']:"-"; ?></td>
                
                 <td class="center"> 
-                    <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $subjects[$i]['subjects']['id']),array('class'=>'modal')); ?>&nbsp;&nbsp;
+                    <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $subjects[$i]['subjects']['id']),array('class'=>'modal2')); ?>&nbsp;&nbsp;
                     <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete',$subjects[$i]['subjects']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $subjects[$i]['subjects']['id'])); ?>
 		</td>
 	
