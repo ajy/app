@@ -1,43 +1,124 @@
 $(document).ready(function() {
+    
     $(".modal").fancybox({
-        /*'width':'70%',
-                                'height':'70%',
-                                'padding':'0',
-                                'overlayOpacity':'0.5',
-				'autoScale'			: true,
-				'transitionIn'		: 'elastic',
-				'transitionOut'		: 'fade',
-				'type'				: 'iframe',
-                                'titleShow':false*/
-       maxWidth	:500,
-        maxHeight	: 600,
+        
+        maxWidth	:500,
+        maxHeight	: 500,
         minWidth	:500,
         minHeight	: 200,
-        		fitToView	: false,
-       /* width		: '30%',
-        height		: '85%',*/
+        fitToView	: false,
         autoSize	: true,
-		
-        //		openEffect	: 'none',
         type				: 'iframe',
         padding:1,
-        //        modal:true,
-        closeEffect	: 'none',
-        scrolling :'auto',
+        modal:true,
+         
         helpers: { 
             title:null
-        }/*,
-       beforeLoad:function(){
-          $.fancybox.showLoading()
-       },
-        afterLoad : function() {
-			  $.fancybox.hideLoading()
-		}*/
-                               
+        } ,
+        afterClose    :   function() {
+            location.reload();
+        } ,
+        beforeShow    :   function() {
+        //       $.fancybox.showLoading()
+
+        } ,
+        afterShow   :   function() {
+            $.fancybox.hideLoading()
+
+        }         
     });
-                        
+    
+      
+                  
+         $(".imp").fancybox({
+        
+         width	:500,
+        height	: 200,
+
+        fitToView	: false,
+        autoSize	: true,
+        type				: 'iframe',
+        padding:1,
+        modal:true,
+         
+        helpers: { 
+            title:null
+        } ,
+        afterClose    :   function() {
+            location.reload();
+        } ,
+        beforeShow    :   function() {
+        //       $.fancybox.showLoading()
+
+        } ,
+        afterShow   :   function() {
+            $.fancybox.hideLoading()
+
+        }         
+    });
            
-			
+	
+         $(".modal2").fancybox({
+        
+          width	:500,
+        height	: 450,
+
+        fitToView	: false,
+//        autoSize	: true,
+        type				: 'iframe',
+        padding:1,
+        modal:true,
+         
+        helpers: { 
+            title:null
+        } ,
+        afterClose    :   function() {
+            location.reload();
+        } 
+
+               
+    });    
+      $(".modal3").fancybox({
+        
+      
+        width	:500,
+        height	: 425,
+
+        fitToView	: false,
+//        autoSize	: true,
+        type				: 'iframe',
+        padding:1,
+        modal:true,
+         
+        helpers: { 
+            title:null
+        } ,
+        afterClose    :   function() {
+            location.reload();
+        } 
+
+               
+    });    
+     $(".modal4").fancybox({
+        
+        height:375,
+        width:500,
+        fitToView	: false,
+//        autoSize	: true,
+        type				: 'iframe',
+        padding:1,
+        modal:true,
+         
+        helpers: { 
+            title:null
+        } ,
+        afterClose    :   function() {
+            location.reload();
+        } 
+
+               
+    });    
 });
 
 
+    

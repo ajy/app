@@ -7,7 +7,7 @@
 <script>
 
 function close(){
- $.fancybox.close( );
+ parent.$.fancybox.close( );
 }
    
 </script>
@@ -22,7 +22,7 @@ function close(){
 	   <footer>
 
 <div id="cancel">
-<input type="button" value="Cancel" class="btn close" name="Close" onclick="close();" />
+<input type="button" value="Cancel" class="btn close" name="Close" onclick="window.close();" />
 
 </div>
 <div id="submit">

@@ -13,10 +13,10 @@
         <?= $html->css(array('reset', 'style')); ?>
         <?= $javascript->link(array('jquery.fancybox.pack')); ?>
         <?= $html->css(array('jquery.fancybox')); ?>     
-
+         <?php $user=$this->Session->read("Auth.User");;?>
         <script>
             pos=1;
-                   
+              
             function LoadIFrame(pg)
             {
                 jq='ul#main-nav li:nth-child('+pos+') > a';
@@ -24,7 +24,6 @@
                 pos=pg;
                 jq='ul#main-nav li:nth-child('+pos+') > a';
                 $(jq).addClass('current');
-    
                 ifr = document.getElementById("ifr");
                 ifr.style.display="block";
                 switch(pg){
@@ -54,6 +53,8 @@
                 height:660px; 
                 overflow:hidden;
             } 
+           
+          
         </style>
      <script>
  parent.$.fancybox.close();
@@ -68,7 +69,7 @@
 
         <div id="sidebar">
             <div id="sidebar-wrapper">
-                <?php $user=$this->Session->read("Auth.User");;?>
+               
                 <h1 id="sidebar-title"><?=$html->link($user['name'], array('controller' => 'users', 'action' => 'edit',$user['id']),array('title'=>'Edit Profile','class'=>'modal'));?></h1>
                 <div id="profile-links">
 
@@ -121,10 +122,13 @@
                         </li> 
 
                         <li> 
-                             <?php //echo $html->link('Profile', array('controller' => 'users', 'action' => 'edit',$user['id']),array('class'=>'nav-top-item modal','onclick'=>"LoadIFrame(5)")); ?>
-                         
-   <? echo $html->tag('div',$html->link('Profile',array('controller'=>'users','action'=>'edit',$user['id']),array('escape'=>false,'class'=>'modal'))
-                  ,array('class' => 'nav-top-item','onclick'=>'LoadIFrame(5)'));  ?>                         <!--  <a href="#" class="nav-top-item " onclick="LoadIFrame(5)" > 
+                             <?php echo $html->link('Profile', array('controller' => 'users', 'action' => 'edit',$user['id']),array('id'=>'nav-top-item','class'=>' modal','onclick'=>"LoadIFrame(5)")); ?>
+<!--                           <a href="../user/add"  id="nav-top-item" class="modal" onclick="LoadIFrame(5)"> 
+                           Profile
+                            </a> -->
+
+   <? //echo $html->tag('div',$html->link('Profile',array('controller'=>'users','action'=>'edit',$user['id']),array('escape'=>false,'class'=>'modal'))
+        //        ,array('class' => 'nav-top-item','onclick'=>'LoadIFrame(5)'));  ?>                         <!--  <a href="#" class="nav-top-item " onclick="LoadIFrame(5)" > 
                                  </a> -->
                             <ul> 
                               <!--  <li><a href="../users/edit/1" class="modal">Edit Profile</a></li> 

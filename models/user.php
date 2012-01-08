@@ -27,8 +27,7 @@ class User extends AppModel {
 		),
 		'password' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
-                               
+				'rule' => array('notempty'),                               
 				'message' => 'Enter a password',
 				'required' => true
 			)
@@ -37,12 +36,11 @@ class User extends AppModel {
 		'confirm_password' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				'message' => 'Enter a password',
-				'required' => true
+				'message' => 'Enter a password',				
 			),			
 			'length' => array(
 
-				'rule' => array('between',5,40),
+				'rule' => array('between',5,15),
 				'message' => 'Password too short',
 				'allowEmpty' => false,
 
@@ -50,7 +48,6 @@ class User extends AppModel {
 			'is not equal' => array(
 				'rule' => array('validatePassword'),
 				'message' => "Your passwords don't match",
-				'required' => true,
 				'allowEmpty' => false,
 			),
 					
@@ -74,7 +71,7 @@ class User extends AppModel {
 			'valid' => array(
 				'rule' => '/^[1-8][AB]/',
 				'message' => 'This is not a valid class',
-				'allowEmpty' => true, //can be null by default		
+				'allowEmpty' => true, //can be empty by default	for teachers and admin
 			)
 		),
 		'email' => array(
@@ -114,8 +111,12 @@ class User extends AppModel {
 		return true;
 	}
 
-	
-	function afterSave($created){
+	function beforeValidate(){
+            if($this->data['User']['group_id']!=3){
+                           $this->data['User']['class']=NULL;
+                       }
+        }
+        function afterSave($created){
 		if($created){
 			$users = $this->query('SELECT * FROM users User
 WHERE User.class IS NOT NULL and User.id NOT IN (SELECT student_id FROM subject_memberships)');

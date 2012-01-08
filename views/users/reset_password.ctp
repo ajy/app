@@ -22,7 +22,7 @@
 
 </div>-->
 <div id="submit">
- <input class="btn info" type="submit" value="Reset" />
+ <input class="btn info" type="submit" value="Send" />
 </div>
     </footer>
 <? $form->end();?>

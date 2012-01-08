@@ -1,25 +1,43 @@
 <?=$html->css(array('reset','button','add_edit'));?>
 <script>
+
 $(document).ready(function(){
 
 $('#UserGroupId').attr('selectedIndex', '-1');
 
-$('#Class').show()})
+$('#UserClass').attr("disabled","disabled")})
  function hide(){
-            $('#Class').hide()
+            
             pos = ($('#UserGroupId').val())
-            if(pos==3)$('#Class').show()
-
+            if(pos==3){$('#UserClass').attr("disabled","")}
+            else{$('#UserClass').attr("disabled","disabled")}
 
         }
 function close(){
-    parent.$.fancybox.close( );
+    parent.$.fancybox.close();
 
 }
 </script>
+<style>
+#flashMessage {
+  width:100%;
+  color:#c43c35;
+}
+.error-message{
+display:inline;
+color:#c43c35;
+padding-left:30px;
+}
+footer{
+padding-bottom:80px;
+}
+</style>
 <div class="users form">
 <div id="header"><?php __('Add User'); ?></div>
-
+<?php
+	/*echo $this->Session->flash('auth');*/
+        echo $this->Session->flash()
+?>
 <?php echo $this->Form->create('User');?>
     <fieldset>
 
@@ -53,6 +71,8 @@ function close(){
  <input class="btn success" type="submit" value="Add" />
 </div>
 </footer>
-<? $form->end();?>
+
+<? $form->end();
+?>
  
 </div>

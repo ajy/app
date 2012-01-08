@@ -8,7 +8,7 @@ and open the template in the editor.
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
          <?= $javascript->link(array('jquery-1.5.1.min','autoResize'));?>
-          <?=$html->css(array('button_green','comments'));?> 
+          <?=$html->css(array('button_green','style','comments'));?> 
        
         <script>
             $(document).ready(function() {
@@ -26,23 +26,23 @@ and open the template in the editor.
                     // More extra space:
                     extraSpace :10
                 });
-               /* $('#comments').NobleCount('#count',{
-                    on_negative: 'go_red',
-                    on_positive: 'go_green'
-                });*/
-
+              
             });  
         </script>
         <style>
-#com{
-color: #75c0f7;
+#pHead{
+ margin: 0 30px 0 260px;
+ 
+}
 }
 </style>
     </head>
     <body>
-     
+     <div id="pHead">
+                <h2>Comments</h2> 
+                </div>
      <ol class="comments">
-     <h2 id="com" >Comments</h2>
+     
             <li>
                 <ul class="meta">
                     <li class="author">Subject</a></li>

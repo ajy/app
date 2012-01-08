@@ -9,7 +9,7 @@
         <title>Admin</title> 
 
         <!--                       CSS                       --> 
-        <?=$html->css(array('reset','style','jquery.fancybox','button','demo_table','TableTools'),'import');?>
+        <?=$html->css(array('reset','style','jquery.fancybox','button','demo_table','TableTools','alerts'),'import');?>
         
       <!--                      JS                  --> 
       <?= $javascript->link(array('jquery-1.5.1.min','jquery.dataTables','TableTools','ZeroClipboard','jquery.fancybox.pack','config','add_edit'));?>
@@ -19,18 +19,18 @@
         <script>
             $(document).ready(function(){
                 $('.example').dataTable( {
-		"sDom": 'T<"clear">lfrtip',
-		"oTableTools": {
-			"aButtons": [
-				"copy",
-				"print",
-				{
-					"sExtends":    "collection",
-					"sButtonText": "Save",
-					"aButtons":    [ "csv", "xls", "pdf" ]
-				}
-			]
-		}
+//		"sDom": 'T<"clear">lfrtip',
+//		"oTableTools": {
+//			"aButtons": [
+//				"copy",
+//				"print",
+//				{
+//					"sExtends":    "collection",
+//					"sButtonText": "Save",
+//					"aButtons":    [ "csv", "xls", "pdf" ]
+//				}
+//			]
+//		}
 	} );
             });
 
@@ -51,6 +51,7 @@
                     font-weight:bold;
                     padding:10px;
                 }
+               
                </style> 
 <script>
  parent.$.fancybox.close();
@@ -63,7 +64,10 @@
 
         <div id="body-wrapper">
 
-
+<?php
+	/*echo $this->Session->flash('auth');*/
+        echo $this->Session->flash()
+?>
 
 
             <div id="main-content"> <!-- Main Content Section with everything --> 
@@ -82,9 +86,9 @@
                 <h2>Users</h2> 
                 </div>
                   
-                  <?= $html->tag('div',$html->link('Import User',array('controller'=>'users','action'=>'loadNewStudents'),array('escape'=>false,'class'=>'btn success modal'))
+                  <?= $html->tag('div',$html->link('Import Users',array('controller'=>'users','action'=>'import'),array('escape'=>false,'class'=>'btn success imp'))
                   ,array('class' => 'import'))?>
-                   <?= $html->tag('div',$html->link('Add User',array('controller'=>'users','action'=>'add'),array('escape'=>false,'class'=>'btn success modal'))
+                   <?= $html->tag('div',$html->link('Add User',array('controller'=>'users','action'=>'add'),array('escape'=>false,'class'=>'btn success  modal2'))
                   ,array('class' => 'add'))?>
                 <div class="content-box"><!-- Start Content Box --> 
 

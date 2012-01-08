@@ -47,7 +47,7 @@ class SubjectsController extends AppController {
 				$this->Session->setFlash('The subject has been saved','default', array(
 					'class' => 'message success'
 				));
-				$this->redirect(array('controller'=> 'pages','action' => 'admin'));
+				$this->redirect(array('controller'=> 'pages','action' => 'success'));
 			} else {
 				$this->Session->setFlash('The subject could not be saved. Please, try again.','default', array(
 					'class' => 'message error'
@@ -67,9 +67,9 @@ class SubjectsController extends AppController {
                        
 			if ($this->Subject->save($this->data)) {
 				$this->Session->setFlash('The subject has been saved','default', array(
-					'class' => 'message success'
+					'class' => 'message warning'
 				));
-				$this->redirect(array('controller'=> 'pages','action' => 'admin'));
+				$this->redirect(array('controller'=> 'pages','action' => 'success'));
 			} else {
 				$this->Session->setFlash('The subject could not be saved. Please, try again.','default', array(
 					'class' => 'message error'
@@ -90,7 +90,7 @@ class SubjectsController extends AppController {
 		}
 		if ($this->Subject->delete($id)) {
 			$this->Session->setFlash('Subject deleted','default', array(
-					'class' => 'message success'
+					'class' => 'message warning'
 				));
 			$this->redirect(array('controller'=> 'pages','action' => 'admin'));
 		}

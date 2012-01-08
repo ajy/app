@@ -1,9 +1,30 @@
-<?=$html->css(array('reset','submitButton','add_edit'));?>
+<?=$html->css(array('reset','button','add_edit'));?>
 <script>
 
+function close(){
+    
+    parent.$.fancybox.close( );
+
+}
+
 </script>
+<style>
+  .error {
+  width:100%;
+  color:#c43c35;
+}
+.error-message{
+display:inline;
+color:#c43c35;
+padding-left:30px;
+}
+footer{
+padding-bottom:80px;
+}
+</style>
 <div class="subjects form">
   <div id="header"><?php __('Edit Subject'); ?></div>  
+  <?php  echo $this->Session->flash()?>
 <?php echo $this->Form->create('Subject');?>
 	<fieldset>
 		
@@ -89,16 +110,22 @@
            
             })	*/</script>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit', true));?>
+<footer>
+<div id="cancel">
+<input type="button" value="Cancel" class="btn close" name="Close" onclick="window.close();" />
+
+</div>
+<div id="submit">
+ <input class="btn success" type="submit" value="Save" />
+</div>
+</footer>
+<? 
+
+$form->end();?>
   <script>
   $("form").submit(function() {
-                 /*   alert('here');alert("<?php echo  $teacher2=$this->data['Teacher2']['id'];  ; ?>");
-                if( $('#SubjectTeacher2').val()===" "){
-                $('#SubjectTeacher2').attr('selectedIndex', '-1');
-        ("<?php echo  $this->data['Teacher2']['id']=null;  ; ?>");    
-        alert ("<?php echo  $this->data['Teacher2']['id'] ; ?>"); 
-        }
-          });*/
+      alert('here')
+                
   </script>
  <?/* $options = array(
            /* array(
