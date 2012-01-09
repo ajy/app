@@ -10,7 +10,7 @@ class UsersController extends AppController {
 	
 	function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('resetPassword');
+		$this->Auth->allow('resetPassword');//doesn't need login for access
                 
 	}
 
@@ -169,7 +169,7 @@ class UsersController extends AppController {
 	function add() {
 		if (!empty($this->data)) {
 			if($this->data['User']['group_id']!=3)$this->data['User']['class']='';//not a student, so no class
-			if ($this->User->save($this->data,true,array('id', 'username', 'name', 'email','group_id','class'))) {
+			if ($this->User->save($this->data,true,array('username', 'name', 'email','group_id','class'))) {//no id cause its a new user
 				$this->Session->setFlash('The user has been saved','default', array(
 					'class' => 'message warning'
 				));				
@@ -268,8 +268,10 @@ class UsersController extends AppController {
 			$NumSavedRows = 0;
 			$error = false;
 			$info = $csv->data;
+			echo debug($info);
+			return;
 			foreach($info as $studentInfo){
-				if($this->User->save(array('User' => $studentInfo))){
+				if($this->User->save(array('User' => $studentInfo),true,array('username', 'name', 'email','class'))){// no id cause its a new user
 					$NumSavedRows++;
 				} else {
 					$this->Session->setFlash('Error,  Could only  import '.$NumSavedRows.' records. Please try again.','default', array(
