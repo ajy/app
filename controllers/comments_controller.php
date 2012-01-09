@@ -5,7 +5,7 @@ class CommentsController extends AppController {
 
 	function index() {
 		$this->Comment->recursive = 0;
-		$this->set('comments', $this->paginate());
+		$this->set('comments', $this->Comment->find('all'));
 	}
 
 	function view($id = null) {

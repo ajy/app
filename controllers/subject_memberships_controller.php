@@ -7,7 +7,7 @@ class SubjectMembershipsController extends AppController {
 
 	function index() {
 		$this->SubjectMembership->recursive = 0;
-		$this->set('subjectMemberships', $this->paginate());
+		$this->set('subjectMemberships', $this->SubjectMembership->find('all'));
 		Configure::load('feedback');//load the max_sub_num variable
 		$total=$this->SubjectMembership->query("select count(*) as total from subject_memberships");
 		$form_a_submitted=$this->SubjectMembership->query("select count(*) as submitted from subject_memberships where form_a_submitted=".Configure::read('max_sub_num'));
