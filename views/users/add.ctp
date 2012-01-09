@@ -42,7 +42,7 @@ padding-bottom:80px;
     <fieldset>
 
     <?php
-            echo $this->Form->input('username',array('required'=>'1'));
+            echo $this->Form->input('username'/*,array('required'=>'1')*/);
             echo $this->Form->input('name');
             echo $this->Form->input('group_id');
               $classes=$this->requestAction('/subjects/getClass');

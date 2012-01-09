@@ -63,19 +63,14 @@ class User extends AppModel {
 				//'allowEmpty' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-			'valid' => array(
-				'rule' => array('noClassForTeachersAndAdminOnlyStudents'),
-				'message' => 'This type of user cannot have a class',
-				'required' => true,
-			),
+			),			
 		),
 		'class' => array(
 			'valid' => array(
-				'rule' => '/^[1-8][AB]/',
-				'message' => 'This is not a valid class',
-				'allowEmpty' => true, //can be empty by default	for teachers and admin
-			)
+				'rule' => array('noValidClassForTeachersAndAdminOnlyStudents'),
+				'message' => 'This type of user cannot have this class',
+				'required' => true,
+			),
 		),
 		'email' => array(
 			'email' => array(
@@ -102,24 +97,21 @@ class User extends AppModel {
 		return true;
 	}
 	
-	function noClassForTeachersAndAdminOnlyStudents($check){
-		if((is_null($this->data['User']['class']))&&($this->data['User']['group_id']==3)){
-			//the user is a student who has no class
-			return false;
+	function noValidClassForTeachersAndAdminOnlyStudents($check){
+		if($this->data['User']['group_id']==3){
+			//the user is a student
+			$class=$this->data['User']['class'];
+			if(preg_match("/[1-8][AB]/",$class)!=1)return false;//who has an incorrect class
+			//always delimit pattern using backslash as above
 		}
-		elseif(!(is_null($this->data['User']['class']))&&($this->data['User']['group_id']!=3)){
+		elseif($this->data['User']['class']!=''){
 			//the user has a class but is not a student
 			return false;
 		}
 		return true;
 	}
 
-	function beforeValidate(){
-            if($this->data['User']['group_id']!=3){
-                           $this->data['User']['class']=NULL;
-                       }
-        }
-        function afterSave($created){
+	function afterSave($created){
 		if($created){
 			$users = $this->query('SELECT * FROM users User
 WHERE User.class IS NOT NULL and User.id NOT IN (SELECT student_id FROM subject_memberships)');

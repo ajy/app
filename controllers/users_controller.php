@@ -81,7 +81,7 @@ class UsersController extends AppController {
 			//$this->redirect(array('action' => 'index'));
 		}
 		if (empty($this->data)) {
-			$this->data = $this->User->read(null, $id);
+			$this->data['User']['id']=$id;//set user id of the user whose password is to be changed to the value passed
 			$this->data['User']['password'] = null;
 		}
 		$this->set('id');
@@ -130,7 +130,7 @@ class UsersController extends AppController {
 			//User has filled new password form
 			if (!empty($this->data['User']['password'])) { 
 				$this->data['User']['id']=$user['User']['id'];//not sent out to the form, so it can't be tampered with
-				if($this->User->save($this->data,true,array('id','password'))){//only password for the user must be set
+				if($this->User->save($this->data,true,array('id','password','confirm_password'))){//only password for the user must be set
 					$this->Session->setFlash('New password set for '.$user['User']['username'],'default', array(
 						'class' => 'message success'
 					));
@@ -142,7 +142,7 @@ class UsersController extends AppController {
 					$this->redirect('login');
 				}							
 			}
-			$this->data['User']=$user['User'];//loads the data so the form can use it
+			$this->data['User']['id']=$user['User']['id'];//loads the id of the correct user so the form can use it
 			$this->data['User']['password']=null;//since the new password needs to be given, no need to show the hash for the old one
 			$this->set('token', $token); 
 			$this->render('setNewPassword'); 
@@ -168,15 +168,11 @@ class UsersController extends AppController {
 
 	function add() {
 		if (!empty($this->data)) {
-			$this->User->create();
-                        
-			$this->log($this->data);
-                       
-			if ($this->User->save($this->data)) {
+			if($this->data['User']['group_id']!=3)$this->data['User']['class']='';//not a student, so no class
+			if ($this->User->save($this->data,true,array('id', 'username', 'name', 'email','group_id','class'))) {
 				$this->Session->setFlash('The user has been saved','default', array(
 					'class' => 'message warning'
-				));
-				//$this->enroll();
+				));				
 				$this->redirect((array('controller'=> 'pages','action'=>'success')));
                      
 			} else {
@@ -199,9 +195,9 @@ class UsersController extends AppController {
 		}
               
 		if (!empty($this->data)) {
-			$this->data['User']['id'] = $id;//makes sure nobody can tamper with it
+			$this->data['User']['id'] = $id;//makes sure nobody can tamper with it			
 			if($this->Session->read('Auth.User.group_id')==1){
-				$fieldsThatCanBeEdited=array('id', 'username', 'name', 'email','group_id','class');		
+				$fieldsThatCanBeEdited=array('id', 'username', 'name', 'email','group_id','class');
 			}else{
 				$fieldsThatCanBeEdited=array('id', 'email');
 			}
