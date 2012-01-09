@@ -19,11 +19,11 @@ class CommentsController extends AppController {
 	}
 
 	function add() {
-                 $param=$this->params['pass'];
+        	$param=$this->params['pass'];
 		if (!empty($this->data)) {
 			$this->Comment->create();
                          $param=($this -> Session -> read("params"));
-                         $this->data['Comment']['subject']=  $param['subject'];
+                         $this->data['Comment']['subject_id']=  $param['subject_id'];
                          $this->data['Comment']['teacher']=  $param['teacher'];
                          $this->data['Comment']['student']=  $param['student'];
 			if ($this->Comment->save($this->data)) {
@@ -36,13 +36,13 @@ class CommentsController extends AppController {
 					'class' => 'message error'
 				));
 			}
+		}else{
+			$user=($this -> Session -> read("Auth.User"));
+			$params['subject_id']=$param[0];
+			$params['teacher']=$param[1];
+			$params['student']=$user['id'];
+			$this->Session->write('params',$params);
 		}
-                
-                else{ $user=($this -> Session -> read("Auth.User"));
-         $params['subject']=$param[0];
-         $params['teacher']=$param[1];
-         $params['student']=$user['id'];
-         $this -> Session ->write('params',$params);}
 	}
 
 	function edit($id = null) {
