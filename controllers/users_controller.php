@@ -192,11 +192,9 @@ class UsersController extends AppController {
 					'class' => 'message error'
 				));
 			$this->redirect(array('action' => 'index'));
-		}
-              
+		}              
 		if (!empty($this->data)) {
 			$this->data['User']['id'] = $id;//makes sure nobody can tamper with it			
-			echo debug($this->data['User']);
 			if($this->Session->read('Auth.User.group_id')==1){
 				$fieldsThatCanBeEdited=array('id', 'username', 'name', 'email','group_id');
 			}else{
