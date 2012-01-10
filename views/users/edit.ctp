@@ -17,7 +17,7 @@ padding-bottom:80px;
 }
 </style>
 <script>
-	var pos;
+/*	var pos;
 	$(document).ready(
 
 function(){toggle();});
@@ -31,7 +31,7 @@ function(){toggle();});
                         
                     }
  	}
-
+*/
 function close(){
 
     parent.$.fancybox.close( );
@@ -62,8 +62,12 @@ function close(){
         if(($this -> Session -> read("Auth.User.group_id"))==3){
         	echo $this->Form->input('class',array('readonly'=>'readonly'));
         }
-        if(($this -> Session -> read("Auth.User.group_id"))==1){
+        if($this->Session->read("Auth.User.group_id")==1){
         	echo $this->Form->input('group_id');
+        }
+?>
+<?php
+	if(($this->Session->read("Auth.User.group_id")==1)&&($this->data['User']['group_id']==3)){
         	$classes=$this->requestAction('/subjects/getClass');
         	$selected=$this->data['User']['class'];
 ?>
