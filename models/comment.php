@@ -22,7 +22,7 @@ class Comment extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'subject_code' => array(
+		'subject_id' => array(
 			'isUser' => array(
 				'rule' => array('numeric'),
 				'message' => 'the Comment is not about a valid subject',
@@ -43,6 +43,12 @@ class Comment extends AppModel {
 			),
 		),
 	);
+        public function comments($user) {
+        $sql = "SELECT * FROM `comments` WHERE `from`=" .$user." or `to`= ".$user." order by `parent_id` ";
+        return($this->query($sql) == NULL ? NULL : $this->query($sql));
+       // $this->Comment->find('all',array('conditions'=>array('from'=)));
+    }
+        
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 	var $belongsTo = array(

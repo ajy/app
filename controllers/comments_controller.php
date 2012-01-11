@@ -20,12 +20,17 @@ class CommentsController extends AppController {
 
 	function add() {
                  $param=$this->params['pass'];
+                 
 		if (!empty($this->data)) {
 			$this->Comment->create();
                          $param=($this -> Session -> read("params"));
-                         $this->data['Comment']['subject']=  $param['subject'];
-                         $this->data['Comment']['teacher']=  $param['teacher'];
-                         $this->data['Comment']['student']=  $param['student'];
+                         $this->data['Comment']['subject_id']=  $param['subject'];
+                         $this->data['Comment']['to']=  $param['to'];
+                         $this->data['Comment']['from']=  $param['from'];
+                         if(count($param)>2){
+                              $this->data['Comment']['parent_id']=  $param['parent_id'];
+                         }
+                         $this->data['Comment']['comment']= base64_encode($this->data['Comment']['comment']);
 			if ($this->Comment->save($this->data)) {
 				$this->Session->setFlash('The comment has been saved','default', array(
 					'class' => 'message success'
@@ -38,10 +43,14 @@ class CommentsController extends AppController {
 			}
 		}
                 
-                else{ $user=($this -> Session -> read("Auth.User"));
+                else{
+                    $user=($this -> Session -> read("Auth.User"));
          $params['subject']=$param[0];
-         $params['teacher']=$param[1];
-         $params['student']=$user['id'];
+         $params['to']=$param[1];
+         $params['from']=$user['id'];
+          if(count($param)>2){
+         $params['parent_id']=$param[2];
+                         }
          $this -> Session ->write('params',$params);}
 	}
 
@@ -88,6 +97,6 @@ class CommentsController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
         function comments() {
-
+            $this->set('comments', $this->Comment->comments($this -> Session -> read("Auth.User.id")));
 	}
 }
