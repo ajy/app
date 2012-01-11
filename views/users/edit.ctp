@@ -1,4 +1,5 @@
 <?=$html->css(array('reset','button','add_edit'));?>
+<?=$html->script("livevalidation")?>
 <style>
     a              { color: purple; text-decoration: none; }
 
@@ -40,8 +41,8 @@ function close(){
 <div class="users form">
 <div id="header"><?php __('Edit User'); ?></div>
 <?php
-	/*echo $this->Session->flash('auth');*/
-        echo $this->Session->flash()
+	echo $this->Session->flash('auth');
+        echo $this->Session->flash();
 ?>
 <?php echo $this->Form->create('User');?>
 <?php
@@ -101,5 +102,27 @@ $("#UserGroupId").bind("change", function(){toggle()})</script>
  
    </footer>
 </div>
-
-
+<script>
+//validation code placed after the form makes it work
+<?php
+	if($this->Session->read("Auth.User.group_id")==1){//must be admin for these validations to activate
+?>
+var userName = new LiveValidation("UserUsername",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+userName.add(Validate.Presence);
+var name = new LiveValidation("UserName",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+name.add(Validate.Presence);
+var group = new LiveValidation("UserGroupId",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+group.add(Validate.Inclusion, {within: ["1","2","3"]});
+<?php
+		if($this->data['User']['group_id']==3){//user being edited must be a student for this validation to be added
+?>
+var theClass = new LiveValidation("UserClass",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});//class is a keyword in js
+theClass.add(Validate.Format, {pattern: /[1-8][AB]/i, failureMessage: "Not a valid class"});
+<?php
+		}/*end of inner if*/
+	}/*end of outer if*/
+?>
+var email = new LiveValidation("UserEmail",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+email.add(Validate.Email);
+email.add(Validate.Presence);
+</script>

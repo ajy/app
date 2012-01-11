@@ -1,4 +1,5 @@
-<?php echo $this->Html->script('autoresize.jquery.js'); ?> 
+<?=$this->Html->script('autoresize.jquery.js'); ?> 
+<?=$html->script("livevalidation")?>
 <script>
 $('textarea').autoResize({
     // On resize:
@@ -27,4 +28,10 @@ $('textarea').autoResize({
 	</fieldset>
 <?php echo $this->Form->end(__('Send to your HOD', true));?>
 </div>
-
+<script>
+//validation code placed after the form makes it work
+var subject = new LiveValidation("UserSubject",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+subject.add(Validate.Presence);
+var feedback = new LiveValidation("UserFeedback",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+feedback.add(Validate.Presence);
+</script>

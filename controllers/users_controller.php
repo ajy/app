@@ -244,7 +244,7 @@ class UsersController extends AppController {
 		if(!empty($this->data['User']['From'])&&!empty($this->data['User']['To'])){
 			$from = $this->data['User']['From'];
 			$to = $this->data['User']['To'];
-			$this->User->query("update users set class=\'".$to."\' where class=\'".$from."\'");//the slashes and quotes look silly but they make it work and more secure'
+			$this->User->query("update users set class='".$to."' where class='".$from."'");//the slashes and quotes look silly but they make it work and more secure'
 			$test=$this->User->find('all',array(
 				'conditions'=>array(
 					'class' => $from

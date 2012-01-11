@@ -1,6 +1,6 @@
 <?=$html->css(array('reset','button','add_edit'));?>
+<?=$html->script("livevalidation")?>
 <script>
-
 $(document).ready(function(){
 
 $('#UserGroupId').attr('selectedIndex', '-1');
@@ -40,27 +40,18 @@ padding-bottom:80px;
 ?>
 <?php echo $this->Form->create('User');?>
     <fieldset>
-
-    <?php
-            echo $this->Form->input('username'/*,array('required'=>'1')*/);
-            echo $this->Form->input('name');
-            echo $this->Form->input('group_id');
-              $classes=$this->requestAction('/subjects/getClass');
-             ?>
-         <script>$("#UserGroupId").bind("change", function() {
-
-        hide()})	</script>
-     <!--    <div id="Class">   <label> Class</label>
-             <select name="data[User][class]" id="UserClass" >
-                           <?foreach($classes as $class):?>
-                    <option><?=$class['subjects']['class']?></option>
-                  <?  endforeach;?>
-               ?> </select></div>-->
- <? echo $this->Form->input('class');
-         
- echo $this->Form->input('email');
-
-    ?>
+<?php
+	echo $this->Form->input('username');
+	echo $this->Form->input('name');
+	echo $this->Form->input('group_id');
+?>
+<script>
+	$("#UserGroupId").bind("change", function() {hide()})
+</script>
+<?
+	echo $this->Form->input('class');
+	echo $this->Form->input('email');
+?>
     </fieldset>
 <footer>
 <div id="cancel">
@@ -72,7 +63,19 @@ padding-bottom:80px;
 </div>
 </footer>
 
-<? $form->end();
-?>
- 
+<? $form->end();?>
 </div>
+<script>
+//validation code placed after the form makes it work
+var userName = new LiveValidation("UserUsername",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+userName.add(Validate.Presence);
+var name = new LiveValidation("UserName",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+name.add(Validate.Presence);
+var group = new LiveValidation("UserGroupId",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+group.add(Validate.Inclusion, {within: [1,2,3]});
+var theClass = new LiveValidation("UserClass",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});//class is a keyword in js
+theClass.add(Validate.Format, {pattern: /[1-8][AB]/i, failureMessage: "Not a valid class"});
+var email = new LiveValidation("UserEmail",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+email.add(Validate.Presence);
+email.add(Validate.Email);
+</script>

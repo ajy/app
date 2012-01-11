@@ -58,7 +58,7 @@ class User extends AppModel {
 		'group_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
-				'message' => 'Your custom message here',
+				'message' => 'give a group',
 				'required' => true,
 				//'allowEmpty' => false,
 				//'last' => false, // Stop validation after this rule
@@ -112,9 +112,9 @@ class User extends AppModel {
 	}
 
 	function afterSave($created){
-		if($created){
+		if($created){//adds all students who aren't present in the subject_memberships table with the subjects of their class
 			$users = $this->query('SELECT * FROM users User
-WHERE User.class IS NOT NULL and User.id NOT IN (SELECT student_id FROM subject_memberships)');
+WHERE User.class <> "" and User.id NOT IN (SELECT student_id FROM subject_memberships)');
 			foreach($users as $user){
 				$this->bindModel(
 					array('hasMany' => array(

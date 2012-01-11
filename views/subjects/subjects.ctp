@@ -52,15 +52,15 @@
                   ,array('class' => 'green'));                  
                echo "</li>";
 
-               if($teacher2!=NULL){
+            /*   if($teacher2!=NULL){
             if($teacher2[$i][0]['users']['name']!= Null){
                 
-                 echo "<li>";
+             echo "<li>";
              echo "<a>".$teacher2[$i][0]['users']['name']."</a>";
              echo $html->link($html->tag('span','Comment',array('class' => 'green')),array('controller'=>'comments','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher2"]),array('escape'=>false,'class'=>'c_modal'));
              echo $html->link($html->tag('span','Feedback',array('class' => 'blue')),array('controller'=>'form_a_records','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher2"]),array('escape'=>false),array('class'=>'modal'));
              echo "</li>";
-            }}
+            }}no more teacher2*/
             
               echo "</ul>";
               echo "</li>";}
