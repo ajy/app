@@ -1,10 +1,10 @@
- <?=$html->css(array('reset','add_edit','button'));?> 
-
+<?=$html->css(array('reset','add_edit','button'));?>
+<?=$html->script("livevalidation")?>
 <div id="header">Reset Password</div>
 <?php
 	echo $this->Session->flash('auth');
 ?>
- <?php
+<?php
 	echo $this->Form->create('User',array('action'=>'resetPassword/'.$token));
 	echo $this->Form->input('username',array('type'=>'hidden'));//not used, but activates autohashing of password, i hope
 	echo $this->Form->input('password', array('type' => 'password'));
@@ -21,3 +21,12 @@
 </div>
     </footer>
 <? $form->end();?>
+<script>
+//validation code placed after the form makes it work
+var password = new LiveValidation("UserPassword",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+password.add(Validate.Length, {minimum:5,maximum:15});
+password.add(Validate.Presence);
+var confirmPassword = new LiveValidation("UserConfirmPassword",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+confirmPassword.add(Validate.Confirmation, {match:"UserPassword", failureMessage:"The passwords don't match"});
+confirmPassword.add(Validate.Presence);
+</script>

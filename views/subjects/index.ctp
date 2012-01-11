@@ -115,8 +115,8 @@
                                         <th>Name</th> 
                                         <th>Code</th> 
                                         <th>Class </th>
-                                        <th>Teacher 1</th>
-                                        <th>Teacher 2</th>
+                                        <th>Teacher</th>
+                                        <!--<th>Teacher 2</th>-->
                                         <th>Actions </th>
                                     </tr> 
                                     
@@ -153,8 +153,7 @@
 		<td class="center"><?php echo $subjects[$i]['subjects']['code']; ?></td>
 		<td class="center"><? echo  $subjects[$i]['subjects']['class']; ?></td>
 		<td class="center"><?php echo $teacher1[$i][0]['users']['name']!=NULL? $teacher1[$i][0]['users']['name']:"-"; ?></td>
-               <td class="center"><?php echo $teacher2[$i][0]['users']['name']!=NULL? $teacher2[$i][0]['users']['name']:"-"; ?></td>
-               
+                <!--<td class="center"><?php echo $teacher2[$i][0]['users']['name']!=NULL? $teacher2[$i][0]['users']['name']:"-"; ?></td>-->               
                 <td class="center"> 
                     <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $subjects[$i]['subjects']['id']),array('class'=>'modal2')); ?>&nbsp;&nbsp;
                     <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete',$subjects[$i]['subjects']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $subjects[$i]['subjects']['id'])); ?>
@@ -181,7 +180,7 @@
                                         <th>Code</th> 
                                         <th>Class </th>
                                         <th>Teacher 1</th>
-                                        <th>Teacher 2</th>
+                                        <!--<th>Teacher 2</th>-->
                                         <th>Actions </th>
                                     </tr> 
                                     
@@ -215,8 +214,7 @@
 		<td class="center"><?php echo $subjects[$i]['subjects']['code']; ?></td>
 		<td class="center"><? echo  $subjects[$i]['subjects']['class']; ?></td>
 		<td class="center"><?php echo $teacher1[$i][0]['users']['name']!=NULL? $teacher1[$i][0]['users']['name']:"-"; ?></td>
-               <td class="center"><?php echo $teacher2[$i][0]['users']['name']!=NULL? $teacher2[$i][0]['users']['name']:"-"; ?></td>
-               
+                <!--<td class="center"><?php echo $teacher2[$i][0]['users']['name']!=NULL? $teacher2[$i][0]['users']['name']:"-"; ?></td>-->
                 <td class="center"> 
                     <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $subjects[$i]['subjects']['id']),array('class'=>'modal2')); ?>&nbsp;&nbsp;
                     <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete',$subjects[$i]['subjects']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $subjects[$i]['subjects']['id'])); ?>
@@ -242,8 +240,8 @@
                                         <th>Name</th> 
                                         <th>Code</th> 
                                         <th>Class </th>
-                                        <th>Teacher 1</th>
-                                        <th>Teacher 2</th>
+                                        <th>Teacher</th>
+                                        <!--<th>Teacher 2</th>-->
                                         <th>Actions </th>
                                     </tr> 
                                     
@@ -278,8 +276,7 @@
 		<td class="center"><?php echo $subjects[$i]['subjects']['code']; ?></td>
 		<td class="center"><? echo  $subjects[$i]['subjects']['class']; ?></td>
 		<td class="center"><?php echo $teacher1[$i][0]['users']['name']!=NULL? $teacher1[$i][0]['users']['name']:"-"; ?></td>
-               <td class="center"><?php echo $teacher2[$i][0]['users']['name']!=NULL? $teacher2[$i][0]['users']['name']:"-"; ?></td>
-               
+                <!--<td class="center"><?php echo $teacher2[$i][0]['users']['name']!=NULL? $teacher2[$i][0]['users']['name']:"-"; ?></td>-->               
                 <td class="center"> 
                     <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $subjects[$i]['subjects']['id']),array('class'=>'modal2')); ?>&nbsp;&nbsp;
                     <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete',$subjects[$i]['subjects']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $subjects[$i]['subjects']['id'])); ?>

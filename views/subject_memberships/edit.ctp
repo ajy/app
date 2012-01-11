@@ -6,8 +6,7 @@
 		echo $this->Form->input('id');
 		echo $this->Form->input('student_id');
 		echo $this->Form->input('subject_id');
-		echo $this->Form->input('form_a_submitted');
-		echo $this->Form->input('form_b_submitted');
+		echo $this->Form->input('form_a_submitted');		
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
