@@ -26,6 +26,7 @@ padding-bottom:80px;
 <div class="subjects form">
 <div id="header"><?php __('Edit Subject'); ?></div>  
 <?php echo $this->Session->flash()?>
+<cake:nocache>
 <?php echo $this->Form->create('Subject');?>
 	<fieldset>
 <?php
@@ -116,8 +117,9 @@ padding-bottom:80px;
  <input class="btn success" type="submit" value="Save" />
 </div>
 </footer>
-<?$form->end();?>
+<?=$this->Form->end();?>
 </div>
+</cake:nocache>
 <script>
 //validation code placed after the form makes it work
 var subjectName = new LiveValidation("SubjectName",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});

@@ -41,6 +41,8 @@
                         break;
                     case 7: //ifr.src="../users/add";
                         break;
+                    case 8: ifr.src="../subject_memberships/index";
+                    	break;
                 }
    
     
@@ -116,6 +118,14 @@
                         <li> 
                             <a href="#"  class="nav-top-item" onclick="LoadIFrame(4)"> 
                                 Comments
+
+                            </a> 
+
+                        </li>
+                        
+                        <li> 
+                            <a href="#"  class="nav-top-item" onclick="LoadIFrame(8)"> 
+                                Enrollments
 
                             </a> 
 

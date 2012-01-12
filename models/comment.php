@@ -1,6 +1,7 @@
 <?php
 class Comment extends AppModel {
 	var $name = 'Comment';
+	
 	var $validate = array(
 		'from' => array(
 			'isUser' => array(

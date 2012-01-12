@@ -4,6 +4,7 @@
 <?php
 	echo $this->Session->flash('auth');
 ?>
+<cake:nocache>
 <?php
 	echo $this->Form->create('User',array('action'=>'resetPassword/'.$token));
 	echo $this->Form->input('username',array('type'=>'hidden'));//not used, but activates autohashing of password, i hope
@@ -20,7 +21,8 @@
  <input class="btn info" type="submit" value="Save" />
 </div>
     </footer>
-<? $form->end();?>
+<?=$this->Form->end();?>
+</cake:nocache>
 <script>
 //validation code placed after the form makes it work
 var password = new LiveValidation("UserPassword",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});

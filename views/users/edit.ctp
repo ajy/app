@@ -44,8 +44,9 @@ function close(){
 	echo $this->Session->flash('auth');
         echo $this->Session->flash();
 ?>
-<?php echo $this->Form->create('User');?>
+</cake:nocache>
 <?php
+	echo $this->Form->create('User');
 	echo $this->Form->input('id');
 	if(($this -> Session -> read("Auth.User.group_id"))==1)
 		echo $this->Form->input('username');
@@ -66,8 +67,6 @@ function close(){
         if($this->Session->read("Auth.User.group_id")==1){
         	echo $this->Form->input('group_id');
         }
-?>
-<?php
 	if(($this->Session->read("Auth.User.group_id")==1)&&($this->data['User']['group_id']==3)){
         	$classes=$this->requestAction('/subjects/getClass');
         	$selected=$this->data['User']['class'];
@@ -89,7 +88,7 @@ $("#UserGroupId").bind("change", function(){toggle()})</script>
 </select>
 </div>
 <?php }/*end of if*/ ?>
-   <footer>
+<footer>
 
 <div id="cancel">
 <input type="button" value="Cancel" class="btn close" name="Close" onclick=" window. close();" />
@@ -98,9 +97,9 @@ $("#UserGroupId").bind("change", function(){toggle()})</script>
 <div id="submit">
  <input class="btn success" type="submit" value="Save" />
 </div>
-<? $form->end();?>
- 
-   </footer>
+<?=$this->Form->end();?>
+</footer>
+</cake:nocache>
 </div>
 <script>
 //validation code placed after the form makes it work

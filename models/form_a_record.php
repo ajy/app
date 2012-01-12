@@ -1,6 +1,7 @@
 <?php
 class FormARecord extends AppModel {
 	var $name = 'FormARecord';
+	
 	var $validate = array(
 		'student' => array(
 			'numeric' => array(
