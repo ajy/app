@@ -7,9 +7,35 @@
 		$('.example').dataTable();
 	});
 </script>
-<?php echo "The number of submissions done is ".$form_a_submitted.'/'.$total;?>
+<style type="text/css" title="currentStyle"> 
+html{
+    overflow:hidden;
+}
+.add,.import{
+float:right;
+padding-right:10px;
+position:relative;
+top:20px;
+}
+.btn{
+font-weight:bold;
+padding:10px;
+}
+</style>
+<div id="main-content"> <!-- Main Content Section with everything --> 
 <div class="subjectMemberships index">
-	<h2><?php __('Subject Memberships');?></h2>
+	<div id="pHead">
+        <h2>Enrollments</h2> 
+        </div>
+        <?= $html->tag('div',
+        	$this->Html->link('Enroll',
+        		array('action' => 'enroll'),
+        		array('escape'=>false,'class'=>'btn success imp')),
+        	array('class' => 'import'));
+        ?>
+        <?php echo "The number of completed form submissions are ".$form_a_submitted.'/'.$total;?>
+	<div class="content-box"><!-- Start Content Box --> 
+	<div class="content-box-content">
 	<table cellpadding="0" cellspacing="0" class="display example" >
 	<thead>
 	<tr>
@@ -44,18 +70,7 @@
 <?php endforeach; ?>
 	</tbody>
 	</table>
-	<!--<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
-	));
-	?>	</p>
-
-	<div class="paging">
-		<?php echo $this->Paginator->prev('<< ' . __('previous', true), array(), null, array('class'=>'disabled'));?>
-	 | 	<?php echo $this->Paginator->numbers();?>
- |
-		<?php echo $this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>
-	</div> -->
+	</div>
+	</div>
 </div>
-
+</div>
