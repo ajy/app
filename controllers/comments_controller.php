@@ -3,6 +3,8 @@ class CommentsController extends AppController {
 
 	var $name = 'Comments';
 
+	var $uses = array('User','Subject','Comment');
+
 	function index() {
 		$this->Comment->recursive = 0;
 		$this->set('comments', $this->Comment->find('all'));
@@ -18,6 +20,41 @@ class CommentsController extends AppController {
 		$this->set('comment', $this->Comment->read(null, $id));
 	}
 
+	function report($id = null) {
+		if (!$id) {
+			$this->Session->setFlash('Invalid comment','default', array(
+					'class' => 'message error'
+				));
+			$this->redirect($this->referer());
+		}
+		if($id){
+			$reportedComment = $this->Comment->findById($id);
+			if(empty($reportedComment)){
+				$this->Session->setFlash('Invalid comment','default', array(
+					'class' => 'message error'
+				));
+				$this->redirect($this->referer());
+			}
+			$admins = $this->User->find('all',array(//find all admins
+				'conditions' => array(
+					'group_id' => 1,
+				)
+			));
+			$reporter = $this->Session->read('Auth.User.username');
+			$message = $reporter." submitted the following comment #".$reportedComment['Comment']['id']." for review";
+			foreach($admins as $admin){
+				$this->Comment->create();
+				$this->Comment->set(array(
+					'Comment.from' => $this->Session->read("Auth.User.id"),
+					'Comment.to' => $admin['User']['id'],
+					'Comment.subject_id' => '0',
+					'Comment.comment' => $message
+				));
+			}
+		}
+		//$this->set('comment', $this->Comment->read(null, $id));
+	}
+	
 	function add() {
         	$param=$this->params['pass'];
 		if (!empty($this->data)) {

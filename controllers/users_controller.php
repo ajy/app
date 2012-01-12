@@ -288,6 +288,13 @@ class UsersController extends AppController {
 		}
 	}
 	
+        function test(){
+        	echo "Beginning test";
+        	Configure::write('debug',0);
+        	echo "set new debug level";
+        	return;
+        }
+        
         function redir(){
             $group_id=$this->Session->read("Auth.User.group_id");
               if($group_id==1) {
