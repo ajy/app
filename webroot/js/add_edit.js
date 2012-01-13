@@ -118,6 +118,54 @@ $(document).ready(function() {
 
                
     });    
+     $(".modal5").fancybox({
+        
+        height:270,
+        width:500,
+        fitToView	: false,
+//        autoSize	: true,
+        type				: 'iframe',
+        padding:1,
+        modal:true,
+         
+        helpers: { 
+            title:null
+        } ,
+        afterClose    :   function() {
+            location.reload();
+        } 
+
+               
+    });    
+    
+    $(".fbf").fancybox({
+        
+        width				: '38%',
+	height			: '104%',
+        minWidth	:500,
+        minHeight	: 200,
+        fitToView	: false,
+        autoSize	: true,
+        type				: 'iframe',
+        padding:1,
+        modal:true,
+         
+        helpers: { 
+            title:null
+        } ,
+        afterClose    :   function() {
+            location.reload();
+        } ,
+        beforeShow    :   function() {
+        //       $.fancybox.showLoading()
+
+        } ,
+        afterShow   :   function() {
+            $.fancybox.hideLoading()
+
+        }         
+    });
+    
 });
 
 

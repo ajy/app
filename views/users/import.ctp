@@ -16,7 +16,9 @@ display:inline;
 color:#c43c35;
 padding-left:30px;
 }
-
+footer{
+padding-bottom:80px;
+}
 </style>
 <div id="header">Import Users </div>
 <?php

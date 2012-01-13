@@ -8,19 +8,22 @@
 
         <title>Admin</title> 
 
-        <!--                       CSS                       --> 
+         <!--                       CSS                       --> 
+        <?=$html->css(array('reset','style','jquery.fancybox','button','demo_table','demo_table_jui','jquery-ui-1.8.4.custom','TableTools','alerts'),'import');?>
+   
 
-
-        <?= $html->css(array('reset', 'style','jquery.fancybox','button','alerts')); ?>
-        <?= $html->css(array('demo_table')); ?>
-
-
-        <?= $javascript->link(array('jquery-1.5.1.min', 'jquery.dataTables', 'jquery.fancybox.pack')); ?>
-	<?= $javascript->link(array('config','add_edit'));?>
+        <!--                      JS                  --> 
+      <?= $javascript->link(array('jquery-1.5.1.min','jquery.dataTables','TableTools','ZeroClipboard','jquery.fancybox.pack','config','add_edit'));?>
+     
 
         <script>
             $(document).ready(function(){
-                $('.subjects').dataTable();
+                $('.subjects').dataTable({
+                    "bJQueryUI": true,
+		"sPaginationType": "full_numbers"
+	
+                });
+                
             });
 
         </script>

@@ -94,6 +94,23 @@
                 <label style="display: inline-block">1<input type="radio" name="data[FormARecord][q10]" value="1" required /></label>
             </fieldset>            
   <?php echo $this->Form->end(__('Submit', true));?>
+
+<?php
+///debug($this->Session->read('params'));
+//debug($this->params['pass'])
+/*
+ if(($this -> Session -> read("Auth.User.group_id"))==1){?>
+<div class="actions">
+	<h3><?php __('Actions'); ?></h3>
+	<ul>
+
+		<li><?php echo $this->Html->link(__('List Form A Records', true), array('action' => 'index'));?></li>
+	</ul>
+</div>
+ 
+
+<?php } */?>
+
   <script>/*super weird validation code that never worked
   function customQValidation(value, args){
   	var i= args.i;
@@ -122,3 +139,4 @@
   </script>
   
   
+

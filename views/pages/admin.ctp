@@ -31,18 +31,17 @@
                         break;
                     case 2: ifr.src="../users";
                         break;
-                    case 3: //ifr.src="../subjects";
+                    case 3: ifr.src="../form_a_records/result";
                         break;
-                    case 4: //ifr.src="../subjects";
+                    case 4: ifr.src="../comments/search";
                         break;
-                    case 5: //ifr.src="../users/view/1";
+                    case 5: ifr.src="../subject_memberships";
                         break;
                     case 6: //ifr.src="../users/edit/1";
                         break;
                     case 7: //ifr.src="../users/add";
                         break;
-                    case 8: ifr.src="../subject_memberships/index";
-                    	break;
+                  
                 }
    
     
@@ -124,7 +123,7 @@
                         </li>
                         
                         <li> 
-                            <a href="#"  class="nav-top-item" onclick="LoadIFrame(8)"> 
+                            <a href="#"  class="nav-top-item" onclick="LoadIFrame(5)"> 
                                 Enrollments
 
                             </a> 
@@ -132,7 +131,7 @@
                         </li> 
 
                         <li> 
-                             <?php echo $html->link('Profile', array('controller' => 'users', 'action' => 'edit',$user['id']),array('id'=>'nav-top-item','class'=>' modal','onclick'=>"LoadIFrame(5)")); ?>
+                             <?php echo $html->link('Profile', array('controller' => 'users', 'action' => 'edit',$user['id']),array('id'=>'nav-top-item','class'=>' modal','onclick'=>"LoadIFrame(6)")); ?>
 <!--                           <a href="../user/add"  id="nav-top-item" class="modal" onclick="LoadIFrame(5)"> 
                            Profile
                             </a> -->

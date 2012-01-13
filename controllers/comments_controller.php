@@ -1,9 +1,12 @@
 <?php
-class CommentsController extends AppController {
 
+class CommentsController extends AppController {
+       
 	var $name = 'Comments';
 
+
 	var $uses = array('User','Subject','Comment');
+
 
 	function index() {
 		$this->Comment->recursive = 0;
@@ -56,30 +59,44 @@ class CommentsController extends AppController {
 	}
 	
 	function add() {
-        	$param=$this->params['pass'];
+
+                 $param=$this->params['pass'];
+                 
 		if (!empty($this->data)) {
 			$this->Comment->create();
                          $param=($this -> Session -> read("params"));
-                         $this->data['Comment']['subject_id']=  $param['subject_id'];
-                         $this->data['Comment']['teacher']=  $param['teacher'];
-                         $this->data['Comment']['student']=  $param['student'];
+                         $this->data['Comment']['subject_id']=  $param['subject'];
+                         $this->data['Comment']['to']=  $param['to'];
+                         $this->data['Comment']['from']=  $param['from'];
+                         if(count($param)>2){
+                              $this->data['Comment']['parent_id']=  $param['parent_id'];
+                         }
+                         $this->data['Comment']['comment']= base64_encode($this->data['Comment']['comment']);
+
 			if ($this->Comment->save($this->data)) {
 				$this->Session->setFlash('The comment has been saved','default', array(
 					'class' => 'message success'
 				));
-				$this->redirect(array('action' => 'index'));
+				  $this->redirect($this->Auth->redirect(array('controller'=> 'pages','action'=>'success')));
+                     
 			} else {
 				$this->Session->setFlash('The comment could not be saved. Please, try again.','default', array(
 					'class' => 'message error'
 				));
 			}
-		}else{
-			$user=($this -> Session -> read("Auth.User"));
-			$params['subject_id']=$param[0];
-			$params['teacher']=$param[1];
-			$params['student']=$user['id'];
-			$this->Session->write('params',$params);
 		}
+
+                
+                else{
+                    $user=($this -> Session -> read("Auth.User"));
+         $params['subject']=$param[0];
+         $params['to']=$param[1];
+         $params['from']=$user['id'];
+          if(count($param)>2){
+         $params['parent_id']=$param[2];
+                         }
+         $this -> Session ->write('params',$params);}
+
 	}
 
 	function edit($id = null) {
@@ -125,6 +142,18 @@ class CommentsController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
         function comments() {
-
+            $comments= $this->Comment->comments($this -> Session -> read("Auth.User.id"));
+            $this->set('comments',$comments);
 	}
+
+        function search(){
+            $teacher=$subject=null;
+          if (count($this->data)>1) {
+              echo $this->data['teacher']=="";
+            $teacher= $this->data['teacher'];
+            $subject= $this->data['subject'];
+//            debug( $this->Comment->search($teacher,$subject));
+             $this->set('comments', $this->Comment->search($teacher,$subject)); 
+           }
+        }
 }
