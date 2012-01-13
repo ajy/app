@@ -1,8 +1,9 @@
 <?php
+
 class CommentsController extends AppController {
-
+       
 	var $name = 'Comments';
-
+        var $uses = array('User');
 	function index() {
 		$this->Comment->recursive = 0;
 		$this->set('comments', $this->paginate());
@@ -35,7 +36,8 @@ class CommentsController extends AppController {
 				$this->Session->setFlash('The comment has been saved','default', array(
 					'class' => 'message success'
 				));
-				$this->redirect(array('action' => 'index'));
+				  $this->redirect($this->Auth->redirect(array('controller'=> 'pages','action'=>'success')));
+                     
 			} else {
 				$this->Session->setFlash('The comment could not be saved. Please, try again.','default', array(
 					'class' => 'message error'
@@ -97,6 +99,18 @@ class CommentsController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
         function comments() {
-            $this->set('comments', $this->Comment->comments($this -> Session -> read("Auth.User.id")));
+            $comments= $this->Comment->comments($this -> Session -> read("Auth.User.id"));
+            $this->set('comments',$comments);
 	}
+
+        function search(){
+            $teacher=$subject=null;
+          if (count($this->data)>1) {
+              echo $this->data['teacher']=="";
+            $teacher= $this->data['teacher'];
+            $subject= $this->data['subject'];
+//            debug( $this->Comment->search($teacher,$subject));
+             $this->set('comments', $this->Comment->search($teacher,$subject)); 
+           }
+        }
 }

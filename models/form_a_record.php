@@ -257,7 +257,7 @@ class FormARecord extends AppModel {
 				}
 			}
 		}
-		echo debug($allFormAResults);
+		 //debug($allFormAResults);
 		return $allFormAResults;
 	}
 }

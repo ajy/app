@@ -5,7 +5,7 @@
  
                <style type="text/css" title="currentStyle"> 
 			  html{
-                            overflow:hidden;
+/*                            overflow:hidden;*/
                          }
                </style> 
                
@@ -37,6 +37,13 @@
     
 }
                </script>
+               <style>
+                    iframe{
+                width:100%;
+                height:660px; 
+                overflow:scroll;
+            } 
+               </style>
               
                
 </head>

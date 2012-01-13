@@ -87,7 +87,10 @@
                 <label style="display: inline-block">1<input type="radio" name="data[FormARecord][q10]" value="1" required/></label>
             </fieldset>
   <?php echo $this->Form->end(__('Submit', true));?>
-<?php /*
+<?php
+debug($this->Session->read('params'));
+debug($this->params['pass'])
+/*
  if(($this -> Session -> read("Auth.User.group_id"))==1){?>
 <div class="actions">
 	<h3><?php __('Actions'); ?></h3>

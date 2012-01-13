@@ -150,8 +150,9 @@ WHERE User.class IS NOT NULL and User.id NOT IN (SELECT student_id FROM subject_
 		}
 	}
 	
+       
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+        //The Associations below have been created with all possible keys, those that are not needed can be removed
 
 	var $belongsTo = array(
 		'Group' => array(

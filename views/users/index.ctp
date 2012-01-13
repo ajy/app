@@ -9,7 +9,7 @@
         <title>Admin</title> 
 
         <!--                       CSS                       --> 
-        <?=$html->css(array('reset','style','jquery.fancybox','button','demo_table','TableTools','alerts'),'import');?>
+        <?=$html->css(array('reset','style','jquery.fancybox','button','demo_table','demo_table_jui','jquery-ui-1.8.4.custom','TableTools','alerts'),'import');?>
         
       <!--                      JS                  --> 
       <?= $javascript->link(array('jquery-1.5.1.min','jquery.dataTables','TableTools','ZeroClipboard','jquery.fancybox.pack','config','add_edit'));?>
@@ -31,6 +31,8 @@
 //				}
 //			]
 //		}
+"bJQueryUI": true,
+		"sPaginationType": "full_numbers"
 	} );
             });
 

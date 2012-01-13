@@ -257,14 +257,15 @@ a.remove-link:hover {
                  top:20px;*/
                 font-size:25px;
                     color:#689FFA;
+                     text-transform:capitalize;
                 }
 
 #sidebar #profile-links {
                 padding: 0 0px 20px 5px;
                 text-align: left;
                 line-height: 1.5em;
-           
                
+             
 
 }
 

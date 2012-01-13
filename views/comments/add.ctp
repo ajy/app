@@ -1,6 +1,19 @@
- <?=$html->css(array('reset','add_edit','submitButton'));?> 
+ <?=$html->css(array('reset','add_edit','button'));?> 
+<script>
+    function close(){
+
+    parent.$.fancybox.close( );
+}
+
+</script>
+<style>
+    textarea{
+        width:450px;
+    }
+</style>
 <div class="comments form">
     <div id="header"><?php __('Add Comment'); ?></div>
+    
 <?php echo $this->Form->create('Comment');?>
 	<fieldset>
 		
@@ -9,18 +22,21 @@
 		/*echo $this->Form->input('from');
 		echo $this->Form->input('to');
 		echo $this->Form->input('subject_code');*/
-		echo $this->Form->input('comment');
+		echo $this->Form->input('comment',array('type'=>'textarea','label'=>''));
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit', true));?>
-</div>
-<?php 
- if(($this -> Session -> read("Auth.User.group_id"))==1){ ?>
-<div class="actions">
-	<h3><?php __('Actions'); ?></h3>
-	<ul>
+  <footer>
 
-		<li><?php echo $this->Html->link(__('List Comments', true), array('action' => 'index'));?></li>
-	</ul>
+<div id="cancel">
+<input type="button" value="Cancel" class="btn close" name="Close" onclick=" window. close();" />
+
 </div>
-<?php } ?>
+<div id="submit">
+ <input class="btn success" type="submit" value="Post" />
+</div>
+<? $form->end();?>
+ 
+   </footer>
+
+
+</div>
