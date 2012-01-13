@@ -26,16 +26,16 @@
 			<?php echo $subject['Subject']['section']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Teacher1'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Teacher'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $subject['Subject']['teacher1']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Teacher2'); ?></dt>
+		<!--<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Teacher2'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $subject['Subject']['teacher2']; ?>
 			&nbsp;
-		</dd>
+		</dd>-->
 	</dl>
 </div>
 <div class="actions">

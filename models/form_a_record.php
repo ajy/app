@@ -1,6 +1,7 @@
 <?php
 class FormARecord extends AppModel {
 	var $name = 'FormARecord';
+	
 	var $validate = array(
 		'student' => array(
 			'numeric' => array(
@@ -153,8 +154,10 @@ class FormARecord extends AppModel {
 	);
 	
 	function afterSave($created){
-		if($created){
-			$savedRecords = $this->query('select * from subject_memberships as SubjectMembership where SubjectMembership.form_a_submitted = "0" and exists (select * from form_a_records as far where far.student = SubjectMembership.student_id and far.subject_id = SubjectMembership.subject_id)');
+		if($created){// this entire thing basically keeps subject_memberships up to date very time a form is submitted
+			Configure::load("feedback");
+			$max = Configure::read('max_sub_num');//max is the max number of submissions possible
+			$savedRecords = $this->query('select * from subject_memberships as SubjectMembership where SubjectMembership.form_a_submitted = "'.($max-1).'" and exists (select * from form_a_records as far where far.student = SubjectMembership.student_id and far.subject_id = SubjectMembership.subject_id and far.submission_number = '.$max.')');
 			$this->bindModel(
 				array('hasMany' => array(
 					'SubjectMembership' => array(

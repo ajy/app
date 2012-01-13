@@ -1,5 +1,5 @@
 <?=$html->css(array('reset','button','add_edit','jquery.fancybox'));?>
-     
+<?=$html->script("livevalidation")?>
 <style>
     a              { color: purple; text-decoration: none; }
 
@@ -12,6 +12,7 @@ function close(){
    
 </script>
  <div id="header"><?php __('Edit Password'); ?></div>
+<cake:nocache>
 <?php
 	echo $this->Form->create('User');
 	echo $this->Form->input('id');
@@ -28,7 +29,15 @@ function close(){
 <div id="submit">
  <input class="btn info" type="submit" value="Save" />
 </div>
-<? $form->end();?>
- 
-   </footer>
-
+<?=$this->Form->end();?> 
+</footer>
+</cake:nocache>
+<script>
+//validation code placed after the form makes it work
+var password = new LiveValidation("UserPassword",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+password.add(Validate.Length, {minimum:5,maximum:15});
+password.add(Validate.Presence);
+var confirmPassword = new LiveValidation("UserConfirmPassword",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+confirmPassword.add(Validate.Confirmation, {match:"UserPassword", failureMessage:"The passwords don't match"});
+confirmPassword.add(Validate.Presence);
+</script>

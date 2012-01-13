@@ -41,7 +41,7 @@
     
  <style type="text/css" title="currentStyle"> 
 			  html{
-                             overflow:hidden;
+                             overflow:;
                          }
                           .add,.import{
                          float:right;

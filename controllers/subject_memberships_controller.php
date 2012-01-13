@@ -7,7 +7,7 @@ class SubjectMembershipsController extends AppController {
 
 	function index() {
 		$this->SubjectMembership->recursive = 0;
-		$this->set('subjectMemberships', $this->paginate());
+		$this->set('subjectMemberships', $this->SubjectMembership->find('all'));
 		Configure::load('feedback');//load the max_sub_num variable
 		$total=$this->SubjectMembership->query("select count(*) as total from subject_memberships");
 		$form_a_submitted=$this->SubjectMembership->query("select count(*) as submitted from subject_memberships where form_a_submitted=".Configure::read('max_sub_num'));
@@ -91,18 +91,23 @@ class SubjectMembershipsController extends AppController {
 	}
 	
 	function enroll() {
+		if(!empty($this->data)&&($this->data['User']['ans']=='Y')){
 		$classes = $this->User->find('all', array(
 			'recursive' => -1,
 			'fields' => 'DISTINCT User.class',
 			'conditions' => array(
-				"not" => array("User.class" => null),
+				"not" => array("User.class" => ''),
 			)
 		));
+		
 		if(!isset($classes)){
 			$this->Session->setFlash('No classes were found','default', array(
 					'class' => 'message info'
 				));
 		}
+		$this->set('classes',$classes);
+		$this->SubjectMembership->query('Truncate subject_memberships');
+		$i=0;
 		foreach($classes as $class){
 			$studentsInSameClass = $this->User->find('all', array(
 				'recursive' => -1,
@@ -112,13 +117,11 @@ class SubjectMembershipsController extends AppController {
 				'recursive' => -1,
 				'conditions' => array("Subject.class" => $class['User']['class'])
 			));
-			$this->SubjectMembership->query('Truncate subject_memberships');
-			$i=0;
 			foreach($subjectsOfThisClass as $subject)
 				foreach($studentsInSameClass as $student){
 					$this->SubjectMembership->create();
 					$this->SubjectMembership->set(array(
-						'id' => $i++,
+						'id' => ++$i,
 						'subject_id' => $subject['Subject']['id'],
 						'student_id' => $student['User']['id']
 					));
@@ -126,9 +129,16 @@ class SubjectMembershipsController extends AppController {
 				}
 		}
 		$count=$this->SubjectMembership->find('count');
-		if($count != 0)$this->Session->setFlash('New enrollments were created','default', array(
-					'class' => 'message success'
-				));		
+		if($count != 0){
+			$this->Session->setFlash($count.' enrollments were created','default', array(
+				'class' => 'message success'
+			));
+			//$this->redirect(array('controller'=>'subject_memberships', 'action'=>'index'));
+		}else
+			$this->Session->setFlash('No  enrollments could be created','default', array(
+				'class' => 'message error'
+			));
+		}		
 	}
 }
 ?>

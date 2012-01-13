@@ -1,4 +1,5 @@
 <?=$html->css(array('reset','button','add_edit'));?>
+<?=$html->script("livevalidation");?>
 <script>
 
 function close(){
@@ -23,23 +24,22 @@ padding-bottom:80px;
 }
 </style>
 <div class="subjects form">
-  <div id="header"><?php __('Edit Subject'); ?></div>  
-  <?php  echo $this->Session->flash()?>
+<div id="header"><?php __('Edit Subject'); ?></div>  
+<?php echo $this->Session->flash()?>
+<cake:nocache>
 <?php echo $this->Form->create('Subject');?>
 	<fieldset>
-		
-	<?php
-                //debug($this->data);
-		echo $this->Form->input('id');
-		echo $this->Form->input('name');
-		echo $this->Form->input('code');
-                 $classes=$this->requestAction('/subjects/getClass');
-                 $teachers=$this->requestAction('/subjects/getTeachers');
-                 $selected=$this->data['Subject']['class'];
-                 $teacher1=$this->data['Teacher1']['id'];
-                 $teacher2=$this->data['Teacher2']['id'];
-                 
-                ?>
+<?php
+	//debug($this->data);
+	echo $this->Form->input('id');
+	echo $this->Form->input('name');
+	echo $this->Form->input('code');
+	$classes=$this->requestAction('/subjects/getClass');
+	$teachers=$this->requestAction('/subjects/getTeachers');
+	$selected=$this->data['Subject']['class'];
+	$teacher1=$this->data['Teacher1']['id'];
+	//$teacher2=$this->data['Teacher2']['id'];no more teacher2
+?>
                 
                    
 		<label> Class</label>
@@ -58,7 +58,7 @@ padding-bottom:80px;
                  ?>  
                 
                  </select>
-               <label>Teacher 1</label> 
+               <label>Teacher</label> 
                  <select name="data[Subject][teacher1]" id="SubjectTeacher1" >
                                        
                     <? 
@@ -74,12 +74,10 @@ padding-bottom:80px;
                  ?>  
                 
                  </select>
-              <label>Teacher 2</label> 
+              <!--<label>Teacher 2</label> 
                  <select name="data[Subject][teacher2]" id="SubjectTeacher2" >
                     
-                    <?  /*if($teacher2==NULL){
-                        
-                    }*/
+                    <?  
                    echo '<option value = "">Select</option>';    
                                  foreach($teachers as $teacher):
                                  if($teacher['users']['id']== $teacher2){
@@ -108,7 +106,7 @@ padding-bottom:80px;
                        /*   if( $('#SubjectTeacher2').val()===" "){alert(( $('#SubjectTeacher2').val()===" "))
                 $('#SubjectTeacher2').attr('selectedIndex', '-1');}
            
-            })	*/</script>
+            })	*/</script>-->
 	</fieldset>
 <footer>
 <div id="cancel">
@@ -119,25 +117,17 @@ padding-bottom:80px;
  <input class="btn success" type="submit" value="Save" />
 </div>
 </footer>
-<? 
-
-$form->end();?>
-  <script>
-  $("form").submit(function() {
-      alert('here')
-                
-  </script>
- <?/* $options = array(
-           /* array(
-                'name' => 'usertype',
-                'value' => '',
-                'disabled' => TRUE,
-                'selected' => TRUE
-            ),*/
-    /* 'usertype',
-            'athlete',
-            'trainer'
-            );
-
-echo $this->Form->input('User.usertype_id', array('type' => 'select', 'options' => $options,'empty'=>TRUE, 'selected'=>TRUE,'value'=>  '2'));*/?>
+<?=$this->Form->end();?>
 </div>
+</cake:nocache>
+<script>
+//validation code placed after the form makes it work
+var subjectName = new LiveValidation("SubjectName",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+subjectName.add(Validate.Presence);
+var code = new LiveValidation("SubjectCode",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+code.add(Validate.Presence);
+var theClass = new LiveValidation("SubjectClass",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});//class is a keyword in js
+theClass.add(Validate.Format, {pattern: /[1-8][AB]/i, failureMessage: "Not a valid class"});
+var teacher = new LiveValidation("SubjectTeacher",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+teacher.add(Validate.Presence);
+</script>

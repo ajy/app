@@ -58,7 +58,7 @@ top:10px !important;
            echo "<a class = tname>".$teacher1[$i][0]['users']['name']."</a>";
                     echo '<div class = "green"> ';
                    if($submitted[$i]['subject_memberships']['form_a_submitted']==0){
-                 echo $html->link('Feedback',array('controller'=>'form_a_records','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher1"]),array('escape'=>false,'class'=>'btn success modal'));  
+                 echo $html->link('Feedback',array('controller'=>'form_a_records','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher1"]),array('escape'=>false,'class'=>'btn success fbf'));  
                     }
                   else{
                  echo '<a href="#"  class="btn success disabled" /> Feedback </a>';
@@ -69,22 +69,17 @@ top:10px !important;
                   ,array('class' => 'blue')); 
                echo "</li>";
 
-               if($teacher2!=NULL){
+            /*   if($teacher2!=NULL){
             if($teacher2[$i][0]['users']['name']!= Null){
                 
-                 echo "<li>";
-             echo "<a class = tname>".$teacher2[$i][0]['users']['name']."</a>";
-              echo '<div class = "green"> ';
-                   if($submitted[$i]['subject_memberships']['form_a_submitted']==0){
-                 echo $html->link('Feedback',array('controller'=>'form_a_records','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher2"]),array('escape'=>false,'class'=>'btn success modal'));  
-                    }
-                  else{
-                 echo '<a href="#" class="btn success disabled" /> Feedback </a>';
-                    }
-                    echo '</div>';
-            echo $html->tag('div',$html->link('Comment',array('controller'=>'comments','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher2"]),array('escape'=>false,'class'=>'btn info  modal'))
-                  ,array('class' => 'blue'));     echo "</li>";
-            }}
+
+             echo "<li>";
+             echo "<a>".$teacher2[$i][0]['users']['name']."</a>";
+             echo $html->link($html->tag('span','Comment',array('class' => 'green')),array('controller'=>'comments','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher2"]),array('escape'=>false,'class'=>'c_modal'));
+             echo $html->link($html->tag('span','Feedback',array('class' => 'blue')),array('controller'=>'form_a_records','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher2"]),array('escape'=>false),array('class'=>'modal'));
+             echo "</li>";
+            }}no more teacher2*/
+
             
               echo "</ul>";
               echo "</li>";}

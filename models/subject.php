@@ -56,16 +56,6 @@ class Subject extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			)
 		),
-		'teacher2' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				'allowEmpty' =>true,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
 	);
 	
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -87,12 +77,7 @@ class Subject extends AppModel {
 			'className' => 'User',
 			'foreignKey' => 'teacher1',
 			'conditions' => 'Teacher1.group_id = 2', //must be a teacher
-		),
-		'Teacher2' => array(
-			'className' => 'User',
-			'foreignKey' => 'teacher2',
-			'conditions' => 'Teacher2.group_id = 2', //must be a teacher
-		),
+		),		
 	);
 
 }/*

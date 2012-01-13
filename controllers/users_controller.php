@@ -10,7 +10,7 @@ class UsersController extends AppController {
 	
 	function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('resetPassword');
+		$this->Auth->allow('resetPassword');//doesn't need login for access
                 
 	}
 
@@ -81,7 +81,7 @@ class UsersController extends AppController {
 			//$this->redirect(array('action' => 'index'));
 		}
 		if (empty($this->data)) {
-			$this->data = $this->User->read(null, $id);
+			$this->data['User']['id']=$id;//set user id of the user whose password is to be changed to the value passed
 			$this->data['User']['password'] = null;
 		}
 		$this->set('id');
@@ -130,7 +130,7 @@ class UsersController extends AppController {
 			//User has filled new password form
 			if (!empty($this->data['User']['password'])) { 
 				$this->data['User']['id']=$user['User']['id'];//not sent out to the form, so it can't be tampered with
-				if($this->User->save($this->data,true,array('id','password'))){//only password for the user must be set
+				if($this->User->save($this->data,true,array('id','password','confirm_password'))){//only password for the user must be set
 					$this->Session->setFlash('New password set for '.$user['User']['username'],'default', array(
 						'class' => 'message success'
 					));
@@ -142,7 +142,7 @@ class UsersController extends AppController {
 					$this->redirect('login');
 				}							
 			}
-			$this->data['User']=$user['User'];//loads the data so the form can use it
+			$this->data['User']['id']=$user['User']['id'];//loads the id of the correct user so the form can use it
 			$this->data['User']['password']=null;//since the new password needs to be given, no need to show the hash for the old one
 			$this->set('token', $token); 
 			$this->render('setNewPassword'); 
@@ -153,7 +153,7 @@ class UsersController extends AppController {
 	
 	function index() {
 		$this->User->recursive = 0;
-		$this->set('users', $this->paginate());
+		$this->set('users', $this->User->find('all'));//return every user
 	}
 
 	function view($id = null) {
@@ -168,15 +168,11 @@ class UsersController extends AppController {
 
 	function add() {
 		if (!empty($this->data)) {
-			$this->User->create();
-                        
-			$this->log($this->data);
-                       
-			if ($this->User->save($this->data)) {
+			if($this->data['User']['group_id']!=3)$this->data['User']['class']='';//not a student, so no class
+			if ($this->User->save($this->data,true,array('username', 'name', 'email','group_id','class'))) {//no id cause its a new user
 				$this->Session->setFlash('The user has been saved','default', array(
 					'class' => 'message warning'
-				));
-				//$this->enroll();
+				));				
 				$this->redirect((array('controller'=> 'pages','action'=>'success')));
                      
 			} else {
@@ -196,12 +192,11 @@ class UsersController extends AppController {
 					'class' => 'message error'
 				));
 			$this->redirect(array('action' => 'index'));
-		}
-              
+		}              
 		if (!empty($this->data)) {
-			$this->data['User']['id'] = $id;//makes sure nobody can tamper with it
+			$this->data['User']['id'] = $id;//makes sure nobody can tamper with it			
 			if($this->Session->read('Auth.User.group_id')==1){
-				$fieldsThatCanBeEdited=array('id', 'username', 'name', 'email','group_id','class');		
+				$fieldsThatCanBeEdited=array('id', 'username', 'name', 'email','group_id');
 			}else{
 				$fieldsThatCanBeEdited=array('id', 'email');
 			}
@@ -249,7 +244,7 @@ class UsersController extends AppController {
 		if(!empty($this->data['User']['From'])&&!empty($this->data['User']['To'])){
 			$from = $this->data['User']['From'];
 			$to = $this->data['User']['To'];
-			$this->User->query("update users set class=\'".$to."\' where class=\'".$from."\'");//the slashes and quotes look silly but they make it work and more secure'
+			$this->User->query("update users set class='".$to."' where class='".$from."'");//the slashes and quotes look silly but they make it work and more secure'
 			$test=$this->User->find('all',array(
 				'conditions'=>array(
 					'class' => $from
@@ -272,8 +267,10 @@ class UsersController extends AppController {
 			$NumSavedRows = 0;
 			$error = false;
 			$info = $csv->data;
+			echo debug($info);
+			return;
 			foreach($info as $studentInfo){
-				if($this->User->save(array('User' => $studentInfo))){
+				if($this->User->save(array('User' => $studentInfo),true,array('username', 'name', 'email','class'))){// no id cause its a new user
 					$NumSavedRows++;
 				} else {
 					$this->Session->setFlash('Error,  Could only  import '.$NumSavedRows.' records. Please try again.','default', array(
@@ -291,9 +288,18 @@ class UsersController extends AppController {
 		}
 	}
 	
+
         function getTeachers(){
-            return  $this->User->find('list',array('conditions'=>array('User.group_id'=>'2')));
-        }
+            return  $this->User->find('list',array('conditions'=>array('User.group_id'=>'2')));}
+
+//        function test(){
+//        	echo "Beginning test";
+//        	Configure::write('debug',0);
+//        	echo "set new debug level";
+//        	return;
+//        }
+//        
+       
 //        function redir(){
 //            $group_id=$this->Session->read("Auth.User.group_id");
 //              if($group_id==1) {

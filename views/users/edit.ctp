@@ -1,4 +1,5 @@
 <?=$html->css(array('reset','button','add_edit'));?>
+<?=$html->script("livevalidation")?>
 <style>
     a              { color: purple; text-decoration: none; }
 
@@ -17,7 +18,7 @@ padding-bottom:80px;
 }
 </style>
 <script>
-	var pos;
+/*	var pos;
 	$(document).ready(
 
 function(){toggle();});
@@ -31,7 +32,7 @@ function(){toggle();});
                         
                     }
  	}
-
+*/
 function close(){
 
     parent.$.fancybox.close( );
@@ -40,11 +41,12 @@ function close(){
 <div class="users form">
 <div id="header"><?php __('Edit Profile'); ?></div>
 <?php
-	/*echo $this->Session->flash('auth');*/
-        echo $this->Session->flash()
+	echo $this->Session->flash('auth');
+        echo $this->Session->flash();
 ?>
-<?php echo $this->Form->create('User');?>
+</cake:nocache>
 <?php
+	echo $this->Form->create('User');
 	echo $this->Form->input('id');
 	if(($this -> Session -> read("Auth.User.group_id"))==1)
 		echo $this->Form->input('username');
@@ -62,8 +64,10 @@ function close(){
         if(($this -> Session -> read("Auth.User.group_id"))==3){
         	echo $this->Form->input('class',array('readonly'=>'readonly'));
         }
-        if(($this -> Session -> read("Auth.User.group_id"))==1){
+        if($this->Session->read("Auth.User.group_id")==1){
         	echo $this->Form->input('group_id');
+        }
+	if(($this->Session->read("Auth.User.group_id")==1)&&($this->data['User']['group_id']==3)){
         	$classes=$this->requestAction('/subjects/getClass');
         	$selected=$this->data['User']['class'];
 ?>
@@ -84,7 +88,7 @@ $("#UserGroupId").bind("change", function(){toggle()})</script>
 </select>
 </div>
 <?php }/*end of if*/ ?>
-   <footer>
+<footer>
 
 <div id="cancel">
 <input type="button" value="Cancel" class="btn close" name="Close" onclick=" window. close();" />
@@ -93,9 +97,31 @@ $("#UserGroupId").bind("change", function(){toggle()})</script>
 <div id="submit">
  <input class="btn success" type="submit" value="Save" />
 </div>
-<? $form->end();?>
- 
-   </footer>
+<?=$this->Form->end();?>
+</footer>
+</cake:nocache>
 </div>
-
-
+<script>
+//validation code placed after the form makes it work
+<?php
+	if($this->Session->read("Auth.User.group_id")==1){//must be admin for these validations to activate
+?>
+var userName = new LiveValidation("UserUsername",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+userName.add(Validate.Presence);
+var name = new LiveValidation("UserName",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+name.add(Validate.Presence);
+var group = new LiveValidation("UserGroupId",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+group.add(Validate.Inclusion, {within: ["1","2","3"]});
+<?php
+		if($this->data['User']['group_id']==3){//user being edited must be a student for this validation to be added
+?>
+var theClass = new LiveValidation("UserClass",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});//class is a keyword in js
+theClass.add(Validate.Format, {pattern: /[1-8][AB]/i, failureMessage: "Not a valid class"});
+<?php
+		}/*end of inner if*/
+	}/*end of outer if*/
+?>
+var email = new LiveValidation("UserEmail",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+email.add(Validate.Email);
+email.add(Validate.Presence);
+</script>

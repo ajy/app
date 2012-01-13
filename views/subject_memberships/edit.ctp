@@ -1,3 +1,4 @@
+<cake:nocache>
 <div class="subjectMemberships form">
 <?php echo $this->Form->create('SubjectMembership');?>
 	<fieldset>
@@ -6,12 +7,12 @@
 		echo $this->Form->input('id');
 		echo $this->Form->input('student_id');
 		echo $this->Form->input('subject_id');
-		echo $this->Form->input('form_a_submitted');
-		echo $this->Form->input('form_b_submitted');
+		echo $this->Form->input('form_a_submitted');		
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
 </div>
+</cake:nocache>
 <div class="actions">
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
