@@ -10,10 +10,10 @@
 
         <!--                       CSS                       --> 
 
-         <?=$html->css(array('reset','style'));?>
-        <?=$html->css(array('media/css/demo_table','jquery-ui-1.8.14.custom/css/ui-lightness/jquery-ui-1.8.14.custom'),'import');?>
+         <?php echo $html->css(array('reset','style'));?>
+        <?php echo $html->css(array('media/css/demo_table','jquery-ui-1.8.14.custom/css/ui-lightness/jquery-ui-1.8.14.custom'),'import');?>
         
-      <?= $javascript->link(array('js/jquery','js/jquery.dataTables','jquery-ui-1.8.14.custom/js/jquery-ui-1.8.14.custom.min'));?>
+      <?php echo  $javascript->link(array('js/jquery','js/jquery.dataTables','jquery-ui-1.8.14.custom/js/jquery-ui-1.8.14.custom.min'));?>
         
 
         <script>
@@ -21,7 +21,7 @@
                 $('#example').dataTable();
             });
         </script>
-      <?= $javascript->link(array('config'));?>
+      <?php echo  $javascript->link(array('config'));?>
  <style type="text/css" title="currentStyle"> 
 			  html{
                              overflow:hidden;

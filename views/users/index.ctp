@@ -9,10 +9,10 @@
         <title>Admin</title> 
 
         <!--                       CSS                       --> 
-        <?=$html->css(array('reset','style','jquery.fancybox','button','demo_table','demo_table_jui','jquery-ui-1.8.4.custom','TableTools','alerts'),'import');?>
+        <?php echo $html->css(array('reset','style','jquery.fancybox','button','demo_table','demo_table_jui','jquery-ui-1.8.4.custom','TableTools','alerts'),'import');?>
         
       <!--                      JS                  --> 
-      <?= $javascript->link(array('jquery-1.5.1.min','jquery.dataTables','TableTools','ZeroClipboard','jquery.fancybox.pack','config','add_edit'));?>
+      <?php echo  $javascript->link(array('jquery-1.5.1.min','jquery.dataTables','TableTools','ZeroClipboard','jquery.fancybox.pack','config','add_edit'));?>
        
 
 
@@ -88,16 +88,16 @@
                 <h2>Users</h2> 
                 </div>
                   
-                  <?= $html->tag('div',$html->link('Import Users',array('controller'=>'users','action'=>'import'),array('escape'=>false,'class'=>'btn success imp'))
+                  <?php echo  $html->tag('div',$html->link('Import Users',array('controller'=>'users','action'=>'import'),array('escape'=>false,'class'=>'btn success imp'))
                   ,array('class' => 'import'))?>
-                   <?= $html->tag('div',$html->link('Add User',array('controller'=>'users','action'=>'add'),array('escape'=>false,'class'=>'btn success  modal2'))
+                   <?php echo  $html->tag('div',$html->link('Add User',array('controller'=>'users','action'=>'add'),array('escape'=>false,'class'=>'btn success  modal2'))
                   ,array('class' => 'add'))?>
                 <div class="content-box"><!-- Start Content Box --> 
 
                     <div class="content-box-header"> 
 
                         <h3></h3> 
-                        <?=$this->Form->create('User',array('action'=>'delete'));?>
+                        <?php echo $this->Form->create('User',array('action'=>'delete'));?>
                         <div>
                             <ul class="content-box-tabs"> 
                                 <li><a href="#tab-1" class="default-tab">Semester 4</a></li> <!-- href must be unique and match the id of target div --> 

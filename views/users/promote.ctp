@@ -1,4 +1,4 @@
-<?=$html->css(array('reset','submitButton','add_edit'));?>
+<?php echo $html->css(array('reset','submitButton','add_edit'));?>
 <?php
 echo $this->Form->create('User',array('action' => 'promote'));
 echo "Would you like to promote students ";

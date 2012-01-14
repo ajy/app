@@ -1,5 +1,5 @@
-<?=$html->css(array('reset','button','add_edit'));?>
-<?=$html->script("livevalidation");?>
+<?php echo $html->css(array('reset','button','add_edit'));?>
+<?php echo $html->script("livevalidation");?>
 <script>
 $(document).ready(function(){
 
@@ -84,9 +84,7 @@ OPTIONS;
  <input class="btn success" type="submit" value="Add" />
 </div>
 </footer>
-<? 
-
-$form->end();?>
+<?php echo $this->Form->end();?>
   
                      
  </div>

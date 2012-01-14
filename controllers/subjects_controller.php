@@ -7,7 +7,8 @@ class SubjectsController extends AppController {
 	function index() {
 		$this->Subject->recursive = 0;
 
-               
+                $teacher1 = null;
+                
                 $sql = "SELECT * FROM `subjects` WHERE 1";
 
 		//$sql = "SELECT s1.id , s2.id , s1.name, s1.code,s1.class,s2.class, s1.teacher1, s1.teacher2, s2.teacher1, s2.teacher2 FROM subjects s1, subjects s2 WHERE s1.code = s2.code AND s1.id != s2.id GROUP BY s1.name LIMIT 0, 30";

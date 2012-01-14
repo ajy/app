@@ -1,8 +1,8 @@
- <?= $javascript->link(array('jquery-1.5.1.min','config'));?>
-  <?= $javascript->link(array('jquery.fancybox.pack','add_edit'));?>
-                 <?=$html->css(array('jquery.fancybox'));?>     
+ <?php echo  $javascript->link(array('jquery-1.5.1.min','config'));?>
+  <?php echo  $javascript->link(array('jquery.fancybox.pack','add_edit'));?>
+                 <?php echo $html->css(array('jquery.fancybox'));?>     
               
-<?= $html->css(array('style','subjects','button','alert')); ?>
+<?php echo  $html->css(array('style','subjects','button','alert')); ?>
 <style>
  .blue{
                     float:right;
@@ -50,7 +50,7 @@ top:10px !important;
       // debug($allSubjects);
        for($i=0;$i<count($subjects);$i++){
          echo "<li>";?> 
-         <a href="#" class="nav-top-item current ">  <? echo $subjects[$i]["subjects"]["name"];?></a>
+         <a href="#" class="nav-top-item current ">  <?php echo $subjects[$i]["subjects"]["name"];?></a>
          <?
                 
                  echo "<ul>";

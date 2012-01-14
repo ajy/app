@@ -1,36 +1,9 @@
 <div class="groups index">
-	<?php 
-       $color = array( 
-        '#687e9b', 
-        '#c4ccd8', 
-    ); 
-     
-    $dataMultiple = array(array(0,1,2,3), array(4,5,6,7)); 
-     
-    $googleChart->setChartAttrs(  
-        array( 
-            'type'         => 'sparkline', 
-            'title'     => 'The title', 
-            'data'         => $dataMultiple, 
-            'size'         => array( 400, 200 ), 
-            'color'     => $color, 
-            'labelsXY'     => true, 
-            'min'        => array(min(array(0,1,2,3)),min(array(4,5,6,7))), 
-            'max'        => array(max(array(0,1,2,3)),max(array(4,5,6,7))), 
-            'legend'    => array('2008', '2009') 
-        ) 
-    ); 
-     
-    // Print chart 
-    echo $googleChart; 
-    ?> 
 	<h2><?php __('Groups');?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('name');?></th>
-			<th><?php echo $this->Paginator->sort('created');?></th>
-			<th><?php echo $this->Paginator->sort('modified');?></th>
 			<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -44,8 +17,6 @@
 	<tr<?php echo $class;?>>
 		<td><?php echo $group['Group']['id']; ?>&nbsp;</td>
 		<td><?php echo $group['Group']['name']; ?>&nbsp;</td>
-		<td><?php echo $group['Group']['created']; ?>&nbsp;</td>
-		<td><?php echo $group['Group']['modified']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $group['Group']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $group['Group']['id'])); ?>

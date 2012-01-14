@@ -1,5 +1,5 @@
-<?=$html->css(array('reset','button','add_edit'));?>
-<?=$html->script("livevalidation");?>
+<?php echo $html->css(array('reset','button','add_edit'));?>
+<?php echo $html->script("livevalidation");?>
 <script>
 
 function close(){
@@ -45,7 +45,7 @@ padding-bottom:80px;
 		<label> Class</label>
                <select name="data[Subject][class]" id="SubjectClass" >
                                        
-                    <? 
+                    <?php 
                                foreach($classes as $class):
                                     //debug($teacher);
                                  if($class['subjects']['class']== $selected){
@@ -61,7 +61,7 @@ padding-bottom:80px;
                <label>Teacher</label> 
                  <select name="data[Subject][teacher1]" id="SubjectTeacher1" >
                                        
-                    <? 
+                    <?php 
                                  foreach($teachers as $teacher):
                                  if($teacher['users']['id']== $teacher1){
                      
@@ -77,7 +77,7 @@ padding-bottom:80px;
               <!--<label>Teacher 2</label> 
                  <select name="data[Subject][teacher2]" id="SubjectTeacher2" >
                     
-                    <?  
+                    <?php  
                    echo '<option value = "">Select</option>';    
                                  foreach($teachers as $teacher):
                                  if($teacher['users']['id']== $teacher2){
@@ -117,7 +117,7 @@ padding-bottom:80px;
  <input class="btn success" type="submit" value="Save" />
 </div>
 </footer>
-<?=$this->Form->end();?>
+<?php echo $this->Form->end();?>
 </div>
 </cake:nocache>
 <script>

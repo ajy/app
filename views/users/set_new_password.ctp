@@ -1,5 +1,5 @@
-<?=$html->css(array('reset','add_edit','button'));?>
-<?=$html->script("livevalidation")?>
+<?php echo $html->css(array('reset','add_edit','button'));?>
+<?php echo $html->script("livevalidation")?>
 <div id="header">Reset Password</div>
 <?php
 	echo $this->Session->flash('auth');
@@ -21,7 +21,7 @@
  <input class="btn info" type="submit" value="Save" />
 </div>
     </footer>
-<?=$this->Form->end();?>
+<?php echo $this->Form->end();?>
 </cake:nocache>
 <script>
 //validation code placed after the form makes it work

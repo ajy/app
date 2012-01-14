@@ -1,5 +1,5 @@
-<?=$html->css(array('form_a_b','submitButton'));?>
-<?=$html->script("livevalidation");?>
+<?php echo $html->css(array('form_a_b','submitButton'));?>
+<?php echo $html->script("livevalidation");?>
 <?php Configure::load('FormAQs'); ?>
      
 <?php echo $this->Form->create('FormARecord', array('id' => 'Form'));?>

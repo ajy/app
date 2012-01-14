@@ -9,10 +9,10 @@
             }
         </style> 
 
-        <?= $javascript->link(array('config', 'add_edit')); ?>
-        <?= $html->css(array('reset', 'style')); ?>
-        <?= $javascript->link(array('jquery.fancybox.pack')); ?>
-        <?= $html->css(array('jquery.fancybox')); ?>     
+        <?php echo  $javascript->link(array('config', 'add_edit')); ?>
+        <?php echo  $html->css(array('reset', 'style')); ?>
+        <?php echo  $javascript->link(array('jquery.fancybox.pack')); ?>
+        <?php echo  $html->css(array('jquery.fancybox')); ?>     
          <?php $user=$this->Session->read("Auth.User");;?>
         <script>
             pos=1;
@@ -71,7 +71,7 @@
         <div id="sidebar">
             <div id="sidebar-wrapper">
                
-                <h1 id="sidebar-title"><?=$html->link($user['name'], array('controller' => 'users', 'action' => 'edit',$user['id']),array('title'=>'Edit Profile','class'=>'modal'));?></h1>
+                <h1 id="sidebar-title"><?php echo $html->link($user['name'], array('controller' => 'users', 'action' => 'edit',$user['id']),array('title'=>'Edit Profile','class'=>'modal'));?></h1>
                 <div id="profile-links">
 
                     ISE Department
@@ -136,7 +136,7 @@
                            Profile
                             </a> -->
 
-   <? //echo $html->tag('div',$html->link('Profile',array('controller'=>'users','action'=>'edit',$user['id']),array('escape'=>false,'class'=>'modal'))
+   <?php //echo $html->tag('div',$html->link('Profile',array('controller'=>'users','action'=>'edit',$user['id']),array('escape'=>false,'class'=>'modal'))
         //        ,array('class' => 'nav-top-item','onclick'=>'LoadIFrame(5)'));  ?>                         <!--  <a href="#" class="nav-top-item " onclick="LoadIFrame(5)" > 
                                  </a> -->
                             <ul> 

@@ -1,5 +1,5 @@
-<?=$html->css(array('reset','button','add_edit'));?>
-<?=$html->script("livevalidation")?>
+<?php echo $html->css(array('reset','button','add_edit'));?>
+<?php echo $html->script("livevalidation")?>
 <style>
     a              { color: purple; text-decoration: none; }
 
@@ -97,7 +97,7 @@ $("#UserGroupId").bind("change", function(){toggle()})</script>
 <div id="submit">
  <input class="btn success" type="submit" value="Save" />
 </div>
-<?=$this->Form->end();?>
+<?php echo $this->Form->end();?>
 </footer>
 </cake:nocache>
 </div>

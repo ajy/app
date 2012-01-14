@@ -1,5 +1,5 @@
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<?= $html->css(array('reset', 'style','subjects','submitButton','button_green')); ?>
+<?php echo  $html->css(array('reset', 'style','subjects','submitButton','button_green')); ?>
 
 <script>
 	$(function() {

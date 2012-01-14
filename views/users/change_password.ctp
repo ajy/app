@@ -1,5 +1,5 @@
-<?=$html->css(array('reset','button','add_edit','jquery.fancybox'));?>
-<?=$html->script("livevalidation")?>
+<?php echo $html->css(array('reset','button','add_edit','jquery.fancybox'));?>
+<?php echo $html->script("livevalidation")?>
 <style>
     a              { color: purple; text-decoration: none; }
 
@@ -29,7 +29,7 @@ function close(){
 <div id="submit">
  <input class="btn info" type="submit" value="Save" />
 </div>
-<?=$this->Form->end();?> 
+<?php echo $this->Form->end();?> 
 </footer>
 </cake:nocache>
 <script>

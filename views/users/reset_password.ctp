@@ -1,5 +1,5 @@
-<?=$html->css(array('reset','add_edit','button'));?>
-<?=$html->script("livevalidation")?>
+<?php echo $html->css(array('reset','add_edit','button'));?>
+<?php echo $html->script("livevalidation")?>
 <style>
     legend{
         visibility: hidden;
@@ -22,7 +22,7 @@
  <input class="btn info" type="submit" value="Send" />
 </div>
     </footer>
-<? $form->end();?>
+<?php echo $this->Form->end();?>
 <script>
 //validation code placed after the form makes it work
 var email = new LiveValidation("UserEmail",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
