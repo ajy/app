@@ -1,5 +1,5 @@
 www:
     type: php
-    approot: app/webroot
+    approot: webroot
 mysql:
     type: mysql
