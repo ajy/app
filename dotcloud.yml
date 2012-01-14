@@ -1,5 +1,0 @@
-www:
-    type: php
-    approot: webroot
-mysql:
-    type: mysql
