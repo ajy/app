@@ -39,7 +39,7 @@ function close(){
 }
 </script>
 <div class="users form">
-<div id="header"><?php __('Edit User'); ?></div>
+<div id="header"><?php __('Edit Profile'); ?></div>
 <?php
 	echo $this->Session->flash('auth');
         echo $this->Session->flash();

@@ -14,7 +14,7 @@ class FormARecordsController extends AppController {
 			$this->set('rows',$this->FormARecord->calcAllFormAResults(1));
 			$this->render('all_result');
 		} elseif($group_id==2) {
-			$this->set('form_a_results',$this->FormARecord->calcFormAResults($this->Session->read("Auth.User.id"),$sub_num));
+			$this->set('form_a_results',$this->FormARecord->calcFormAResults($this->Session->read("Auth.User.id"),1));
 		}
 	}
 	

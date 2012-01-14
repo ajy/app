@@ -288,29 +288,34 @@ class UsersController extends AppController {
 		}
 	}
 	
-        function test(){
-        	echo "Beginning test";
-        	Configure::write('debug',0);
-        	echo "set new debug level";
-        	return;
-        }
-        
-        function redir(){
-            $group_id=$this->Session->read("Auth.User.group_id");
-              if($group_id==1) {
-                            $this->redirect($this->Auth->redirect(array('controller'=> 'pages','action'=>'admin')));
-                        }
-                        
-                        if($group_id==2)
-                        {
-                         	$this->redirect($this->Auth->redirect(array('controller'=> 'pages','action' => 'teacher')));
-			            }
-                        if($group_id==3)
-                        {
 
-                           	$this->redirect($this->Auth->redirect(array('controller'=> 'pages','action' => 'student')));                           	
-                        }
-        }
+        function getTeachers(){
+            return  $this->User->find('list',array('conditions'=>array('User.group_id'=>'2')));}
+
+//        function test(){
+//        	echo "Beginning test";
+//        	Configure::write('debug',0);
+//        	echo "set new debug level";
+//        	return;
+//        }
+//        
+       
+//        function redir(){
+//            $group_id=$this->Session->read("Auth.User.group_id");
+//              if($group_id==1) {
+//                            $this->redirect($this->Auth->redirect(array('controller'=> 'pages','action'=>'admin')));
+//                        }
+//                        
+//                        if($group_id==2)
+//                        {
+//                         	$this->redirect($this->Auth->redirect(array('controller'=> 'pages','action' => 'teacher')));
+//			            }
+//                        if($group_id==3)
+//                        {
+//
+//                           	$this->redirect($this->Auth->redirect(array('controller'=> 'pages','action' => 'student')));                           	
+//                        }
+//        }
 
         /* for defining ACLs
 	function setDefaultPermissions() {

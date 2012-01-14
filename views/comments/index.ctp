@@ -5,7 +5,7 @@
 			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('from');?></th>
 			<th><?php echo $this->Paginator->sort('to');?></th>
-			<th><?php echo $this->Paginator->sort('subject_code');?></th>
+			<th><?php echo $this->Paginator->sort('subject_id');?></th>
 			<th><?php echo $this->Paginator->sort('comment');?></th>
 			<th class="actions"><?php __('Actions');?></th>
 	</tr>
