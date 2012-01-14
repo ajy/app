@@ -1,0 +1,5 @@
+www:
+    type: php
+    approot: app/webroot
+mysql:
+    type: mysql
