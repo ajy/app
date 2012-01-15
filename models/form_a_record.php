@@ -175,10 +175,11 @@ class FormARecord extends AppModel {
 		$userSubjectsData=$this->Subject->find('all', array(
 			'recursive' => -1,
 			'conditions' => array(
-				'OR' => array(
+				'Subject.teacher1' => $user_id
+				/*'OR' => array(
 					'Subject.teacher1' => $user_id,
 					'Subject.teacher2' => $user_id
-					)
+					) no more teacher 2*/
 				)
 			)
 		);
