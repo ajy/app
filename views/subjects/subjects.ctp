@@ -1,7 +1,7 @@
- <?php echo  $javascript->link(array('jquery-1.5.1.min','config'));?>
-  <?php echo  $javascript->link(array('jquery.fancybox.pack','add_edit'));?>
-                 <?php echo $html->css(array('jquery.fancybox'));?>     
-              
+<?php echo  $javascript->link(array('jquery-1.5.1.min','config'));?>
+<?php echo  $javascript->link(array('jquery.fancybox.pack','add_edit'));?>
+<?php echo $html->css(array('jquery.fancybox'));?>
+<?php echo Configure::load('feedback');?>              
 <?php echo  $html->css(array('style','subjects','button','alert')); ?>
 <style>
  .blue{
@@ -57,7 +57,7 @@ top:10px !important;
               echo "<li>";
            echo "<a class = tname>".$teacher1[$i][0]['users']['name']."</a>";
                     echo '<div class = "green"> ';
-                   if($submitted[$i]['subject_memberships']['form_a_submitted']==0){
+                   if($submitted[$i]['subject_memberships']['form_a_submitted']<Configure::read('max_sub_num')){
                  echo $html->link('Feedback',array('controller'=>'form_a_records','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher1"]),array('escape'=>false,'class'=>'btn success fbf'));  
                     }
                   else{
