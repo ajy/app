@@ -25,10 +25,10 @@
 </cake:nocache>
 <script>
 //validation code placed after the form makes it work
-var password = new LiveValidation("UserPassword",{wait: 1000, onlyOnSubmit: true, validMessage: ""});
+var password = new LiveValidation("UserPassword",{wait: 1000, onlyOnSubmit: true, validMessage: " "});
 password.add(Validate.Length, {minimum:5,maximum:15});
 password.add(Validate.Presence);
-var confirmPassword = new LiveValidation("UserConfirmPassword",{wait: 1000, onlyOnSubmit: true, validMessage: ""});
+var confirmPassword = new LiveValidation("UserConfirmPassword",{wait: 1000, onlyOnSubmit: true, validMessage: " "});
 confirmPassword.add(Validate.Confirmation, {match:"UserPassword", failureMessage:"The passwords don't match"});
 confirmPassword.add(Validate.Presence);
 </script>

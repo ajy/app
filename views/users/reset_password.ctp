@@ -25,7 +25,7 @@
 <?php echo $this->Form->end();?>
 <script>
 //validation code placed after the form makes it work
-var email = new LiveValidation("UserEmail",{wait: 1000, onlyOnSubmit: true, validMessage: ""});
+var email = new LiveValidation("UserEmail",{wait: 1000, onlyOnSubmit: true, validMessage: " "});
 email.add(Validate.Presence);
 email.add(Validate.Email);
 </script>

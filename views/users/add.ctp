@@ -67,15 +67,15 @@ padding-bottom:80px;
 </div>
 <script>
 //validation code placed after the form makes it work
-var userName = new LiveValidation("UserUsername",{wait: 1000, onlyOnSubmit: true, validMessage: ""});
+var userName = new LiveValidation("UserUsername",{wait: 1000, onlyOnSubmit: true, validMessage: " "});
 userName.add(Validate.Presence);
-var name = new LiveValidation("UserName",{wait: 1000, onlyOnSubmit: true, validMessage: ""});
+var name = new LiveValidation("UserName",{wait: 1000, onlyOnSubmit: true, validMessage: " "});
 name.add(Validate.Presence);
-var group = new LiveValidation("UserGroupId",{wait: 1000, onlyOnSubmit: true, validMessage: ""});
+var group = new LiveValidation("UserGroupId",{wait: 1000, onlyOnSubmit: true, validMessage: " "});
 group.add(Validate.Inclusion, {within: [1,2,3]});
-var theClass = new LiveValidation("UserClass",{wait: 1000, onlyOnSubmit: true, validMessage: ""});//class is a keyword in js
+var theClass = new LiveValidation("UserClass",{wait: 1000, onlyOnSubmit: true, validMessage: " "});//class is a keyword in js
 theClass.add(Validate.Format, {pattern: /[1-8][AB]/i, failureMessage: "Not a valid class"});
-var email = new LiveValidation("UserEmail",{wait: 1000, onlyOnSubmit: true, validMessage: ""});
+var email = new LiveValidation("UserEmail",{wait: 1000, onlyOnSubmit: true, validMessage: " "});
 email.add(Validate.Presence);
 email.add(Validate.Email);
 </script>
