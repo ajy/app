@@ -44,7 +44,7 @@ class CommentsController extends AppController {
 				)
 			));
 			$reporter = $this->Session->read('Auth.User.username');
-			$message = $reporter." submitted the following comment #".$reportedComment['Comment']['id']." for review";
+			$message = $reporter." submitted the following comment #".$reportedComment['Comment']['id']." for review.";
 			foreach($admins as $admin){
 				$this->Comment->create();
 				$this->Comment->set(array(
@@ -147,13 +147,11 @@ class CommentsController extends AppController {
 	}
 
         function search(){
-            $teacher=$subject=null;
-          if (count($this->data)>1) {
-              echo $this->data['teacher']=="";
-            $teacher= $this->data['teacher'];
-            $subject= $this->data['subject'];
-//            debug( $this->Comment->search($teacher,$subject));
-             $this->set('comments', $this->Comment->search($teacher,$subject)); 
-           }
+        	$teacher=$subject=null;
+        	if(!empty($this->data)) {
+        		$teacher= $this->data['Comment']['teacher'];
+        		$subject= $this->data['Comment']['subject'];
+        		$this->set('comments', $this->Comment->search($teacher,$subject));
+        	}
         }
 }
