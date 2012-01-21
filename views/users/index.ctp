@@ -19,18 +19,7 @@
         <script>
             $(document).ready(function(){
                 $('.example').dataTable( {
-//		"sDom": 'T<"clear">lfrtip',
-//		"oTableTools": {
-//			"aButtons": [
-//				"copy",
-//				"print",
-//				{
-//					"sExtends":    "collection",
-//					"sButtonText": "Save",
-//					"aButtons":    [ "csv", "xls", "pdf" ]
-//				}
-//			]
-//		}
+
 "bJQueryUI": true,
 		"sPaginationType": "full_numbers"
 	} );
@@ -41,7 +30,8 @@
     
  <style type="text/css" title="currentStyle"> 
 			  html{
-                             overflow:;
+                             overflow:hidden;
+                             
                          }
                           .add,.import{
                          float:right;
@@ -90,7 +80,7 @@
                   
                   <?= $html->tag('div',$html->link('Import Users',array('controller'=>'users','action'=>'import'),array('escape'=>false,'class'=>'btn success imp'))
                   ,array('class' => 'import'))?>
-                   <?= $html->tag('div',$html->link('Add User',array('controller'=>'users','action'=>'add'),array('escape'=>false,'class'=>'btn success  modal2'))
+                   <?= $html->tag('div',$html->link('Add User',array('controller'=>'users','action'=>'add'),array('escape'=>false,'class'=>'btn success  modal'))
                   ,array('class' => 'add'))?>
                 <div class="content-box"><!-- Start Content Box --> 
 

@@ -51,8 +51,9 @@ and open the template in the editor.
  html{
               
                 overflow-y:scroll ;
-
+             
             }
+
 #pHead{
  margin: 0 30px 0 260px;
 
@@ -85,7 +86,7 @@ top:-20px;
 </style>
     </head>
     <body>
-<? //debug($comments);?>
+<? debug($comments);?>
     <div id="pHead">
                 <h2>Comments</h2> 
                 </div>

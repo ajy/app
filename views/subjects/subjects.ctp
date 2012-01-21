@@ -1,39 +1,50 @@
  <?= $javascript->link(array('jquery-1.5.1.min','config'));?>
-  <?= $javascript->link(array('jquery.fancybox.pack','add_edit'));?>
-                 <?=$html->css(array('jquery.fancybox'));?>     
+  <?= $javascript->link(array('jquery.fancybox.pack','add_edit','bootstrap-twipsy'));?>
+                 <?=$html->css(array('jquery.fancybox','twipsy'));?>     
               
 <?= $html->css(array('style','subjects','button','alert')); ?>
 <style>
  .blue{
                     float:right;
-                   position:relative;
-                   right:40%;
-                   top:-20px;
-                    
+                   
                     
                  }
 .green{
                     float:right;
-                     position:relative;
-                     right:60%;
-                     top:-20px;
-
+                    padding-right:25px;
+                    
+                   
                     
                  }
+.opt{
+  
+ position:relative;
+ top:-20px;
+ right:40%;    
+}
+html{
+    overflow:hidden;
+}
 .btn{ color:white !important;}
-#pHead{
+/*#pHead{
  margin: 0 30px 0 260px;
  
-}
+}*/
 .tname{
 position:relative;
 top:10px !important;
 }
 
 </style>
-
+<script>
+            $(function () {
+              $("a[rel=twipsy]").twipsy({
+                live: true
+              })
+            })
+          </script>
     <body>
-
+<div id="subjects"> 
         <div id="pHead">
                 <h2>Your Subjects</h2> 
              </div>
@@ -41,14 +52,11 @@ top:10px !important;
 	
         echo $this->Session->flash();
 ?>
-        <div id="subjects"> 
+        
             
        <ul id="main-nav"> 
        <?php
-      /* debug($submitted);
-      debug($subjects);*/
-      // debug($allSubjects);
-       for($i=0;$i<count($subjects);$i++){
+        for($i=0;$i<count($subjects);$i++){
          echo "<li>";?> 
          <a href="#" class="nav-top-item current ">  <? echo $subjects[$i]["subjects"]["name"];?></a>
          <?
@@ -56,17 +64,20 @@ top:10px !important;
                  echo "<ul>";
               echo "<li>";
            echo "<a class = tname>".$teacher1[$i][0]['users']['name']."</a>";
+                echo '<div class="opt">';
+                   echo $html->tag('div',$html->link('Comment',array('controller'=>'comments','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher1"],),array('escape'=>false,'class'=>'btn info  modal5'))
+                  ,array('class' => 'blue')); 
                     echo '<div class = "green"> ';
                    if($submitted[$i]['subject_memberships']['form_a_submitted']==0){
                  echo $html->link('Feedback',array('controller'=>'form_a_records','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher1"]),array('escape'=>false,'class'=>'btn success fbf'));  
                     }
                   else{
-                 echo '<a href="#"  class="btn success disabled" /> Feedback </a>';
+                 echo '<a href="#"  rel="twipsy" title="Feedback Submitted" class="btn success disabled" /> Feedback </a>';
                 
                     }
                     echo '</div>';
-                    echo $html->tag('div',$html->link('Comment',array('controller'=>'comments','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher1"],),array('escape'=>false,'class'=>'btn info  modal5'))
-                  ,array('class' => 'blue')); 
+                 
+                  echo "</div>";
                echo "</li>";
 
             /*   if($teacher2!=NULL){

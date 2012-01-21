@@ -76,7 +76,7 @@ class Comment extends AppModel {
                 }  
             }
             return $comments;
-    }
+    }}
     function search($teacher,$subject){
         if(is_null($subject)){
             return comments($teacher);
@@ -91,7 +91,8 @@ class Comment extends AppModel {
         }
         return build($this->query($sql));
     }
-    }
+    
+    
 
     
 	//The Associations below have been created with all possible keys, those that are not needed can be removed

@@ -29,5 +29,6 @@ OPTIONS;
 </div>
 <?echo $this->Form->end();
 debug($this->data);
+//debug($comments);
 ?>
 </div></div>

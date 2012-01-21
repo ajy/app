@@ -148,9 +148,13 @@ class SubjectsController extends AppController {
            
         }
         function getSubjects(){
-          return  $this->Subject->find('list');
+          return  $this->Subject->query("SELECT id,name FROM users WHERE group_id=2 ");
             
         }
         
+        function getName($id){
+            return $this->Subject->query("SELECT name FROM subjects WHERE id=$id");
+           
+        }
 }
  

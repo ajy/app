@@ -35,14 +35,21 @@
     
 }
                </script>
-              
+               <style>
+                    #ifr{
+                        position:fixed;
+                width:100%;
+                height:100%; 
+                overflow:auto;
+            } 
+               </style>
                
 </head>
 
 <body>
    
     
-    <iframe  id="ifr" src="../form_a_records/result" style="width:1366px; height:660px; overflow:auto;" ></iframe>
+    <iframe  id="ifr" src="../form_a_records/result"  ></iframe>
 
     <?php $user=($this -> Session -> read("Auth.User"));?>
 		<div id="sidebar">

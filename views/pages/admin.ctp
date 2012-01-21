@@ -3,11 +3,11 @@
     <head>
         <title></title>
 
-        <style type="text/css" title="currentStyle"> 
+<!--        <style type="text/css" title="currentStyle"> 
             html{
                 overflow:hidden;
             }
-        </style> 
+        </style> -->
 
         <?= $javascript->link(array('config', 'add_edit')); ?>
         <?= $html->css(array('reset', 'style')); ?>
@@ -49,12 +49,12 @@
         </script>
 
         <style>
-            iframe{
+             #ifr{
+                        position:fixed;
                 width:100%;
-                height:660px; 
-                overflow:hidden;
+                height:100%; 
+                overflow:auto;
             } 
-           
           
         </style>
      <script>

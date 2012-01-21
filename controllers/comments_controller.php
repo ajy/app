@@ -149,10 +149,11 @@ class CommentsController extends AppController {
         function search(){
             $teacher=$subject=null;
           if (count($this->data)>1) {
-              echo $this->data['teacher']=="";
+//              echo $this->data['teacher']=="";
             $teacher= $this->data['teacher'];
             $subject= $this->data['subject'];
 //            debug( $this->Comment->search($teacher,$subject));
+            
              $this->set('comments', $this->Comment->search($teacher,$subject)); 
            }
         }
