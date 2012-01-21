@@ -7,10 +7,10 @@ and open the template in the editor.
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
-         <?= $javascript->link(array('autoResize'));?>
-          <?=$html->css(array('button_green','style','comments'));?> 
-          <?= $javascript->link(array('jquery.fancybox.pack','add_edit'));?>
-                 <?=$html->css(array('jquery.fancybox'));?>     
+         <?php echo  $javascript->link(array('autoResize'));?>
+          <?php echo $html->css(array('button_green','style','comments'));?> 
+          <?php echo  $javascript->link(array('jquery.fancybox.pack','add_edit'));?>
+                 <?php echo $html->css(array('jquery.fancybox'));?>     
        
         <script>
         
@@ -86,7 +86,9 @@ top:-20px;
 </style>
     </head>
     <body>
+
 <? debug($comments);?>
+
     <div id="pHead">
                 <h2>Comments</h2> 
                 </div>
@@ -124,13 +126,13 @@ $printed=TRUE;
                         <li>
                             <ul class="meta">
                                 <li class="subject">Subject</li>
-                                <li class="date">posted on <? echo date("jS M \, Y", strtotime($comments[$i]['comments']['created']))?> </li>
+                                <li class="date">posted on <?php echo date("jS M \, Y", strtotime($comments[$i]['comments']['created']))?> </li>
                             </ul>
                             <div class="body" onmouseover=""><?print_r (base64_decode($comments[$i]['comments']['comment']))?>
                                   
                             </div>
                               <div class="opt">
-                                <? if(!$reply){echo $html->link('Comment',array('controller'=>'comments','action'=>'add',$sid,$to,$pid),array('class'=>'modal5'));}?>
+                                <?php if(!$reply){echo $html->link('Comment',array('controller'=>'comments','action'=>'add',$sid,$to,$pid),array('class'=>'modal5'));}?>
                                    <!--<img src="" " onclick="" width="13" height="13" alt="expand"/>-->
                                    
                               </div>
@@ -138,7 +140,7 @@ $printed=TRUE;
 
 
  
-<? 
+<?php 
             
             if($i+1!=$count&&(($comments[$i+1]['comments']['parent_id'])!=NULL)){
                 $reply=TRUE;}

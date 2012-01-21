@@ -9,11 +9,11 @@
         <title>Admin</title> 
 
          <!--                       CSS                       --> 
-        <?=$html->css(array('reset','style','jquery.fancybox','button','demo_table','demo_table_jui','jquery-ui-1.8.4.custom','TableTools','alerts'),'import');?>
+        <?php echo $html->css(array('reset','style','jquery.fancybox','button','demo_table','demo_table_jui','jquery-ui-1.8.4.custom','TableTools','alerts'),'import');?>
    
 
         <!--                      JS                  --> 
-      <?= $javascript->link(array('jquery-1.5.1.min','jquery.dataTables','TableTools','ZeroClipboard','jquery.fancybox.pack','config','add_edit'));?>
+      <?php echo  $javascript->link(array('jquery-1.5.1.min','jquery.dataTables','TableTools','ZeroClipboard','jquery.fancybox.pack','config','add_edit'));?>
      
 
         <script>
@@ -82,7 +82,7 @@
                    <div id="pHead">
                 <h2>Subjects</h2> 
                 </div>
-                <?= $html->tag('div',$html->link('Add Subject',array('controller'=>'subjects','action'=>'add'),array('escape'=>false,'class'=>'btn success modal2'))
+                <?php echo  $html->tag('div',$html->link('Add Subject',array('controller'=>'subjects','action'=>'add'),array('escape'=>false,'class'=>'btn success modal2'))
                   ,array('class' => 'add'))?>
                 <div class="content-box"><!-- Start Content Box --> 
 
@@ -150,7 +150,7 @@
 		
 		<td><?php echo $subjects[$i]['subjects']['name']; ?></td>
 		<td class="center"><?php echo $subjects[$i]['subjects']['code']; ?></td>
-		<td class="center"><? echo  $subjects[$i]['subjects']['class']; ?></td>
+		<td class="center"><?php echo  $subjects[$i]['subjects']['class']; ?></td>
 		<td class="center"><?php echo $teacher1[$i][0]['users']['name']!=NULL? $teacher1[$i][0]['users']['name']:"-"; ?></td>
                 <!--<td class="center"><?php echo $teacher2[$i][0]['users']['name']!=NULL? $teacher2[$i][0]['users']['name']:"-"; ?></td>-->               
                 <td class="center"> 
@@ -211,7 +211,7 @@
 		
 		<td><?php echo $subjects[$i]['subjects']['name']; ?></td>
 		<td class="center"><?php echo $subjects[$i]['subjects']['code']; ?></td>
-		<td class="center"><? echo  $subjects[$i]['subjects']['class']; ?></td>
+		<td class="center"><?php echo  $subjects[$i]['subjects']['class']; ?></td>
 		<td class="center"><?php echo $teacher1[$i][0]['users']['name']!=NULL? $teacher1[$i][0]['users']['name']:"-"; ?></td>
                 <!--<td class="center"><?php echo $teacher2[$i][0]['users']['name']!=NULL? $teacher2[$i][0]['users']['name']:"-"; ?></td>-->
                 <td class="center"> 
@@ -273,7 +273,7 @@
 		
 		<td><?php echo $subjects[$i]['subjects']['name']; ?></td>
 		<td class="center"><?php echo $subjects[$i]['subjects']['code']; ?></td>
-		<td class="center"><? echo  $subjects[$i]['subjects']['class']; ?></td>
+		<td class="center"><?php echo  $subjects[$i]['subjects']['class']; ?></td>
 		<td class="center"><?php echo $teacher1[$i][0]['users']['name']!=NULL? $teacher1[$i][0]['users']['name']:"-"; ?></td>
                 <!--<td class="center"><?php echo $teacher2[$i][0]['users']['name']!=NULL? $teacher2[$i][0]['users']['name']:"-"; ?></td>-->               
                 <td class="center"> 

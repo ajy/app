@@ -1,4 +1,4 @@
-<div id="bar<?php echo($i);?>" style="width: 600px; height: 400px;"></div>
+<div id="bar<?php echo($i);?>" ></div>
 <?php Configure::load('FormAQs');?>
 <script type="text/javascript">
 	function drawVisualization<?php echo($i);?>() {
@@ -32,7 +32,7 @@
         new google.visualization.BarChart(document.getElementById('bar<?php echo($i);?>')).
             draw(data,
         {title:"Your Score in  <?php echo($form_a_result['name'])?> :<?php echo round($score);?> ",
-                  width:1000, height:150,
+                  width:'75%', height:150,
                   isStacked: true,
                   legend: 'none'
                  }

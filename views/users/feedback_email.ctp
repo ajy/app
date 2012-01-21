@@ -1,5 +1,5 @@
-<?=$this->Html->script('autoresize.jquery.js'); ?> 
-<?=$html->script("livevalidation")?>
+<?php echo $this->Html->script('autoresize.jquery.js'); ?> 
+<?php echo $html->script("livevalidation")?>
 <script>
 $('textarea').autoResize({
     // On resize:
@@ -16,7 +16,7 @@ $('textarea').autoResize({
     extraSpace : 400
 });
 </script>
-<?=$html->css(array('Form','submitButton'));?>
+<?php echo $html->css(array('Form','submitButton'));?>
 <div class="users form">
 <?php echo $this->Form->create('User', array('action' => 'feedbackEmail'));?>
 	<fieldset>

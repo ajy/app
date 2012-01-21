@@ -82,6 +82,16 @@ class DATABASE_CONFIG {
 		'database' => 'test',
 		'prefix' => '',
 	);
+	
+	var $local_default = array(
+		'driver' => 'mysql',
+		'persistent' => false,
+		'host' => 'localhost',
+		'login' => 'root',
+		'password' => 'root',
+		'database' => 'test',
+		'prefix' => '',
+	);
 
 	var $test = array(
 		'driver' => 'mysql',
@@ -92,4 +102,12 @@ class DATABASE_CONFIG {
 		'database' => 'test_database_name',
 		'prefix' => '',
 	);
+	
+	/*function __construct() {//a custom constructor specified by dotcloud to change the default db settings to suit dotcloud
+            $json = file_get_contents("/home/dotcloud/environment.json");
+            $env = json_decode($json, true);
+            $this->default['host'] = $env['DOTCLOUD_MYSQL_MYSQL_HOST'];
+            $this->default['port'] = $env['DOTCLOUD_MYSQL_MYSQL_PORT'];
+            $this->default['password'] = $env['DOTCLOUD_MYSQL_MYSQL_PASSWORD'];
+        }*/
 }

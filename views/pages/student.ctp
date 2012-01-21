@@ -7,10 +7,10 @@
 			 html, body {height:100%;width:100%;overflow:hidden}
                </style> 
                
-		<?= $javascript->link(array('config'));?>
-                <?=$html->css(array('reset','style','student'));?>
-                <?= $javascript->link(array('jquery.fancybox.pack','add_edit'));?>
-                 <?=$html->css(array('jquery.fancybox'));?>     
+		<?php echo  $javascript->link(array('config'));?>
+                <?php echo $html->css(array('reset','style','student'));?>
+                <?php echo  $javascript->link(array('jquery.fancybox.pack','add_edit'));?>
+                 <?php echo $html->css(array('jquery.fancybox'));?>     
               
                <script>
                    pos=1;
@@ -58,7 +58,7 @@
                     
                     <div id="sidebar-wrapper"> 			
                          <?php $user=$this->Session->read("Auth.User");;?>
-                <h1 id="sidebar-title"><?=$html->link($user['name'], array('controller' => 'users', 'action' => 'edit',$user['id']),array('title'=>'Edit Profile','class'=>'modal3','required'=>TRUE));?></h1>
+                <h1 id="sidebar-title"><?php echo $html->link($user['name'], array('controller' => 'users', 'action' => 'edit',$user['id']),array('title'=>'Edit Profile','class'=>'modal3','required'=>TRUE));?></h1>
                 <div id="profile-links">
 
                     ISE Department

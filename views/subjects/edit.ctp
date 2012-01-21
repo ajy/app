@@ -1,5 +1,5 @@
-<?=$html->css(array('reset','button','add_edit'));?>
-<?=$html->script("livevalidation");?>
+<?php echo $html->css(array('reset','button','add_edit'));?>
+<?php echo $html->script("livevalidation");?>
 <script>
 
 function close(){
@@ -45,7 +45,7 @@ padding-bottom:80px;
 		<label> Class</label>
                <select name="data[Subject][class]" id="SubjectClass" >
                                        
-                    <? 
+                    <?php 
                                foreach($classes as $class):
                                     //debug($teacher);
                                  if($class['subjects']['class']== $selected){
@@ -61,7 +61,7 @@ padding-bottom:80px;
                <label>Teacher</label> 
                  <select name="data[Subject][teacher1]" id="SubjectTeacher1" >
                                        
-                    <? 
+                    <?php 
                                  foreach($teachers as $teacher):
                                  if($teacher['users']['id']== $teacher1){
                      
@@ -77,7 +77,7 @@ padding-bottom:80px;
               <!--<label>Teacher 2</label> 
                  <select name="data[Subject][teacher2]" id="SubjectTeacher2" >
                     
-                    <?  
+                    <?php  
                    echo '<option value = "">Select</option>';    
                                  foreach($teachers as $teacher):
                                  if($teacher['users']['id']== $teacher2){
@@ -117,17 +117,17 @@ padding-bottom:80px;
  <input class="btn success" type="submit" value="Save" />
 </div>
 </footer>
-<?=$this->Form->end();?>
+<?php echo $this->Form->end();?>
 </div>
 </cake:nocache>
 <script>
 //validation code placed after the form makes it work
-var subjectName = new LiveValidation("SubjectName",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+var subjectName = new LiveValidation("SubjectName",{wait: 1000, onlyOnSubmit: true, validMessage: " "});
 subjectName.add(Validate.Presence);
-var code = new LiveValidation("SubjectCode",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+var code = new LiveValidation("SubjectCode",{wait: 1000, onlyOnSubmit: true, validMessage: " "});
 code.add(Validate.Presence);
-var theClass = new LiveValidation("SubjectClass",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});//class is a keyword in js
+var theClass = new LiveValidation("SubjectClass",{wait: 1000, onlyOnSubmit: true, validMessage: " "});//class is a keyword in js
 theClass.add(Validate.Format, {pattern: /[1-8][AB]/i, failureMessage: "Not a valid class"});
-var teacher = new LiveValidation("SubjectTeacher",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+var teacher = new LiveValidation("SubjectTeacher",{wait: 1000, onlyOnSubmit: true, validMessage: " "});
 teacher.add(Validate.Presence);
 </script>

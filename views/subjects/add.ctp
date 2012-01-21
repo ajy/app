@@ -1,5 +1,5 @@
-<?=$html->css(array('reset','button','add_edit'));?>
-<?=$html->script("livevalidation");?>
+<?php echo $html->css(array('reset','button','add_edit'));?>
+<?php echo $html->script("livevalidation");?>
 <script>
 $(document).ready(function(){
 
@@ -84,20 +84,18 @@ OPTIONS;
  <input class="btn success" type="submit" value="Add" />
 </div>
 </footer>
-<? 
-
-$form->end();?>
+<?php echo $this->Form->end();?>
   
                      
  </div>
 <script>
 //validation code placed after the form makes it work
-var subjectName = new LiveValidation("SubjectName",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+var subjectName = new LiveValidation("SubjectName",{wait: 1000, onlyOnSubmit: true, validMessage: " "});
 subjectName.add(Validate.Presence);
-var code = new LiveValidation("SubjectCode",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+var code = new LiveValidation("SubjectCode",{wait: 1000, onlyOnSubmit: true, validMessage: " "});
 code.add(Validate.Presence);
-var theClass = new LiveValidation("SubjectClass",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});//class is a keyword in js
+var theClass = new LiveValidation("SubjectClass",{wait: 1000, onlyOnSubmit: true, validMessage: " "});//class is a keyword in js
 theClass.add(Validate.Format, {pattern: /[1-8][AB]/i, failureMessage: "Not a valid class"});
-var teacher = new LiveValidation("SubjectTeacher",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+var teacher = new LiveValidation("SubjectTeacher",{wait: 1000, onlyOnSubmit: true, validMessage: " "});
 teacher.add(Validate.Presence);
 </script>

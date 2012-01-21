@@ -1,4 +1,4 @@
-<?=$html->css(array('reset','button','add_edit'));?>
+<?php echo $html->css(array('reset','button','add_edit'));?>
 <script>function close(){
 
     parent.$.fancybox.close( );
@@ -42,7 +42,7 @@ echo $this->Form->file('File');
 <div id="submit">
  <input class="btn danger" type="submit" value="Import" />
 </div>
-<? $form->end();?>
+<?php $this->Form->end();?>
  
    </footer>
 

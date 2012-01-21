@@ -1,4 +1,4 @@
- <?=$html->css(array('reset','add_edit','button'));?> 
+ <?php echo $html->css(array('reset','add_edit','button'));?> 
 <script>
     function close(){
 
@@ -35,7 +35,7 @@
 <div id="submit">
  <input class="btn success" type="submit" value="Post" />
 </div>
-<? $form->end();?>
+<?php $this->Form->end();?>
  
    </footer>
 

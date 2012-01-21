@@ -1,7 +1,7 @@
 <!--                       CSS                       --> 
-<?=$html->css(array('reset','style','jquery.fancybox','button','demo_table','TableTools','alerts'),'import');?>
+<?php echo $html->css(array('reset','style','jquery.fancybox','button','demo_table','TableTools','alerts'),'import');?>
 <!--                      JS                  --> 
-<?= $javascript->link(array('jquery-1.5.1.min','jquery.dataTables','TableTools','ZeroClipboard','jquery.fancybox.pack','config','add_edit'));?>
+<?php echo  $javascript->link(array('jquery-1.5.1.min','jquery.dataTables','TableTools','ZeroClipboard','jquery.fancybox.pack','config','add_edit'));?>
 <script>
 	$(document).ready(function(){
 		$('.example').dataTable();
@@ -27,7 +27,7 @@ padding:10px;
 	<div id="pHead">
         <h2>Enrollments</h2> 
         </div>
-        <?= $html->tag('div',
+        <?php echo  $html->tag('div',
         	$this->Html->link('Enroll',
         		array('action' => 'enroll'),
         		array('escape'=>false,'class'=>'btn success imp')),

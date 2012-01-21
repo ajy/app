@@ -175,10 +175,11 @@ class FormARecord extends AppModel {
 		$userSubjectsData=$this->Subject->find('all', array(
 			'recursive' => -1,
 			'conditions' => array(
-				'OR' => array(
+				'Subject.teacher1' => $user_id
+				/*'OR' => array(
 					'Subject.teacher1' => $user_id,
 					'Subject.teacher2' => $user_id
-					)
+					) no more teacher 2*/
 				)
 			)
 		);
@@ -195,7 +196,7 @@ class FormARecord extends AppModel {
 				)
 			));
 			if($totalRows==null){
-				$result="No records for ".$userSubject['code'].' : '.$userSubject['name'];				
+				$result="No records for ".$userSubject['name'];				
 			}else{
 				$ninetyPerAllRows=0.9*$totalRows;
 				$requiredRecords=$this->find('all', array(

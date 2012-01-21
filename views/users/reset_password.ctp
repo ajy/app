@@ -1,9 +1,11 @@
+
 <?=$html->css(array('reset','button','alerts'));?>
 <?=$html->script(array('bootstrap-alerts','livevalidation'))?>
 <script>
 document.title='Forgot password';
  $(function () {$(".message").alert()})
 </script>
+
 <style>
     html
 {
@@ -124,14 +126,16 @@ span{
 <div id="submit">
  <input class="btn primary" type="submit" value="Send" />
 </div>
-    
-<? $form->end();?>
+
 </div>
 <footer>
 </footer>
+
+<?php echo $this->Form->end();?>
+
 <script>
 //validation code placed after the form makes it work
-var email = new LiveValidation("UserEmail",{wait: 1000, onlyOnSubmit: true, validMessage: "It seems to be alright"});
+var email = new LiveValidation("UserEmail",{wait: 1000, onlyOnSubmit: true, validMessage: " "});
 email.add(Validate.Presence);
 email.add(Validate.Email);
 </script>
