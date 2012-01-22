@@ -46,11 +46,7 @@
         </style> 
         
 <script>
-
  parent.$.fancybox.close()
- //$(document).ready(function(){parent.location.reload();});
- 
-  
 </script>
     </head> 
 

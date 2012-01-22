@@ -131,7 +131,7 @@ class SubjectsController extends AppController {
             // $this->set('allSubjects',$allSubjects);
              $this->set('subjects',$subjects);
              $this->set('teacher1',$teacher1);
-
+              $this->set('subnum',Configure::read('max_sub_num'));
             // $this->set('teacher2',$teacher2);
 
              //$this->set('teacher2',$teacher2);no more teacher2
@@ -149,9 +149,13 @@ class SubjectsController extends AppController {
            
         }
         function getSubjects(){
-          return  $this->Subject->find('list');
+          return  $this->Subject->query("SELECT id,name FROM users WHERE group_id=2 ");
             
         }
         
+        function getName($id){
+            return $this->Subject->query("SELECT name FROM subjects WHERE id=$id");
+           
+        }
 }
  

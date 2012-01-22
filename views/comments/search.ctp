@@ -27,5 +27,8 @@ OPTIONS;
 <div id="submit">
  <input class="btn success" type="submit" value="Search" />
 </div>
-<?echo $this->Form->end();?>
+<?echo $this->Form->end();
+debug($this->data);
+//debug($comments);
+?>
 </div></div>

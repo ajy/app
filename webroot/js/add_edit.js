@@ -2,10 +2,9 @@ $(document).ready(function() {
     
     $(".modal").fancybox({
         
-        maxWidth	:500,
-        maxHeight	: 500,
-        minWidth	:500,
-        minHeight	: 200,
+         width	:500,
+        height	:450,
+
         fitToView	: false,
         autoSize	: true,
         type				: 'iframe',
@@ -61,7 +60,7 @@ $(document).ready(function() {
          $(".modal2").fancybox({
         
           width	:500,
-        height	: 450,
+        height	: 400,
 
         fitToView	: false,
 //        autoSize	: true,
@@ -140,10 +139,10 @@ $(document).ready(function() {
     
     $(".fbf").fancybox({
         
-        width				: '38%',
-	height			: '104%',
-        minWidth	:500,
-        minHeight	: 200,
+        width				: 500,
+	height			: '100%',
+//        minWidth	:500,
+//        minHeight	: 200,
         fitToView	: false,
         autoSize	: true,
         type				: 'iframe',

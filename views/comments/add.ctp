@@ -9,6 +9,7 @@
 <style>
     textarea{
         width:450px;
+        resize:none;
     }
 </style>
 <div class="comments form">

@@ -27,7 +27,7 @@
     ifr = document.getElementById("ifr");
      ifr.style.display="block";
     switch(pg){
-        case 1: ifr.src="../form_a_records/result";
+        case 1: ifr.src="../form_a_records/result/1";
                 break;
         case 2: ifr.src="../comments/comments";
                 break;
@@ -35,14 +35,21 @@
     
 }
                </script>
-              
+               <style>
+                    #ifr{
+                        position:fixed;
+                width:100%;
+                height:100%; 
+                overflow:auto;
+            } 
+               </style>
                
 </head>
 
 <body>
    
     
-    <iframe  id="ifr" src="../form_a_records/result" style="width:1366px; height:660px; overflow:auto;" ></iframe>
+    <iframe  id="ifr" src="../form_a_records/result/1"  ></iframe>
 
     <?php $user=($this -> Session -> read("Auth.User"));?>
 		<div id="sidebar">

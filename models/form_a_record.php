@@ -197,7 +197,7 @@ class FormARecord extends AppModel {
 				)
 			));
 			if($totalRows==null){
-				$result="No records for ".$userSubject['code'].' : '.$userSubject['name'];				
+				$result="No records for ".$userSubject['name'];				
 			}else{
 				$ninetyPerAllRows=0.9*$totalRows;
 				$requiredRecords=$this->find('all', array(

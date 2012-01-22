@@ -1,6 +1,24 @@
-<?php echo $html->css(array('form_a_b','submitButton'));?>
+
+<?=$html->css(array('reset','form_a_b','button'));?>
+<?=$html->script("livevalidation");?>
+
 <?php Configure::load('FormAQs'); ?>
-     
+<style>
+    html{
+        overflow:hidden;
+    }
+</style>  
+<script>
+
+function close(){
+    parent.$.fancybox.close( );
+   
+
+}
+
+
+</script>
+<div id="header">Feedback Form</div>
 <?php echo $this->Form->create('FormARecord', array('id' => 'Form'));?>
             <fieldset>
                 <legend><?php echo Configure::read('Question.FormA.1'); ?></legend>
@@ -82,7 +100,18 @@
                 <label style="display: inline-block">2<input type="radio" name="data[FormARecord][q10]" value="2" required /></label>
                 <label style="display: inline-block">1<input type="radio" name="data[FormARecord][q10]" value="1" required /></label>
             </fieldset>            
-  <?php echo $this->Form->end(__('Submit', true));?>
+<footer>
+<div id="cancel">
+<input type="button" value="Cancel" class="btn close" name="Close" onclick="window.close();" />
+
+</div>
+<div id="submit">
+ <input class="btn success" type="submit" value="Submit" />
+</div>
+</footer>
+<? 
+
+$form->end();?>
 
 <?php
 ///debug($this->Session->read('params'));

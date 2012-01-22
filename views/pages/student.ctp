@@ -4,9 +4,7 @@
 <title></title>
  
                <style type="text/css" title="currentStyle"> 
-			  html{
-/*                            overflow:hidden;*/
-                         }
+			 html, body {height:100%;width:100%;overflow:hidden}
                </style> 
                
 		<?php echo  $javascript->link(array('config'));?>
@@ -38,11 +36,13 @@
 }
                </script>
                <style>
-                    iframe{
+                    #ifr{
+                        position:fixed;
                 width:100%;
-                height:660px; 
-                overflow:scroll;
+                height:100%; 
+                overflow:auto;
             } 
+           
                </style>
               
                
@@ -51,7 +51,7 @@
 <body >
    
     
-    <iframe  id="ifr" src="../subjects/subjects" style="width:1366px; height:660px; overflow:hidden;" ></iframe>
+    <iframe  id="ifr" src="../subjects/subjects"  ></iframe>
     
     <?php $user=($this -> Session -> read("Auth.User"));?>
 		<div id="sidebar">

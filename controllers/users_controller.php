@@ -31,6 +31,7 @@ class UsersController extends AppController {
                            	$this->redirect($this->Auth->redirect(array('controller'=> 'pages','action' => 'student')));                           	
                         }
 		}
+                $this->set('title_for_layout','OTAS');
 	}
 
 	function logout() {
@@ -53,7 +54,7 @@ class UsersController extends AppController {
 				));
 			else
 				$this->Session->setFlash('your feedback could not be sent right now,try again later','default', array(
-					'class' => 'message error'
+					'class' => 'message error fade in','data-alert'=>'alert'
 				));
 			$this->redirect($this->referer());
 		}
@@ -77,8 +78,11 @@ class UsersController extends AppController {
 				$this->Session->setFlash('The password could not be saved. Please, try again.','default', array(
 					'class' => 'message error'
 				));
+                                  $this->redirect($this->referer());
 			}
 			//$this->redirect(array('action' => 'index'));
+                         $this->redirect($this->Auth->redirect(array('controller'=> 'pages','action'=>'success')));
+                     
 		}
 		if (empty($this->data)) {
 			$this->data['User']['id']=$id;//set user id of the user whose password is to be changed to the value passed
@@ -92,7 +96,7 @@ class UsersController extends AppController {
 			// user submitted initial form 
 			$user = $this->User->findByEmail($this->data['User']['email']); 
 			if (empty($user)){ 
-			       $this->Session->setFlash('Unregistered email','default', array(
+			       $this->Session->setFlash('Unregistered email address','default', array(
 					'class' => 'message error'
 				)); 
 			       return;  
@@ -108,7 +112,7 @@ class UsersController extends AppController {
 				$this->Email->template = "password_reset_message";
 				$this->Email->send(); 
 				$this->Session->setFlash('A link to set a new password has been sent to your email account.','default', array(
-					'class' => 'message success'
+					'class' => 'message info fade in','data-alert'=>'alert'
 				)); 
 				$this->redirect('resetPassword');
 			} 
@@ -267,8 +271,6 @@ class UsersController extends AppController {
 			$NumSavedRows = 0;
 			$error = false;
 			$info = $csv->data;
-			echo debug($info);
-			return;
 			foreach($info as $studentInfo){
 				if($this->User->save(array('User' => $studentInfo),true,array('username', 'name', 'email','class'))){// no id cause its a new user
 					$NumSavedRows++;
