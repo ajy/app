@@ -8,6 +8,7 @@ class FormARecordsController extends AppController {
         var $uses = array('FormARecord', 'FormBResult');
         
 	function result($sub_num=null) {
+		$this->set('sub_num',$sub_num);
 		$group_id=$this->Session->read("Auth.User.group_id");
 		if($group_id==1){
 			if($sub_num==0) $rows=$this->FormARecord->calcAllOverallFormAResults();
@@ -15,13 +16,11 @@ class FormARecordsController extends AppController {
 			$this->set('rows',$rows);
 			$this->render('all_result');
 		} elseif($group_id==2) {
-
-			if($sub_num==0) $rows=$this->FormARecord->calcOverallFormAResults($this->Session->read("Auth.User.id"));
+		if($sub_num==0) $rows=$this->FormARecord->calcOverallFormAResults($this->Session->read("Auth.User.id"));
 			else $rows=$this->FormARecord->calcFormAResults($this->Session->read("Auth.User.id"),$sub_num);
 			$this->set('form_a_results',$rows);
-
-		}
-		$this->set('sub_num',$sub_num);
+		}		
+$this->set('sub_num',$sub_num);
 	}
 	
 	function index() {

@@ -150,8 +150,8 @@ class CommentsController extends AppController {
 
         	$teacher=$subject=null;
         	if(!empty($this->data)) {
-        		$teacher= $this->data['Comment']['teacher'];
-        		$subject= $this->data['Comment']['subject'];
+        		if($this->data['Comment']['teacher']!=0)$teacher= $this->data['Comment']['teacher'];
+        		if($this->data['Comment']['subject_id']!=0)$subject= $this->data['Comment']['subject_id'];
         		$this->set('comments', $this->Comment->search($teacher,$subject));
         	}
 

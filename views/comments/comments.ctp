@@ -83,11 +83,16 @@ top:-20px;
 
 
 }
+
+.author{
+    color:#4C8EFB;
+    display:inline;
+}
 </style>
     </head>
     <body>
 
-<? debug($comments);?>
+<? //debug($comments);?>
 
     <div id="pHead">
                 <h2>Comments</h2> 
@@ -124,16 +129,17 @@ $printed=TRUE;
   ?>          
 
                         <li>
-                            <ul class="meta">
+                            <ul class="meta"><?if(!$reply){?>
                                 <li class="subject"><? 
                                       $subject=(array_values($this->requestAction('/subjects/getName/'.$comments[$i]['comments']['subject_id'])));
                                       echo $subject[0]['subjects']['name'];
                                       ?></li>
-                                <li class="date">posted on <?php echo date("jS M \, Y", strtotime($comments[$i]['comments']['created']))?> </li>
+                                <? } ?>
+                                <li class="date"><?php echo date("jS M \, Y", strtotime($comments[$i]['comments']['created']))?> </li>
                             </ul>
                             <div class="body" onmouseover=""><?
-                             $user=(array_values($this->requestAction('/users/getName/'.$comments[$i]['comments']['subject_id'])));
-                                      echo $user[0]['users']['name'].' - ';
+                             $user=(array_values($this->requestAction('/users/getName/'.$comments[$i]['comments']['from'])));
+                               echo '<div class ="author">'.$user[0]['users']['name'].'</div>'.' - ';
                             print_r (base64_decode($comments[$i]['comments']['comment']))?>
                                   
                             </div>
