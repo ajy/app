@@ -10,9 +10,9 @@
 $teachers=($this->requestAction('subjects/getTeachers'));
 $subjects=$this->requestAction('subjects/getSubjects');
 ?>
-<label>Teachers</label>
-		 <select name="data[Comment][teacher]" id="SubjectTeacher1" >
-                     <option value=""></option>
+<label>Teacher</label>
+		 <select name="data[Comment][teacher]" id="CommentTeacher" >
+                     <option value=0></option>
                    <?foreach($teachers as $teacher):
                         $id=$teacher ['users']['id'];$name=$teacher ['users']['name'];
                      
@@ -22,13 +22,23 @@ $subjects=$this->requestAction('subjects/getSubjects');
 OPTIONS;
                          endforeach;?>  
                     </select>
-<label>Subjects</label>
-<?php echo $this->Form->select('subject',$subjects);?>
+<label>Subject</label>
+		 <select name="data[Comment][subject_id]" id="CommentSubjectId" >
+                     <option value=0></option>
+                   <?foreach($subjects as $subject):
+                        $id=$subject['subjects']['id'];$name=$subject['subjects']['name'];
+                     
+                     echo<<< OPTIONS
+                        <option value = $id > $name </option>
+                       
+OPTIONS;
+                         endforeach;?>  
+                    </select>
 <div id="submit">
  <input class="btn success" type="submit" value="Search" />
 </div>
 <?echo $this->Form->end();
 debug($this->data);
-//debug($comments);
+debug($comments);
 ?>
 </div></div>

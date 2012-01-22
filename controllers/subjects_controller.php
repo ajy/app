@@ -149,7 +149,7 @@ class SubjectsController extends AppController {
            
         }
         function getSubjects(){
-          return  $this->Subject->query("SELECT id,name FROM users WHERE group_id=2 ");
+          return  $this->Subject->query("SELECT id,name FROM subjects");
             
         }
         
