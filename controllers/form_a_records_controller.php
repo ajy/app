@@ -99,7 +99,7 @@ class FormARecordsController extends AppController {
 	}
 	
 	function deleteAll(){
-		$this->SubjectMembership->query('Truncate subject_memberships');//removes all data and resets id to start from 1
+		$this->SubjectMembership->query('Truncate form_a_records');//removes all data and resets id to start from 1
 		$this->redirect($this->referer());
 	}
 }
