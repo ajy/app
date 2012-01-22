@@ -1,5 +1,5 @@
-<?php echo  $javascript->link(array('jquery-1.5.1.min','config'));?>
-<?php echo  $javascript->link(array('jquery.fancybox.pack','add_edit','bootstrap-twipsy'));?>
+<?php echo $javascript->link(array('jquery-1.5.1.min','config'));?>
+<?php echo $javascript->link(array('jquery.fancybox.pack','add_edit','bootstrap-twipsy'));?>
 <?php echo $html->css(array('jquery.fancybox','twipsy'));?>
 <?php echo Configure::load('feedback');?>              
 <?php echo  $html->css(array('style','subjects','button','alert')); ?>
@@ -68,17 +68,8 @@ top:10px !important;
                    echo $html->tag('div',$html->link('Comment',array('controller'=>'comments','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher1"],),array('escape'=>false,'class'=>'btn info  modal5'))
                   ,array('class' => 'blue')); 
                     echo '<div class = "green"> ';
-<<<<<<< HEAD
-                   if($submitted[$i]['subject_memberships']['form_a_submitted']<Configure::read('max_sub_num')){
-                 echo $html->link('Feedback',array('controller'=>'form_a_records','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher1"]),array('escape'=>false,'class'=>'btn success fbf'));  
-                    }
-                  else{
-                 echo '<a href="#"  class="btn success disabled" /> Feedback </a>';
-=======
                    if($submitted[$i]['subject_memberships']['form_a_submitted']==$subnum){
                          echo '<a href="#"  rel="twipsy" title="Feedback Submitted" class="btn success disabled" /> Feedback </a>';
->>>>>>> b5326dbf297be4419d644562d66a6d1b864635c6
-                
                      }
                   else{
                  echo $html->link('Feedback',array('controller'=>'form_a_records','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher1"]),array('escape'=>false,'class'=>'btn success fbf'));  

@@ -64,6 +64,7 @@ class Comment extends AppModel {
 	
     function build($allComments){
         $i=0;
+        $comments=null;// default value
         foreach ($allComments as $p_com){
             if($p_com['comments']['parent_id']==NULL){
                 $comments[$i++]= $p_com;
@@ -72,9 +73,9 @@ class Comment extends AppModel {
                             $comments[$i++]=$com;
                         }
                 }  
-            }
-            return $comments;
+            }            
     	}
+    	return $comments;
     }
     
     function search($teacher,$subject){
@@ -82,10 +83,10 @@ class Comment extends AppModel {
             return $this->comments($teacher);//comments build themselves, so no need for the later call
         }
         elseif(is_null($teacher)){
-            $sql = "SELECT * FROM comments WHERE subject_id=".$subject." order by  created DESC  ";
+            $sql = "SELECT * FROM comments WHERE subject_id=".$subject." order by  created DESC  ";            
         }
         else{
-            $sql = "SELECT * FROM comments WHERE comments.from= " .$teacher." or comments.to= ".$teacher." and comments.subject_id=".$subject." order by  created DESC  ";
+            $sql = "SELECT * FROM comments WHERE (comments.from= " .$teacher." or comments.to= ".$teacher.") and comments.subject_id=".$subject." order by  created DESC  ";
         }
         return $this->build($this->query($sql));
     }
@@ -103,7 +104,7 @@ class Comment extends AppModel {
 		),
 		'Subject' => array(
 			'className' => 'Subject',
-			'foreignKey' => 'subject_code'			
+			'foreignKey' => 'subject_id'			
 		)
 	);
 }
