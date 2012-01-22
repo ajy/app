@@ -31,7 +31,7 @@
                         break;
                     case 2: ifr.src="../users";
                         break;
-                    case 3: ifr.src="../form_a_records/result";
+                    case 3: ifr.src="../form_a_records/result/0";
                         break;
                     case 4: ifr.src="../comments/search";
                         break;

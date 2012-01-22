@@ -97,4 +97,9 @@ class FormARecordsController extends AppController {
 		$this->Session->setFlash(__('Form a record was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
+	
+	function deleteAll(){
+		$this->SubjectMembership->query('Truncate subject_memberships');//removes all data and resets id to start from 1
+		$this->redirect($this->referer());
+	}
 }

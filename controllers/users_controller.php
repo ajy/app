@@ -264,6 +264,28 @@ class UsersController extends AppController {
 				));
 		}
 	}
+	
+	function deleteClass(){
+		if(!empty($this->data['User']['Class'])){
+			$class = $this->data['User']['Class'];
+			$this->User->query("delete users where class='".$class."'");//the slashes and quotes look silly but they make it work
+			$test=$this->User->find('all',array(
+				'conditions'=>array(
+					'class' => $class
+				)
+			));
+			if(empty($test))
+				$this->Session->setFlash("All students of class ".$class." have been deleted",'default', array(
+					'class' => 'message success'
+				));
+			else
+				$this->Session->setFlash("Students of class ".$class." could not be deleted",'default', array(
+					'class' => 'message error'
+				));
+		}
+		$this->data['User']['class']='8A';
+	}
+	
 	function import() {
 		if(!empty($this->data['User']['File'])){
 			//creating a reader object
