@@ -331,25 +331,32 @@ class UsersController extends AppController {
 		//set teachers access
 		$group->id = 2;
 		$this->Acl->deny($group,'controllers');
-		$this->Acl->allow($group, 'controllers/Comments/index');
 		$this->Acl->allow($group, 'controllers/Comments/view');
-		$this->Acl->allow($group, 'controllers/FormARecords/index');
-		$this->Acl->allow($group, 'controllers/FormARecords/view');
-		$this->Acl->allow($group, 'controllers/FormBRecords/index');
-		$this->Acl->allow($group, 'controllers/FormBRecords/view');
+		$this->Acl->allow($group, 'controllers/Comments/add');
+		$this->Acl->allow($group, 'controllers/Comments/comments');
+		$this->Acl->allow($group, 'controllers/FormARecords/result');
 		$this->Acl->allow($group, 'controllers/Subjects/index');
 		$this->Acl->allow($group, 'controllers/Subjects/view');
 		$this->Acl->allow($group, 'controllers/Users/login');
 		$this->Acl->allow($group, 'controllers/Users/logout');
+		$this->Acl->allow($group, 'controllers/Users/changePassword');
+		$this->Acl->allow($group, 'controllers/Users/edit');
+		$this->Acl->allow($group, 'controllers/Users/resetPassword');
+		$this->Acl->allow($group, 'controllers/Users/setNewPassword');
+		
 		//set students access
 		$group->id = 3;
 		$this->Acl->deny($group, 'controllers');
 		$this->Acl->allow($group, 'controllers/Comments/add');
+		$this->Acl->allow($group, 'controllers/Comments/comments');
 		$this->Acl->allow($group, 'controllers/FormARecords/add');
-		$this->Acl->allow($group, 'controllers/FormBRecords/add');
 		$this->Acl->allow($group, 'controllers/Users/login');
 		$this->Acl->allow($group, 'controllers/Users/logout');
-								
+		$this->Acl->allow($group, 'controllers/Users/changePassword');
+		$this->Acl->allow($group, 'controllers/Users/edit');
+		$this->Acl->allow($group, 'controllers/Users/resetPassword');
+		$this->Acl->allow($group, 'controllers/Users/setNewPassword');
+										
 		echo('all done');
 		exit;		
 	} 
