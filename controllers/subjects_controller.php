@@ -153,8 +153,10 @@ class SubjectsController extends AppController {
             
         }
         
-        function getName($id){
-            return $this->Subject->query("SELECT name FROM subjects WHERE id=$id");
+     
+        function  getName($id){
+            
+            return  $this->Subject->query("SELECT name FROM subjects WHERE id=$id");
            
         }
 }

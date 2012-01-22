@@ -293,7 +293,12 @@ class UsersController extends AppController {
 
         function getTeachers(){
             return  $this->User->find('list',array('conditions'=>array('User.group_id'=>'2')));}
-
+             
+       function  getName($id){
+            
+            return  $this->User->query("SELECT name FROM users WHERE id=$id");
+           
+        }
 //        function test(){
 //        	echo "Beginning test";
 //        	Configure::write('debug',0);

@@ -125,10 +125,16 @@ $printed=TRUE;
 
                         <li>
                             <ul class="meta">
-                                <li class="subject">Subject</li>
+                                <li class="subject"><? 
+                                      $subject=(array_values($this->requestAction('/subjects/getName/'.$comments[$i]['comments']['subject_id'])));
+                                      echo $subject[0]['subjects']['name'];
+                                      ?></li>
                                 <li class="date">posted on <?php echo date("jS M \, Y", strtotime($comments[$i]['comments']['created']))?> </li>
                             </ul>
-                            <div class="body" onmouseover=""><?print_r (base64_decode($comments[$i]['comments']['comment']))?>
+                            <div class="body" onmouseover=""><?
+                             $user=(array_values($this->requestAction('/users/getName/'.$comments[$i]['comments']['subject_id'])));
+                                      echo $user[0]['users']['name'].' - ';
+                            print_r (base64_decode($comments[$i]['comments']['comment']))?>
                                   
                             </div>
                               <div class="opt">

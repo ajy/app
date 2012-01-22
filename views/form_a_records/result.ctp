@@ -36,7 +36,7 @@ color: #1c9bf4 !important;
         echo $this->Session->flash();
 ?>
         <div class='opt'>
-        <?php echo  $html->tag('div',$html->link('Total Feedback ',array('controller'=>'form_a_records','action'=>'result'),array('escape'=>false,'class'=>'btn primary '))
+        <?php echo  $html->tag('div',$html->link('Total Feedback ',array('controller'=>'form_a_records','action'=>'result',0),array('escape'=>false,'class'=>'btn primary '))
                   ,array('class' => 'fb'))?>
  <?php echo  $html->tag('div',$html->link('Feedback 3',array('controller'=>'form_a_records','action'=>'result',3),array('escape'=>false,'class'=>'btn primary '))
                   ,array('class' => 'fb'))?>
@@ -47,7 +47,7 @@ color: #1c9bf4 !important;
      </div>
        <ul id="main-nav"> 
        <?php
-        //debug($form_a_results);
+        debug($form_a_results);
 $i=0;
         foreach($form_a_results as $form_a_result){
          echo "<li>";?> 

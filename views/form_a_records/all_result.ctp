@@ -28,7 +28,11 @@
  
 <div id="main-content">
 <div id="pHead">
-                <h2>Feedback Results</h2> 
+                <h2>
+                <?php 
+                	if($sub_num==0)echo "Overall ";echo "Feedback Results ";if($sub_num!=0)echo "#".$sub_num;
+                ?>
+                </h2> 
                 </div>
 <div class="content-box">
 <table class="display example">

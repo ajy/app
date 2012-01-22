@@ -45,54 +45,56 @@ class Comment extends AppModel {
 		),
 	);
         public function comments($user) {
-        $sql = "SELECT * FROM `comments` WHERE `from`=" .$user." or `to`= ".$user." order by  `created` DESC  ";
-        $allComments=$this->query($sql) == NULL ? NULL : $this->query($sql);
-        $i=0;
-        foreach ($allComments as $p_com) {
-            if($p_com['comments']['parent_id']==NULL){
-                $comments[$i++]= $p_com;
-                 foreach ($allComments as $com) {
-                        if($p_com['comments']['id']==$com['comments']['parent_id']){
-                            $comments[$i++]=$com;
-                            
-                        }
-                }  
-            }
-        }
-        //debug($comments);
-        return($comments);
-      
-    }
+        	$sql = "SELECT * FROM `comments` WHERE `from`=" .$user." or `to`= ".$user." order by  `created` DESC  ";
+	        $allComments=$this->query($sql);
+        	$i=0;
+        	$comments = null;//default value
+        	foreach ($allComments as $p_com) {
+        		if($p_com['comments']['parent_id']==NULL){
+                		$comments[$i++]= $p_com;
+                		foreach ($allComments as $com) {
+                		        if($p_com['comments']['id']==$com['comments']['parent_id']){
+                				$comments[$i++]=$com;
+                			}
+                		}
+                	}
+                }
+                return($comments);
+	}
+	
     function build($allComments){
         $i=0;
-        foreach ($allComments as $p_com) {
+        foreach ($allComments as $p_com){
             if($p_com['comments']['parent_id']==NULL){
                 $comments[$i++]= $p_com;
                  foreach ($allComments as $com) {
                         if($p_com['comments']['id']==$com['comments']['parent_id']){
                             $comments[$i++]=$com;
-                            
                         }
                 }  
             }
             return $comments;
-    }}
-    function search($teacher,$subject){
-        if(is_null($subject)){
-            return comments($teacher);
-        }
-        elseif(is_null($teacher)){
-            $sql = "SELECT * FROM `comments` WHERE subject_id=".$subject." order by  `created` DESC  ";
-//            return build($this->query($sql));
-        }
-        else{
-            $sql = "SELECT * FROM `comments` WHERE `from`=" .$teacher." or `to`= ".$teacher." and subject_id=".$subject."order by  `created` DESC  ";
-       
-        }
-        return build($this->query($sql));
+
+    	}
     }
     
+
+    function search($teacher,$subject){
+        if(is_null($subject)){
+            return $this->comments($teacher);//comments build themselves, so no need for the later call
+        }
+        elseif(is_null($teacher)){
+            $sql = "SELECT * FROM comments WHERE subject_id=".$subject." order by  created DESC  ";
+        }
+        else{
+            $sql = "SELECT * FROM comments WHERE comments.from= " .$teacher." or comments.to= ".$teacher." and comments.subject_id=".$subject." order by  created DESC  ";
+        }
+
     
+
+        return $this->build($this->query($sql));
+    }
+
 
     
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
