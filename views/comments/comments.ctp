@@ -8,10 +8,9 @@ and open the template in the editor.
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
          <?php echo  $javascript->link(array('autoResize'));?>
-          <?php echo $html->css(array('alerts','style','comments'));?> 
-          <?php echo  $javascript->link(array('jquery.fancybox.pack','add_edit'));?>
-                 <?php echo $html->css(array('jquery.fancybox'));?>     
-       
+         <?php echo $html->css(array('alerts','style','comments'));?> 
+         <?php echo  $javascript->link(array('jquery.fancybox.pack','add_edit'));?>
+         <?php echo $html->css(array('jquery.fancybox'));?>
         <script>
         
             $(document).ready(function() {
@@ -91,11 +90,12 @@ top:-20px;
 </style>
     </head>
     <body>
-         <div id="pHead">
+        <?php echo $this->Session->flash('auth'); ?>
+        <?php echo $this->Session->flash(); ?>
+        <div id="pHead">
              <h2>Comments</h2> 
                 </div>
-
-        <?if(!is_null($comments)){?>
+	<?if(!is_null($comments)){?>
         <?echo $this->element('comments',array($comments));?>
   <?}
   else{

@@ -69,8 +69,11 @@ class Comment extends AppModel {
 
         }
 
-    function search($teacher,$subject){
-        if(is_null($subject)){
+    function search($teacher,$subject,$flag){
+        if($flag==1){
+        	$sql = "SELECT * FROM comments WHERE flagged = 1 order by  created DESC  ";
+        }
+        elseif(is_null($subject)){
             return $this->comments($teacher);//comments build themselves, so no need for the later call
         }
         elseif(is_null($teacher)){
@@ -79,10 +82,6 @@ class Comment extends AppModel {
         else{
             $sql = "SELECT * FROM comments WHERE (comments.from= " .$teacher." or comments.to= ".$teacher.") and comments.subject_id=".$subject." order by  created DESC  ";
         }
-
-
-    
-
         return $this->build($this->query($sql));
     }
 

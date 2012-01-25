@@ -145,6 +145,7 @@ OPTIONS;
 //debug($comments);
 ?>
 </div>
+        <?if(isset($flag))echo "Reported comments";?>
         <?if(!is_null($comments)){?>
         <?echo $this->element('comments',array($comments));?>
   <?}
