@@ -89,7 +89,7 @@ class CommentsController extends AppController {
 
 			if ($this->Comment->save($this->data)) {
 				$this->Session->setFlash('The comment has been saved','default', array(
-					'class' => 'message success'
+					'class' => 'message warning'
 				));
 				  $this->redirect($this->Auth->redirect(array('controller'=> 'pages','action'=>'success')));
                      
@@ -156,17 +156,20 @@ class CommentsController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
         function comments() {
+            
             $comments= $this->Comment->comments($this -> Session -> read("Auth.User.id"));
             $this->set('comments',$comments);
 	}
 
         function search(){
-        	$teacher=$subject=null;
+
+        	$comments=$teacher=$subject=null;
         	if(!empty($this->data)) {
         		if($this->data['Comment']['teacher']!=0)$teacher= $this->data['Comment']['teacher'];
         		if($this->data['Comment']['subject_id']!=0)$subject= $this->data['Comment']['subject_id'];
         		$this->set('comments', $this->Comment->search($teacher,$subject));
         	}
+
         }
         
         function deleteAll(){

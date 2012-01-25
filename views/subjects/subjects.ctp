@@ -1,8 +1,10 @@
+
+
 <?php echo $javascript->link(array('jquery-1.5.1.min','config'));?>
 <?php echo $javascript->link(array('jquery.fancybox.pack','add_edit','bootstrap-twipsy'));?>
 <?php echo $html->css(array('jquery.fancybox','twipsy'));?>
 <?php echo Configure::load('feedback');?>              
-<?php echo  $html->css(array('style','subjects','button','alert')); ?>
+<?php echo  $html->css(array('style','subjects','button','alerts')); ?>
 <style>
  .blue{
                     float:right;
@@ -34,7 +36,9 @@ html{
 position:relative;
 top:10px !important;
 }
+#pHead{
 
+}
 </style>
 <script>
             $(function () {
@@ -45,13 +49,16 @@ top:10px !important;
           </script>
     <body>
 <div id="subjects"> 
+    <?php
+	
+        echo $this->Session->flash();
+        
+        //debug($submitted);
+?>
         <div id="pHead">
                 <h2>Your Subjects</h2> 
              </div>
-<?php
-	
-        echo $this->Session->flash();
-?>
+
         
             
        <ul id="main-nav"> 
@@ -68,9 +75,10 @@ top:10px !important;
                    echo $html->tag('div',$html->link('Comment',array('controller'=>'comments','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher1"],),array('escape'=>false,'class'=>'btn info  modal5'))
                   ,array('class' => 'blue')); 
                     echo '<div class = "green"> ';
-                   if($submitted[$i]['subject_memberships']['form_a_submitted']==$subnum){
+        if($submitted[$i][0]['subnum']==$max_sub_num){
                          echo '<a href="#"  rel="twipsy" title="Feedback Submitted" class="btn success disabled" /> Feedback </a>';
                      }
+
                   else{
                  echo $html->link('Feedback',array('controller'=>'form_a_records','action'=>'add', $subjects[$i]["subjects"]["id"], $subjects[$i]["subjects"]["teacher1"]),array('escape'=>false,'class'=>'btn success fbf'));  
                

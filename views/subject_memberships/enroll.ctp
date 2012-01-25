@@ -5,9 +5,9 @@ function close(){
 }
 </script>
 <style>
-    footer{
+/*    footer{
 padding-bottom:80px;
-}
+}*/
 </style>
 <div id="header"><?php __('Enroll Students'); ?></div>
 <?php

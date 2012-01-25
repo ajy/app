@@ -32,7 +32,7 @@ $(document).ready(function() {
          $(".imp").fancybox({
         
          width	:500,
-        height	: 200,
+        height	:200,
 
         fitToView	: false,
         autoSize	: true,
@@ -136,6 +136,45 @@ $(document).ready(function() {
 
                
     });    
+    
+     $(".modal6").fancybox({
+        
+        height:500,
+        width:500,
+        fitToView	: false,
+//        autoSize	: true,
+        type				: 'iframe',
+        padding:1,
+        modal:true,
+         
+        helpers: { 
+            title:null
+        } ,
+        afterClose    :   function() {
+            location.reload();
+        } 
+
+               
+    }); 
+     $(".modal7").fancybox({
+        
+        height:150,
+        width:500,
+        fitToView	: false,
+//        autoSize	: true,
+        type				: 'iframe',
+        padding:1,
+        modal:true,
+         
+        helpers: { 
+            title:null
+        } ,
+        afterClose    :   function() {
+            location.reload();
+        } 
+
+               
+    }); 
     
     $(".fbf").fancybox({
         
