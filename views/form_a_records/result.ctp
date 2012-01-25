@@ -47,7 +47,7 @@ color: #1c9bf4 !important;
      </div>
        <ul id="main-nav"> 
        <?php
-        debug($form_a_results);
+        //debug($form_a_results);
 $i=0;
         foreach($form_a_results as $form_a_result){
          echo "<li>";?> 

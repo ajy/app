@@ -47,7 +47,7 @@ class SubjectsController extends AppController {
 			$this->Subject->create();
 			if ($this->Subject->save($this->data)) {
 				$this->Session->setFlash('The subject has been saved','default', array(
-					'class' => 'message success'
+					'class' => 'message warning'
 				));
 				$this->redirect(array('controller'=> 'pages','action' => 'success'));
 			} else {
@@ -109,7 +109,7 @@ class SubjectsController extends AppController {
 
              $teacher2 = null;
              $subjects=$this->Subject->query("SELECT * FROM subjects where id IN ( SELECT subject_id FROM subject_memberships WHERE student_id =".$user['id'].")");
-             $submitted=$this->Subject->query("SELECT form_a_submitted FROM subject_memberships WHERE student_id =".$user['id']);
+             $submitted=$this->Subject->query("SELECT max(`submission_number`) as subnum FROM form_a_records WHERE student=".$user['id']);
              
 
              //$teacher2 = null;no more teacher2
@@ -131,7 +131,7 @@ class SubjectsController extends AppController {
             // $this->set('allSubjects',$allSubjects);
              $this->set('subjects',$subjects);
              $this->set('teacher1',$teacher1);
-              $this->set('subnum',Configure::read('max_sub_num'));
+              $this->set('max_sub_num',Configure::read('max_sub_num'));
             // $this->set('teacher2',$teacher2);
 
              //$this->set('teacher2',$teacher2);no more teacher2

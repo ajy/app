@@ -90,6 +90,11 @@ class SubjectMembershipsController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 	
+	function deleteAll(){
+		$this->SubjectMembership->query('Truncate subject_memberships');//removes all data and resets id to start from 1
+		$this->redirect($this->referer());
+	}
+	
 	function enroll() {
 		if(!empty($this->data)&&($this->data['User']['ans']=='Y')){
 		$classes = $this->User->find('all', array(

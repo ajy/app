@@ -104,4 +104,12 @@ class Comment extends AppModel {
 			'foreignKey' => 'subject_id'			
 		)
 	);
+	
+	var $hasOne = array(
+		'child' => array(
+			'className' => 'Comment',
+			'foreignKey' => 'parent_id',
+			'dependent' => true
+		),
+	);
 }

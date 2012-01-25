@@ -46,8 +46,10 @@ $this->set('sub_num',$sub_num);
                         $this->data['FormARecord']['student']=  $param['student'];
 			$this->data['FormARecord']['submission_number']= $param['sub_num'];
 			if ($this->FormARecord->save($this->data)) {
-				$this->Session->setFlash(__('The form a record has been saved', true));
-				$this->redirect(array('controller' => 'Subjects', 'action' => 'subjects'));
+				$this->Session->setFlash(__('The form a record has been saved', true),'default', array(
+					'class' => 'message warning'
+				));
+				$this->redirect(array('controller'=> 'pages','action' => 'success'));
 			} else {
 				$this->Session->setFlash(__('The form a record could not be saved. Please, try again.', true));
 			}
@@ -97,5 +99,10 @@ $this->set('sub_num',$sub_num);
 		}
 		$this->Session->setFlash(__('Form a record was not deleted', true));
 		$this->redirect(array('action' => 'index'));
+	}
+	
+	function deleteAll(){
+		$this->SubjectMembership->query('Truncate form_a_records');//removes all data and resets id to start from 1
+		$this->redirect($this->referer());
 	}
 }

@@ -1,4 +1,4 @@
- <?php echo $html->css(array('reset','add_edit','button'));?> 
+ <?php echo $html->css(array('reset','button','add_edit'));?>
 <script>
     function close(){
 
@@ -11,9 +11,12 @@
         width:450px;
         resize:none;
     }
+    footer{
+padding-bottom:80px;
+}
 </style>
+ <div id="header"><?php __('Add Comment'); ?></div>
 <div class="comments form">
-    <div id="header"><?php __('Add Comment'); ?></div>
     
 <?php echo $this->Form->create('Comment');?>
 	<fieldset>
@@ -26,7 +29,7 @@
 		echo $this->Form->input('comment',array('type'=>'textarea','label'=>''));
 	?>
 	</fieldset>
-  <footer>
+ <footer>
 
 <div id="cancel">
 <input type="button" value="Cancel" class="btn close" name="Close" onclick=" window. close();" />
@@ -38,6 +41,5 @@
 <?php $this->Form->end();?>
  
    </footer>
-
 
 </div>

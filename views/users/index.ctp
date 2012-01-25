@@ -81,7 +81,7 @@
                   <?php echo  $html->tag('div',$html->link('Import Users',array('controller'=>'users','action'=>'import'),array('escape'=>false,'class'=>'btn success imp'))
                   ,array('class' => 'import'))?>
 
-                   <?php echo  $html->tag('div',$html->link('Add User',array('controller'=>'users','action'=>'add'),array('escape'=>false,'class'=>'btn success  modal2'))
+                   <?php echo  $html->tag('div',$html->link('Add User',array('controller'=>'users','action'=>'add'),array('escape'=>false,'class'=>'btn success  modal'))
 
                   ,array('class' => 'add'))?>
                 <div class="content-box"><!-- Start Content Box --> 
@@ -160,7 +160,7 @@
 		<td class="center"><?php echo $user['User']['email']; ?>&nbsp;</td>
 		
 		<td  class="center">
-			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $user['User']['id']),array('class'=>'modal')); ?>&nbsp;&nbsp;
+			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $user['User']['id']),array('class'=>'modal6')); ?>&nbsp;&nbsp;
 			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $user['User']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $user['User']['id'])); ?>
 		</td>
 	</tr>

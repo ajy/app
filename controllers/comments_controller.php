@@ -38,6 +38,8 @@ class CommentsController extends AppController {
 				));
 				$this->redirect($this->referer());
 			}
+			$reportedComment['Comment']['flagged'] = true;
+			$this->Comment->save($reportedComment, true, array('id', 'flagged'));
 			$admins = $this->User->find('all',array(//find all admins
 				'conditions' => array(
 					'group_id' => 1,
@@ -45,6 +47,7 @@ class CommentsController extends AppController {
 			));
 			$reporter = $this->Session->read('Auth.User.username');
 			$message = $reporter." submitted the following comment #".$reportedComment['Comment']['id']." for review.";
+			$i=0;
 			foreach($admins as $admin){
 				$this->Comment->create();
 				$this->Comment->set(array(
@@ -53,14 +56,25 @@ class CommentsController extends AppController {
 					'Comment.subject_id' => '0',
 					'Comment.comment' => $message
 				));
+				if($this->Comment->save())$i++;
 			}
+			if($i>0) {
+				$this->Session->setFlash('The comment has been reported','default', array(
+					'class' => 'message success'
+				));                     
+			} else {
+				$this->Session->setFlash('The comment could not be reported. Please, try again.','default', array(
+					'class' => 'message error'
+				));
+			}
+			$this->redirect($this->referer());			
 		}
 		//$this->set('comment', $this->Comment->read(null, $id));
 	}
 	
 	function add() {
 
-                 $param=$this->params['pass'];
+                $param=$this->params['pass'];
                  
 		if (!empty($this->data)) {
 			$this->Comment->create();
@@ -75,7 +89,7 @@ class CommentsController extends AppController {
 
 			if ($this->Comment->save($this->data)) {
 				$this->Session->setFlash('The comment has been saved','default', array(
-					'class' => 'message success'
+					'class' => 'message warning'
 				));
 				  $this->redirect($this->Auth->redirect(array('controller'=> 'pages','action'=>'success')));
                      
@@ -142,13 +156,14 @@ class CommentsController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
         function comments() {
+            
             $comments= $this->Comment->comments($this -> Session -> read("Auth.User.id"));
             $this->set('comments',$comments);
 	}
 
         function search(){
 
-        	$teacher=$subject=null;
+        	$comments=$teacher=$subject=null;
         	if(!empty($this->data)) {
         		if($this->data['Comment']['teacher']!=0)$teacher= $this->data['Comment']['teacher'];
         		if($this->data['Comment']['subject_id']!=0)$subject= $this->data['Comment']['subject_id'];
@@ -156,4 +171,9 @@ class CommentsController extends AppController {
         	}
 
         }
+        
+        function deleteAll(){
+		$this->SubjectMembership->query('Truncate comments');//removes all data and resets id to start from 1
+		$this->redirect($this->referer());
+	}
 }
