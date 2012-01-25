@@ -35,7 +35,7 @@
                         break;
                     case 4: ifr.src="../comments/search";
                         break;
-                    case 5: ifr.src="../subject_memberships";
+                    case 5: ifr.src="../pages/settings";
                         break;
                     case 6: //ifr.src="../users/edit/1";
                         break;
@@ -124,7 +124,7 @@
                         
                         <li> 
                             <a href="#"  class="nav-top-item" onclick="LoadIFrame(5)"> 
-                                Enrollments
+                                Settings
 
                             </a> 
 

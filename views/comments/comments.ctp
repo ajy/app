@@ -8,7 +8,7 @@ and open the template in the editor.
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
          <?php echo  $javascript->link(array('autoResize'));?>
-          <?php echo $html->css(array('button_green','style','comments'));?> 
+          <?php echo $html->css(array('alerts','style','comments'));?> 
           <?php echo  $javascript->link(array('jquery.fancybox.pack','add_edit'));?>
                  <?php echo $html->css(array('jquery.fancybox'));?>     
        
@@ -83,82 +83,24 @@ top:-20px;
 
 
 }
+
+.author{
+    color:#4C8EFB;
+    display:inline;
+}
 </style>
     </head>
     <body>
-
-<? debug($comments);?>
-
-    <div id="pHead">
-                <h2>Comments</h2> 
+         <div id="pHead">
+             <h2>Comments</h2> 
                 </div>
-      <ul id="container">
-    <?
-       
-    $reply=FALSE;$cnt=0;$count=count($comments);$printed=FALSE;
-    for ($i = 0; $i < $count; $i++) { 
-            if(!$reply){
-echo <<< COMMENTS
-                <li>
-                     <ol class="comments">
-COMMENTS;
-$cnt++;
-$pid=$comments[$i]['comments']['id'];
-$sid=$comments[$i]['comments']['subject_id'];
-$id=$this -> Session -> read("Auth.User.id");
-$to=($id==$comments[$i]['comments']['to'])?$comments[$i]['comments']['from']:$comments[$i]['comments']['to'];
 
-
-            }
-            elseif(!($printed) && $reply){
-echo <<< REPLY
-                 <div class="expand">
-                
-                            <img src="../img/expand.png" onclick="toggle($cnt);" width="8" height="7" alt="expand"/></div>
-                            
-                     <ol class="reply">
-REPLY;
-
-$printed=TRUE;
-            }
-  ?>          
-
-                        <li>
-                            <ul class="meta">
-                                <li class="subject">Subject</li>
-                                <li class="date">posted on <?php echo date("jS M \, Y", strtotime($comments[$i]['comments']['created']))?> </li>
-                            </ul>
-                            <div class="body" onmouseover=""><?print_r (base64_decode($comments[$i]['comments']['comment']))?>
-                                  
-                            </div>
-                              <div class="opt">
-                                <?php if(!$reply){echo $html->link('Comment',array('controller'=>'comments','action'=>'add',$sid,$to,$pid),array('class'=>'modal5'));}?>
-                                   <!--<img src="" " onclick="" width="13" height="13" alt="expand"/>-->
-                                   
-                              </div>
-                        </li>
-
-
- 
-<?php 
-            
-            if($i+1!=$count&&(($comments[$i+1]['comments']['parent_id'])!=NULL)){
-                $reply=TRUE;}
-               
-            
-            else {
-                if($reply){
-                    echo'</ol>';
-                }
-             echo'</ol>';
-                echo'</li>';
-                $reply=false;
-                $printed=false;
-              
-                }
-    }
-?>
-</ul>
-       
+        <?if(!is_null($comments)){?>
+        <?echo $this->element('comments',array($comments));?>
+  <?}
+  else{
+  ?>  
+        <div class="message warning">No comments to display</div>
+        <? }?>
     </body>
 </html>

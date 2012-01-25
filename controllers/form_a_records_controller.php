@@ -16,10 +16,11 @@ class FormARecordsController extends AppController {
 			$this->set('rows',$rows);
 			$this->render('all_result');
 		} elseif($group_id==2) {
-			if($sub_num==0) $rows=$this->FormARecord->calcOverallFormAResults($this->Session->read("Auth.User.id"));
+		if($sub_num==0) $rows=$this->FormARecord->calcOverallFormAResults($this->Session->read("Auth.User.id"));
 			else $rows=$this->FormARecord->calcFormAResults($this->Session->read("Auth.User.id"),$sub_num);
 			$this->set('form_a_results',$rows);
 		}		
+$this->set('sub_num',$sub_num);
 	}
 	
 	function index() {
@@ -45,8 +46,10 @@ class FormARecordsController extends AppController {
                         $this->data['FormARecord']['student']=  $param['student'];
 			$this->data['FormARecord']['submission_number']= $param['sub_num'];
 			if ($this->FormARecord->save($this->data)) {
-				$this->Session->setFlash(__('The form a record has been saved', true));
-				$this->redirect(array('controller' => 'Subjects', 'action' => 'subjects'));
+				$this->Session->setFlash(__('The form a record has been saved', true),'default', array(
+					'class' => 'message warning'
+				));
+				$this->redirect(array('controller'=> 'pages','action' => 'success'));
 			} else {
 				$this->Session->setFlash(__('The form a record could not be saved. Please, try again.', true));
 			}

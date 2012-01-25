@@ -136,7 +136,6 @@ input[disabled],select[disabled],textarea[disabled],input[readonly],select[reado
 }
 /* some css for all validation messages */
 .LV_validation_message{
-padding-left: 10%;
-color: red;
-font-weight: bold; 
+padding-left: 10px;
+color:#DD4B39;
 }
