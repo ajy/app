@@ -69,13 +69,13 @@ class CommentsController extends AppController {
                          $this->data['Comment']['comment']= base64_encode($this->data['Comment']['comment']);
                         debug($this->data['Comment']);
 			if ($this->Comment->save($this->data)) {
-				$this->Session->setFlash('The comment has been saved','default', array(
+				$this->Session->setFlash('Your comment has been saved','default', array(
 					'class' => 'message warning'
 				));
 				  $this->redirect(array('controller'=> 'pages','action'=>'success'));
                      
 			} else {
-				$this->Session->setFlash('The comment could not be saved. Please, try again.','default', array(
+				$this->Session->setFlash('Your comment could not be saved. Please, try again.','default', array(
 					'class' => 'message error'
 				));
 			}

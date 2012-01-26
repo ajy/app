@@ -46,12 +46,12 @@ $this->set('sub_num',$sub_num);
                         $this->data['FormARecord']['student']=  $param['student'];
 			$this->data['FormARecord']['submission_number']= $param['sub_num'];
 			if ($this->FormARecord->save($this->data)) {
-				$this->Session->setFlash(__('The form a record has been saved', true),'default', array(
+				$this->Session->setFlash(__('Your feedback has been saved', true),'default', array(
 					'class' => 'message warning'
 				));
 				$this->redirect(array('controller'=> 'pages','action' => 'success'));
 			} else {
-				$this->Session->setFlash(__('The form a record could not be saved. Please, try again.', true));
+				$this->Session->setFlash(__('Your feedback could not be saved. Please, try again.', true));
 			}
 		}else{
                 	$params['subject_id']=$param[0];

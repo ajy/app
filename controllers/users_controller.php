@@ -100,7 +100,7 @@ class UsersController extends AppController {
         if(!empty($this->data['User']['email'])) {
             Configure::load('feedback');
             if(!Configure::read('enable_mails')){//if emails are disabled
-            	$this->Session->setFlash('This feature is disabled', 'default', array(
+            	$this->Session->setFlash('This feature has been disabled', 'default', array(
                     'class' => 'message error fade in', 'data-alert' => 'alert'
                 ));
                 $this->redirect('resetPassword');
@@ -284,7 +284,7 @@ class UsersController extends AppController {
                     ));
             if (empty($test))
                 $this->Session->setFlash("All students of class " . $class . " have been deleted", 'default', array(
-                    'class' => 'message warning'
+                    'class' => 'message success'
                 ));
             else
                 $this->Session->setFlash("Students of class " . $class . " could not be deleted", 'default', array(
@@ -307,7 +307,7 @@ class UsersController extends AppController {
                 if ($this->User->save(array('User' => $studentInfo), true, array('username', 'name', 'email', 'class'))) {// no id cause its a new user
                     $NumSavedRows++;
                 } else {
-                    $this->Session->setFlash('Import Aborted,  Could not  import record #'.$NumSavedRows.'. Please correct and try again.', 'default', array(
+                    $this->Session->setFlash('Import Aborted,  Could not  import record #'.$NumSavedRows+1 .'. Please correct and try again.', 'default', array(
                         'class' => 'message error'
                     ));
                     $error = true;
