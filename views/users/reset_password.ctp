@@ -1,6 +1,5 @@
-
-<?=$html->css(array('reset','button','alerts'));?>
-<?=$html->script(array('bootstrap-alerts','livevalidation'))?>
+<?php $html->css(array('reset','button','alerts'));?>
+<?php $html->script(array('bootstrap-alerts','livevalidation'))?>
 <script>
 document.title='Forgot password';
  $(function () {$(".message").alert()})
@@ -116,7 +115,7 @@ span{
     <p>
         <?php
         Configure::load('feedback');
-        if(Configure::read('enable_mails'))echo "To reset your password,enter your registered email address below.A link to reset your password will be sent to it.";
+        if(Configure::read('enable_mails'))echo "To reset your password,enter your registered email address below.A link to reset your password will be sent to it. The email may be marked as spam";
         else echo "This feature is currently disabled, however you can contact an administrator to reset your password";
         ?>
     </p>

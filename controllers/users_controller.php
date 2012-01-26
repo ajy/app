@@ -120,7 +120,7 @@ class UsersController extends AppController {
                 $this->Email->to = $user['User']['email'];
                 $this->Email->delivery = 'mail';//the mail is actually delivered, but can be changed to 'debug' for debugging
                 $this->Email->subject = 'Password reset for your fbf account';
-                $this->Email->sendAs = "text";
+                $this->Email->sendAs = "html";
                 $this->Email->template = "password_reset_message";
                 $this->Email->send();
                 CakeLog::write('email_activity', $user['User']['username'].' sent a reset password email');
