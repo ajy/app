@@ -42,14 +42,18 @@ $printed=TRUE;
                             <div class="body" onmouseover=""><?
                              $user=(array_values($this->requestAction('/users/getName/'.$comments[$i]['comments']['from'])));
                                echo '<div class ="author">'.$user[0]['users']['name'].'</div>'.' - ';
-                            print_r (base64_decode($comments[$i]['comments']['comment']))?>
+                            print_r (base64_decode($comments[$i]['comments']['comment']));
+                            if($comments[$i]['comments']['flagged']==1)echo "<br>This Comment has been reported";?>
                                   
                             </div>
                               <div class="opt">
                                 <?php if(!$reply){echo $html->link('Comment',array('controller'=>'comments','action'=>'add',$sid,$to,$pid),array('class'=>'modal5')).' &CenterDot;  ';}
                                  
                                    //echo '<a href="/newfbf/comments/report/'.$comments[$i]['comments']['id'].' onclick="return confirm(&#039;Are you sure you want to report this comment?&#039;);"><img src="../img/lag_off.png" width="13" height="13" alt="expand"/></a>'; ?>
-                                  <?php echo $this->Html->link(__('Report',true), array('action' => 'report', $comments[$i]['comments']['id']), null, sprintf(__('Are you sure you want to report this comment?', true),$comments[$i]['comments']['id'])); ?>
+                                  <?php 
+                                  	if(($this->Session->read("Auth.User.group_id")==1)&&($comments[$i]['comments']['flagged']==1))echo $this->Html->link(__('Delete',true), array('action' => 'delete', $comments[$i]['comments']['id']), null, sprintf(__('Are you sure you want to delete this comment?', true),$comments[$i]['comments']['id']));
+                                  	else echo $this->Html->link(__('Report',true), array('action' => 'report', $comments[$i]['comments']['id']), null, sprintf(__('Are you sure you want to report this comment?', true),$comments[$i]['comments']['id']));
+                                  ?>
         <?php //echo $html->link('Report',array('action' => 'report', $comments[$i]['comments']['id']), null, sprintf('Are you sure you want to report this comment?', true),$comments[$i]['comments']['id'],array('title'=>'Edit Profile','class'=>'modal'));?>                   
          <?php //echo $this->Html->image('flag.png', array('alt' => 'Flag','url'=>array()))?>
                             
