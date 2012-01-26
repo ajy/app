@@ -1,4 +1,4 @@
-<? echo $html->css(array('reset','LoginBoxstyle','button'));?>
+<?php echo $html->css(array('reset','LoginBoxstyle','button'));?>
 <!--<style>
     footer {
   background-color: #eee;
@@ -19,6 +19,8 @@
 <div id="header">
 
 </div>
+<?php echo $this->Session->flash('auth');?>
+<?php echo $this->Session->flash();?>
 <div id="login">
 <?php
 	

@@ -36,20 +36,29 @@ class UsersController extends AppController {
     }
 
     function feedbackEmail() {
+        Configure::load('feedback');
+        if(!Configure::read('enable_mails')){//if emails are disabled
+           	$this->Session->setFlash('This feature has been disabled', 'default', array(
+                    'class' => 'message error fade in', 'data-alert' => 'alert'
+                ));
+                CakeLog::write('email_activity', $this->Session->read("Auth.User.name").' attempted to send a feedback email but was denied');
+                $this->redirect('login');//where it goes when emails are disabled
+        }
         $message = null;
         $subject = null;
         if (!empty($this->data['User']['feedback'])) {
             $message = $this->data['User']['feedback'];
             $subject = $this->data['User']['subject'];
             $this->Email->from = "robot@feeback.com";
-            $this->Email->to = "test@localhost.com";
-            $this->Email->subject = 'Feedback from ' . $this->Session->read('Auth.User.name') . ', ' . $this->Session->read('Auth.User.username') . ' on ' . $subject;
-            $this->Email->delivery = 'debug';
-            if ($this->Email->send($this->data['User']['feedback']))
+            $this->Email->to = Configure::read('feeback_email_id');
+            $this->Email->subject = 'Feedback from  a student on ' . $subject. 'via OTAS';
+            $this->Email->delivery = 'mail';
+            if ($this->Email->send($this->data['User']['feedback'])){
+                CakeLog::write('email_activity', $this->Session->read("Auth.User.name").' sent a feedback email to'.Configure::read('feeback_email_id'));
                 $this->Session->setFlash('your feedback has been sent', 'default', array(
                     'class' => 'message success'
                 ));
-            else
+            }else
                 $this->Session->setFlash('your feedback could not be sent right now,try again later', 'default', array(
                     'class' => 'message error fade in', 'data-alert' => 'alert'
                 ));
@@ -68,11 +77,11 @@ class UsersController extends AppController {
         }
         if (!empty($this->data)) {
             if ($this->User->save($this->data, true, array('id', 'password', 'confirm_password'))) {
-                $this->Session->setFlash('The password has been saved', 'default', array(
+                $this->Session->setFlash('Your password has been changed', 'default', array(
                     'class' => 'message warning'
                 ));
             } else {
-                $this->Session->setFlash('The password could not be saved. Please, try again.', 'default', array(
+                $this->Session->setFlash('Your password could not be changed. Please, try again.', 'default', array(
                     'class' => 'message error'
                 ));
                 $this->redirect($this->referer());
@@ -88,7 +97,14 @@ class UsersController extends AppController {
     }
 
     function resetPassword($token=null) {
-        if (!empty($this->data['User']['email'])) {
+        if(!empty($this->data['User']['email'])) {
+            Configure::load('feedback');
+            if(!Configure::read('enable_mails')){//if emails are disabled
+            	$this->Session->setFlash('This feature is disabled', 'default', array(
+                    'class' => 'message error fade in', 'data-alert' => 'alert'
+                ));
+                $this->redirect('resetPassword');
+            }
             // user submitted initial form 
             $user = $this->User->findByEmail($this->data['User']['email']);
             if (empty($user)) {
@@ -102,11 +118,12 @@ class UsersController extends AppController {
                 $this->set('emailtoken', $emailtoken);
                 $this->Email->from = 'fbfbot <fbf.com>';
                 $this->Email->to = $user['User']['email'];
-                $this->Email->delivery = 'debug';
+                $this->Email->delivery = 'mail';
                 $this->Email->subject = 'Password reset for your fbf account';
                 $this->Email->sendAs = "text";
                 $this->Email->template = "password_reset_message";
                 $this->Email->send();
+                CakeLog::write('email_activity', $user['User']['username'].' sent a reset password email');
                 $this->Session->setFlash('A link to set a new password has been sent to your email account.', 'default', array(
                     'class' => 'message info fade in', 'data-alert' => 'alert'
                 ));
@@ -169,12 +186,12 @@ class UsersController extends AppController {
             if ($this->data['User']['group_id'] != 3)
                 $this->data['User']['class'] = ''; //not a student, so no class
             if ($this->User->save($this->data, true, array('username', 'name', 'email', 'group_id', 'class'))) {//no id cause its a new user
-                $this->Session->setFlash('The user has been saved', 'default', array(
+                $this->Session->setFlash('The user has been added', 'default', array(
                     'class' => 'message warning'
                 ));
                 $this->redirect((array('controller' => 'pages', 'action' => 'success')));
             } else {
-                $this->Session->setFlash(' The user could not be saved. Please, try again.', 'default', array(
+                $this->Session->setFlash(' The user could not be added. Please, try again.', 'default', array(
                     'class' => 'message error'
                 ));
             }
@@ -198,11 +215,11 @@ class UsersController extends AppController {
                 $fieldsThatCanBeEdited = array('id', 'email');
             }
             if ($this->User->save($this->data, true, $fieldsThatCanBeEdited)) {
-                $this->Session->setFlash('The user has been saved', 'default', array(
+                $this->Session->setFlash('Your changes have been saved', 'default', array(
                     'class' => 'message warning'
                 ));
             } else {
-                $this->Session->setFlash('The user could not be saved. Please, try again.', 'default', array(
+                $this->Session->setFlash('Your changes could not be saved. Please, try again.', 'default', array(
                     'class' => 'message error'
                 ));
                 $this->redirect($this->referer());
@@ -250,7 +267,7 @@ class UsersController extends AppController {
                     'class' => 'message success'
                 ));
             else
-                $this->Session->setFlash("Students could not be promoted", 'default', array(
+                $this->Session->setFlash("Students could not be promoted. Please, try again", 'default', array(
                     'class' => 'message error'
                 ));
         }
@@ -284,19 +301,23 @@ class UsersController extends AppController {
             $NumSavedRows = 0;
             $error = false;
             $info = $csv->data;
+            $dataSource = $this->getDataSource();
+            $dataSource->begin($this);//starting a transaction
             foreach ($info as $studentInfo) {
                 if ($this->User->save(array('User' => $studentInfo), true, array('username', 'name', 'email', 'class'))) {// no id cause its a new user
                     $NumSavedRows++;
                 } else {
-                    $this->Session->setFlash('Error,  Could only  import ' . $NumSavedRows . ' records. Please try again.', 'default', array(
+                    $this->Session->setFlash('Import Aborted,  Could not  import record #'.$NumSavedRows.'. Please correct and try again.', 'default', array(
                         'class' => 'message error'
                     ));
                     $error = true;
+                    $dataSource->rollback($this);//removing changes caused by transaction due to error
                 }
             }
             if (!$error) {
+                $dataSource->commit($this);//changes made in transaction are saved
                 $this->Session->setFlash('Success. Imported ' . $NumSavedRows . ' records.', 'default', array(
-                    'class' => 'message warning'
+                    'class' => 'message success'
                 ));
                 $this->redirect($this->Auth->redirect(array('controller' => 'pages', 'action' => 'success')));
             }

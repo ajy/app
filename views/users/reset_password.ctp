@@ -114,7 +114,11 @@ span{
     
     <h1>Forgot your password?</h1>
     <p>
-        To reset your password,enter your email address below.A link to reset your password will be sent to it.
+        <?php
+        Configure::load('feedback');
+        if(Configure::read('enable_mails'))echo "To reset your password,enter your registered email address below.A link to reset your password will be sent to it.";
+        else echo "This feature is currently disabled, however you can contact an administrator to reset your password";
+        ?>
     </p>
    
 <?php
