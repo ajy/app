@@ -1,6 +1,6 @@
 
-<?=$html->css(array('reset','form_a_b','button'));?>
-<?=$html->script("livevalidation");?>
+<?php echo $html->css(array('reset','form_a_b','button'));?>
+<?php echo $html->script("livevalidation");?>
 
 <?php Configure::load('FormAQs'); ?>
 <style>

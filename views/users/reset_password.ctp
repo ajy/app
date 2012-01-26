@@ -1,5 +1,5 @@
-<?php $html->css(array('reset','button','alerts'));?>
-<?php $html->script(array('bootstrap-alerts','livevalidation'))?>
+<?php echo $html->css(array('reset','button','alerts'));?>
+<?php echo $html->script(array('bootstrap-alerts','livevalidation'))?>
 <script>
 document.title='Forgot password';
  $(function () {$(".message").alert()})
