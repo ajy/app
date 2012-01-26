@@ -52,7 +52,7 @@ class UsersController extends AppController {
             $this->Email->from = "robot@feeback.com";
             $this->Email->to = Configure::read('feeback_email_id');
             $this->Email->subject = 'Feedback from  a student on ' . $subject. 'via OTAS';
-            $this->Email->delivery = 'mail';
+            $this->Email->delivery = 'mail';//the mail is actually delivered, but can be changed to 'debug' for debugging
             if ($this->Email->send($this->data['User']['feedback'])){
                 CakeLog::write('email_activity', $this->Session->read("Auth.User.name").' sent a feedback email to'.Configure::read('feeback_email_id'));
                 $this->Session->setFlash('your feedback has been sent', 'default', array(
@@ -118,7 +118,7 @@ class UsersController extends AppController {
                 $this->set('emailtoken', $emailtoken);
                 $this->Email->from = 'fbfbot <fbf.com>';
                 $this->Email->to = $user['User']['email'];
-                $this->Email->delivery = 'mail';
+                $this->Email->delivery = 'mail';//the mail is actually delivered, but can be changed to 'debug' for debugging
                 $this->Email->subject = 'Password reset for your fbf account';
                 $this->Email->sendAs = "text";
                 $this->Email->template = "password_reset_message";
