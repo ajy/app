@@ -1,25 +1,26 @@
-<?php echo $html->css(array('reset','add_edit','button'));?>
+<?php echo $html->css(array('reset','others','button'));?>
 <?php echo $html->script("livevalidation")?>
+
 <div id="header">Reset Password</div>
 <?php
 	echo $this->Session->flash('auth');
 ?>
 <cake:nocache>
-<?php
+    <div class="container">
+ <?php
 	echo $this->Form->create('User',array('action'=>'resetPassword/'.$token));
 	echo $this->Form->input('username',array('type'=>'hidden'));//not used, but activates autohashing of password, i hope
 	echo $this->Form->input('password', array('type' => 'password'));
 	echo $this->Form->input('confirm_password', array('type' => 'password'));
-	echo $this->Form->end('Submit');
+	
 ?>
-<footer>
-<div id="cancel">
-<input type="button" value="Cancel" class="btn close" name="Close" onclick="close();" />
-
-</div>
-<div id="submit">
+    <div id="submit">
  <input class="btn info" type="submit" value="Save" />
 </div>
+    </div>
+<footer>
+
+
     </footer>
 <?php echo $this->Form->end();?>
 </cake:nocache>

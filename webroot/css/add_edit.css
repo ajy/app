@@ -100,8 +100,11 @@ input {
 input[type=submit]{
     padding: 8px 8px;
     width:75px;
-   
+  
 
+}
+input:focus{
+   border-color:#1C9BF4;
 }
 footer {
     margin-top: 17px;
@@ -113,6 +116,10 @@ footer {
     bottom:0;
 }
 input[disabled],select[disabled],textarea[disabled],input[readonly],select[readonly],textarea[readonly]{background-color:#f5f5f5;border-color:#ddd;cursor: not-allowed;}
+/*input[readonly]{
+    border-style: none;
+    box-shadow:none;
+}*/
 .btn{
      
 }

@@ -23,12 +23,14 @@
 <?php
 	
 	echo $this->Form->create('User', array('action' => 'login','class' => 'login'));
-	echo $this->Form->inputs(array(
+        echo $this->Form->input('username',array('autofocus'=>'autofocus','required'=>'true'));
+         echo $this->Form->input('password',array('required'=>'true'));
+	/*echo $this->Form->inputs(array(
 		'legend' => false,
 		'fieldset' => false,
 		'username',
 		'password'
-	));
+	));*/
 	echo '<span id="frgt-pwd"><a href='.$this->Html->url(array("controller" => "users",    "action" => "resetPassword")).'>Forgot your password?</a></span>';
 	echo $this->Form->submit("Sign in",array('class' => 'btn primary'));
 	echo $this->Form->end();

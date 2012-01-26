@@ -45,7 +45,9 @@ $printed=TRUE;
                             print_r (base64_decode($comments[$i]['comments']['comment']))?>
                                   
                             </div>
+                          
                               <div class="opt">
+                               
                                 <?php if(!$reply){echo $html->link('Comment',array('controller'=>'comments','action'=>'add',$sid,$to,$pid),array('class'=>'modal5')).' &CenterDot;  ';}
                                  
                                    //echo '<a href="/newfbf/comments/report/'.$comments[$i]['comments']['id'].' onclick="return confirm(&#039;Are you sure you want to report this comment?&#039;);"><img src="../img/lag_off.png" width="13" height="13" alt="expand"/></a>'; ?>

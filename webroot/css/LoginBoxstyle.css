@@ -59,7 +59,7 @@ input[type="submit"] {
 }
 
 input:focus{
-    border-color: rgba(82, 168, 236, 0.8);
+    border-color:#1C9BF4;
     border-width:1px;
 }
 .input{
