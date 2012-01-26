@@ -199,7 +199,7 @@ class FormARecord extends AppModel {
 			if($totalRows==null){
 				$result="No records for ".$userSubject['name'];				
 			}else{
-				$ninetyPerAllRows=0.9*$totalRows;
+				$ninetyPerAllRows=round(0.9*$totalRows);//round eliminates a small round off error
 				$requiredRecords=$this->find('all', array(
 						'fields' => array('q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'),
 						'order' => array('q1 + q2 + q3 + q4 + q5 + q6 + q7 + q8 + q9 + q10 ASC'),

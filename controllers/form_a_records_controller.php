@@ -20,7 +20,7 @@ class FormARecordsController extends AppController {
 			else $rows=$this->FormARecord->calcFormAResults($this->Session->read("Auth.User.id"),$sub_num);
 			$this->set('form_a_results',$rows);
 		}		
-$this->set('sub_num',$sub_num);
+		$this->set('sub_num',$sub_num);
 	}
 	
 	function index() {
