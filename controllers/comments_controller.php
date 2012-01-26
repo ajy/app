@@ -155,7 +155,16 @@ class CommentsController extends AppController {
         }
         
         function deleteAll(){
-		$this->SubjectMembership->query('Truncate comments');//removes all data and resets id to start from 1
+		$this->Comment->query('Truncate comments');//removes all data and resets id to start from 1
+		if($this->Comment->find('all')){//returns false if empty
+			$this->Session->setFlash('All comments were not deleted','default', array(
+				'class' => 'message error'
+			));
+		}else{
+			$this->Session->setFlash('All comments were deleted','default', array(
+				'class' => 'message success'
+			));
+		}
 		$this->redirect($this->referer());
 	}
 }

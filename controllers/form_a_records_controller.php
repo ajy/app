@@ -102,7 +102,16 @@ class FormARecordsController extends AppController {
 	}
 	
 	function deleteAll(){
-		$this->SubjectMembership->query('Truncate form_a_records');//removes all data and resets id to start from 1
+		$this->FormARecord->query('Truncate form_a_records');//removes all data and resets id to start from 1
+		if($this->FormARecord->find('all')){//returns false if empty
+			$this->Session->setFlash('All records were not deleted','default', array(
+				'class' => 'message error'
+			));
+		}else{
+			$this->Session->setFlash('All records were deleted','default', array(
+				'class' => 'message success'
+			));
+		}
 		$this->redirect($this->referer());
 	}
 }
