@@ -123,22 +123,21 @@ and open the template in the editor.
         <div id="pHead">
             <h2>Settings</h2> 
         </div>
-        <?php
-        echo $this->Form->create('User', array('action' => 'deleteClass', 'class' => 'search'));
-        $classes = ($this->requestAction('subjects/getClass'));
-//debug($classes);
-        ?>
+        
         <div id="search">
            <div class="opt">
                <div class="oHead">Users </div>
                             Delete all the students in class
               
-                            <select name="data['User']['Class']" id="UserClass" >
-
+                            <?php
+                                    echo $this->Form->create('User', array('action' => 'deleteClass'));
+                                    $classes = ($this->requestAction('subjects/getClass'));
+                                    //debug($classes);
+                            ?>
+                            <select name="data[User][Class]" id="UserClass" >
                                 <?php
                                 foreach ($classes as $class):
                                     echo '<option >' . $class['subjects']['class'] . '</option>';
-
                                 endforeach;
                                 ?>  
                             </select>
@@ -146,8 +145,7 @@ and open the template in the editor.
                             <div id="submit">
                                 <input class="btn danger" type="submit" value="Delete" />
                             </div>
-
-                            <? echo $this->Form->end(); ?>
+                            <?php echo $this->Form->end(); ?>
               </div>
             <div class="opt">
                 <div class="oHead">Form Records </div>

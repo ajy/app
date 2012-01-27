@@ -39,28 +39,9 @@ class CommentsController extends AppController {
 				$this->redirect($this->referer());
 			}
 			$reportedComment['Comment']['flagged'] = true;
-			$this->Comment->save($reportedComment, true, array('id', 'flagged'));
-			$admins = $this->User->find('all',array(//find all admins
-				'conditions' => array(
-					'group_id' => 1,
-				)
-			));
-			$reporter = $this->Session->read('Auth.User.username');
-			$message = $reporter." submitted the following comment #".$reportedComment['Comment']['id']." for review.";
-			$i=0;
-			foreach($admins as $admin){
-				$this->Comment->create();
-				$this->Comment->set(array(
-					'Comment.from' => $this->Session->read("Auth.User.id"),
-					'Comment.to' => $admin['User']['id'],
-					'Comment.subject_id' => '0',
-					'Comment.comment' => $message
-				));
-				if($this->Comment->save())$i++;
-			}
-			if($i>0) {
+			if($this->Comment->save($reportedComment, true, array('id', 'flagged'))) {
 				$this->Session->setFlash('The comment has been reported','default', array(
-					'class' => 'message success'
+					'class' => 'message warning'
 				));                     
 			} else {
 				$this->Session->setFlash('The comment could not be reported. Please, try again.','default', array(
@@ -86,15 +67,15 @@ class CommentsController extends AppController {
                               $this->data['Comment']['parent_id']=  $param['parent_id'];
                          }
                          $this->data['Comment']['comment']= base64_encode($this->data['Comment']['comment']);
-
+                        debug($this->data['Comment']);
 			if ($this->Comment->save($this->data)) {
-				$this->Session->setFlash('The comment has been saved','default', array(
+				$this->Session->setFlash('Your comment has been saved','default', array(
 					'class' => 'message warning'
 				));
-				  $this->redirect($this->Auth->redirect(array('controller'=> 'pages','action'=>'success')));
+				  $this->redirect(array('controller'=> 'pages','action'=>'success'));
                      
 			} else {
-				$this->Session->setFlash('The comment could not be saved. Please, try again.','default', array(
+				$this->Session->setFlash('Your comment could not be saved. Please, try again.','default', array(
 					'class' => 'message error'
 				));
 			}
@@ -162,18 +143,28 @@ class CommentsController extends AppController {
 	}
 
         function search(){
-
+        	$flag = 1;
         	$comments=$teacher=$subject=null;
         	if(!empty($this->data)) {
+        		$flag=0;
         		if($this->data['Comment']['teacher']!=0)$teacher= $this->data['Comment']['teacher'];
-        		if($this->data['Comment']['subject_id']!=0)$subject= $this->data['Comment']['subject_id'];
-        		$this->set('comments', $this->Comment->search($teacher,$subject));
+        		if($this->data['Comment']['subject_id']!=0)$subject= $this->data['Comment']['subject_id'];        		
         	}
-
+        	$this->set('comments', $this->Comment->search($teacher,$subject,$flag));
+        	if($flag==1)$this->set('flag',$flag);
         }
         
         function deleteAll(){
-		$this->SubjectMembership->query('Truncate comments');//removes all data and resets id to start from 1
+		$this->Comment->query('Truncate comments');//removes all data and resets id to start from 1
+		if($this->Comment->find('all')){//returns false if empty
+			$this->Session->setFlash('All comments were not deleted','default', array(
+				'class' => 'message error'
+			));
+		}else{
+			$this->Session->setFlash('All comments were deleted','default', array(
+				'class' => 'message success'
+			));
+		}
 		$this->redirect($this->referer());
 	}
 }

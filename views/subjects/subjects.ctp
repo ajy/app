@@ -9,11 +9,11 @@
         <title>Subjects</title> 
 
          <!--                       CSS                       --> 
-        <?php echo $html->css(array('reset','style','jquery.fancybox','button','subjects','alerts'),'import');?>
+        <?php echo $html->css(array('reset','style','jquery.fancybox','button','subjects','alerts','twipsy'),'import');?>
    
 
         <!--                      JS                  --> 
-      <?php echo  $javascript->link(array('jquery-1.5.1.min','jquery.fancybox.pack','config','add_edit','twipsy'));?>
+      <?php echo  $javascript->link(array('jquery-1.5.1.min','jquery.fancybox.pack','config','add_edit','bootstrap-twipsy'));?>
      
 <script>
             $(function () {

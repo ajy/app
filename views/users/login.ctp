@@ -1,4 +1,5 @@
-<? echo $html->css(array('reset','LoginBoxstyle','button'));?>
+<?php echo $html->css(array('reset','LoginBoxstyle','button','alert'));?>
+<?php echo $html->script("livevalidation")?>
 <!--<style>
     footer {
   background-color: #eee;
@@ -17,12 +18,17 @@
 </style>-->
 
 <div id="header">
-
+    <h2>OTAS</h2>
 </div>
+<?php //echo $this->Session->flash('auth');?>
+<?php //echo $this->Session->flash();?>
 <div id="login">
+   
 <?php
 	
 	echo $this->Form->create('User', array('action' => 'login','class' => 'login'));
+         echo $this->Session->flash('auth');
+ echo $this->Session->flash();
         echo $this->Form->input('username',array('autofocus'=>'autofocus','required'=>'true'));
          echo $this->Form->input('password',array('required'=>'true'));
 	/*echo $this->Form->inputs(array(
@@ -39,3 +45,11 @@
 <footer>
     
 </footer>
+<script>
+//validation code placed after the form makes it work
+var userName = new LiveValidation("UserUsername",{wait: 1000, onlyOnSubmit: true, validMessage: " "});
+userName.add(Validate.Presence);
+var password = new LiveValidation("UserPassword",{wait: 1000, onlyOnSubmit: true, validMessage: " "});
+password.add(Validate.Presence);
+
+</script>

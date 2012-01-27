@@ -83,16 +83,6 @@ class DATABASE_CONFIG {
 		'prefix' => '',
 	);
 	
-	var $local_default = array(
-		'driver' => 'mysql',
-		'persistent' => false,
-		'host' => 'localhost',
-		'login' => 'root',
-		'password' => 'root',
-		'database' => 'test',
-		'prefix' => '',
-	);
-
 	var $test = array(
 		'driver' => 'mysql',
 		'persistent' => false,

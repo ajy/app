@@ -68,12 +68,12 @@ class SubjectsController extends AppController {
 		if (!empty($this->data)) {
                        
 			if ($this->Subject->save($this->data)) {
-				$this->Session->setFlash('The subject has been saved','default', array(
+				$this->Session->setFlash('The changes to the subject have been saved','default', array(
 					'class' => 'message warning'
 				));
 				$this->redirect(array('controller'=> 'pages','action' => 'success'));
 			} else {
-				$this->Session->setFlash('The subject could not be saved. Please, try again.','default', array(
+				$this->Session->setFlash('The changes to the subject could not be saved. Please, try again.','default', array(
 					'class' => 'message error'
 				));
 			}
@@ -93,10 +93,8 @@ class SubjectsController extends AppController {
 		if ($this->Subject->delete($id)) {
 			$this->Session->setFlash('Subject deleted','default', array(
 					'class' => 'message warning'
-				));
-			$this->redirect(array('controller'=> 'pages','action' => 'admin'));
-		}
-		$this->Session->setFlash('Subject was not deleted','default', array(
+				));			
+		}else $this->Session->setFlash('Subject was not deleted','default', array(
 					'class' => 'message error'
 				));
 		$this->redirect(array('controller'=> 'pages','action' => 'admin'));

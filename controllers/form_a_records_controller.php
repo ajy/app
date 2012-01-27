@@ -20,7 +20,7 @@ class FormARecordsController extends AppController {
 			else $rows=$this->FormARecord->calcFormAResults($this->Session->read("Auth.User.id"),$sub_num);
 			$this->set('form_a_results',$rows);
 		}		
-$this->set('sub_num',$sub_num);
+		$this->set('sub_num',$sub_num);
 	}
 	
 	function index() {
@@ -46,12 +46,12 @@ $this->set('sub_num',$sub_num);
                         $this->data['FormARecord']['student']=  $param['student'];
 			$this->data['FormARecord']['submission_number']= $param['sub_num'];
 			if ($this->FormARecord->save($this->data)) {
-				$this->Session->setFlash(__('The form a record has been saved', true),'default', array(
+				$this->Session->setFlash(__('Your feedback has been saved', true),'default', array(
 					'class' => 'message warning'
 				));
 				$this->redirect(array('controller'=> 'pages','action' => 'success'));
 			} else {
-				$this->Session->setFlash(__('The form a record could not be saved. Please, try again.', true));
+				$this->Session->setFlash(__('Your feedback could not be saved. Please, try again.', true));
 			}
 		}else{
                 	$params['subject_id']=$param[0];
@@ -102,7 +102,16 @@ $this->set('sub_num',$sub_num);
 	}
 	
 	function deleteAll(){
-		$this->SubjectMembership->query('Truncate form_a_records');//removes all data and resets id to start from 1
+		$this->FormARecord->query('Truncate form_a_records');//removes all data and resets id to start from 1
+		if($this->FormARecord->find('all')){//returns false if empty
+			$this->Session->setFlash('All records were not deleted','default', array(
+				'class' => 'message error'
+			));
+		}else{
+			$this->Session->setFlash('All records were deleted','default', array(
+				'class' => 'message success'
+			));
+		}
 		$this->redirect($this->referer());
 	}
 }

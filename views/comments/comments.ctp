@@ -7,11 +7,11 @@ and open the template in the editor.
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
-         <?php echo  $javascript->link(array('autoResize'));?>
           <?php echo $html->css(array('reset','alerts','style','comments'));?> 
           <?php echo  $javascript->link(array('jquery.fancybox.pack','add_edit'));?>
                  <?php echo $html->css(array('jquery.fancybox'));?>     
        
+
         <script>
         
             $(document).ready(function() {
@@ -91,15 +91,17 @@ top:-20px;
 </style>
     </head>
     <body>
+
            <?php echo $this->Session->flash();?>
         <div id="comments">
           
               <div class="clear"></div> <!-- End .clear --> 
          <div id="pHead">
+
+
              <h2>Comments</h2> 
                 </div>
-
-        <?if(!is_null($comments)){?>
+	<?if(!is_null($comments)){?>
         <?echo $this->element('comments',array($comments));?>
   <?}
   else{

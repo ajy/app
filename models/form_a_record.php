@@ -48,7 +48,7 @@ class FormARecord extends AppModel {
 				'rule' => array('numeric'),
 				'message' => 'This field must be filled',
 				//'allowEmpty' => false,
-				//'required' => false,
+				'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -58,7 +58,7 @@ class FormARecord extends AppModel {
 				'rule' => array('numeric'),
 				'message' => 'This field must be filled',
 				//'allowEmpty' => false,
-				//'required' => false,
+				'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -68,7 +68,7 @@ class FormARecord extends AppModel {
 				'rule' => array('numeric'),
 				'message' => 'This field must be filled',
 				//'allowEmpty' => false,
-				//'required' => false,
+				'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -78,7 +78,7 @@ class FormARecord extends AppModel {
 				'rule' => array('numeric'),
 				'message' => 'This field must be filled',
 				//'allowEmpty' => false,
-				//'required' => false,
+				'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -88,17 +88,18 @@ class FormARecord extends AppModel {
 				'rule' => array('numeric'),
 				'message' => 'This field must be filled',
 				//'allowEmpty' => false,
-				//'required' => false,
+				'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+                    
 		),
 		'q6' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				'message' => 'This field must be filled',
 				//'allowEmpty' => false,
-				//'required' => false,
+				'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -108,7 +109,7 @@ class FormARecord extends AppModel {
 				'rule' => array('numeric'),
 				'message' => 'This field must be filled',
 				//'allowEmpty' => false,
-				//'required' => false,
+				'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -118,7 +119,7 @@ class FormARecord extends AppModel {
 				'rule' => array('numeric'),
 				'message' => 'This field must be filled',
 				//'allowEmpty' => false,
-				//'required' => false,
+				'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -128,7 +129,7 @@ class FormARecord extends AppModel {
 				'rule' => array('numeric'),
 				'message' => 'This field must be filled',
 				//'allowEmpty' => false,
-				//'required' => false,
+				'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -138,7 +139,7 @@ class FormARecord extends AppModel {
 				'rule' => array('numeric'),
 				'message' => 'This field must be filled',
 				//'allowEmpty' => false,
-				//'required' => false,
+				'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -199,7 +200,7 @@ class FormARecord extends AppModel {
 			if($totalRows==null){
 				$result="No records for ".$userSubject['name'];				
 			}else{
-				$ninetyPerAllRows=0.9*$totalRows;
+				$ninetyPerAllRows=round(0.9*$totalRows);//round eliminates a small round off error
 				$requiredRecords=$this->find('all', array(
 						'fields' => array('q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'),
 						'order' => array('q1 + q2 + q3 + q4 + q5 + q6 + q7 + q8 + q9 + q10 ASC'),

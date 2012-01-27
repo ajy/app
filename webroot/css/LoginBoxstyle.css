@@ -22,17 +22,20 @@ form.login{
     border-width:1px; 
     border-color:lightgray;
     text-align:justify;
-    float: right;
+/*    float: right;*/
     padding: 20px;  
+    padding-top:40px;
     width:300px;
     height:240px; 
-    margin-top: 40px;
+/*    margin-top: 40px;*/
+margin-left: auto;
+margin-right: auto;
     
 }
 
 #login{
-    padding-top: 30px;
-    padding-right:30px;
+    padding-top: 60px;
+/*    padding-right:30px;*/
    
 }
 label{
@@ -101,4 +104,24 @@ footer {
   position:absolute;
   width:100%;
     background-color:#F3F3F3;
+}
+/* some css for all validation messages */
+.LV_validation_message{
+padding-left: 10px;
+font-size:12px;
+color:#DD4B39;
+}
+
+h2{
+    font-family: arial;
+    font-size:40px;
+    
+}
+:root .message {
+   margin-left: 35% !important ;
+    
+}
+#flashMessage ,#authMessage {
+  width:100%;
+  color:#c43c35;
 }
