@@ -1,5 +1,5 @@
- <?= $javascript->link(array('jquery-1.5.1.min','config'));?>
- <?= $html->css(array('style','subjects','button','alert')); ?>
+<?php echo $javascript->link(array('jquery-1.5.1.min','config'));?>
+<?php echo $html->css(array('style','subjects','button','alert')); ?>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script>
 	$(function() {
@@ -29,7 +29,7 @@ color: #1c9bf4 !important;
     <body>
 <div id="subjects"> 
         <div id="pHead">
-                <h2><?php if($sub_num==0)echo "Overall";echo "Feedback Results ";if($sub_num!=0)echo "#".$sub_num;?></h2> 
+                <h2><?php if($sub_num==0)echo "Overall ";echo "Feedback Results ";if($sub_num!=0)echo "#".$sub_num;?></h2> 
              </div>
 <?php
 	

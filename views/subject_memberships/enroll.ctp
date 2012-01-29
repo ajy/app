@@ -11,10 +11,9 @@ padding-bottom:80px;
 </style>
 <div id="header"><?php __('Enroll Students'); ?></div>
 <?php
-echo $this->Form->create('User');
+echo $this->Form->create('SubjectMembership');
 echo "All saved enrollments will be lost, are you sure you want to continue?";
 echo $this->Form->input('ans',array('type'=>'hidden', 'value' => 'Y'));
-echo $this->Form->end();
 ?>
 <br>
 <footer>
@@ -26,3 +25,6 @@ echo $this->Form->end();
  <input class="btn danger" type="submit" value="Enroll" />
 </div>
 </footer>
+<?php
+echo $this->Form->end();
+?>

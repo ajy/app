@@ -1,29 +1,71 @@
 <?php
 class AppController extends Controller {
 	
-	var $components = array('Auth', 'Session');
+	var $components = array('Auth', 'Acl', 'Session');
 	
 	var $helpers = array('Html','Form','Session','Javascript');
 	
-	function beforeFilter() {
-        	//Configure AuthComponent
-               //$this->Auth->authorize = 'actions';
-              $this->Auth->autoRedirect = false;
-              // $group_id=( $this -> Session -> read("Auth.User.group_id"));
-               //print_r($group_id);
-        	//$this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
-                /*if($group_id==1){
-        	$this->Auth->loginRedirect = array('controller'=> 'pages','action' => 'admin');
-                }
-                 if($group_id==2){
-        	$this->Auth->loginRedirect = array('controller'=> 'pages','action' => 'teacher');
-                }*/
-        	//$this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'logout');
-        	 //$this->Auth->allowedActions = array('display'); 	
+	function beforeFilter() {        	
+              $this->Auth->autoRedirect = false;              
     	}
 
+	/* for defining ACLs
+      function setDefaultPermissions() {
+      $group =& $this->User->Group;
+      $originalGroupId = $group->id;
+
+      //allow admins to everything
+      $group->id = 1;
+      $this->Acl->allow($group,'controllers');
+
+      //set teachers access
+      $group->id = 2;
+      $this->Acl->deny($group,'controllers');
+      $this->Acl->allow($group, 'controllers/Comments/report');
+      $this->Acl->allow($group, 'controllers/Comments/add');
+      $this->Acl->allow($group, 'controllers/Comments/comments');
+      $this->Acl->allow($group, 'controllers/FormARecords/result');
+      $this->Acl->allow($group, 'controllers/Subjects/getClass');
+      $this->Acl->allow($group, 'controllers/Subjects/getTeachers');
+      $this->Acl->allow($group, 'controllers/Subjects/getSubjects');
+      $this->Acl->allow($group, 'controllers/Subjects/getName');
+      $this->Acl->allow($group, 'controllers/Users/login');
+      $this->Acl->allow($group, 'controllers/Users/logout');
+      $this->Acl->allow($group, 'controllers/Users/changePassword');
+      $this->Acl->allow($group, 'controllers/Users/edit');
+      $this->Acl->allow($group, 'controllers/Users/resetPassword');
+      $this->Acl->allow($group, 'controllers/Users/setNewPassword');
+      $this->Acl->allow($group, 'controllers/Users/getTeachers');
+      $this->Acl->allow($group, 'controllers/Users/getName');
+
+      //set students access
+      $group->id = 3;
+      $this->Acl->deny($group, 'controllers');
+      $this->Acl->allow($group, 'controllers/Comments/report');
+      $this->Acl->allow($group, 'controllers/Comments/add');
+      $this->Acl->allow($group, 'controllers/Comments/comments');
+      $this->Acl->allow($group, 'controllers/FormARecords/add');
+      $this->Acl->allow($group, 'controllers/Subjects/getClass');
+      $this->Acl->allow($group, 'controllers/Subjects/getTeachers');
+      $this->Acl->allow($group, 'controllers/Subjects/getSubjects');
+      $this->Acl->allow($group, 'controllers/Subjects/getName');
+      $this->Acl->allow($group, 'controllers/Users/login');
+      $this->Acl->allow($group, 'controllers/Users/logout');
+      $this->Acl->allow($group, 'controllers/Users/feedbackEmail');
+      $this->Acl->allow($group, 'controllers/Users/changePassword');
+      $this->Acl->allow($group, 'controllers/Users/edit');
+      $this->Acl->allow($group, 'controllers/Users/resetPassword');
+      $this->Acl->allow($group, 'controllers/Users/setNewPassword');
+      $this->Acl->allow($group, 'controllers/Users/getTeachers');
+      $this->Acl->allow($group, 'controllers/Users/getName');
+
+      echo('all done');
+      exit;
+      }
+     */
+	
 	/*
-    	//rest creates the aco table-remove before production
+    	//rest of the code creates the aco table-remove before production
     	    	
     		function build_acl() {
 		if (!Configure::read('debug')) {
@@ -178,6 +220,7 @@ class AppController extends Controller {
  * @return array of plugin names.
  *
  *
+ 
 	function _getPluginControllerNames() {
 		App::import('Core', 'File', 'Folder');
 		$paths = Configure::getInstance();
@@ -217,6 +260,7 @@ class AppController extends Controller {
 		}
 		return $arr;
 	}
+
 */
 }
 ?>

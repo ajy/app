@@ -118,10 +118,6 @@ h2{
     
 }
 :root .message {
-   margin-left: 35% !important ;
+   margin-left: 37.5% !important ;
     
-}
-#flashMessage ,#authMessage {
-  width:100%;
-  color:#c43c35;
 }

@@ -96,7 +96,7 @@ class SubjectMembershipsController extends AppController {
 	}
 	
 	function enroll() {
-		if(!empty($this->data)&&($this->data['User']['ans']=='Y')){
+		if(!empty($this->data)&&($this->data['SubjectMembership']['ans']=='Y')){
 		$classes = $this->User->find('all', array(
 			'recursive' => -1,
 			'fields' => 'DISTINCT User.class',

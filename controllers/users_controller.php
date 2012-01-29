@@ -304,10 +304,15 @@ class UsersController extends AppController {
             $NumSavedRows = 0;
             $error = false;
             $info = $csv->data;
-            $dataSource = $this->getDataSource();
+            $dataSource = $this->User->getDataSource();
             $dataSource->begin($this);//starting a transaction
+            $defaultPassword = Security::hash(Configure::read('Security.salt')."12345");
             foreach ($info as $studentInfo) {
-                if ($this->User->save(array('User' => $studentInfo), true, array('username', 'name', 'email', 'class'))) {// no id cause its a new user
+            	$this->User->create();
+            	$user = array('User' => $studentInfo);
+            	$user['User']['group_id'] = 3;
+            	$user['User']['password'] = $defaultPassword;
+                if($this->User->save($user, true, array('username', 'name', 'email', 'class'))) {// no id cause its a new user
                     $NumSavedRows++;
                 } else {
                     $this->Session->setFlash('Import Aborted,  Could not  import record #'.$NumSavedRows+1 .'. Please correct and try again.', 'default', array(
@@ -370,50 +375,7 @@ class UsersController extends AppController {
 //
 //                           	$this->redirect($this->Auth->redirect(array('controller'=> 'pages','action' => 'student')));                           	
 //                        }
-//        }
-
-    /* for defining ACLs
-      function setDefaultPermissions() {
-      $group =& $this->User->Group;
-      $originalGroupId = $group->id;
-
-      //allow admins to everything
-      $group->id = 1;
-      $this->Acl->allow($group,'controllers');
-
-      //set teachers access
-      $group->id = 2;
-      $this->Acl->deny($group,'controllers');
-      $this->Acl->allow($group, 'controllers/Comments/view');
-      $this->Acl->allow($group, 'controllers/Comments/add');
-      $this->Acl->allow($group, 'controllers/Comments/comments');
-      $this->Acl->allow($group, 'controllers/FormARecords/result');
-      $this->Acl->allow($group, 'controllers/Subjects/index');
-      $this->Acl->allow($group, 'controllers/Subjects/view');
-      $this->Acl->allow($group, 'controllers/Users/login');
-      $this->Acl->allow($group, 'controllers/Users/logout');
-      $this->Acl->allow($group, 'controllers/Users/changePassword');
-      $this->Acl->allow($group, 'controllers/Users/edit');
-      $this->Acl->allow($group, 'controllers/Users/resetPassword');
-      $this->Acl->allow($group, 'controllers/Users/setNewPassword');
-
-      //set students access
-      $group->id = 3;
-      $this->Acl->deny($group, 'controllers');
-      $this->Acl->allow($group, 'controllers/Comments/add');
-      $this->Acl->allow($group, 'controllers/Comments/comments');
-      $this->Acl->allow($group, 'controllers/FormARecords/add');
-      $this->Acl->allow($group, 'controllers/Users/login');
-      $this->Acl->allow($group, 'controllers/Users/logout');
-      $this->Acl->allow($group, 'controllers/Users/changePassword');
-      $this->Acl->allow($group, 'controllers/Users/edit');
-      $this->Acl->allow($group, 'controllers/Users/resetPassword');
-      $this->Acl->allow($group, 'controllers/Users/setNewPassword');
-
-      echo('all done');
-      exit;
-      }
-     */
+//        }    
 }
 
 ?>

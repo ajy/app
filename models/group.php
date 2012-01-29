@@ -4,6 +4,13 @@ class Group extends AppModel {
 	
 	var $displayField = 'name';
 	
+	var $actsAs = array('Acl' => array('requester'));
+	
+	//added for acl
+	function parentNode() {
+		return null;
+	}
+	
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 	var $hasMany = array(

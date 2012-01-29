@@ -145,7 +145,24 @@ WHERE User.class <> "" and User.id NOT IN (SELECT student_id FROM subject_member
 		}
 	}
 	
-       
+        //stuff added for acl
+        
+        var $actsAs = array('Acl' => array('requester'));
+        
+        function parentNode() {
+        	if (!$this->id && empty($this->data)) {
+        		return null;
+        	}
+        	$data = $this->data;
+        	if (empty($this->data)) {
+        		$data = $this->read();
+        	}
+        	if (!$data['User']['group_id']) {
+        		return null;
+        	} else {
+        		return array('Group' => array('id' => $data['User']['group_id']));
+        	}
+        }
 
         //The Associations below have been created with all possible keys, those that are not needed can be removed
 
@@ -172,5 +189,6 @@ WHERE User.class <> "" and User.id NOT IN (SELECT student_id FROM subject_member
 			'foreignKey' => 'to',
 			'dependent' => true
 		)
-	);	
-}
+	);
+}	
+

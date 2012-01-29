@@ -1,4 +1,4 @@
-<?php echo $html->css(array('reset','LoginBoxstyle','button','alert'));?>
+<?php echo $html->css(array('reset','LoginBoxstyle','button','alerts'));?>
 <?php echo $html->script("livevalidation")?>
 <!--<style>
     footer {
@@ -20,15 +20,15 @@
 <div id="header">
     <h2>OTAS</h2>
 </div>
-<?php //echo $this->Session->flash('auth');?>
-<?php //echo $this->Session->flash();?>
+<?php echo $this->Session->flash('auth');?>
+<?php echo $this->Session->flash();?>
 <div id="login">
    
 <?php
 	
 	echo $this->Form->create('User', array('action' => 'login','class' => 'login'));
-         echo $this->Session->flash('auth');
- echo $this->Session->flash();
+//         echo $this->Session->flash('auth');
+// echo $this->Session->flash();
         echo $this->Form->input('username',array('autofocus'=>'autofocus','required'=>'true'));
          echo $this->Form->input('password',array('required'=>'true'));
 	/*echo $this->Form->inputs(array(
