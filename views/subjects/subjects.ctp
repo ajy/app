@@ -1,11 +1,30 @@
 
+<!DOCTYPE html>
+<html > 
 
-<?php echo $javascript->link(array('jquery-1.5.1.min','config'));?>
-<?php echo $javascript->link(array('jquery.fancybox.pack','add_edit','bootstrap-twipsy'));?>
-<?php echo $html->css(array('jquery.fancybox','twipsy'));?>
-<?php echo Configure::load('feedback');?>              
-<?php echo  $html->css(array('style','subjects','button','alerts')); ?>
-<style>
+    <head> 
+
+
+
+        <title>Subjects</title> 
+
+         <!--                       CSS                       --> 
+        <?php echo $html->css(array('reset','style','jquery.fancybox','button','subjects','alerts','twipsy'),'import');?>
+   
+
+        <!--                      JS                  --> 
+      <?php echo  $javascript->link(array('jquery-1.5.1.min','jquery.fancybox.pack','config','add_edit','bootstrap-twipsy'));?>
+     
+<script>
+            $(function () {
+              $("a[rel=twipsy]").twipsy({
+                live: true
+              })
+            })
+          </script>
+        
+       <style>
+          
  .blue{
                     float:right;
                    
@@ -36,29 +55,25 @@ html{
 position:relative;
 top:10px !important;
 }
-#pHead{
 
-}
 </style>
-<script>
-            $(function () {
-              $("a[rel=twipsy]").twipsy({
-                live: true
-              })
-            })
-          </script>
+
+    </head> 
+
     <body>
-<div id="subjects"> 
-    <?php
-	
-        echo $this->Session->flash();
-        
-        //debug($submitted);
+    
+        <?php
+	/*echo $this->Session->flash('auth');*/
+        echo $this->Session->flash()
 ?>
-        <div id="pHead">
+
+
+            <div id="subjects"> 
+                <div class="clear"></div> <!-- End .clear --> 
+                    
+                 <div id="pHead">
                 <h2>Your Subjects</h2> 
              </div>
-
         
             
        <ul id="main-nav"> 
@@ -105,4 +120,9 @@ top:10px !important;
             
 ?>
        </ul>
-        </div>
+
+                </div>
+
+                </body> 
+
+                </html> 

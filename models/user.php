@@ -71,7 +71,8 @@ class User extends AppModel {
 			'valid' => array(
 				'rule' => array('noValidClassForTeachersAndAdminOnlyStudents'),
 				'message' => 'This type of user cannot have this class',
-				'required' => true,
+				'required' => false,
+                                'nonEmpty'=>false
 			),
 		),
 		'email' => array(

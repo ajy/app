@@ -41,7 +41,7 @@ class CommentsController extends AppController {
 			$reportedComment['Comment']['flagged'] = true;
 			if($this->Comment->save($reportedComment, true, array('id', 'flagged'))) {
 				$this->Session->setFlash('The comment has been reported','default', array(
-					'class' => 'message success'
+					'class' => 'message warning'
 				));                     
 			} else {
 				$this->Session->setFlash('The comment could not be reported. Please, try again.','default', array(

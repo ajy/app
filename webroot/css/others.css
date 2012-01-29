@@ -1,0 +1,116 @@
+/* 
+    Document   : Form
+    Created on : 30 Jun, 2011, 8:16:30 PM
+    Author     : Arun
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+   html
+{
+    font-family:"Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif;
+    overflow: hidden;
+    
+
+}
+    .container{
+        width:500px;
+        margin-left:auto;
+        margin-right: auto;
+        
+    }
+    #header{
+    color:gray;
+    border-bottom-style:solid;
+    padding:10px;
+    border-bottom-width:1px;
+    font-weight:bold;
+    border-bottom-color:lightgray;
+    /*width:330px;*/
+    background-color:#F3F3F3;
+
+
+}
+    legend{
+        visibility: hidden;
+    }
+    label
+{
+    display:block;
+    text-align:left;
+    font-weight: normal;
+    padding-bottom:4px;
+    padding-top:30px;
+
+
+}
+    input {
+
+    border:1px solid #899caa;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    color:#3a454d;
+    font-weight:bold;
+    padding:8px 8px ;
+    box-shadow:inset 0px 1px 3px #bbb;
+    -webkit-box-shadow:inset 0px 1px 3px #bbb;
+    -moz-box-shadow:inset 0px 1px 3px #bbb;
+    font-size:12px;
+    width:200px;
+
+
+}
+input[type=submit]{
+    padding: 8px 8px;
+    width:75px;
+   
+
+}
+    #txt{
+        padding-top:50px;
+
+        
+    }
+    h1{
+       font-size:20px;
+       font-family: arial;
+       font-weight:normal;
+        padding-top:40px;
+    }
+    p{
+        padding-top:30px;
+        font-size: 15px;
+    }
+    #submit{
+      padding-top:30px;   
+    }
+    footer {
+   border-top-color:#EBEBEB;
+  border-top-style:solid;
+  border-top-width:1px;
+  bottom:0;
+  height:35px;
+  position:absolute;
+  width:100%;
+    background-color:#F3F3F3;
+}
+/*:root .message {
+    font-size:15px;
+    width:50%;
+    margin-left:25%;
+    margin-right:25%;
+}*/
+span{
+    padding-left:10px;
+}
+/* some css for all validation messages */
+.LV_validation_message{
+padding-left: 10px;
+font-size: 13px;
+color:#DD4B39;
+}

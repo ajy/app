@@ -43,10 +43,12 @@ $printed=TRUE;
                              $user=(array_values($this->requestAction('/users/getName/'.$comments[$i]['comments']['from'])));
                                echo '<div class ="author">'.$user[0]['users']['name'].'</div>'.' - ';
                             print_r (base64_decode($comments[$i]['comments']['comment']));
-                            if($comments[$i]['comments']['flagged']==1)echo "<br>This Comment has been reported";?>
+                            if($comments[$i]['comments']['flagged']==1)echo '<div id="reported">This Comment has been reported</div>';?>
                                   
                             </div>
+                          
                               <div class="opt">
+                               
                                 <?php if(!$reply){echo $html->link('Comment',array('controller'=>'comments','action'=>'add',$sid,$to,$pid),array('class'=>'modal5')).' &CenterDot;  ';}
                                  
                                    //echo '<a href="/newfbf/comments/report/'.$comments[$i]['comments']['id'].' onclick="return confirm(&#039;Are you sure you want to report this comment?&#039;);"><img src="../img/lag_off.png" width="13" height="13" alt="expand"/></a>'; ?>

@@ -15,6 +15,7 @@ html
 {
     /*    background-color: #B5DAF6;*/
     font-family:"Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif;
+    
 }
 
 form{
@@ -29,7 +30,7 @@ form{
     background-color: #fff;  
     margin-left:10px;
     margin-right:10px;
-
+/*zoom:0.7;*/
 }
 label {
     display: block;
