@@ -24,7 +24,7 @@
           </script>
         
        <style>
-          
+         
  .blue{
                     float:right;
                    
