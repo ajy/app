@@ -6,7 +6,7 @@
 
 
 
-        <title>Admin</title> 
+        <title>Subjects</title> 
 
          <!--                       CSS                       --> 
         <?php echo $html->css(array('reset','style','jquery.fancybox','button','demo_table','demo_table_jui','jquery-ui-1.8.4.custom','TableTools','alerts'),'import');?>
