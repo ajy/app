@@ -2,7 +2,9 @@
 <?php echo $html->script("livevalidation")?>
 <style>
     a              { color: purple; text-decoration: none; }
-
+/*    footer{
+        padding-bottom:100px;;
+    }*/
 </style>
 <script>
 
@@ -11,7 +13,7 @@ function close(){
 }
    
 </script>
- <div id="header"><?php __('Edit Password'); ?></div>
+ <div id="header"><?php __('Change Password'); ?></div>
 <cake:nocache>
 <?php
 	echo $this->Form->create('User');

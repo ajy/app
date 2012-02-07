@@ -20,9 +20,10 @@
 <div id="header">
     <h2>OTAS</h2>
 </div>
-<?php echo $this->Session->flash('auth');?>
+ <?php echo $this->Session->flash('auth');?>
 <?php echo $this->Session->flash();?>
 <div id="login">
+  
    
 <?php
 	
@@ -42,9 +43,9 @@
 	echo $this->Form->end();
 ?>
 </div>
-<footer>
+<!--<footer>
     
-</footer>
+</footer>-->
 <script>
 //validation code placed after the form makes it work
 var userName = new LiveValidation("UserUsername",{wait: 1000, onlyOnSubmit: true, validMessage: " "});
