@@ -129,7 +129,7 @@ class SubjectsController extends AppController {
             // $this->set('allSubjects',$allSubjects);
              $this->set('subjects',$subjects);
              $this->set('teacher1',$teacher1);
-              $this->set('max_sub_num',Configure::read('max_sub_num'));
+             $this->set('max_sub_num',Configure::read('max_sub_num'));
             // $this->set('teacher2',$teacher2);
 
              //$this->set('teacher2',$teacher2);no more teacher2

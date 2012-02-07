@@ -17,6 +17,8 @@ class UsersController extends AppController {
         if ($this->Session->read('Auth.User')) {
             $group_id = $this->Session->read("Auth.User.group_id");
             if ($group_id == 1) {
+                Cache::clear();
+                clearCache();
                 $this->redirect($this->Auth->redirect(array('controller' => 'pages', 'action' => 'admin')));
             }
 
@@ -34,7 +36,7 @@ class UsersController extends AppController {
     function logout() {
         $this->redirect($this->Auth->logout());
     }
-
+    
     function feedbackEmail() {
         Configure::load('feedback');
         if(!Configure::read('enable_mails')){//if emails are disabled

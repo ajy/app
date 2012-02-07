@@ -61,7 +61,7 @@ top:10px !important;
     </head> 
 
     <body>
-    
+    <cake:nocache>
         <?php
 	/*echo $this->Session->flash('auth');*/
         echo $this->Session->flash()
@@ -122,7 +122,7 @@ top:10px !important;
        </ul>
 
                 </div>
-
+                </cake:nocache>
                 </body> 
 
                 </html> 

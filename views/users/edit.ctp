@@ -44,7 +44,7 @@ function close(){
 	echo $this->Session->flash('auth');
         echo $this->Session->flash();
 ?>
-</cake:nocache>
+<cake:nocache>
 <?php
 	echo $this->Form->create('User');
 	echo $this->Form->input('id');
