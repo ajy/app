@@ -8,8 +8,9 @@ document.title='Forgot password';
 </script>
 
 
-
-<div id="header">Forgot Password</div>
+<div id="header">
+    <h2>OTAS</h2>
+</div>
 <?php   echo $this->Session->flash();
 	echo $this->Session->flash('auth');
 ?>

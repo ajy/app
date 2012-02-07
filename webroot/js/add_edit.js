@@ -6,7 +6,7 @@ $(document).ready(function() {
         height	:450,
 
         fitToView	: false,
-        autoSize	: true,
+        autoSize	: false,
         type				: 'iframe',
         padding:1,
         modal:true,
@@ -35,7 +35,7 @@ $(document).ready(function() {
         height	:200,
 
         fitToView	: false,
-        autoSize	: true,
+        autoSize	: false,
         type				: 'iframe',
         padding:1,
         modal:true,
@@ -63,7 +63,7 @@ $(document).ready(function() {
         height	: 400,
 
         fitToView	: false,
-//        autoSize	: true,
+ autoSize	: false,
         type				: 'iframe',
         padding:1,
         modal:true,
@@ -80,11 +80,12 @@ $(document).ready(function() {
       $(".modal3").fancybox({
         
       
-        width	:500,
-        height	: 425,
-
+        maxWidth	:500,
+        maxHeight	: 425,
+        minWidth	:500,
+        minHeight	:200,
         fitToView	: false,
-//        autoSize	: true,
+        autoSize	: true,
         type				: 'iframe',
         padding:1,
         modal:true,
@@ -103,7 +104,7 @@ $(document).ready(function() {
         height:375,
         width:500,
         fitToView	: false,
-//        autoSize	: true,
+ autoSize	: true,
         type				: 'iframe',
         padding:1,
         modal:true,
@@ -118,11 +119,12 @@ $(document).ready(function() {
                
     });    
      $(".modal5").fancybox({
-        
-        height:270,
-        width:500,
+        minWidth	:500,
+        minHeight	: 270,
+       maxWidth	:500,
+        maxHeight	: 270,
         fitToView	: false,
-//        autoSize	: true,
+ autoSize	: true,
         type				: 'iframe',
         padding:1,
         modal:true,
@@ -142,7 +144,7 @@ $(document).ready(function() {
         height:500,
         width:500,
         fitToView	: false,
-//        autoSize	: true,
+ autoSize	: false,
         type				: 'iframe',
         padding:1,
         modal:true,
@@ -161,7 +163,7 @@ $(document).ready(function() {
         height:150,
         width:500,
         fitToView	: false,
-//        autoSize	: true,
+ autoSize	: false,
         type				: 'iframe',
         padding:1,
         modal:true,
@@ -182,12 +184,13 @@ $(document).ready(function() {
 	height			: '100%',
 //        minWidth	:500,
 //        minHeight	: 200,
-        fitToView	: false,
-        autoSize	: true,
+        fitToView	: true,
+        autoSize	: false,
         type				: 'iframe',
         padding:1,
+        scrolling:'auto',
         modal:true,
-         
+       
         helpers: { 
             title:null
         } ,

@@ -7,17 +7,21 @@
 <?php Configure::load('FormAQs'); ?>
 <style>
     html{
-        overflow:hidden;
+        overflow:auto;
+/*        zoom:1;*/
     }
   
 
 
 error{
-  display:none
+  display:none;
 }
 </style>  
 <script>
-
+if(screen.height>600){
+($('html').css('overflow','hidden') ) 
+    
+}
 function close(){
     parent.$.fancybox.close( );
    

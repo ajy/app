@@ -36,7 +36,7 @@ class Comment extends AppModel {
 		'comment' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				'message' => 'You must give a comment',
+				'message' => 'You must write something to leave a comment',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
