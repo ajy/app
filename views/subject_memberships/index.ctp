@@ -33,15 +33,17 @@ padding:10px;
         		array('escape'=>false,'class'=>'btn success imp')),
         	array('class' => 'import'));
         ?>
-        <?php echo "The number of completed form submissions are ".$form_a_submitted.'/'.$total;?>
+        <?php echo "<h5>".$form_a_submitted.'/'.$total." of the students have submitted the ".$max_sub_num." forms that are required</h5>";?>
 	<div class="content-box"><!-- Start Content Box --> 
 	<div class="content-box-content">
+	<?php echo "<h4>Students who have not provided the required number of forms are-</h4>";?>
 	<table cellpadding="0" cellspacing="0" class="display example" >
 	<thead>
 	<tr>
-			<th>student_id</th>
-			<th>subject_id</th>
-			<th>form_a_submitted</th>
+			<th>USN</th>
+			<th>student</th>
+			<th>subject</th>
+			<th>number of submissions</th>
 			<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	</thead>
@@ -50,11 +52,15 @@ padding:10px;
 	$i = 0;
 	foreach ($subjectMemberships as $subjectMembership):
 		$class = null;
-		if ($i++ % 2 == 0) {
-			$class = ' class="altrow"';
-		}
+		if($subjectMembership['SubjectMembership']['form_a_submitted']<$max_sub_num){
+			if ($i++ % 2 == 0) {
+				$class = ' class="altrow"';
+			}
 	?>
 	<tr<?php echo $class;?>>
+		<td>
+			<?php echo $subjectMembership['Student']['username'];?>
+		</td>
 		<td>
 			<?php echo $subjectMembership['Student']['name'];?>
 		</td>
@@ -63,11 +69,14 @@ padding:10px;
 		</td>
 		<td><?php echo $subjectMembership['SubjectMembership']['form_a_submitted']; ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $subjectMembership['SubjectMembership']['id'])); ?>
+			<?php //echo $this->Html->link(__('Edit', true), array('action' => 'edit', $subjectMembership['SubjectMembership']['id'])); ?>
 			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $subjectMembership['SubjectMembership']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $subjectMembership['SubjectMembership']['id'])); ?>
 		</td>
 	</tr>
-<?php endforeach; ?>
+	<?php 
+		}
+		endforeach;
+	?>
 	</tbody>
 	</table>
 	</div>

@@ -13,6 +13,7 @@ class SubjectMembershipsController extends AppController {
 		$form_a_submitted=$this->SubjectMembership->query("select count(*) as submitted from subject_memberships where form_a_submitted=".Configure::read('max_sub_num'));
 		$this->set('total',$total[0][0]['total']);
 		$this->set('form_a_submitted',$form_a_submitted[0][0]['submitted']);
+		$this->set('max_sub_num',Configure::read('max_sub_num'));
 	}
 
 	function view($id = null) {
