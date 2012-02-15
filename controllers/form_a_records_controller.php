@@ -55,15 +55,8 @@ class FormARecordsController extends AppController {
                 	$params['subject_id']=$param[0];
                 	$params['teacher']=$param[1];
                 	$params['student']=$this->Session->read("Auth.User.id");;
-                	$temp=$this->FormARecord->find('first',array(
-                		'fields' => 'ifnull(max(submission_number),0) as sub_num',//set sub_num to 0 if it is null(not present)
-                		'conditions' => array(
-                			'subject_id' => $params['subject_id'],
-                			'teacher' => $params['teacher'],
-                			'student' => $params['student']
-                		)
-                	));
-                	$params['sub_num']=$temp[0]['sub_num']+1;//set sub_num to next submission_number value
+                	Configure::load('feedback');
+                	$params['sub_num']=Configure::read('max_sub_num');//set sub_num to next submission_number value
                 	$this->Session->write('params',$params);
                 }
 	}
